@@ -11,7 +11,7 @@
         </div>
         @endif
         {{-- Logo --}}
-        <div class="logo">
+        <div class="logo mt-2">
             <img  src="images/logo.png" alt="Logo YARSI" width="325" height="95">
         </div>
         <div class="form-login box-shadow bg-light rounded-2 mt-5 p-4">
