@@ -2,7 +2,7 @@
 @section('title', 'Dashboard | Login')
 @section('container')
 <main class="container">
-    <form class="container form" action="/login" method="POST">
+    <form class="container form p-3" action="/login" method="POST">
         @csrf
         @if(session()->has('failed'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -21,7 +21,7 @@
                 <span>Silahkan masuk dengan akun yang sudah terhubung dengan LDAP !</span>
             </div>
             {{-- Input username --}}
-            <div class="input-login">
+            <div class="input-login mx-2 pb-3">
                 <div class="username mt-4 mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="username" class="form-control py-2 @error('username') is-invalid @enderror"
@@ -45,10 +45,6 @@
                         </div>
                     @enderror
                 </div>
-            </div>
-            {{-- Checklist remember me --}}
-            <div class="checkbox mb-4">
-                <label><input type="checkbox" value="remember-me"> Ingatkan saya</label>
             </div>
             {{-- Button login --}}
             <button class="w-100 btn btn-lg btn-primary btn-login" type="submit">Masuk</button>
