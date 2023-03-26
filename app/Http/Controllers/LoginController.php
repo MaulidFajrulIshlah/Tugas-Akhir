@@ -7,9 +7,16 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    // function index
     public function index()
     {
+
+        if ($user = Auth::user()) {
+            if ($user->level == '1') {
+                return redirect()->intended('/admin/dashboard');
+            } elseif ($user->level == '2') {
+                return redirect()->intended('/dekanat/dashboard');
+            }
+        }
         return view('login.login');
     }
 
@@ -19,7 +26,7 @@ class LoginController extends Controller
         // validasi username dan password
         $request->validate([
             'username' => ['required', 'min:3', 'max:255'],
-            'password' => 'required|min:5|max:255',
+            'password' => ['required', 'min:5', 'max:255'],
         ]);
         $credentials = $request->only('username', 'password');
 
@@ -29,10 +36,23 @@ class LoginController extends Controller
             $user = Auth::user();
             if ($user->level == '1') {
                 return redirect()->intended('/admin/dashboard');
+            } elseif ($user->level == '2') {
+                return redirect()->intended('/dekanat/dashboard');
             }
             return view('login.login');
         } else {
             return back()->with('failed', 'Gagal masuk! Silahkan coba lagi!');
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
     }
 }

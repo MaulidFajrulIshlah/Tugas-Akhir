@@ -26,7 +26,5 @@ class CekUserLogin
         }
 
         return redirect('/login')->with('error', 'Anda tidak memiliki akses!');
-
-        return $next($request);
     }
 }
