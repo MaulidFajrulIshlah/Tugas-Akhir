@@ -14,7 +14,7 @@
         <div class="logo mt-2">
             <img  src="images/logo.png" alt="Logo YARSI" width="325" height="95">
         </div>
-        <div class="form-login box-shadow bg-light rounded-2 mt-5 p-4">
+        <div class="form-login box-shadow bg-light rounded-3 mt-5 p-4">
             {{-- Title --}}
             <div class="container description">
                 <h3>Masuk</h3>
@@ -47,7 +47,7 @@
                 </div>
             </div>
             {{-- Button login --}}
-            <button class="w-100 btn btn-lg btn-primary btn-login" type="submit">Masuk</button>
+            <button class="w-100 btn btn-lg btn-primary btn-login mb-3" type="submit">Masuk</button>
         </div>
     </form>
 </main>
