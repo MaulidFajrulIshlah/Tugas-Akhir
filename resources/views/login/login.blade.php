@@ -21,7 +21,7 @@
                 <span>Silahkan masuk dengan akun yang sudah terhubung dengan LDAP !</span>
             </div>
             {{-- Input username --}}
-            <div class="input-login mx-2 pb-3">
+            <div class="input-login mx-3 my-4">
                 <div class="username mt-4 mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="username" class="form-control py-2 @error('username') is-invalid @enderror"
@@ -34,7 +34,7 @@
                     @enderror
                 </div>
                 {{-- Input Password --}}
-                <div class="password mb-3">
+                <div class="password">
                     <label for="password" class="form-label">Kata Sandi</label>
                     <input type="password" class="form-control py-2 @error('password') is-invalid @enderror" name="password"
                     id="password" placeholder="Masukkan kata sandi...." required
