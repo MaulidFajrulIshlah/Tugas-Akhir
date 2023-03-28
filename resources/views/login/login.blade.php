@@ -1,9 +1,10 @@
 @extends('layouts.mainLogin')
 @section('title', 'Dashboard | Login')
-@section('container')
+@section('content')
 <main class="container">
     <form class="container form p-3" action="/login" method="POST">
         @csrf
+        {{-- Pesan Failed --}}
         @if(session()->has('failed'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             {{ session('failed') }}
@@ -11,13 +12,13 @@
         </div>
         @endif
         {{-- Logo --}}
-        <div class="logo mt-2">
-            <img  src="images/logo.png" alt="Logo YARSI" width="325" height="95">
+        <div class="logo m-3">
+            <img  src="images/logo.png" class="logo" alt="Logo YARSI">
         </div>
-        <div class="form-login box-shadow bg-light rounded-3 mt-5 p-4">
+        <div class="form-login box-shadow bg-light rounded-3 mt-4 p-4">
             {{-- Title --}}
             <div class="container description">
-                <h3>Masuk</h3>
+                <h3><strong>Masuk</strong></h3>
                 <span>Silahkan masuk dengan akun yang sudah terhubung dengan LDAP !</span>
             </div>
             {{-- Input username --}}
