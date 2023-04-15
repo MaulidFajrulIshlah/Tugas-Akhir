@@ -10,13 +10,18 @@ class LoginController extends Controller
     public function index()
     {
 
-        if ($user = Auth::user()) {
-            if ($user->level == '1') {
-                return redirect()->intended('/admin/dashboard');
-            } elseif ($user->level == '2') {
-                return redirect()->intended('/dekanat/dashboard');
-            }
+        // if ($user = Auth::user()) {
+        //     if ($user->level == '1') {
+        //         return redirect()->intended('/admin/dashboard');
+        //     } elseif ($user->level == '2') {
+        //         return redirect()->intended('/dekanat/dashboard');
+        //     }
+        // }
+
+        if (Auth::user()) {
+            return redirect()->intended('/beranda');
         }
+
         return view('login.login');
     }
 
@@ -34,10 +39,13 @@ class LoginController extends Controller
             //  jika authentikasi sukses
             $request->session()->regenerate();
             $user = Auth::user();
-            if ($user->level == '1') {
-                return redirect()->intended('/admin/dashboard');
-            } elseif ($user->level == '2') {
-                return redirect()->intended('/dekanat/dashboard');
+            // if ($user->level == '1') {
+            //     return redirect()->intended('/admin/dashboard');
+            // } elseif ($user->level == '2') {
+            //     return redirect()->intended('/dekanat/dashboard');
+            // }
+            if ($user) {
+                return redirect()->intended('/beranda');
             }
             return view('login.login');
         } else {

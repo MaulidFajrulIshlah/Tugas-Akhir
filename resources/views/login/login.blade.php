@@ -1,5 +1,5 @@
 @extends('layouts.mainLogin')
-@section('title', 'Dashboard | Login')
+@section('title', 'Login | PANDAY')
 @section('content')
 <main class="container">
     <form class="container form p-3" action="/login" method="POST">
