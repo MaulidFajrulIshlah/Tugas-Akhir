@@ -19,25 +19,25 @@ class UserData extends Seeder
                 'name' => 'Administrator',
                 'username' => 'admin',
                 'password' => bcrypt('12345'),
-                'level' => 1,
+                'role' => 'Admin',
             ],
             [
                 'name' => 'Dekanat Fakultas',
                 'username' => 'dekanat',
                 'password' => bcrypt('12345'),
-                'level' => 2,
+                'role' => 'Dekanat',
             ],
             [
                 'name' => 'Prodi',
                 'username' => 'prodi',
                 'password' => bcrypt('12345'),
-                'level' => 3,
+                'role' => 'Prodi',
             ],
             [
                 'name' => 'Tendik',
                 'username' => 'tendik',
                 'password' => bcrypt('12345'),
-                'level' => 4,
+                'role' => 'Tendik',
             ],
         ];
         foreach ($user as $key => $value) {

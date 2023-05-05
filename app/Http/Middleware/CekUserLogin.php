@@ -21,7 +21,7 @@ class CekUserLogin
         }
 
         $user = Auth::user();
-        if ($user->level == $roles) {
+        if ($user->role == $roles) {
             return $next($request);
         }
 
