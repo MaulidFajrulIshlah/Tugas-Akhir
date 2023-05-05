@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 50px;
+    background-color: #135f00;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+:root {
+    --main-text-color: #009d63;
+    --second-text-color: #135f00;
+    --link-active: #613d7c;
+}
+
+.second-text {
+    color: var(--second-text-color);
+}
+
+.rounded-full {
+    border-radius: 100%;
+}
+
+#wrapper {
+    overflow-x: hidden;
+    background-image: linear-gradient(to right,
+            #e4e2e2f8,
+            #cccbcb);
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    -webkit-transition: margin 0.25s ease-out;
+    -moz-transition: margin 0.25s ease-out;
+    -o-transition: margin 0.25s ease-out;
+    transition: margin 0.25s ease-out;
+    margin-top: 50px;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    /**belum**/
+    padding: 0.600rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+#page-content-wrapper {
+    /**belum**/
+    min-width: 100vw;
+}
+
+.page-content-wrapper {
+    /**belum**/
+    opacity: 1;
+    top: 50%;
+}
+
+.sidebar-nav .nav-heading {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #aaaaaa;
+    font-weight: 600;
+    margin: 10px 30 5px 15px;
+    margin-left: -20px;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    /**belum**/
+    margin-left: 0;
+
+}
+
+#menu-toggle {
+    cursor: pointer;
+}
+
+.list-group-item {
+    /**belum**/
+    border: none;
+    padding: 15px 10px;
+    cursor: pointer;
+}
+
+.link.active {
+    /**belum**/
+    color: var(--link-active);
+    font-weight: bold;
+    border: none;
+    opacity: 1;
+    top: 50%;
+}
+
+.table {
+    width: 40%;
+}
+
+.card {
+    width: 350px;
+}
+
+.header-card {
+    width: 300px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.link,
+.text {
+    white-space: nowrap;
+}
+
+ul>li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    header i h2 {
+        margin-top: 50px;
+    }
+
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -15rem;
+    }
+
+    .collapse {
+        float: right;
+    }
+
+}
