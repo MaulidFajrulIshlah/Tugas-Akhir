@@ -11,10 +11,10 @@ class LoginController extends Controller
     {
 
         // if ($user = Auth::user()) {
-        //     if ($user->level == '1') {
-        //         return redirect()->intended('/admin/dashboard');
-        //     } elseif ($user->level == '2') {
-        //         return redirect()->intended('/dekanat/dashboard');
+        //     if ($user->role == 'Admin') {
+        //         return redirect()->intended('admin');
+        //     } elseif ($user->role == 'Dekanat') {
+        //         return redirect()->intended('dekanat');
         //     }
         // }
 
@@ -39,10 +39,11 @@ class LoginController extends Controller
             //  jika authentikasi sukses
             $request->session()->regenerate();
             $user = Auth::user();
-            // if ($user->level == '1') {
-            //     return redirect()->intended('/admin/dashboard');
-            // } elseif ($user->level == '2') {
-            //     return redirect()->intended('/dekanat/dashboard');
+            // if ($user->role == 'Admin') {
+            //     return redirect()->intended('admin');
+            //     // dd($request->all());
+            // } elseif ($user->role == 'Dekanat') {
+            //     return redirect()->intended('dekanat');
             // }
             if ($user) {
                 return redirect()->intended('/beranda');

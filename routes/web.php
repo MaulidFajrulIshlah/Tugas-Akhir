@@ -4,9 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LayoutController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\DekanatController;
+use App\Http\Controllers\BerandaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +17,9 @@ use App\Http\Controllers\DekanatController;
 |
 */
 
-Route::get('/', [LayoutController::class, 'index'])->name('beranda');
+// Route::get('/', [LayoutController::class, 'index'])->name('beranda');
 
-Route::get('/beranda', [LayoutController::class, 'index'])->middleware('auth');
+Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda')->middleware('auth');
 
 // Login
 Route::controller(LoginController::class)->group(function () {
@@ -32,12 +30,23 @@ Route::controller(LoginController::class)->group(function () {
 
 // Middleware  
 Route::middleware(['auth'])->group(function () {
-    Route::middleware(['cekUserLogin:1'])->group(function () {
-        Route::controller(AdminController::class)->group(function () {
-            Route::get('/beranda/mahasiswa', [AdminController::class, 'index']);
+    // jika sebagai Admin
+    Route::middleware(['cekUserLogin:Admin'])->group(function () {
+        // Route::resource('admin', AdminController::class);
+
+        // Mahasiswa
+        Route::controller(MahasiswaController::class)->group(function () {
+            Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
         });
     });
-    Route::middleware(['cekUserLogin:2'])->group(function () {
-        Route::get('/dekanat/mahasiswa', [DekanatController::class, 'index']);
+
+    // jika sebagai dekanat
+    Route::middleware(['cekUserLogin:Dekanat'])->group(function () {
+        // Route::resource('dekanat', DekanatController::class);
+
+        // Mahasiswa
+        Route::controller(MahasiswaController::class)->group(function () {
+            Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
+        });
     });
 });
