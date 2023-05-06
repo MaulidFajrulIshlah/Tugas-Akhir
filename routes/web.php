@@ -24,7 +24,7 @@ Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda')->mi
 // Login
 Route::controller(LoginController::class)->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
-    Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+    Route::post('/prosesLogin', [LoginController::class, 'authenticate'])->name('prosesLogin');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 

@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <main class="container">
-            <form class="container form p-3" action="{{ route('login') }}" method="POST">
+            <form class="container form p-3" action="{{ route('prosesLogin') }}" method="POST">
                 @csrf
                 {{-- Pesan Failed --}}
                 @if(session()->has('failed'))

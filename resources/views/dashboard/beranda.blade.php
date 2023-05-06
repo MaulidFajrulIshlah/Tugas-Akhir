@@ -250,7 +250,7 @@
         @if($user->role == 'Admin')
             <div class="row my-5">
                 <h5 class="mb-3 fw-bold text">Daftar Pengguna Dengan Status Suspend</h5>
-                <div class="col bg-white p-3 rounded">
+                <div class="mx-2 col bg-white p-3 rounded box-shadow">
                     <table class="table table-bordered table">
                         <thead>
                             <tr class="text">
