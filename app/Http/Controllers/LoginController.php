@@ -12,8 +12,8 @@ class LoginController extends Controller
         if (Auth::user()) {
             return redirect()->intended('beranda');
         }
-        return response()->json(['status' => 'error', 'message' => 'Anda belum masuk'], 401);
-        // return view('login.login');
+        // return response()->json(['status' => 'error', 'message' => 'Anda belum masuk!'], 401);
+        return view('login.login');
     }
 
     // function authenticate
