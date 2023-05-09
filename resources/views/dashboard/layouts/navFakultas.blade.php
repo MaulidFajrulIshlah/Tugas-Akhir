@@ -1,25 +1,25 @@
 <ul class="nav nav-pills mb-2" style="margin-left: -10px"> <!--baru ditambahkan-->
     <li class="nav-item">
-        <a class="nav-link" aria-current="page" href="#">Pascasarjana</a>
+        <a class="nav-link link" aria-current="page" href="#">Pascasarjana</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">FK</a>
+        <a class="nav-link link" href="#">FK</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">FKG</a>
+        <a class="nav-link link" href="#">FKG</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">FTI</a>
+        <a class="nav-link link" href="#">FTI</a>
         <!--baru ditambahkan-->
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">FEB</a> <!--baru ditambahkan-->
+        <a class="nav-link link" href="#">FEB</a> <!--baru ditambahkan-->
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">FH</a>
+        <a class="nav-link link" href="#">FH</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">FPsi</a>
+        <a class="nav-link link" href="#">FPsi</a>
     </li>
 </ul>
 
