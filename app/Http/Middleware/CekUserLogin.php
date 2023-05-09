@@ -14,17 +14,22 @@ class CekUserLogin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $roles): Response
+    public function handle(Request $request, Closure $next, ...$roles): Response
     {
+        // cek autentikasi pengguna
         if (!Auth::check()) {
-            return redirect('/login');
+            return response()->json(['status' => 'error', 'message' => 'Anda Belum Masuk'], 401);
+            // return redirect('/login');
         }
 
+        // cek akses halaman pengguna
         $user = Auth::user();
-        if ($user->role == $roles) {
+        if (in_array($user->role, $roles)) {
             return $next($request);
         }
 
-        return redirect()->intended('/login');
+        // jika tidak termasuk ke dalam daftar pengguna
+        return response()->json(['status' => 'error', 'message' => 'Anda tidak memiliki akses ke halaman ini'], 403);
+        abort(403, 'Anda tidak memiliki akses ke halaman ini');
     }
 }

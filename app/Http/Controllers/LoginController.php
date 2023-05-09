@@ -7,22 +7,13 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-
-        // if ($user = Auth::user()) {
-        //     if ($user->role == 'Admin') {
-        //         return redirect()->intended('admin');
-        //     } elseif ($user->role == 'Dekanat') {
-        //         return redirect()->intended('dekanat');
-        //     }
-        // }
-
         if (Auth::user()) {
-            return redirect()->intended('/beranda');
+            return redirect()->intended('beranda');
         }
-
-        return view('login.login');
+        return response()->json(['status' => 'error', 'message' => 'Anda belum masuk'], 401);
+        // return view('login.login');
     }
 
     // function authenticate
@@ -39,18 +30,12 @@ class LoginController extends Controller
             //  jika authentikasi sukses
             $request->session()->regenerate();
             $user = Auth::user();
-            // if ($user->role == 'Admin') {
-            //     return redirect()->intended('admin');
-            //     // dd($request->all());
-            // } elseif ($user->role == 'Dekanat') {
-            //     return redirect()->intended('dekanat');
-            // }
             if ($user) {
-                return redirect()->intended('/beranda');
+                return redirect()->intended('beranda');
             }
-            return view('login.login');
+            return response()->json(['status' => 'error', 'message' => 'Unauthorized'], 403);
         } else {
-            return back()->with('failed', 'Gagal masuk! Silahkan coba lagi!');
+            return redirect('login')->with('failed', 'Gagal masuk! Silahkan coba lagi!');
         }
     }
 
@@ -62,6 +47,6 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('login');
     }
 }
