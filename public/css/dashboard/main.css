@@ -18,12 +18,15 @@ header {
 
 :root {
     --main-text-color: #009d63;
-    --second-text-color: #135f00;
+    --second-color: #135f00;
+    --second-text-color: #F5F5F5F5;
     --link-active: #613d7c;
+    --bg-website: #eeeeee;
+    --warning-color: red;
 }
 
 .second-text {
-    color: var(--second-text-color);
+    color: var(--second-color);
 }
 
 .rounded-full {
@@ -32,12 +35,19 @@ header {
 
 #wrapper {
     overflow-x: hidden;
-    background-color: #eeeeee;
+    background-color: var(--bg-website);
     /* background-image: linear-gradient(to right,
             #e4e2e2f8,
             #cccbcb); */
 }
 
+/* #wrapper-content.toggled {
+    min-height: 90vh;
+} */
+
+#wrapper-content {
+    min-height: 90vh;
+}
 
 #sidebar-wrapper {
     min-height: 100vh;
@@ -98,11 +108,16 @@ header {
 
 .link.active {
     /**belum**/
-    color: var(--link-active);
-    font-weight: bold;
+    color: var(--second-text-color);
     border: none;
     opacity: 1;
     top: 50%;
+    border-radius: 3px;
+}
+
+.navSidebar.active,
+.nav-item>.nav-link.active {
+    background-color: var(--main-text-color);
 }
 
 .table {
@@ -111,11 +126,11 @@ header {
 
 .card {
     width: 350px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
 }
 
-.card,
 .box-shadow {
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
 }
 
 .header-card {
@@ -137,6 +152,34 @@ ul>li {
 a {
     text-decoration: none;
 }
+
+.nav-link {
+    color: black;
+}
+
+.nav-link:hover,
+.navSidebar:hover {
+    background-color: var(--main-text-color);
+    color: var(--second-text-color);
+}
+
+.logout-link {
+    color: var(--warning-color);
+}
+
+.logout-link:hover {
+    background-color: var(--warning-color);
+    color: var(--second-text-color);
+}
+
+.navSidebar,
+.logout-link {
+    margin-left: -30px;
+}
+
+/* .content {
+    display: none;
+} */
 
 @media (min-width: 768px) {
     header i h2 {

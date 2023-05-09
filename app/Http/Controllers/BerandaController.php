@@ -11,9 +11,23 @@ class BerandaController extends Controller
     //
     public function index()
     {
-
-        return view('dashboard.beranda')->with([
-            'user' => Auth::user()
-        ]);
+        $user = Auth::user();
+        if ($user->role === 'Admin') {
+            return view('dashboard.admin.beranda')->with([
+                'user' => Auth::user()
+            ]);
+        } else if ($user->role === 'Dekanat') {
+            return view('dashboard.dekanat.beranda')->with([
+                'user' => Auth::user()
+            ]);
+        } else if ($user->role === 'Prodi') {
+            return view('dashboard.prodi.beranda')->with([
+                'user' => Auth::user()
+            ]);
+        } else if ($user->role === 'Tendik') {
+            return view('dashboard.tendik.beranda')->with([
+                'user' => Auth::user()
+            ]);
+        }
     }
 }
