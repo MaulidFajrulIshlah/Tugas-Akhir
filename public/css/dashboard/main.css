@@ -116,7 +116,7 @@ header {
 }
 
 .navSidebar.active,
-.nav-item>.nav-link.active {
+.nav-item>.link.active {
     background-color: var(--main-text-color);
 }
 
