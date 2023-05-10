@@ -18,8 +18,6 @@ use App\Http\Controllers\MahasiswaController;
 |
 */
 
-// Route::get('/', [LayoutController::class, 'index'])->name('beranda');
-
 // Login
 Route::controller(LoginController::class)->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -27,6 +25,11 @@ Route::controller(LoginController::class)->group(function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
+// mengalihkan route
+Route::redirect('/', '/login');
+
+// Beranda
 Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda')->middleware('auth');
 
+// Mahasiswa
 Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa')->middleware('auth');

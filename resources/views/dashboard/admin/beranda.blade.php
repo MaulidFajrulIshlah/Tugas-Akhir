@@ -9,8 +9,9 @@
         </ol>
 
     <div class="row g-3 my-3">
+        <div class="container">
         <!-- Akun Card -->
-        <div class="col-xl-4 col-md-6 col-lg-5">
+        <div class="container-card">
             <div class="card info-card akun-card">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
@@ -29,7 +30,7 @@
         </div><!-- End Akun Card -->
 
         <!-- Mahasiswa Card -->
-        <div class="col-xl-4 col-md-6 col-11 col-lg-5">
+        <div class="container-card">
             <div class="card info-card mhs-card">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
@@ -48,7 +49,7 @@
         </div><!-- End Mahasiswa Card -->
 
         <!-- Dosen Card -->
-        <div class="col-xl-4 col-md-6 col-11 col-lg-5">
+        <div class="container-card">
             <div class="card info-card dosen-card">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
@@ -65,11 +66,12 @@
                 </div>
             </div>
         </div><!-- End Dosen Card -->
+        </div>
 
         {{-- Table Status Suspend --}}
             <div class="row my-5">
                 <h5 class="mb-3 fw-bold text">Daftar Pengguna Dengan Status Suspend</h5>
-                <div class="mx-2 col bg-white p-3 rounded card">
+                <div class="content mx-2 col bg-white p-3 rounded card">
                     <table class="table table-bordered table">
                         <thead>
                             <tr class="text">
