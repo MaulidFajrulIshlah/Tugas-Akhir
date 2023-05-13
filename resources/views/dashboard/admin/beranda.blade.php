@@ -1,7 +1,6 @@
 @extends('dashboard.layouts.main')
 @section ('title', 'PANDAY | Beranda')
 @section('content')
-<div class="container-fluid px-5" style="margin-top: 35px;">
     <h5 class="fw-bold" style="margin-top: 40px; font-weight: 400;">Beranda</h5>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('beranda') }}">Dashboard</a></li>
@@ -157,5 +156,4 @@
                 </div> <!--col-->
             </div> <!--row my-5-->
     </div> <!-- /row g-3 my-3 -->
-</div> <!-- /container-fluid -->
 @endsection

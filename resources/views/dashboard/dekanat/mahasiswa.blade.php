@@ -1,7 +1,5 @@
 @extends('dashboard.layouts.main')
 @section('content')
-    <!-- /#sidebar-wrapper -->
-    <div class="container-fluid px-5" style="margin-top: 35px;">
         <h5 class="fw-bold" style="margin-top: 40px; font-weight: 400;">Mahasiswa</h5>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('beranda') }}">Dashboard</a></li>
@@ -67,6 +65,4 @@
                 </div> <!-- /row g-0 my-0 -->
             </div> <!-- /col bg-white -->
         </div>
-    </div> <!-- /container-fluid -->
-</div> <!-- /d-flex -->
 @endsection

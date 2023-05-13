@@ -21,7 +21,9 @@
         @include('dashboard.layouts.sidebar')
 
         <!-- /#sidebar-wrapper -->  
-        @yield('content')
+        <div class="container-fluid px-5" style="margin-top: 35px;">
+            @yield('content')
+        </div>
     </div> <!-- /d-flex -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

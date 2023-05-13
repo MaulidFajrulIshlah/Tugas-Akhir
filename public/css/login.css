@@ -11,6 +11,7 @@
 :root {
     --body-color: #EBF2FA;
     --text-color: #FFFFFF;
+    --bg-website: #eeeeee;
     --btn-color-primary: #1D5F18;
     --btn-color-secondary: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), #1D5F18;
     /* --body-color: linear-gradient(to top, #ffffff 0%, rgba(176, 176, 176, 0.5) 100%); */
@@ -29,9 +30,9 @@ body {
     display: flex;
     padding-top: 30px;
     padding-bottom: 30px;
-    background-color: var(--body-color);
+    background-color: var(--bg-website);
+    /* background-color: var(--body-color); */
     /* background: linear-gradient(296.82deg, #c5c5c5 0%, rgba(228, 242, 255, 0.5) 100%); */
-    /* background: var(--body-color); */
 }
 
 .container {
