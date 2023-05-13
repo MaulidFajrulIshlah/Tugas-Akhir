@@ -95,7 +95,9 @@ header {
 
 }
 
-#menu-toggle {
+#menu-toggle,
+.list-group-item,
+.form-select {
     cursor: pointer;
 }
 
@@ -103,7 +105,6 @@ header {
     /**belum**/
     border: none;
     padding: 15px 10px;
-    cursor: pointer;
 }
 
 .link.active {
@@ -197,11 +198,6 @@ a {
 .card {
     margin-right: 0;
 }
-
-.form-select {
-    cursor: pointer;
-}
-
 
 @media (max-width: 1360px) {
     .cards {
