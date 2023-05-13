@@ -1,73 +1,73 @@
 @extends('dashboard.layouts.main')
 @section ('title', 'PANDAY | Beranda')
 @section('content')
-<div class="container-fluid px-5" style="margin-top: 30px;">
-    <h5 class="fw-bold" style="margin-top: 35px; font-weight: 400;">Beranda</h5>
+<div class="container-fluid px-5" style="margin-top: 35px;">
+    <h5 class="fw-bold" style="margin-top: 40px; font-weight: 400;">Beranda</h5>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('beranda') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Beranda</li>
         </ol>
 
-    <div class="row g-3 my-3">
-        <div class="container">
-        <!-- Akun Card -->
-        <div class="container-card">
-            <div class="card info-card akun-card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="ps-1">
-                            <div class="header-card">
-                                <img src="images/Akun.png" style="width: 32px; height: 32px; margin-top: 3px;">
-                                <h5 class="card-title fw-bold">Jumlah Akun</h5>
+    <div class="row my-3">
+        <div class="cards">
+            <!-- Akun Card -->
+            <div class="card-item">
+                <div class="card info-card akun-card" style="width: 20rem;">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="ps-1">
+                                <div class="card-title">
+                                    <img src="images/Akun.png" style="width: 32px; height: 32px; margin-top: 3px;">
+                                    <h5 class="card-text fw-bold">Jumlah Akun</h5>
+                                </div>
+                                <h6 class="fw-bold">200</h6>
+                                <h6 class="small pt-1">Yang terdapat di LAYAR</h6>
+                                <span class="small pt-1 text-danger">Dari 2 jam yang lalu</span>
                             </div>
-                            <h6 class="fw-bold">200</h6>
-                            <h6 class="small pt-1">Yang terdapat di LAYAR</h6>
-                            <span class="small pt-1 text-danger">Dari 2 jam yang lalu</span>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div><!-- End Akun Card -->
+            </div><!-- End Akun Card -->
 
-        <!-- Mahasiswa Card -->
-        <div class="container-card">
-            <div class="card info-card mhs-card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="ps-1">
-                            <div class="header-card">
-                                <img src="images/Akun.png" style="width: 32px; height: 32px; margin-top: 3px;">
-                                <h5 class="card-title fw-bold">Jumlah Mahasiswa</h5>
+            <!-- Mahasiswa Card -->
+            <div class="card-item">
+                <div class="card info-card mhs-card" style="width: 20rem;">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="ps-1">
+                                <div class="card-title">
+                                    <img src="images/Akun.png" style="width: 32px; height: 32px; margin-top: 3px;">
+                                    <h5 class="card-text fw-bold">Jumlah Mahasiswa</h5>
+                                </div>
+                                <h6 class="fw-bold">200</h6>
+                                <h6 class="small pt-1">Yang mengakses LAYAR</h6>
+                                <span class="small pt-1 text-danger">Dari 2 jam yang lalu</span>
                             </div>
-                            <h6 class="fw-bold">200</h6>
-                            <h6 class="small pt-1">Yang mengakses LAYAR</h6>
-                            <span class="small pt-1 text-danger">Dari 2 jam yang lalu</span>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div><!-- End Mahasiswa Card -->
+            </div><!-- End Mahasiswa Card -->
 
-        <!-- Dosen Card -->
-        <div class="container-card">
-            <div class="card info-card dosen-card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="ps-1">
-                            <div class="header-card">
-                                <img src="images/Akun.png" style="width: 32px; height: 32px; margin-top: 3px;">
-                                <h5 class="card-title fw-bold">Jumlah Dosen</h5>
+            <!-- Dosen Card -->
+            <div class="card-item">
+                <div class="card info-card dosen-card" style="width: 20rem;">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="ps-1">
+                                <div class="card-title">
+                                    <img src="images/Akun.png" style="width: 32px; height: 32px; margin-top: 3px;">
+                                    <h5 class="card-text fw-bold">Jumlah Dosen</h5>
+                                </div>
+                                <h6 class="fw-bold">200</h6>
+                                <h6 class="small pt-1">Yang mengakses LAYAR</h6>
+                                <span class="small pt-1 text-danger">Dari 2 jam yang lalu</span>
                             </div>
-                            <h6 class="fw-bold">200</h6>
-                            <h6 class="small pt-1">Yang mengakses LAYAR</h6>
-                            <span class="small pt-1 text-danger">Dari 2 jam yang lalu</span>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div><!-- End Dosen Card -->
+            </div><!-- End Dosen Card -->
         </div>
-
+        
         {{-- Table Status Suspend --}}
             <div class="row my-5">
                 <h5 class="mb-3 fw-bold text">Daftar Pengguna Dengan Status Suspend</h5>
