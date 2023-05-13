@@ -184,10 +184,6 @@ a {
     align-items: flex-start;
 }
 
-/* .container-card {
-    flex: 0 1 30%;
-} */
-
 .content {
     overflow-x: auto;
 }
@@ -200,6 +196,10 @@ a {
 
 .card {
     margin-right: 0;
+}
+
+.form-select {
+    cursor: pointer;
 }
 
 
