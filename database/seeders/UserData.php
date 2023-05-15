@@ -16,25 +16,25 @@ class UserData extends Seeder
         // Data User
         $user = [
             [
-                'name' => 'Administrator',
+                'nama' => 'Administrator',
                 'username' => 'admin',
                 'password' => bcrypt('12345'),
                 'role' => 'Admin',
             ],
             [
-                'name' => 'Dekanat Fakultas',
+                'nama' => 'Dekanat Fakultas',
                 'username' => 'dekanat',
                 'password' => bcrypt('12345'),
                 'role' => 'Dekanat',
             ],
             [
-                'name' => 'Prodi',
+                'nama' => 'Prodi',
                 'username' => 'prodi',
                 'password' => bcrypt('12345'),
                 'role' => 'Prodi',
             ],
             [
-                'name' => 'Tendik',
+                'nama' => 'Tendik',
                 'username' => 'tendik',
                 'password' => bcrypt('12345'),
                 'role' => 'Tendik',
