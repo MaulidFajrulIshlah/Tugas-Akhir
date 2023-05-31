@@ -10,7 +10,7 @@ class LoginController extends Controller
     public function index(Request $request)
     {
         if (Auth::user()) {
-            return redirect()->intended('beranda');
+            return redirect()->intended('dashboard/beranda');
         }
         // return response()->json(['status' => 'error', 'message' => 'Anda belum masuk!'], 401);
         return view('login.login');
@@ -31,7 +31,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             $user = Auth::user();
             if ($user) {
-                return redirect()->intended('beranda');
+                return redirect()->intended('dashboard/beranda');
             }
             return response()->json(['status' => 'error', 'message' => 'Unauthorized'], 403);
         } else {

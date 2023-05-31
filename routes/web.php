@@ -29,7 +29,7 @@ Route::controller(LoginController::class)->group(function () {
 Route::redirect('/', '/login');
 
 // Beranda
-Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda')->middleware('auth');
+Route::get('/dashboard/beranda', [BerandaController::class, 'index'])->name('beranda')->middleware('auth');
 
 // Mahasiswa
-Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa')->middleware('auth');
+Route::get('/dashboard/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa')->middleware('auth');

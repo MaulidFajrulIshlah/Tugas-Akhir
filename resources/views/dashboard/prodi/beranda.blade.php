@@ -16,7 +16,7 @@
                         <div class="d-flex align-items-center">
                             <div class="ps-1">
                                 <div class="card-title">
-                                    <img src="images/Akun.png" style="width: 32px; height: 32px; margin-top: 3px;">
+                                    <img src="/images/Akun.png" style="width: 32px; height: 32px; margin-top: 3px;">
                                     <h5 class="card-text fw-bold">Jumlah Mahasiswa</h5>
                                 </div>
                                 <h6 class="fw-bold">20</h6>
@@ -35,7 +35,7 @@
                         <div class="d-flex align-items-center">
                             <div class="ps-1">
                                 <div class="card-title">
-                                    <img src="images/Akun.png" style="width: 32px; height: 32px; margin-top: 3px;">
+                                    <img src="/images/Akun.png" style="width: 32px; height: 32px; margin-top: 3px;">
                                     <h5 class="card-text fw-bold">Jumlah Dosen</h5>
                                 </div>
                                 <h6 class="fw-bold">20</h6>
@@ -51,5 +51,5 @@
 @endsection
 
 @section('stylesheets')
-    <link rel="stylesheet" href="css/dashboard/main2.css">
+    <link rel="stylesheet" href="/css/dashboard/main2.css">
 @endsection
