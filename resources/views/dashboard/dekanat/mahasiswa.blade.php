@@ -1,4 +1,5 @@
 @extends('dashboard.layouts.main')
+@section ('title', 'PANDAY | Mahasiswa')
 @section('content')
         <h5 class="fw-bold" style="margin-top: 40px; font-weight: 400;">Mahasiswa</h5>
         <ol class="breadcrumb">
