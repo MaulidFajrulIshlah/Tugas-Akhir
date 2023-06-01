@@ -7,72 +7,64 @@
             <li class="breadcrumb-item active">Beranda</li>
         </ol>
 
-    <div class="row my-3">
-        <div class="cards">
-            <!-- Akun Card -->
-            <div class="card-item">
-                <div class="card info-card akun-card" style="width: 20rem;">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div class="ps-1">
-                                <div class="card-title">
-                                    <img src="/images/Akun.png" style="width: 32px; height: 32px; margin-top: 3px;">
-                                    <h5 class="card-text fw-bold">Jumlah Akun</h5>
-                                </div>
-                                <h6 class="fw-bold">200</h6>
-                                <h6 class="small pt-1">Yang terdapat di LAYAR</h6>
-                                <span class="small pt-1 text-danger">Dari 2 jam yang lalu</span>
-                            </div>
+    <div class="row g-3 my-3">
+        <!-- Akun Card -->
+        <div class="col-xl-4 col-md-6 col-11 col-lg-5">
+            <div class="card info-card akun-card">
+                <div class="card-body">
+                    <div class="ps-1">
+                        <div class="header-card">
+                            <img src="/images/Akun.png" style="width: 32px; height: 32px; margin-top: 3px;">
+                            <h5 class="card-title fw-bold">Jumlah Akun</h5>
                         </div>
+                        <h5 class="fw-bold">200</h5>
+                        <h6 class="small pt-1">Yang terdapat di LAYAR</h6>
+                        <span class="small pt-1 text-danger">Dari 2 jam yang lalu</span>
                     </div>
                 </div>
-            </div><!-- End Akun Card -->
+            </div>
+        </div><!-- End Akun Card -->
 
             <!-- Mahasiswa Card -->
-            <div class="card-item">
-                <div class="card info-card mhs-card" style="width: 20rem;">
+            <div class="col-xl-4 col-md-6 col-11 col-lg-5">
+                <div class="card info-card dosen-card">
                     <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div class="ps-1">
-                                <div class="card-title">
-                                    <img src="/images/Akun.png" style="width: 32px; height: 32px; margin-top: 3px;">
-                                    <h5 class="card-text fw-bold">Jumlah Mahasiswa</h5>
-                                </div>
-                                <h6 class="fw-bold">200</h6>
-                                <h6 class="small pt-1">Yang mengakses LAYAR</h6>
-                                <span class="small pt-1 text-danger">Dari 2 jam yang lalu</span>
+                        <div class="ps-1">
+                            <div class="header-card">
+                                <img src="/images/Akun.png" style="width: 32px; height: 32px; margin-top: 3px;">
+                                <h5 class="card-title fw-bold">Jumlah Mahasiwa</h5>
                             </div>
+                            <h5 class="fw-bold">200</h5>
+                            <h6 class="small pt-1">Yang mengakses LAYAR</h6>
+                            <span class="small pt-1 text-danger">Dari 2 jam yang lalu</span>
                         </div>
                     </div>
                 </div>
             </div><!-- End Mahasiswa Card -->
 
             <!-- Dosen Card -->
-            <div class="card-item">
-                <div class="card info-card dosen-card" style="width: 20rem;">
+            <div class="col-xl-4 col-md-6 col-11 col-lg-5">
+                <div class="card info-card dosen-card">
                     <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div class="ps-1">
-                                <div class="card-title">
-                                    <img src="/images/Akun.png" style="width: 32px; height: 32px; margin-top: 3px;">
-                                    <h5 class="card-text fw-bold">Jumlah Dosen</h5>
-                                </div>
-                                <h6 class="fw-bold">200</h6>
-                                <h6 class="small pt-1">Yang mengakses LAYAR</h6>
-                                <span class="small pt-1 text-danger">Dari 2 jam yang lalu</span>
+                        <div class="ps-1">
+                            <div class="header-card">
+                                <img src="/images/Akun.png" style="width: 32px; height: 32px; margin-top: 3px;">
+                                <h5 class="card-title fw-bold">Jumlah Dosen</h5>
                             </div>
+                            <h5 class="fw-bold">200</h5>
+                            <h6 class="small pt-1">Yang mengakses LAYAR</h6>
+                            <span class="small pt-1 text-danger">Dari 2 jam yang lalu</span>
                         </div>
                     </div>
                 </div>
             </div><!-- End Dosen Card -->
-        </div>
-        
+
         {{-- Table Status Suspend --}}
             <div class="row my-5">
-                <h5 class="mb-3 fw-bold text">Daftar Pengguna Dengan Status Suspend</h5>
+                <h5 class="mb-3 fw-bold title">Daftar Pengguna Dengan Status Suspend</h5>
                 <div class="content mx-2 col bg-white p-3 rounded card">
-                    <table class="table table-bordered table">
-                        <thead>
+                    <table class="table table-bordered table-hover" id="suspend-users">
+                        <thead class="table-success">
                             <tr class="text">
                                 <th scope="col" class="text" width="50">No</th>
                                 <th scope="col" class="text">Nama</th>

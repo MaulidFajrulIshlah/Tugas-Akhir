@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     {{-- Button login --}}
-                    <button class="w-100 btn btn-lg btn-primary btn-login mb-3" type="submit">Masuk</button>
+                    <button class="w-100 btn btn-lg btn-login mb-3" type="submit">Masuk</button>
                 </div>
             </form>
         </main>
