@@ -62,6 +62,7 @@ body {
 
 .form-label {
     font-weight: 500;
+    background-color: black;
 }
 
 .btn-login {
