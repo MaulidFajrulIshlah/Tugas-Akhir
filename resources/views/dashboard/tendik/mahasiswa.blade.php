@@ -1,6 +1,7 @@
 @extends('dashboard.layouts.main')
 @section ('title', 'PANDAY | Mahasiswa')
 @section('content')
+    <!-- Route -->
         <h5 class="fw-bold" style="margin-top: 40px; font-weight: 400;">Mahasiswa</h5>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('beranda') }}">Dashboard</a></li>
@@ -13,10 +14,10 @@
             
                 <div class="row g-0 my-0">
                     <div class="row mb-4 content">
-                        <h5 class="mb-3 fw-bold text">Jumlah Mahasiswa Yang Mengakses LAYAR Per Semester</h5>
+                        <h5 class="mb-3 fw-bold">Jumlah Mahasiswa Yang Mengakses LAYAR Per Semester</h5>
                         <div class="col">
-                            <table class="table bg-white table-bordered table">
-                                <thead>
+                            <table class="table bg-white table-bordered table-hover">
+                                <thead class="table-success">
                                     <tr>
                                         <th scope="col" width="80px" class="text">Semester</th>
                                         <th scope="col" class="text">Jumlah</th>
