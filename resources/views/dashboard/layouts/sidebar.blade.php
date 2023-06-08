@@ -8,7 +8,7 @@
             class="fas fa-user-graduate me-2"></i>Mahasiswa</a>
         <a href="#" class="link list-group-item  second-tFext navSidebar rounded mb-2 {{ 'dosen' == request()->path() ? 'active' : ''  }}"><i
             class="fas fa-user-tie me-2"></i>Dosen</a>
-        <a href="#" class="link list-group-item  second-text navSidebar rounded mb-2 {{ 'mataKuliah' == request()->path() ? 'active' : ''  }}"><i
+        <a href="{{ route('mataKuliah') }}" class="link list-group-item  second-text navSidebar rounded mb-2 {{ 'mataKuliah' == request()->path() ? 'active' : ''  }}"><i
             class="fas fa-book me-2"></i>Mata Kuliah</a>
         <a href="#" class="link list-group-item  second-text navSidebar rounded mb-2 {{ 'akademik' == request()->path() ? 'active' : ''  }}"><i
             class="fas fa-file-alt me-2"></i>Akademik</a>

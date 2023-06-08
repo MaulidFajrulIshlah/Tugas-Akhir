@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MataKuliahController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,6 @@ Route::get('/dashboard/beranda', [BerandaController::class, 'index'])->name('ber
 
 // Mahasiswa
 Route::get('/dashboard/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa')->middleware('auth');
+
+// Mata Kuliah
+Route::get('/dashboard/matakuliah/fti/ti/2019_2020_ganjil', [MataKuliahController::class, 'index'])->name('mataKuliah')->middleware('auth');
