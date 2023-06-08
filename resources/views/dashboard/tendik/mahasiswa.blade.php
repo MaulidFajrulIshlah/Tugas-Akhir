@@ -9,11 +9,11 @@
         </ol>
 
         <div class="row g-3 my-3">
-            <div class="col mx-2 bg-white rounded card" id="wrapper-content">
+            <div class="col mx-2 bg-white rounded card content" id="wrapper-content">
                 @include('dashboard.layouts.navFakultas')
             
                 <div class="row g-0 my-0">
-                    <div class="row mb-4 content">
+                    <div class="row mb-4">
                         <h5 class="mb-3 fw-bold">Jumlah Mahasiswa Yang Mengakses LAYAR Per Semester</h5>
                         <div class="col">
                             <table class="table bg-white table-bordered table-hover">

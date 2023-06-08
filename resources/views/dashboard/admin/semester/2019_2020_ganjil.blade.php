@@ -12,10 +12,10 @@
     </ol>
     
     <div class="row g-3 my-3">
-        <div class="col mx-2 bg-white rounded card" id="wrapper-content">
+        <div class="col mx-2 bg-white rounded card content" id="wrapper-content">
 
             <div class="row g-0 my-3">
-                <div class="row mb-4 content">
+                <div class="row mb-4">
                     <h5 class="mb-2 fw-bold text">Mata Kuliah</h5>
                     <span class="fs-6 mb-3 text">Semester 2019/2020 Ganjil - Teknik Informatika</span>
 
@@ -55,13 +55,13 @@
         </div> 
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
     <script>
         const matkul = [];
         $.ajax({
-            type: 'GET',
-            dataType:"json",
+            type:'GET',
+            dataType:'json',
             url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=463cfb78c5acc92fbed0656c2aec27b4&wsfunction=core_course_get_courses&moodlewsrestformat=json',
             
             success: function (data, status, xhr) {
