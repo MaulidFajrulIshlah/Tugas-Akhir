@@ -13,11 +13,11 @@
         <a href="#" class="link list-group-item  second-text navSidebar rounded mb-2 {{ 'akademik' == request()->path() ? 'active' : ''  }}"><i
             class="fas fa-file-alt me-2"></i>Akademik</a>
         
-    @if($user->role == 'Admin')
+    @can('admin') 
         <li class="nav-heading pt-4 mb-2">Master Data</li>
-        <a href="#" class="link list-group-item  second-text navSidebar rounded mb-2 {{ 'masterDataPengguna' == request()->path() ? 'active' : ''  }}""><i
+        <a href="{{ route('masterUser') }}" class="link list-group-item  second-text navSidebar rounded mb-2 {{ 'masterDataPengguna' == request()->path() ? 'active' : ''  }}""><i
             class="fas fa-user-friends me-2"></i>Pengguna</a>
-    @endif
+    @endcan
         <a href="{{ route('logout') }}" class="list-group-item rounded logout-link"><i
             class="fas fa-sign-out-alt me-2"></i>Keluar</a>
     </ul>
