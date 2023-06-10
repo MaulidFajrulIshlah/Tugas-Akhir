@@ -1,0 +1,8 @@
+.read_only {
+    background-color: #EEF2FF;
+}
+
+.alert {
+    display: flex;
+    justify-content: space-between;
+}
