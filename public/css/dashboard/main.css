@@ -20,7 +20,8 @@ header {
     --main-text-color: #009d63;
     --second-color: #135f00;
     --second-text-color: #F5F5F5F5;
-    --link-active: #613d7c;
+    --second-tex-color-sidebar: #aaaaaa;
+    --link-active: #303030;
     --bg-website: #eeeeee;
     --warning-color: red;
 }
@@ -79,8 +80,8 @@ header {
 
 .sidebar-nav .nav-heading {
     font-size: 13px;
+    color: var(--second-tex-color-sidebar);
     text-transform: uppercase;
-    color: #aaaaaa;
     font-weight: 600;
     margin: 10px 30 5px 15px;
     margin-left: -20px;
@@ -159,13 +160,14 @@ a {
 }
 
 .nav-link {
-    color: black;
+    color: var(--second-color);
 }
 
 .nav-link:hover,
 .navSidebar:hover {
     background-color: var(--main-text-color);
     color: var(--second-text-color);
+    font-weight: 400;
 }
 
 .logout-link {

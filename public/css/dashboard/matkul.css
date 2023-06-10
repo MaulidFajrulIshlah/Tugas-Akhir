@@ -1,0 +1,27 @@
+:root {
+    --arrows-color: #134c02;
+    --links-color: #303030;
+    --links-color-hover: #009d63;
+}
+
+
+.semester {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.semester i {
+    color: var(--arrows-color);
+}
+
+.semester>.link>a {
+    text-decoration: none;
+    color: var(--links-color);
+}
+
+.semester>.link>a:hover {
+    text-decoration: underline;
+    color: var(--links-color-hover);
+    font-weight: 500;
+}
