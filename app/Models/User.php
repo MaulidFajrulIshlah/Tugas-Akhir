@@ -23,7 +23,8 @@ class User extends Authenticatable
         'nama',
         'username',
         'password',
-        'role',
+        'id_jabatan',
+        'id_fakultas',
     ];
 
     /**
@@ -44,4 +45,16 @@ class User extends Authenticatable
     protected $casts = [
         'username_verified_at' => 'datetime',
     ];
+
+    // relasi tabel users dengan tabel jabatan
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class, 'id_jabatan');
+    }
+
+    // relasi tabel users dengan tabel fakultas
+    public function fakultas()
+    {
+        return $this->belongsTo(Fakultas::class, 'id_fakultas');
+    }
 }
