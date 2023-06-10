@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fakultas;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -14,71 +15,15 @@ class MahasiswaController extends Controller
     public function index()
     {
         //
+        $fakultas = Fakultas::all();
+
         $user = Auth::user();
-        if ($user->role === 'Admin') {
-            return view('dashboard.admin.mahasiswa')->with([
-                'user' => Auth::user()
-            ]);
-        } else if ($user->role === 'Dekanat') {
-            return view('dashboard.dekanat.mahasiswa')->with([
-                'user' => Auth::user()
-            ]);
-        } else if ($user->role === 'Prodi') {
-            return view('dashboard.prodi.mahasiswa')->with([
-                'user' => Auth::user()
-            ]);
-        } else if ($user->role === 'Tendik') {
-            return view('dashboard.tendik.mahasiswa')->with([
-                'user' => Auth::user()
-            ]);
+        if ($user->id_jabatan === 1) {
+            return view('dashboard.admin.mahasiswa.mahasiswa', compact('fakultas'));
+        } else if ($user->id_jabatan === 2 || $user->id_jabatan === 3 || $user->id_jabatan === 4) {
+            return view('dashboard.dekanat_tendik.mahasiswa.mahasiswa', compact('fakultas'));
+        } else if ($user->id_jabatan === 5 || $user->id_jabatan === 6) {
+            return view('dashboard.prodi.mahasiswa.mahasiswa', compact('fakultas'));
         }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

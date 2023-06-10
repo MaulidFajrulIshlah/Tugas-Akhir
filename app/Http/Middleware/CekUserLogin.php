@@ -18,18 +18,15 @@ class CekUserLogin
     {
         // cek autentikasi pengguna
         if (!Auth::check()) {
-            return response()->json(['status' => 'error', 'message' => 'Anda Belum Masuk'], 401);
-            // return redirect('/login');
+            return redirect('login');
         }
 
         // cek akses halaman pengguna
         $user = Auth::user();
-        if (in_array($user->role, $roles)) {
+        if (in_array($user->id_jabatan, $roles)) {
             return $next($request);
         }
-
         // jika tidak termasuk ke dalam daftar pengguna
-        return response()->json(['status' => 'error', 'message' => 'Anda tidak memiliki akses ke halaman ini'], 403);
-        abort(403, 'Anda tidak memiliki akses ke halaman ini');
+        abort(403, 'Anda tidak memiliki akses ke halaman ini!');
     }
 }

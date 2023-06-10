@@ -12,7 +12,6 @@ class LoginController extends Controller
         if (Auth::user()) {
             return redirect()->intended('dashboard/beranda');
         }
-        // return response()->json(['status' => 'error', 'message' => 'Anda belum masuk!'], 401);
         return view('login.login');
     }
 
@@ -29,11 +28,10 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             //  jika authentikasi sukses
             $request->session()->regenerate();
-            $user = Auth::user();
-            if ($user) {
+            if (Auth::check()) {
                 return redirect()->intended('dashboard/beranda');
             }
-            return response()->json(['status' => 'error', 'message' => 'Unauthorized'], 403);
+            return view('login.login');
         } else {
             return redirect('login')->with('failed', 'Gagal masuk! Silahkan coba lagi!');
         }
