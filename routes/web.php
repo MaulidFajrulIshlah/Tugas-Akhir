@@ -42,7 +42,8 @@ Route::get('/dashboard/mahasiswa', [MahasiswaController::class, 'index'])->name(
 Route::get('/dashboard/akademik', [AkademikController::class, 'index'])->name('akademik')->middleware('auth');
 
 // Mata Kuliah
-Route::get('/dashboard/matakuliah/fti/ti/2019_2020_ganjil', [MataKuliahController::class, 'index'])->name('mataKuliah')->middleware('auth');
+Route::get('/dashboard/matakuliah', [MataKuliahController::class, 'index'])->name('mataKuliah')->middleware('auth');
+// Route::get('/dashboard/matakuliah/fti/ti/2019_2020_ganjil', [MataKuliahController::class, 'index'])->name('mataKuliah')->middleware('auth');
 
 // Master Data
 Route::middleware(['auth', 'cekUserLogin:1'])->group(function () {

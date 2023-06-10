@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.main')
 @section ('title', 'PANDAY | Beranda')
 @section('content')
-    <h5 class="fw-bold" style="margin-top: 40px; font-weight: 400;">Beranda</h5>
+    <h5 class="fw-bold" style="margin-top: 40px; color: #303030; font-weight: 400;">Beranda</h5>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('beranda') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Beranda</li>
