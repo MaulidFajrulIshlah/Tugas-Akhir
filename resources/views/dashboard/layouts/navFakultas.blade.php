@@ -1,5 +1,24 @@
 <ul class="nav nav-pills mb-2" style="margin-left: -10px"> <!--baru ditambahkan-->
-    <li class="nav-item">
+    @foreach ($fakultas as $fakultass)
+        <li id="fakultasSelect" class="nav-item">
+            @if ($fakultass->id === 1)
+                <a href="#" class="nav-link link" aria-current="page">{{ $fakultass->nama_fakultas }}</a>
+                @elseif ($fakultass->id === 2)
+                <a href="#" class="nav-link link" aria-current="page">{{ $fakultass->nama_fakultas }}</a>
+                @elseif ($fakultass->id === 3)
+                <a href="#" class="nav-link link" aria-current="page">{{ $fakultass->nama_fakultas }}</a>
+                @elseif ($fakultass->id === 4)
+                <a href="#" class="nav-link link" aria-current="page">{{ $fakultass->nama_fakultas }}</a>
+                @elseif ($fakultass->id === 5)
+                <a href="#" class="nav-link link" aria-current="page">{{ $fakultass->nama_fakultas }}</a>
+                @elseif ($fakultass->id === 6)
+                <a href="#" class="nav-link link" aria-current="page">{{ $fakultass->nama_fakultas }}</a>
+                @elseif ($fakultass->id === 7)
+                <a href="#" class="nav-link link" aria-current="page">{{ $fakultass->nama_fakultas }}</a>
+            @endif
+        </li>
+    @endforeach
+    {{-- <li class="nav-item">
         <a class="nav-link link" aria-current="page" href="#">Pascasarjana</a>
     </li>
     <li class="nav-item">
@@ -20,7 +39,7 @@
     </li>
     <li class="nav-item">
         <a class="nav-link link" href="#">FPsi</a>
-    </li>
+    </li> --}}
 </ul>
 
 <div class="main mb-5" style="margin-top:20px;"> <!--baru ditambahkan-->
