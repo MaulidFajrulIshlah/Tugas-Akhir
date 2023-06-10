@@ -71,7 +71,6 @@ class MasterPenggunaController extends Controller
      */
     public function edit($id)
     {
-        //
         // mendapatkan data User
         $userData = User::with('jabatan')->findOrFail($id);
 
