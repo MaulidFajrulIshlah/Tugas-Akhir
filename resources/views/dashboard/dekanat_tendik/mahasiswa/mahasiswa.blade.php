@@ -12,11 +12,11 @@
             <div class="col mx-2 bg-white rounded card content" id="wrapper-content">
                 @include('dashboard.layouts.navFakultas')
             
-                <div class="row g-0 my-0">
-                    <div class="row mb-4">
-                        <h5 class="mb-3 fw-bold text">Jumlah Mahasiswa Yang Mengakses LAYAR Per Semester</h5>
-                        <div class="col">
-                            <table class="table bg-white table-bordered table-hover">
+                <div class="row g-0 my-0 mx-2">
+                    <div class="row my-4">
+                        <h5 class="mb-4 fw-bold text">Jumlah Mahasiswa Yang Mengakses LAYAR Per Semester</h5>
+                        <div class="container">
+                            <table id="table-data" class="table bg-white table-bordered table-hover">
                                 <thead class="table-success">
                                     <tr>
                                         <th scope="col" width="80px" class="text">Semester</th>
@@ -25,39 +25,39 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row" width="40%" class="text">2018/2019 Ganjil</th>
+                                        <td scope="row" width="40%" class="text">2018/2019 Ganjil</td>
                                         <td class="text"></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row"class="text">2018/2019 Genap</th>
+                                        <td scope="row"class="text">2018/2019 Genap</td>
                                         <td class="text"></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row" class="text">2019/2020 Ganjil</th>
+                                        <td scope="row" class="text">2019/2020 Ganjil</td>
                                         <td class="text"></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row" class="text">2019/2020 Genap</th>
+                                        <td scope="row" class="text">2019/2020 Genap</td>
                                         <td class="text"></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row" class="text">2020/2021 Ganjil</th>
+                                        <td scope="row" class="text">2020/2021 Ganjil</td>
                                         <td class="text"></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row" class="text">2020/2021 Genap</th>
+                                        <td scope="row" class="text">2020/2021 Genap</td>
                                         <td class="text"></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row" class="text">2021/2022 Ganjil</th>
+                                        <td scope="row" class="text">2021/2022 Ganjil</td>
                                         <td class="text"></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row" class="text">2021/2022 Genap</th>
+                                        <td scope="row" class="text">2021/2022 Genap</td>
                                         <td class="text"></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row" class="text">Total</th>
+                                        <td scope="row" class="text">Total</td>
                                         <td class="text"></td>
                                     </tr>
                                 </tbody>
