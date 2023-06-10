@@ -19,7 +19,7 @@
                             <table id="table-data" class="table bg-white table-bordered table-hover">
                                 <thead class="table-success">
                                     <tr>
-                                        <td scope="col" width="80px" class="text">Semester</th>
+                                        <th scope="col" width="80px" class="text">Semester</th>
                                         <th scope="col" class="text">Jumlah</th>
                                     </tr>
                                 </thead>
