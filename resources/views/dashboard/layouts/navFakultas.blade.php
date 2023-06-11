@@ -24,10 +24,12 @@
     <div class="dropdown px-3">
         <div class="form-control-wrap col-lg-4 col-sm-6">
             <select class="form-select box-shadow" aria-label="Default select example">
-                <option selected>-- Program Studi --</option>
-                <option value="1">Lorem Ipsum</option>
-                <option value="2">Lorem Ipsum</option>
-                <option value="3">Lorem Ipsum</option>
+                <option value="0">-- Program Studi --</option>
+                @foreach ($prodi as $prodis)
+                    @if($prodis->id_fakultas === $prodis->fakultas->id)
+                        <option value="{{ $prodis->id }}">{{ $prodis->nama_prodi }}</option>
+                    @endif
+                @endforeach
             </select>
         </div>
     </div> <!--dropdown-->

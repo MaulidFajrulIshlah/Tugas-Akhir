@@ -15,7 +15,7 @@
         
     @can('admin') 
         <li class="nav-heading pt-4 mb-2">Master Data</li>
-        <a href="{{ route('masterUser') }}" class="link list-group-item  second-text navSidebar rounded mb-2 {{ 'masterDataPengguna' == request()->path() ? 'active' : ''  }}""><i
+        <a href="{{ route('masterUser') }}" class="link list-group-item  second-text navSidebar rounded mb-2 {{ 'masterdata/pengguna' == request()->path() ? 'active' : ''  }}""><i
             class="fas fa-user-friends me-2"></i>Pengguna</a>
     @endcan
         <a href="{{ route('logout') }}" class="list-group-item rounded logout-link"><i
