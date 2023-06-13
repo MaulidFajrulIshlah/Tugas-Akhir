@@ -32,17 +32,24 @@ Route::controller(LoginController::class)->group(function () {
 // mengalihkan route
 Route::redirect('/', '/login');
 
-// Beranda
-Route::get('/dashboard/beranda', [BerandaController::class, 'index'])->name('beranda')->middleware('auth');
+Route::middleware('auth')->group(function () {
+    // Beranda
+    Route::get('/dashboard/beranda', [BerandaController::class, 'index'])->name('beranda');
 
-// Mahasiswa
-Route::get('/dashboard/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa')->middleware('auth');
+    // Mahasiswa
+    Route::get('/dashboard/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa');
 
-// Akademik
-Route::get('/dashboard/akademik', [AkademikController::class, 'index'])->name('akademik')->middleware('auth');
+    // Akademik
+    Route::get('/dashboard/akademik', [AkademikController::class, 'index'])->name('akademik');
 
-// Mata Kuliah
-Route::get('/dashboard/matakuliah', [MataKuliahController::class, 'index'])->name('mataKuliah')->middleware('auth');
+    // Mata Kuliah
+    Route::controller(MataKuliahController::class)->group(function () {
+        Route::get('/dashboard/matakuliah', [MataKuliahController::class, 'index'])->name('mataKuliah');
+    });
+});
+
+
+
 // Route::get('/dashboard/matakuliah/fti/ti/2019_2020_ganjil', [MataKuliahController::class, 'index'])->name('mataKuliah')->middleware('auth');
 
 // Master Data
