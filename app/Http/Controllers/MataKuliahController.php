@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fakultas;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,11 +15,19 @@ class MataKuliahController extends Controller
     public function index()
     {
         //
+        // mendapatkan data fakultas
+        $fakultas = Fakultas::all();
+
+        // mendapatkan data prodi
+        $prodi = Prodi::with('fakultas')->get();
+
         $user = Auth::user();
-        if ($user->role === 'Admin') {
-            return view('dashboard.admin.semester.2019_2020_ganjil')->with([
-                'user' => Auth::user()
-            ]);
+        if ($user->id_jabatan === 1) {
+            return view('dashboard.admin.matkul', compact('fakultas', 'prodi'));
+        } else if ($user->id_jabatan === 2 || $user->id_jabatan === 3 || $user->id_jabatan === 4) {
+            return view('dashboard.dekanat_tendik.matkul', compact('fakultas', 'prodi'));
+        } else if ($user->id_jabatan === 5 || $user->id_jabatan === 6) {
+            return view('dashboard.prodi.matkul', compact('fakultas', 'prodi'));
         }
     }
 
