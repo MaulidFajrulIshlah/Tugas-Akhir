@@ -34,48 +34,23 @@ class MataKuliahController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function getSemester(Request $request)
     {
-        //
-    }
+        $categoryID = $request->query('categoryID');
+        $user = Auth::user();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        if (is_numeric($categoryID)) {
+            if ($user->id_jabatan === 1) {
+                if ($categoryID == 16) {
+                    return view('dashboard.semester.2019_2020_ganjil');
+                } else if ($categoryID == 39) {
+                    return view('dashboard.semester.2019_2020_genap');
+                }
+            } else if ($user->id_jabatan === 2 || $user->id_jabatan === 3 || $user->id_jabatan === 4) {
+                return view('dashboard.dekanat_tendik.mataKuliah.matkul');
+            } else if ($user->id_jabatan === 5 || $user->id_jabatan === 6) {
+                return view('dashboard.prodi.mataKuliah.matkul');
+            }
+        }
     }
 }

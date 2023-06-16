@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
     // Mata Kuliah
     Route::controller(MataKuliahController::class)->group(function () {
         Route::get('/dashboard/matakuliah', [MataKuliahController::class, 'index'])->name('mataKuliah');
+        Route::get('/dashboard/matakuliah/semester', [MataKuliahController::class, 'getSemester'])->name('getSemester');
     });
 });
 
