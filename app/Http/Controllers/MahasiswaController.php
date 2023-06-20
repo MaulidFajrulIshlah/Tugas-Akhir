@@ -26,33 +26,33 @@ class MahasiswaController extends Controller
             $unitID = $request->input('unitID');
             // Lakukan penanganan berdasarkan unitID
             if ($unitID == 1) {
-                return view('dashboard.aksesLayar.pasca_kenotariatan_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.pasca_kenotariatan_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 2) {
-                return view('dashboard.aksesLayar.pasca_manajemen_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.pasca_manajemen_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 3) {
-                return view('dashboard.aksesLayar.pasca_sainsBio_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.pasca_sainsBio_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 4) {
-                return view('dashboard.aksesLayar.pasca_adminRS_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.pasca_adminRS_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 5) {
-                return view('dashboard.aksesLayar.pasca_doktor_sainsBio_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.pasca_doktor_sainsBio_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 6) {
-                return view('dashboard.aksesLayar.fk_kedokteran_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.fk_kedokteran_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 7) {
-                return view('dashboard.aksesLayar.fk_profesi_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.fk_profesi_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 8) {
-                return view('dashboard.aksesLayar.fkg_kg_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.fkg_kg_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 9) {
-                return view('dashboard.aksesLayar.fti_ti_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.fti_ti_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 10) {
-                return view('dashboard.aksesLayar.fti_ip_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.fti_ip_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 11) {
-                return view('dashboard.aksesLayar.feb_manajemen_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.feb_manajemen_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 12) {
-                return view('dashboard.aksesLayar.feb_akuntansi_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.feb_akuntansi_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 13) {
-                return view('dashboard.aksesLayar.fh_hukum_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.fh_hukum_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 14) {
-                return view('dashboard.aksesLayar.fpsi_psi_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.fpsi_psi_table', compact('fakultas', 'prodi'));
             }
         }
 
