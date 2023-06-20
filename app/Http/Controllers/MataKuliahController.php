@@ -88,21 +88,7 @@ class MataKuliahController extends Controller
                 if ($request->has('categoryID')) {
                     $categoryID = $request->input('categoryID');
                     if (is_numeric($categoryID)) {
-                        if ($categoryID == 16) {
-                            return view('dashboard.semester.pascasarjana.magister_adminRS.2019_2020_ganjil');
-                        } else if ($categoryID == 39) {
-                            return view('dashboard.semester.pascasarjana.magister_adminRS.2019_2020_genap');
-                        } else if ($categoryID == 157) {
-                            return view('dashboard.semester.pascasarjana.magister_adminRS.2020_2021_ganjil');
-                        } else if ($categoryID == 206) {
-                            return view('dashboard.semester.pascasarjana.magister_adminRS.2020_2021_genap');
-                        } else if ($categoryID == 240) {
-                            return view('dashboard.semester.pascasarjana.magister_adminRS.2021_2022_ganjil');
-                        } else if ($categoryID == 358) {
-                            return view('dashboard.semester.pascasarjana.magister_adminRS.2021_2022_genap');
-                        } else if ($categoryID == 435) {
-                            return view('dashboard.semester.pascasarjana.magister_adminRS.2022_2023_ganjil');
-                        } else if ($categoryID == 503) {
+                        if ($categoryID == 536) {
                             return view('dashboard.semester.pascasarjana.magister_adminRS.2022_2023_genap');
                         }
                     }
@@ -113,21 +99,7 @@ class MataKuliahController extends Controller
                 if ($request->has('categoryID')) {
                     $categoryID = $request->input('categoryID');
                     if (is_numeric($categoryID)) {
-                        if ($categoryID == 16) {
-                            return view('dashboard.semester.pascasarjana.doktor_sainsBiomedis.2019_2020_ganjil');
-                        } else if ($categoryID == 39) {
-                            return view('dashboard.semester.pascasarjana.doktor_sainsBiomedis.2019_2020_genap');
-                        } else if ($categoryID == 157) {
-                            return view('dashboard.semester.pascasarjana.doktor_sainsBiomedis.2020_2021_ganjil');
-                        } else if ($categoryID == 206) {
-                            return view('dashboard.semester.pascasarjana.doktor_sainsBiomedis.2020_2021_genap');
-                        } else if ($categoryID == 240) {
-                            return view('dashboard.semester.pascasarjana.doktor_sainsBiomedis.2021_2022_ganjil');
-                        } else if ($categoryID == 358) {
-                            return view('dashboard.semester.pascasarjana.doktor_sainsBiomedis.2021_2022_genap');
-                        } else if ($categoryID == 435) {
-                            return view('dashboard.semester.pascasarjana.doktor_sainsBiomedis.2022_2023_ganjil');
-                        } else if ($categoryID == 503) {
+                        if ($categoryID == 535) {
                             return view('dashboard.semester.pascasarjana.doktor_sainsBiomedis.2022_2023_genap');
                         }
                     }
