@@ -71,21 +71,13 @@ class MataKuliahController extends Controller
                 if ($request->has('categoryID')) {
                     $categoryID = $request->input('categoryID');
                     if (is_numeric($categoryID)) {
-                        if ($categoryID == 16) {
-                            return view('dashboard.semester.pascasarjana.magister_sainsBiomedis.2019_2020_ganjil');
-                        } else if ($categoryID == 39) {
-                            return view('dashboard.semester.pascasarjana.magister_sainsBiomedis.2019_2020_genap');
-                        } else if ($categoryID == 157) {
+                        if ($categoryID == 167) {
                             return view('dashboard.semester.pascasarjana.magister_sainsBiomedis.2020_2021_ganjil');
-                        } else if ($categoryID == 206) {
-                            return view('dashboard.semester.pascasarjana.magister_sainsBiomedis.2020_2021_genap');
-                        } else if ($categoryID == 240) {
+                        } else if ($categoryID == 329) {
                             return view('dashboard.semester.pascasarjana.magister_sainsBiomedis.2021_2022_ganjil');
-                        } else if ($categoryID == 358) {
-                            return view('dashboard.semester.pascasarjana.magister_sainsBiomedis.2021_2022_genap');
-                        } else if ($categoryID == 435) {
+                        } else if ($categoryID == 453) {
                             return view('dashboard.semester.pascasarjana.magister_sainsBiomedis.2022_2023_ganjil');
-                        } else if ($categoryID == 503) {
+                        } else if ($categoryID == 537) {
                             return view('dashboard.semester.pascasarjana.magister_sainsBiomedis.2022_2023_genap');
                         }
                     }
