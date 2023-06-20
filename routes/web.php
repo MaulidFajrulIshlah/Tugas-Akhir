@@ -39,11 +39,14 @@ Route::middleware('auth')->group(function () {
     // Mahasiswa
     Route::get('/dashboard/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa');
 
-    // Akademik
-    Route::get('/dashboard/akademik', [AkademikController::class, 'index'])->name('akademik');
+    // Dosen
+    Route::get('/dashboard/dosen', [DosenController::class, 'index'])->name('dosen');
 
     // Mata Kuliah
     Route::get('/dashboard/matakuliah', [MataKuliahController::class, 'index'])->name('mataKuliah');
+
+    // Akademik
+    Route::get('/dashboard/akademik', [AkademikController::class, 'index'])->name('akademik');
 });
 
 

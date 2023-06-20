@@ -6,7 +6,7 @@
             class="fas fa-home me-2"></i>Beranda</a> 
         <a href="{{ route('mahasiswa') }}" class="link list-group-item second-text navSidebar rounded mb-2 {{ 'dashboard/mahasiswa' == request()->path() ? 'active' : ''  }}"><i
             class="fas fa-user-graduate me-2"></i>Mahasiswa</a>
-        <a href="#" class="link list-group-item  second-text navSidebar rounded mb-2 {{ 'dosen' == request()->path() ? 'active' : ''  }}"><i
+        <a href="{{ route('dosen') }}" class="link list-group-item  second-text navSidebar rounded mb-2 {{ 'dashboard/dosen' == request()->path() ? 'active' : ''  }}"><i
             class="fas fa-user-tie me-2"></i>Dosen</a>
         <a href="{{ route('mataKuliah') }}" class="link list-group-item  second-text navSidebar rounded mb-2 {{ 'dashboard/matakuliah' == request()->path() ? 'active' : ''  }}"><i
             class="fas fa-book me-2"></i>Mata Kuliah</a>
