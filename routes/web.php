@@ -43,10 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/akademik', [AkademikController::class, 'index'])->name('akademik');
 
     // Mata Kuliah
-    Route::controller(MataKuliahController::class)->group(function () {
-        Route::get('/dashboard/matakuliah', [MataKuliahController::class, 'index'])->name('mataKuliah');
-        Route::get('/dashboard/matakuliah/semester', [MataKuliahController::class, 'getSemester'])->name('getSemester');
-    });
+    Route::get('/dashboard/matakuliah', [MataKuliahController::class, 'index'])->name('mataKuliah');
 });
 
 
