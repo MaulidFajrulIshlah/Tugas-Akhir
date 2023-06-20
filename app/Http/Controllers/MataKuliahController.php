@@ -110,21 +110,19 @@ class MataKuliahController extends Controller
                 if ($request->has('categoryID')) {
                     $categoryID = $request->input('categoryID');
                     if (is_numeric($categoryID)) {
-                        if ($categoryID == 16) {
-                            return view('dashboard.semester.fk.kedokteran.2019_2020_ganjil');
-                        } else if ($categoryID == 39) {
+                        if ($categoryID == 41) {
                             return view('dashboard.semester.fk.kedokteran.2019_2020_genap');
-                        } else if ($categoryID == 157) {
+                        } else if ($categoryID == 48) {
                             return view('dashboard.semester.fk.kedokteran.2020_2021_ganjil');
-                        } else if ($categoryID == 206) {
+                        } else if ($categoryID == 203) {
                             return view('dashboard.semester.fk.kedokteran.2020_2021_genap');
-                        } else if ($categoryID == 240) {
+                        } else if ($categoryID == 253) {
                             return view('dashboard.semester.fk.kedokteran.2021_2022_ganjil');
-                        } else if ($categoryID == 358) {
+                        } else if ($categoryID == 343) {
                             return view('dashboard.semester.fk.kedokteran.2021_2022_genap');
-                        } else if ($categoryID == 435) {
+                        } else if ($categoryID == 425) {
                             return view('dashboard.semester.fk.kedokteran.2022_2023_ganjil');
-                        } else if ($categoryID == 503) {
+                        } else if ($categoryID == 486) {
                             return view('dashboard.semester.fk.kedokteran.2022_2023_genap');
                         }
                     }
