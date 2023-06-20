@@ -19,22 +19,22 @@ class FakultasData extends Seeder
                 'nama_fakultas' => 'Pascasarjana',
             ],
             [
-                'nama_fakultas' => 'FK',
+                'nama_fakultas' => 'Fakultas Kedokteran',
             ],
             [
-                'nama_fakultas' => 'FKG',
+                'nama_fakultas' => 'Fakultas Kedokteran Gigi',
             ],
             [
-                'nama_fakultas' => 'FTI',
+                'nama_fakultas' => 'Fakultas Teknik Informatika',
             ],
             [
-                'nama_fakultas' => 'FEB',
+                'nama_fakultas' => 'Fakultas Ekonomi dan Bisnis',
             ],
             [
-                'nama_fakultas' => 'FH',
+                'nama_fakultas' => 'Fakultas Hukum',
             ],
             [
-                'nama_fakultas' => 'FPsi',
+                'nama_fakultas' => 'Fakultas Psikologi',
             ],
         ];
 
