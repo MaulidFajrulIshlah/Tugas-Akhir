@@ -50,21 +50,17 @@ class MataKuliahController extends Controller
                 if ($request->has('categoryID')) {
                     $categoryID = $request->input('categoryID');
                     if (is_numeric($categoryID)) {
-                        if ($categoryID == 16) {
-                            return view('dashboard.semester.pascasarjana.magister_manajemen.2019_2020_ganjil');
-                        } else if ($categoryID == 39) {
-                            return view('dashboard.semester.pascasarjana.magister_manajemen.2019_2020_genap');
-                        } else if ($categoryID == 157) {
+                        if ($categoryID == 159) {
                             return view('dashboard.semester.pascasarjana.magister_manajemen.2020_2021_ganjil');
-                        } else if ($categoryID == 206) {
+                        } else if ($categoryID == 204) {
                             return view('dashboard.semester.pascasarjana.magister_manajemen.2020_2021_genap');
-                        } else if ($categoryID == 240) {
+                        } else if ($categoryID == 268) {
                             return view('dashboard.semester.pascasarjana.magister_manajemen.2021_2022_ganjil');
-                        } else if ($categoryID == 358) {
+                        } else if ($categoryID == 394) {
                             return view('dashboard.semester.pascasarjana.magister_manajemen.2021_2022_genap');
-                        } else if ($categoryID == 435) {
+                        } else if ($categoryID == 434) {
                             return view('dashboard.semester.pascasarjana.magister_manajemen.2022_2023_ganjil');
-                        } else if ($categoryID == 503) {
+                        } else if ($categoryID == 532) {
                             return view('dashboard.semester.pascasarjana.magister_manajemen.2022_2023_genap');
                         }
                     }
