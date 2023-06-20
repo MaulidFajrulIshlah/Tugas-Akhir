@@ -44,7 +44,7 @@ header {
 } */
 
 #wrapper-content {
-    min-height: 90vh;
+    min-height: 100%;
 }
 
 #sidebar-wrapper {
