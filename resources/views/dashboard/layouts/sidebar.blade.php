@@ -10,7 +10,7 @@
             class="fas fa-user-tie me-2"></i>Dosen</a>
         <a href="{{ route('mataKuliah') }}" class="link list-group-item  second-text navSidebar rounded mb-2 {{ 'dashboard/matakuliah' == request()->path() ? 'active' : ''  }}"><i
             class="fas fa-book me-2"></i>Mata Kuliah</a>
-        <a href="#" class="link list-group-item  second-text navSidebar rounded mb-2 {{ 'akademik' == request()->path() ? 'active' : ''  }}"><i
+        <a href="{{ route('akademik') }}" class="link list-group-item  second-text navSidebar rounded mb-2 {{ 'dashboard/akademik' == request()->path() ? 'active' : ''  }}"><i
             class="fas fa-file-alt me-2"></i>Akademik</a>
         
     @can('admin') 
