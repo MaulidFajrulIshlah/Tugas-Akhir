@@ -16,6 +16,12 @@
                 <div class="row">
                     <ul class="semester mb-2">
                         @foreach ($prodi as $prodis)
+                        @if($prodis->id == 7)
+                        <li class="link">
+                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'categoryID' => '46']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
+                        </li>
+                        @continue
+                    @endif
                             <li class="link">
                                 <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
                             </li>
@@ -34,3 +40,5 @@
                 }
             }
         </script> --}}
+
+      
