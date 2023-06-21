@@ -12,11 +12,11 @@ class BerandaController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if ($user->id_jabatan === 1) {
+        if ($user->role == 'Admin') {
             return view('dashboard.admin.beranda');
-        } else if ($user->id_jabatan === 2 || $user->id_jabatan === 3 || $user->id_jabatan === 4) {
+        } else if ($user->role == 'Dekanat Fakultas' || $user->role == 'Tendik') {
             return view('dashboard.dekanat_tendik.beranda');
-        } else if ($user->id_jabatan === 5 || $user->id_jabatan === 6) {
+        } else if ($user->role == 'Prodi') {
             return view('dashboard.prodi.beranda');
         }
     }
