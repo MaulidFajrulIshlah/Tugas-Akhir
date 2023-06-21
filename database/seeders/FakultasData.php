@@ -25,7 +25,7 @@ class FakultasData extends Seeder
                 'nama_fakultas' => 'Fakultas Kedokteran Gigi',
             ],
             [
-                'nama_fakultas' => 'Fakultas Teknik Informatika',
+                'nama_fakultas' => 'Fakultas Teknologi Informasi',
             ],
             [
                 'nama_fakultas' => 'Fakultas Ekonomi dan Bisnis',
