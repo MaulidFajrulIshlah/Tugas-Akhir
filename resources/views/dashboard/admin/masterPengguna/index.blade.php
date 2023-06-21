@@ -34,7 +34,7 @@
                                     <th scope="col" class="text">No</th>
                                     <th scope="col" class="text">Nama</th>
                                     <th scope="col" class="text">Username</th>
-                                    <th scope="col" class="text">Role</th>
+                                    <th scope="col" class="text">Jabatan</th>
                                     <th scope="col" class="text">Aksi</th>
                                 </tr>
                             </thead>

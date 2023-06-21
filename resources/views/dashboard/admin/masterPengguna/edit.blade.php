@@ -55,15 +55,15 @@
                             <div class="form-group">
                                 <label for="username" class="form-label fw-bolder">Username</label> 
                                     <div class="form-control-wrap">
-                                        <input type="text" class="form-control read_only" id="username"
-                                        name="username" autocomplete="off" readonly value="{{  $userData->username }}"> 
+                                        <input type="text" class="form-control box-shadow" id="username"
+                                        name="username" autocomplete="off" value="{{  $userData->username }}"> 
                                     </div>
                             </div>
                         </div>
                         {{-- Field Role --}}
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="id_jabatan" class="form-label">Role</label> 
+                                <label for="id_jabatan" class="form-label fw-bolder">Jabatan</label> 
                                     <div class="form-control-wrap">
                                         <select class="form-select box-shadow" name="id_jabatan" id="id_jabatan">
                                             <option value="{{ $userData->id_jabatan }}">{{ $userData->jabatan->nama_jabatan }}</option>

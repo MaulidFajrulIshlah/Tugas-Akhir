@@ -89,7 +89,7 @@
                         {{-- Field Role --}}
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="id_jabatan" class="form-label">Role</label> 
+                                <label for="id_jabatan" class="form-label">Jabatan</label> 
                                     <div class="form-control-wrap">
                                         <select class="form-select box-shadow" name="id_jabatan" id="id_jabatan">
                                             <option value="0">--- Pilih Role ---</option>
