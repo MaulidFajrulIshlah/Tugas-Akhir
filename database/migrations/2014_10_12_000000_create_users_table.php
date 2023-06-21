@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('username');
             $table->timestamp('username_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', ['Admin', 'Dekanat', 'Prodi', 'Tendik']);
+            $table->enum('role', ['Admin', 'Dekanat Fakultas', 'Prodi', 'Tendik']);
             $table->rememberToken();
             $table->timestamps();
         });

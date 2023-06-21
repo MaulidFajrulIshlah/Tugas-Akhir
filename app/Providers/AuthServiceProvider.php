@@ -56,7 +56,7 @@ class AuthServiceProvider extends ServiceProvider
         });
         Gate::define('dekanat-tendik', function (User $user, $fakultas) {
             $allowedRole = ['Dekanat Fakultas', 'Tendik'];
-            return in_array($user->id_jabatan, $allowedRole) && $user->id_fakultas == $fakultas;
+            return in_array($user->role, $allowedRole) && $user->id_fakultas == $fakultas;
         });
         Gate::define('prodi-magister-kenotariatan', function (User $user) {
             $allowedJabatan = [23, 26];
