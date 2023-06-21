@@ -42,29 +42,23 @@ class MahasiswaController extends Controller
             } else if ($unitID == 8) {
                 return view('dashboard.aksesLayar.mahasiswa.fkg_kg_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 9) {
-                return view('dashboard.aksesLayar.mahasiswa.fti_ti_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.fkg_profesi_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 10) {
-                return view('dashboard.aksesLayar.mahasiswa.fti_ip_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.fti_ti_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 11) {
-                return view('dashboard.aksesLayar.mahasiswa.feb_manajemen_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.fti_ip_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 12) {
-                return view('dashboard.aksesLayar.mahasiswa.feb_akuntansi_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.feb_manajemen_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 13) {
-                return view('dashboard.aksesLayar.mahasiswa.fh_hukum_table', compact('fakultas', 'prodi'));
+                return view('dashboard.aksesLayar.mahasiswa.feb_akuntansi_table', compact('fakultas', 'prodi'));
             } else if ($unitID == 14) {
+                return view('dashboard.aksesLayar.mahasiswa.fh_hukum_table', compact('fakultas', 'prodi'));
+            } else if ($unitID == 15) {
                 return view('dashboard.aksesLayar.mahasiswa.fpsi_psi_table', compact('fakultas', 'prodi'));
             }
         }
 
         // Jika unitID == null
         return view('dashboard.mahasiswa', compact('fakultas', 'prodi'));
-
-        // if ($user->id_jabatan === 1) {
-        //     return view('dashboard.admin.mahasiswa', compact('fakultas', 'prodi'));
-        // } else if ($user->id_jabatan === 2 || $user->id_jabatan === 3 || $user->id_jabatan === 4) {
-        //     return view('dashboard.dekanat_tendik.mahasiswa', compact('fakultas', 'prodi'));
-        // } else if ($user->id_jabatan === 5 || $user->id_jabatan === 6) {
-        //     return view('dashboard.prodi.mahasiswa', compact('fakultas', 'prodi'));
-        // }
     }
 }

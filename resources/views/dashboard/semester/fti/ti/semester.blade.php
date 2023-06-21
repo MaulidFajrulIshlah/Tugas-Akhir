@@ -19,7 +19,7 @@
             <div class="row">
                 <ul class="semester">
                     @foreach ($prodi as $prodis)
-                        @if($prodis->id == 9)
+                        @if($prodis->id == 10)
                             <li class="link">
                                 <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'categoryID' => '16']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2019/2020 Ganjil</a>
                             </li>

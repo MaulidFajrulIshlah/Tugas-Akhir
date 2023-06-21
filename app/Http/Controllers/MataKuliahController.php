@@ -138,31 +138,30 @@ class MataKuliahController extends Controller
                         }
                     }
                 }
-               
-            }else if ($unitID == 8){
+            } else if ($unitID == 8) {
                 // Cek apakah parameter categoryID ada dalam request
                 if ($request->has('categoryID')) {
-                $categoryID = $request->input('categoryID');
-                if (is_numeric($categoryID)) {
-                    if ($categoryID == 61) {
-                        return view('dashboard.semester.fkg.2019_2020_genap');
-                    }else if ($categoryID == 60) {
-                        return view('dashboard.semester.fkg.2020_2021_ganjil');
-                    }else if ($categoryID == 180) {
-                        return view('dashboard.semester.fkg.2020_2021_genap');
-                    }else if ($categoryID == 260) {
-                        return view('dashboard.semester.fkg.2021_2022_ganjil');
-                    }else if ($categoryID == 347) {
-                        return view('dashboard.semester.fkg.2021_2022_genap');
-                    }else if ($categoryID == 505) {
-                        return view('dashboard.semester.fkg.2022_2023_ganjil');
-                    }else if ($categoryID == 507) {
-                        return view('dashboard.semester.fkg.2022_2023_genap');
+                    $categoryID = $request->input('categoryID');
+                    if (is_numeric($categoryID)) {
+                        if ($categoryID == 61) {
+                            return view('dashboard.semester.fkg.2019_2020_genap');
+                        } else if ($categoryID == 60) {
+                            return view('dashboard.semester.fkg.2020_2021_ganjil');
+                        } else if ($categoryID == 180) {
+                            return view('dashboard.semester.fkg.2020_2021_genap');
+                        } else if ($categoryID == 260) {
+                            return view('dashboard.semester.fkg.2021_2022_ganjil');
+                        } else if ($categoryID == 347) {
+                            return view('dashboard.semester.fkg.2021_2022_genap');
+                        } else if ($categoryID == 505) {
+                            return view('dashboard.semester.fkg.2022_2023_ganjil');
+                        } else if ($categoryID == 507) {
+                            return view('dashboard.semester.fkg.2022_2023_genap');
+                        }
                     }
                 }
-            }
-            return view('dashboard.semester.fkg.semester', compact('fakultas', 'prodi'));
-            }else if ($unitID == 9) {
+                return view('dashboard.semester.fkg.semester', compact('fakultas', 'prodi'));
+            } else if ($unitID == 10) {
                 // Cek apakah parameter categoryID ada dalam request
                 if ($request->has('categoryID')) {
                     $categoryID = $request->input('categoryID');
@@ -187,164 +186,134 @@ class MataKuliahController extends Controller
                     }
                 }
                 return view('dashboard.semester.fti.ti.semester', compact('fakultas', 'prodi'));
-            }else if ($unitID == 10){
+            } else if ($unitID == 11) {
                 // Cek apakah parameter categoryID ada dalam request
                 if ($request->has('categoryID')) {
-                $categoryID = $request->input('categoryID');
-                if (is_numeric($categoryID)) {
-                    if ($categoryID == 17) {
-                        return view('dashboard.semester.fti.ip.2019_2020_ganjil');
-                    }else if ($categoryID == 40) {
-                        return view('dashboard.semester.fti.ip.2019_2020_genap');
-                    }else if ($categoryID == 156) {
-                        return view('dashboard.semester.fti.ip.2020_2021_ganjil');
-                    }else if ($categoryID == 207) {
-                        return view('dashboard.semester.fti.ip.2020_2021_genap');
-                    }else if ($categoryID == 239) {
-                        return view('dashboard.semester.fti.ip.2021_2022_ganjil');
-                    }else if ($categoryID == 359) {
-                        return view('dashboard.semester.fti.ip.2021_2022_genap');
-                    }else if ($categoryID == 439) {
-                        return view('dashboard.semester.fti.ip.2022_2023_ganjil');
-                    }else if ($categoryID == 488) {
-                        return view('dashboard.semester.fti.ip.2022_2023_genap');
+                    $categoryID = $request->input('categoryID');
+                    if (is_numeric($categoryID)) {
+                        if ($categoryID == 17) {
+                            return view('dashboard.semester.fti.ip.2019_2020_ganjil');
+                        } else if ($categoryID == 40) {
+                            return view('dashboard.semester.fti.ip.2019_2020_genap');
+                        } else if ($categoryID == 156) {
+                            return view('dashboard.semester.fti.ip.2020_2021_ganjil');
+                        } else if ($categoryID == 207) {
+                            return view('dashboard.semester.fti.ip.2020_2021_genap');
+                        } else if ($categoryID == 239) {
+                            return view('dashboard.semester.fti.ip.2021_2022_ganjil');
+                        } else if ($categoryID == 359) {
+                            return view('dashboard.semester.fti.ip.2021_2022_genap');
+                        } else if ($categoryID == 439) {
+                            return view('dashboard.semester.fti.ip.2022_2023_ganjil');
+                        } else if ($categoryID == 488) {
+                            return view('dashboard.semester.fti.ip.2022_2023_genap');
+                        }
                     }
                 }
-            }
                 return view('dashboard.semester.fti.ip.semester', compact('fakultas', 'prodi'));
-            } else if ($unitID ==  11){
+            } else if ($unitID ==  12) {
                 // Cek apakah parameter categoryID ada dalam request
                 if ($request->has('categoryID')) {
-                $categoryID = $request->input('categoryID');
-                if (is_numeric($categoryID)) {
-                    if ($categoryID == 8) {
-                        return view('dashboard.semester.feb.manajemen.2019_2020_ganjil');
-                    }else if ($categoryID == 32) {
-                        return view('dashboard.semester.feb.manajemen.2019_2020_genap');
-                    }else if ($categoryID == 160 || $categoryID == 161 || $categoryID == 162 || $categoryID == 163) {
-                        return view('dashboard.semester.feb.manajemen.2020_2021_ganjil');
-                    }else if ($categoryID == 186 || $categoryID == 187 || $categoryID == 188 || $categoryID == 189) {
-                        return view('dashboard.semester.feb.manajemen.2020_2021_genap');
-                    }else if ($categoryID == 279 || $categoryID == 313 || $categoryID == 314 || $categoryID == 328) {
-                        return view('dashboard.semester.feb.manajemen.2021_2022_ganjil');
-                    }else if ($categoryID == 362 || $categoryID == 363 || $categoryID == 364 || $categoryID == 365) {
-                        return view('dashboard.semester.feb.manajemen.2021_2022_genap');
-                    }else if ($categoryID == 444 || $categoryID == 445 || $categoryID == 446) {
-                        return view('dashboard.semester.feb.manajemen.2022_2023_ganjil');
-                    }else if ($categoryID == 494 || $categoryID == 495 || $categoryID == 496 || $categoryID == 497) {
-                        return view('dashboard.semester.feb.manajemen.2022_2023_ganjil');
+                    $categoryID = $request->input('categoryID');
+                    if (is_numeric($categoryID)) {
+                        if ($categoryID == 8) {
+                            return view('dashboard.semester.feb.manajemen.2019_2020_ganjil');
+                        } else if ($categoryID == 32) {
+                            return view('dashboard.semester.feb.manajemen.2019_2020_genap');
+                        } else if ($categoryID == 160 || $categoryID == 161 || $categoryID == 162 || $categoryID == 163) {
+                            return view('dashboard.semester.feb.manajemen.2020_2021_ganjil');
+                        } else if ($categoryID == 186 || $categoryID == 187 || $categoryID == 188 || $categoryID == 189) {
+                            return view('dashboard.semester.feb.manajemen.2020_2021_genap');
+                        } else if ($categoryID == 279 || $categoryID == 313 || $categoryID == 314 || $categoryID == 328) {
+                            return view('dashboard.semester.feb.manajemen.2021_2022_ganjil');
+                        } else if ($categoryID == 362 || $categoryID == 363 || $categoryID == 364 || $categoryID == 365) {
+                            return view('dashboard.semester.feb.manajemen.2021_2022_genap');
+                        } else if ($categoryID == 444 || $categoryID == 445 || $categoryID == 446) {
+                            return view('dashboard.semester.feb.manajemen.2022_2023_ganjil');
+                        } else if ($categoryID == 494 || $categoryID == 495 || $categoryID == 496 || $categoryID == 497) {
+                            return view('dashboard.semester.feb.manajemen.2022_2023_ganjil');
+                        }
                     }
                 }
-            }
-            return view('dashboard.semester.feb.manajemen.semester', compact('fakultas', 'prodi'));
-            }else if ($unitID ==  12){
+                return view('dashboard.semester.feb.manajemen.semester', compact('fakultas', 'prodi'));
+            } else if ($unitID ==  13) {
                 // Cek apakah parameter categoryID ada dalam request
                 if ($request->has('categoryID')) {
-                $categoryID = $request->input('categoryID');
-                if (is_numeric($categoryID)) {
-                    if ($categoryID == 7) {
-                        return view('dashboard.semester.feb.akuntansi.2019_2020_ganjil');
-                    }else if ($categoryID == 33) {
-                        return view('dashboard.semester.feb.akuntansi.2019_2020_genap');
-                    }else if ($categoryID == 130) {
-                        return view('dashboard.semester.feb.akuntansi.2020_2021_ganjil');
-                    }else if ($categoryID == 194 || $categoryID == 195 || $categoryID == 196) {
-                        return view('dashboard.semester.feb.akuntansi.2020_2021_genap');
-                    }else if ($categoryID == 280 || $categoryID == 281 || $categoryID == 282) {
-                        return view('dashboard.semester.feb.akuntansi.2021_2022_ganjil');
-                    }else if ($categoryID == 372 || $categoryID == 373 || $categoryID == 374 || $categoryID == 376) {
-                        return view('dashboard.semester.feb.akuntansi.2021_2022_genap');
-                    }else if ($categoryID == 449 || $categoryID == 450 || $categoryID == 451 || $categoryID == 452) {
-                        return view('dashboard.semester.feb.akuntansi.2022_2023_ganjil');
-                    }else if ($categoryID == 509 || $categoryID == 510 || $categoryID == 511 || $categoryID == 512) {
-                        return view('dashboard.semester.feb.akuntansi.2022_2023_genap');
+                    $categoryID = $request->input('categoryID');
+                    if (is_numeric($categoryID)) {
+                        if ($categoryID == 7) {
+                            return view('dashboard.semester.feb.akuntansi.2019_2020_ganjil');
+                        } else if ($categoryID == 33) {
+                            return view('dashboard.semester.feb.akuntansi.2019_2020_genap');
+                        } else if ($categoryID == 130) {
+                            return view('dashboard.semester.feb.akuntansi.2020_2021_ganjil');
+                        } else if ($categoryID == 194 || $categoryID == 195 || $categoryID == 196) {
+                            return view('dashboard.semester.feb.akuntansi.2020_2021_genap');
+                        } else if ($categoryID == 280 || $categoryID == 281 || $categoryID == 282) {
+                            return view('dashboard.semester.feb.akuntansi.2021_2022_ganjil');
+                        } else if ($categoryID == 372 || $categoryID == 373 || $categoryID == 374 || $categoryID == 376) {
+                            return view('dashboard.semester.feb.akuntansi.2021_2022_genap');
+                        } else if ($categoryID == 449 || $categoryID == 450 || $categoryID == 451 || $categoryID == 452) {
+                            return view('dashboard.semester.feb.akuntansi.2022_2023_ganjil');
+                        } else if ($categoryID == 509 || $categoryID == 510 || $categoryID == 511 || $categoryID == 512) {
+                            return view('dashboard.semester.feb.akuntansi.2022_2023_genap');
+                        }
                     }
                 }
-            }
-            return view('dashboard.semester.feb.akuntansi.semester', compact('fakultas', 'prodi'));
-            }else if ($unitID == 13){
+                return view('dashboard.semester.feb.akuntansi.semester', compact('fakultas', 'prodi'));
+            } else if ($unitID == 14) {
                 // Cek apakah parameter categoryID ada dalam request
                 if ($request->has('categoryID')) {
-                $categoryID = $request->input('categoryID');
-                if (is_numeric($categoryID)) {
-                    if ($categoryID == 11) {
-                        return view('dashboard.semester.fh.2019_2020_ganjil');
-                    }else if ($categoryID == 34) {
-                        return view('dashboard.semester.fh.2019_2020_genap');
-                    }else if ($categoryID == 154) {
-                        return view('dashboard.semester.fh.2020_2021_ganjil');
-                    }else if ($categoryID == 181 || $categoryID == 182 || $categoryID == 183) {
-                        return view('dashboard.semester.fh.2020_2021_genap');
-                    }else if ($categoryID == 271 || $categoryID == 272 || $categoryID == 273 || $categoryID == 274 || $categoryID == 275) {
-                        return view('dashboard.semester.fh.2021_2022_ganjil');
-                    }else if ($categoryID == 372 || $categoryID == 350 || $categoryID == 351 || $categoryID == 352) {
-                        return view('dashboard.semester.fh.2021_2022_genap');
-                    }else if ($categoryID == 429 || $categoryID == 430 || $categoryID == 431 || $categoryID == 432) {
-                        return view('dashboard.semester.fh.2022_2023_ganjil');
-                    }else if ($categoryID == 500 || $categoryID == 501 || $categoryID == 502) {
-                        return view('dashboard.semester.fh.2022_2023_genap');
+                    $categoryID = $request->input('categoryID');
+                    if (is_numeric($categoryID)) {
+                        if ($categoryID == 11) {
+                            return view('dashboard.semester.fh.2019_2020_ganjil');
+                        } else if ($categoryID == 34) {
+                            return view('dashboard.semester.fh.2019_2020_genap');
+                        } else if ($categoryID == 154) {
+                            return view('dashboard.semester.fh.2020_2021_ganjil');
+                        } else if ($categoryID == 181 || $categoryID == 182 || $categoryID == 183) {
+                            return view('dashboard.semester.fh.2020_2021_genap');
+                        } else if ($categoryID == 271 || $categoryID == 272 || $categoryID == 273 || $categoryID == 274 || $categoryID == 275) {
+                            return view('dashboard.semester.fh.2021_2022_ganjil');
+                        } else if ($categoryID == 372 || $categoryID == 350 || $categoryID == 351 || $categoryID == 352) {
+                            return view('dashboard.semester.fh.2021_2022_genap');
+                        } else if ($categoryID == 429 || $categoryID == 430 || $categoryID == 431 || $categoryID == 432) {
+                            return view('dashboard.semester.fh.2022_2023_ganjil');
+                        } else if ($categoryID == 500 || $categoryID == 501 || $categoryID == 502) {
+                            return view('dashboard.semester.fh.2022_2023_genap');
+                        }
                     }
                 }
-            }
-            return view('dashboard.semester.fh.semester', compact('fakultas', 'prodi'));
-            }else if ($unitID == 14){
+                return view('dashboard.semester.fh.semester', compact('fakultas', 'prodi'));
+            } else if ($unitID == 15) {
                 // Cek apakah parameter categoryID ada dalam request
                 if ($request->has('categoryID')) {
-                $categoryID = $request->input('categoryID');
-                if (is_numeric($categoryID)) {
-                    if ($categoryID == 14) {
-                        return view('dashboard.semester.fpsi.2019_2020_ganjil');
-                    }else if ($categoryID == 37) {
-                        return view('dashboard.semester.fpsi.2019_2020_genap');
-                    }else if ($categoryID == 68) {
-                        return view('dashboard.semester.fpsi.2020_2021_ganjil');
-                    }else if ($categoryID == 184) {
-                        return view('dashboard.semester.fpsi.2020_2021_genap');
-                    }else if ($categoryID == 265) {
-                        return view('dashboard.semester.fpsi.2021_2022_ganjil');
-                    }else if ($categoryID == 357) {
-                        return view('dashboard.semester.fpsi.2021_2022_genap');
-                    }else if ($categoryID == 427) {
-                        return view('dashboard.semester.fpsi.2022_2023_ganjil');
-                    }else if ($categoryID == 489) {
-                        return view('dashboard.semester.fpsi.2022_2023_genap');
+                    $categoryID = $request->input('categoryID');
+                    if (is_numeric($categoryID)) {
+                        if ($categoryID == 14) {
+                            return view('dashboard.semester.fpsi.2019_2020_ganjil');
+                        } else if ($categoryID == 37) {
+                            return view('dashboard.semester.fpsi.2019_2020_genap');
+                        } else if ($categoryID == 68) {
+                            return view('dashboard.semester.fpsi.2020_2021_ganjil');
+                        } else if ($categoryID == 184) {
+                            return view('dashboard.semester.fpsi.2020_2021_genap');
+                        } else if ($categoryID == 265) {
+                            return view('dashboard.semester.fpsi.2021_2022_ganjil');
+                        } else if ($categoryID == 357) {
+                            return view('dashboard.semester.fpsi.2021_2022_genap');
+                        } else if ($categoryID == 427) {
+                            return view('dashboard.semester.fpsi.2022_2023_ganjil');
+                        } else if ($categoryID == 489) {
+                            return view('dashboard.semester.fpsi.2022_2023_genap');
+                        }
                     }
                 }
+                return view('dashboard.semester.fpsi.semester', compact('fakultas', 'prodi'));
             }
-            return view('dashboard.semester.fpsi.semester', compact('fakultas', 'prodi'));
-        }
         }
         // Jika unitID == null
         return view('dashboard.matkul', compact('fakultas', 'prodi'));
-
-        // // Cek apakah parameter unitID ada dalam request
-        // if ($request->has('unitID')) {
-        //     $unitID = $request->input('unitID');
-        //     // Lakukan penanganan berdasarkan unitID
-        //     if ($unitID == 9) {
-        //         return view('dashboard.semester.fti.semester', compact('fakultas', 'prodi'));
-        //         if ($request->has('unitID')) {
-        //             $categoryID = $request->input('categoryID');
-        //             if (is_numeric($categoryID)) {
-        //                 if ($categoryID == 16) {
-        //                     return view('dashboard.semester.2019_2020_ganjil');
-        //                 } else if ($categoryID == 39) {
-        //                     return view('dashboard.semester.2019_2020_genap');
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-
-
-        // $categoryID = $request->query('categoryID');
-        // // Jika terdapat categoryID
-        // if (is_numeric($categoryID)) {
-        //     if ($categoryID == 16) {
-        //         return view('dashboard.semester.2019_2020_ganjil');
-        //     } else if ($categoryID == 39) {
-        //         return view('dashboard.semester.2019_2020_genap');
-        //     }
-        // }
     }
 }
