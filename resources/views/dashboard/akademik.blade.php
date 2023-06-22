@@ -28,6 +28,12 @@
                                         </li>
                                         @continue
                                     @endif
+                                    @if($prodis->id == 9)
+                                        <li class="link">
+                                            <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '74']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
+                                        </li>
+                                        @continue
+                                    @endif
                                     <li class="link">
                                         <a href="{{ route('akademik', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
                                     </li>

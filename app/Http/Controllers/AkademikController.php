@@ -143,23 +143,33 @@ class AkademikController extends Controller
                     $categoryID = $request->input('categoryID');
                     if (is_numeric($categoryID)) {
                         if ($categoryID == 61) {
-                            return view('dashboard.dataMonitoring.fkg.2019_2020_genap');
+                            return view('dashboard.dataMonitoring.fkg.kedokteranGigi.2019_2020_genap');
                         } else if ($categoryID == 60) {
-                            return view('dashboard.dataMonitoring.fkg.2020_2021_ganjil');
+                            return view('dashboard.dataMonitoring.fkg.kedokteranGigi.2020_2021_ganjil');
                         } else if ($categoryID == 180) {
-                            return view('dashboard.dataMonitoring.fkg.2020_2021_genap');
+                            return view('dashboard.dataMonitoring.fkg.kedokteranGigi.2020_2021_genap');
                         } else if ($categoryID == 260) {
-                            return view('dashboard.dataMonitoring.fkg.2021_2022_ganjil');
+                            return view('dashboard.dataMonitoring.fkg.kedokteranGigi.2021_2022_ganjil');
                         } else if ($categoryID == 347) {
-                            return view('dashboard.dataMonitoring.fkg.2021_2022_genap');
+                            return view('dashboard.dataMonitoring.fkg.kedokteranGigi.2021_2022_genap');
                         } else if ($categoryID == 505) {
-                            return view('dashboard.dataMonitoring.fkg.2022_2023_ganjil');
+                            return view('dashboard.dataMonitoring.fkg.kedokteranGigi.2022_2023_ganjil');
                         } else if ($categoryID == 507) {
-                            return view('dashboard.dataMonitoring.fkg.2022_2023_genap');
+                            return view('dashboard.dataMonitoring.fkg.kedokteranGigi.2022_2023_genap');
                         }
                     }
                 }
                 return view('dashboard.dataMonitoring.fkg.semester', compact('fakultas', 'prodi'));
+            } else if ($unitID == 9) {
+                // Cek apakah parameter categoryID ada dalam request
+                if ($request->has('categoryID')) {
+                    $categoryID = $request->input('categoryID');
+                    if (is_numeric($categoryID)) {
+                        if ($categoryID == 74) {
+                            return view('dashboard.dataMonitoring.fkg.profesi.profesi_dokterGigi');
+                        }
+                    }
+                }
             } else if ($unitID == 10) {
                 // Cek apakah parameter categoryID ada dalam request
                 if ($request->has('categoryID')) {
