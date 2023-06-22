@@ -55,8 +55,8 @@
                             <div class="form-group">
                                 <label for="username" class="form-label fw-bolder">Username</label> 
                                     <div class="form-control-wrap">
-                                        <input type="text" class="form-control box-shadow" id="username"
-                                        name="username" autocomplete="off" value="{{  $userData->username }}"> 
+                                        <input type="text" class="form-control read_only" id="username"
+                                        name="username" autocomplete="off" readonly value="{{  $userData->username }}"> 
                                     </div>
                             </div>
                         </div>
