@@ -244,7 +244,9 @@ class MataKuliahController extends Controller
                 if ($request->has('categoryID')) {
                     $categoryID = $request->input('categoryID');
                     if (is_numeric($categoryID)) {
-                        if ($categoryID == 8) {
+                        if ($categoryID == 447 || $categoryID == 392 || $categoryID == 328) {
+                            return view('dashboard.semester.feb.manajemen.kurikulum_2012');
+                        }else if ($categoryID == 8) {
                             return view('dashboard.semester.feb.manajemen.2019_2020_ganjil');
                         } else if ($categoryID == 32) {
                             return view('dashboard.semester.feb.manajemen.2019_2020_genap');
@@ -304,7 +306,9 @@ class MataKuliahController extends Controller
                 if ($request->has('categoryID')) {
                     $categoryID = $request->input('categoryID');
                     if (is_numeric($categoryID)) {
-                        if ($categoryID == 11) {
+                        if ($categoryID == 192 || $categoryID == 275 || $categoryID == 176) {
+                            return view('dashboard.semester.fh.kurikulum_2012');
+                        }else if ($categoryID == 11) {
                             return view('dashboard.semester.fh.2019_2020_ganjil');
                         } else if ($categoryID == 34) {
                             return view('dashboard.semester.fh.2019_2020_genap');
@@ -324,6 +328,8 @@ class MataKuliahController extends Controller
                             return view('dashboard.semester.fh.2022_2023_ganjil');
                         } else if ($categoryID == 500 || $categoryID == 501 || $categoryID == 502) {
                             return view('dashboard.semester.fh.2022_2023_genap');
+                        }else if ($categoryID == 530) {
+                            return view('dashboard.semester.fh.kurikulum_2018');
                         }
                     }
                 }
