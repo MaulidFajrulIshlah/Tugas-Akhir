@@ -88,7 +88,7 @@
                                         </li>
                                     @endif
 
-                                @elsecan('prodi-profesi-kedokteranGigi')
+                                @elsecan('prodi-profesi-doktergigi')
                                     @if ($prodis->id == 9)
                                         <li class="link">
                                             <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
