@@ -33,10 +33,16 @@
                                 <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'categoryID' => '181']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2020/2021 Genap</a>
                             </li>
                             <li class="link">
+                                <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'categoryID' => '246']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2020/2021 Antara</a>
+                            </li>
+                            <li class="link">
                                 <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'categoryID' => '271']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2021/2022 Ganjil</a>
                             </li>
                             <li class="link">
                                 <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'categoryID' => '350']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2021/2022 Genap</a>
+                            </li>
+                            <li class="link">
+                                <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'categoryID' => '419']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2021/2022 Antara</a>
                             </li>
                             <li class="link">
                                 <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'categoryID' => '429']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2022/2023 Ganjil</a>
