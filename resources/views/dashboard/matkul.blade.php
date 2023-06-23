@@ -9,6 +9,41 @@
     </ol>
 
     <div class="row g-3 my-3">
+    {{-- card total daftar mata kuliah --}}
+    <div class="col-xl-4 col-md-6 col-11 col-lg-5 my-3">
+        <div class="card info-card akun-card">
+            <div class="card-body">
+                <div class="ps-1">
+                    <div class="header">
+                        <h5 class="card-title fw-bold">Daftar Mata Kuliah</h5>
+                    </div>
+                    <h5 class="fw-bold mt-3" id="total-matkul"></h5>
+                    <div class="card-footer bg-transparent mt-3 ps-0">
+                        <small class="text-danger"><span id="last-updated"></span></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> {{-- end card total daftar mata kuliah --}}
+   {{-- card total halaman mata kuliah --}}
+    <div class="col-xl-4 col-md-6 col-11 col-lg-5 my-3">
+        <div class="card info-card akun-card">
+            <div class="card-body">
+                <div class="ps-1">
+                    <div class="header">
+                        <h5 class="card-title fw-bold">Halaman Mata Kuliah</h5>
+                    </div>
+                    <h5 class="fw-bold mt-3" id="total-halaman"></h5>
+                    <div class="card-footer bg-transparent mt-3 ps-0">
+                        <small class="text-danger"><span id="last-updated"></span></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>{{-- end card total halaman mata kuliah --}}
+    </div>
+    
+    <div class="row g-3 my-3">
         <div class="col mx-2 bg-white rounded card content" id="wrapper-content">
             <h5 class="m-3 mt-4 mb-0 fw-bold text">Fakultas dan Prodi Universitas YARSI</h5>
             <hr>
@@ -141,7 +176,7 @@
                     </ul>
                 </div>
             </div>
-        </div> <!-- /col bg-white -->
+        </div>    <!-- /col bg-white -->
     </div>
 @endsection
         {{-- <script>
