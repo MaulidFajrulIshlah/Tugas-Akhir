@@ -21,6 +21,9 @@
                     @foreach ($prodi as $prodis)
                         @if($prodis->id == 14)
                             <li class="link">
+                                <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'categoryID' => '192']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>Kurikulum 2012</a>
+                            </li>
+                            <li class="link">
                                 <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'categoryID' => '11']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2019/2020 Ganjil</a>
                             </li>
                             <li class="link">
@@ -49,6 +52,9 @@
                             </li>
                             <li class="link">
                                 <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'categoryID' => '500']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2022/2023 Genap</a>
+                            </li>
+                            <li class="link">
+                                <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'categoryID' => '530']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>Kurikulum 2018</a>
                             </li>
                         @endif
                     @endforeach
