@@ -20,10 +20,9 @@
                 <ul class="semester">
                     @foreach ($prodi as $prodis)
                         @if($prodis->id == 6)
-                        <li class="link">
-                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'categoryID' => '41']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>Kurikulum 2013</a>
-                        </li>
-                            
+                            <li class="link">
+                                <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'categoryID' => '41']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>Kurikulum 2013</a>
+                            </li>
                         @endif
                     @endforeach
                 </ul>
