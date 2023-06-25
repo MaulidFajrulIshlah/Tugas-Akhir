@@ -17,15 +17,16 @@
                     <div class="header">
                         <h5 class="card-title fw-bold">Daftar Mata Kuliah</h5>
                     </div>
-                    <h5 class="fw-bold mt-3" id="total-matkul"></h5>
+                    <h5 class="fw-bold mt-3" id="jumlah-matkul"></h5>
                     <div class="card-footer bg-transparent mt-3 ps-0">
                         <small class="text-danger"><span id="last-updated"></span></small>
                     </div>
                 </div>
             </div>
         </div>
-    </div> {{-- end card total daftar mata kuliah --}}
-   {{-- card total halaman mata kuliah --}}
+    </div> {{-- end card jumlah daftar mata kuliah --}}
+    
+    {{-- card jumlah halaman mata kuliah --}}
     <div class="col-xl-4 col-md-6 col-11 col-lg-5 my-3">
         <div class="card info-card akun-card">
             <div class="card-body">
@@ -33,7 +34,7 @@
                     <div class="header">
                         <h5 class="card-title fw-bold">Halaman Mata Kuliah</h5>
                     </div>
-                    <h5 class="fw-bold mt-3" id="total-halaman"></h5>
+                    <h5 class="fw-bold mt-3" id="jumlah-halaman"></h5>
                     <div class="card-footer bg-transparent mt-3 ps-0">
                         <small class="text-danger"><span id="last-updated"></span></small>
                     </div>
@@ -178,14 +179,68 @@
             </div>
         </div>    <!-- /col bg-white -->
     </div>
-@endsection
-        {{-- <script>
-           // Menangkap event saat halaman di-refresh
-            window.onload = function() {
-                if (window.location.search.includes('unitID=')) {
-                    window.history.replaceState({}, document.title, "{{ route('mahasiswa') }}");
-                }
+    {{-- <script>
+       // Menangkap event saat halaman di-refresh
+        window.onload = function() {
+            if (window.location.search.includes('unitID=')) {
+                window.history.replaceState({}, document.title, "{{ route('mahasiswa') }}");
             }
-        </script> --}}
+        }
+    </script> --}}
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+        function updateData() {
+            const matkul = [];
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=463cfb78c5acc92fbed0656c2aec27b4&wsfunction=core_course_get_courses&moodlewsrestformat=json',
+                cache: true,
+                
+                success: function (data, status, xhr) {
+                    for (let i = 0; i < data.length; i++) {
+                        if (data[i]['categoryid'] != null) {
+                            const namaMatkul = data[i]['fullname'];
+                            matkul.push(namaMatkul);
+                        }
+                    }
+                    document.getElementById('jumlah-matkul').textContent = matkul.length;
 
-      
+                    // waktu saat ini
+                    const currentTime = new Date();
+                    // Menambahkan 1 jam
+                    const updateDateTime = new Date(currentTime.getTime() + (1000 * 60 * 60));
+                    // Selisih waktu dalam milidetik
+                    let elapsedTime = updateDateTime - currentTime;
+
+                    // menghitung jam dan menit yang berlalu
+                    const hours = Math.floor(elapsedTime / (1000 * 60 * 60));
+                    const minutes = Math.floor((currentTime % (1000 * 60 * 60)) / (1000 * 60));
+
+                    console.log(currentTime, updateDateTime, elapsedTime, hours, minutes);
+
+                    let elapsedTimeString = '';
+
+                    if (hours === 1 && minutes === 0) {
+                        elapsedTimeString = hours + ' jam yang lalu';
+                    } else {
+                        elapsedTimeString = minutes + ' menit yang lalu';
+                    }
+
+                    // memperbarui teks dengan keterangan pembaruan data
+                    document.getElementById('last-updated').textContent = "Pembaruan data terjadi " + elapsedTimeString;
+
+                },
+                error: function (xhr, status, error) {
+                    // penanganan kesalahan saat permintaan AJAX gagal
+                    console.log('Error:', error);
+                }
+            });
+        }
+        // Inisialisasi pembaruan data saat halaman dimuat
+        updateData();
+
+        // Jadwalkan pembaruan data sesuai dengan waktu pembaruan berikutnya setiap 1 jam
+        const intervalID = setInterval(updateData, 60 * 60 * 1000); 
+    </script>
+@endsection
