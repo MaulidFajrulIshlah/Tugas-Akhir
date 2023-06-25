@@ -8,7 +8,7 @@
         <li class="breadcrumb-item active">Mata Kuliah</li>
         <li class="breadcrumb-item active">Fakultas Kedokteran Gigi</li>
         <li class="breadcrumb-item active">Kedokteran Gigi</li>
-        <li class="breadcrumb-item active">2021_2022 Ganjil</li>
+        <li class="breadcrumb-item active">2020_2021 Genap</li>
     </ol>
 
     <div class="row g-3 my-3">
@@ -17,7 +17,7 @@
             <div class="row g-0 my-3">
                 <div class="row mb-4">
                     <h5 class="mb-2 fw-bold text">Mata Kuliah</h5>
-                    <span class="fs-6 mb-3 text">Semester 2021/2022 Ganjil - Kedokteran Gigi</span>
+                    <span class="fs-6 mb-3 text">Semester 2020/2021 Genap - Kedokteran Gigi</span>
 
 
                     <div class="col-xl-4 col-md-6 col-11 col-lg-5 my-3">
@@ -62,10 +62,11 @@
                 type: 'GET',
                 dataType: 'json',
                 url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=463cfb78c5acc92fbed0656c2aec27b4&wsfunction=core_course_get_courses&moodlewsrestformat=json',
-
+                cache: true,
+                
                 success: function (data, status, xhr) {
                     for (let i = 0; i < data.length; i++) {
-                        if (data[i]['categoryid'] == 260) {
+                        if (data[i]['categoryid'] == 180) {
                             const namaMatkul = data[i]['fullname'];
                             matkul.push(namaMatkul);
 
@@ -98,9 +99,9 @@
 
                         // tambahkan nilai ke dalam tbody
                         tbody.appendChild(row);
-
-                        document.getElementById('jumlah-matkul').textContent = matkul.length;
                     });
+                    
+                    document.getElementById('jumlah-matkul').textContent = matkul.length;
 
                     // waktu saat ini
                     const currentTime = new Date();
