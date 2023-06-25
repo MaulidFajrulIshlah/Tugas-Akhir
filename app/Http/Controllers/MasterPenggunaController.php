@@ -7,17 +7,36 @@ use App\Models\Jabatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
+use Yajra\DataTables\Facades\DataTables;
 
 class MasterPenggunaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // mendapatkan data User
-        $userData = User::with('jabatan')->latest()->get();
-        return view('dashboard.admin.masterPengguna.index', compact('userData'));
+        if ($request->ajax()) {
+            // mendapatkan data User
+            $userData = User::with('jabatan')->latest()->get();
+
+            return DataTables::of($userData)
+                ->addColumn('action', function ($users) {
+                    return '
+                        <a class="btn btn-primary btn-edit me-1" href="' . route('updateUser', $users->id) . '">
+                            <i class="fas fa-edit"></i>
+                        </a>
+
+                        <a class="btn btn-danger btn-delete" href="' . route('deleteUser', $users->id) . '" >
+                            <i class="fa fa-trash"></i>
+                        </a>  
+                        ';
+                })
+                ->addIndexColumn()
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        return view('dashboard.admin.masterPengguna.index');
     }
 
     /**

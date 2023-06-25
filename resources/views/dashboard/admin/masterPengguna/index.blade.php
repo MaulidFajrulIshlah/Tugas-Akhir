@@ -28,7 +28,7 @@
                     </div>
                     {{-- Table --}}
                     <div class="container mt-3">
-                        <table class="table table-master table-bordered table-hover">
+                        <table id="data-table" class="table table-bordered table-hover cell-border">
                             <thead class="table-success">
                                 <tr>
                                     <th scope="col" class="text">No</th>
@@ -39,27 +39,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($userData as $users)
+                                {{-- @foreach ($userData as $users)
                                     <tr>
                                         <td class="text">{{ $loop->iteration }}</td>
                                         <td class="text">{{ $users->nama}}</td>
                                         <td class="text">{{ $users->username }}</td>
                                         <td class="text">{{ $users->jabatan->nama_jabatan }}</td>
                                         <td class="text">
-                                            {{-- Buttons --}}
                                             <div class="form-inline btn-action-group">
                                                 <a href="{{ route('updateUser', $users->id) }}" class="btn btn-primary btn-edit me-1">
                                                     <i class="fas fa-edit pe-1"></i>
                                                     Edit
                                                 </a>
-                                                <a href=""{{ route('deleteUser', $users->id) }}" class="btn btn-danger btn-delete">
+                                                <a href="{{ route('deleteUser', $users->id) }}" class="btn btn-danger btn-delete">
                                                     <i class="fas fa-times pe-1"></i>
                                                     Hapus
                                                 </a>  
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endforeach --}}
                             </tbody>
                         </table>
                     </div>
@@ -67,9 +66,29 @@
             </div>
         </div>
 
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
         <script>
             function createurl() {
                 window.location.href = '/masterdata/pengguna/create';
             }
+
+            $(document).ready(function(){
+                $('#data-table').DataTable({
+                    processing: true,
+                    ajax: '{{ route("masterUser") }}', // Ganti dengan URL yang sesuai
+                    columns: [
+                        { 
+                            data: null,
+                            render: function(data, type, row, index) {
+                                return index.row + index.settings._iDisplayStart + 1; // Menggunakan meta.row untuk mendapatkan nomor iterasi
+                            }
+                        },
+                        { data: 'nama', name: 'nama' },
+                        { data: 'username', name: 'username' },
+                        { data: 'jabatan.nama_jabatan', name: 'jabatan.nama_jabatan'  },
+                        { data: 'action', name: 'action', orderable: false, searchable: false }
+                    ]
+                });
+            });
         </script>
 @endsection
