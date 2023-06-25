@@ -62,7 +62,8 @@
                 type: 'GET',
                 dataType: 'json',
                 url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=463cfb78c5acc92fbed0656c2aec27b4&wsfunction=core_course_get_courses&moodlewsrestformat=json',
-
+                cache: true,
+                
                 success: function (data, status, xhr) {
                     for (let i = 0; i < data.length; i++) {
                         if (data[i]['categoryid'] == 453) {
@@ -98,9 +99,8 @@
 
                         // tambahkan nilai ke dalam tbody
                         tbody.appendChild(row);
-
-                        document.getElementById('jumlah-matkul').textContent = matkul.length;
                     });
+                    document.getElementById('jumlah-matkul').textContent = matkul.length;
 
                     // waktu saat ini
                     const currentTime = new Date();
