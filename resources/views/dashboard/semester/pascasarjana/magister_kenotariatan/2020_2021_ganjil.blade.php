@@ -14,9 +14,9 @@
     <div class="row g-3 my-3">
         <div class="col mx-2 bg-white rounded card content" id="wrapper-content">
 
-            <div class="row g-0 my-3">
-                <div class="row mb-4">
-                    <h5 class="mb-2 fw-bold text">Mata Kuliah</h5>
+            <div class="row g-0">
+                <div class="row mb-3">
+                    <h5 class="mb-2 mt-3 fw-bold text">Mata Kuliah</h5>
                     <span class="fs-6 mb-3 text">Semester 2020/2021 Ganjil - Magister Kenotariatan</span>
 
 
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="container mt-4">
-                        <table table class="table table-bordered table-hover">
+                        <table  id="data-matkul" table class="table table-bordered table-hover cell-border">
                             <thead class="table-success">
                                 <tr>
                                     <th scope="col" class="text">No</th>
@@ -46,7 +46,7 @@
                                 </tr>
                             </thead>
 
-                            <tbody id="data-matkul"></tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
@@ -58,6 +58,7 @@
     <script>
         function updateData() {
             const matkul = [];
+            let nomor = 1;
             $.ajax({
                 type: 'GET',
                 dataType: 'json',
@@ -68,39 +69,29 @@
                     for (let i = 0; i < data.length; i++) {
                         if (data[i]['categoryid'] == 210) {
                             const namaMatkul = data[i]['fullname'];
-                            matkul.push(namaMatkul);
-
+                            matkul.push({
+                                nomor: nomor++,
+                                matakuliah: namaMatkul
+                            });
                         }
                     }
-                    const tbody = document.getElementById('data-matkul');
 
-                    // menghapus data
-                    tbody.innerHTML = '';
-
-                    // update data
-                    matkul.forEach((matakuliah, index) => {
-                        const row = document.createElement('tr');
-                        const nomorCell = document.createElement('td');
-                        const matakuliahCell = document.createElement('td');
-
-                        row.classList.add('text', 'text-justify');
-                        nomorCell.classList.add('text', 'text-justify');
-                        matakuliahCell.classList.add('text', 'text-justify');
-
-                        // membuat nomor
-                        nomorCell.textContent = index + 1;
-
-                        // memasukkan nama-nama mata kuliah
-                        matakuliahCell.textContent = matakuliah;
-
-                        // tambahkan nilai ke dalam row
-                        row.appendChild(nomorCell);
-                        row.appendChild(matakuliahCell);
-
-                        // tambahkan nilai ke dalam tbody
-                        tbody.appendChild(row);
+                    const table = $('#data-matkul').DataTable({
+                        destroy: true,
+                        processing: true,
+                        data: matkul,
+                        columns: [
+                            { title: 'No', data: 'nomor' },
+                            { title: 'Daftar Mata Kuliah', data: 'matakuliah' },
+                            { title: 'Halaman Mata Kuliah Lengkap', data: null,
+                                render: function (data, type, row) {
+                                    return '';
+                                }
+                            },
+                        ],
                     });
-                    document.getElementById('jumlah-matkul').textContent = matkul.length;
+
+                    $('#jumlah-matkul').text(matkul.length);
 
                     // waktu saat ini
                     const currentTime = new Date();
@@ -133,10 +124,14 @@
                 }
             });
         }
-        // Inisialisasi pembaruan data saat halaman dimuat
-        updateData();
 
-        // Jadwalkan pembaruan data sesuai dengan waktu pembaruan berikutnya setiap 1 jam
-        const intervalID = setInterval(updateData, 60 * 60 * 1000); 
+        $(document).ready(function() {
+            const table = $('#data-matkul').DataTable();
+    
+            updateData();
+            
+            // Jadwalkan pembaruan data sesuai dengan waktu pembaruan berikutnya setiap 1 jam
+            const intervalID = setInterval(updateData, 60 * 60 * 1000);
+        });
     </script>
 @endsection
