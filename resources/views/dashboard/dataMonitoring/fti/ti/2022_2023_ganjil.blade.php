@@ -31,37 +31,97 @@
                             <tbody>
                                 <tr>
                                     <td class="text">1</td>
-                                    <td class="text">Dasar-dasar Pemrograman</td>
-                                    <td class="text">100 Kegiatan</td>
-                                    <td class="text">95 Kegiatan</td>
+                                    <td class="text">Interaksi Manusia Komputer Kelas B</td>
+                                    <td class="text">38 Kegiatan</td>
+                                    <td class="text">11 Kegiatan</td>
                                 </tr>
 
                                 <tr>
                                     <td class="text">2</td>
-                                    <td class="text">Basis Data</td>
-                                    <td class="text">200 Kegiatan</td>
-                                    <td class="text">100 Kegiatan</td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text">3</td>
-                                    <td class="text">Agama 1</td>
-                                    <td class="text">20 Kegiatan</td>
+                                    <td class="text">Agama 3 Kelas C</td>
+                                    <td class="text">14 Kegiatan</td>
                                     <td class="text">5 Kegiatan</td>
                                 </tr>
 
                                 <tr>
+                                    <td class="text">3</td>
+                                    <td class="text">Realitas Virtual dan Augmentasi</td>
+                                    <td class="text">33 Kegiatan</td>
+                                    <td class="text">10 Kegiatan</td>
+                                </tr>
+
+                                <tr>
                                     <td class="text">4</td>
-                                    <td class="text">Pemrograman Berbasis Platform</td>
-                                    <td class="text">78 Kegiatan</td>
-                                    <td class="text">90 Kegiatan</td>
+                                    <td class="text">Administrasi Sistem</td>
+                                    <td class="text">31 Kegiatan</td>
+                                    <td class="text">11 Kegiatan</td>
                                 </tr>
 
                                 <tr>
                                     <td class="text">5</td>
-                                    <td class="text">Data Mining</td>
-                                    <td class="text">100 Kegiatan</td>
-                                    <td class="text">95 Kegiatan</td>
+                                    <td class="text">Manajemen Pengetahuan</td>
+                                    <td class="text">28 Kegiatan</td>
+                                    <td class="text">10 Kegiatan</td>
+                                </tr>
+                                <tr>
+                                    <td class="text">6</td>
+                                    <td class="text">Komputasi Awan dan Grid</td>
+                                    <td class="text">34 Kegiatan</td>
+                                    <td class="text">11 Kegiatan</td>
+                                </tr>
+                                <tr>
+                                    <td class="text">7</td>
+                                    <td class="text">Teknologi WAN CCNA 4</td>
+                                    <td class="text">34 Kegiatan</td>
+                                    <td class="text">13 Kegiatan</td>
+                                </tr>
+                                <tr>
+                                    <td class="text">8</td>
+                                    <td class="text">Audit Sistem Informasi</td>
+                                    <td class="text">36 Kegiatan</td>
+                                    <td class="text">12 Kegiatan</td>
+                                </tr>
+                                <tr>
+                                    <td class="text">9</td>
+                                    <td class="text">Sistem Informasi Enterprise</td>
+                                    <td class="text">34 Kegiatan</td>
+                                    <td class="text">13 Kegiatan</td>
+                                </tr>
+                                <tr>
+                                    <td class="text">10</td>
+                                    <td class="text">Teknik Multimedia</td>
+                                    <td class="text">30 Kegiatan</td>
+                                    <td class="text">10 Kegiatan</td>
+                                </tr>
+                                <tr>
+                                    <td class="text">11</td>
+                                    <td class="text">Logika Fuzzy dan Sistem Pakar</td>
+                                    <td class="text">29 Kegiatan</td>
+                                    <td class="text">9 Kegiatan</td>
+                                </tr>
+                                <tr>
+                                    <td class="text">12</td>
+                                    <td class="text">Etika Profesi</td>
+                                    <td class="text">36 Kegiatan</td>
+                                    <td class="text">10 Kegiatan</td>
+                                </tr>
+                                <tr>
+                                    <td class="text">13</td>
+                                    <td class="text">Temu Kembali Informasi</td>
+                                    <td class="text">35 Kegiatan</td>
+                                    <td class="text">14 Kegiatan</td>
+                                </tr>
+                                <tr>
+                                    <td class="text">14</td>
+                                    <td class="text">Pengembangan Kepribadian Islam</td>
+                                    <td class="text">22 Kegiatan</td>
+                                    <td class="text">6 Kegiatan</td>
+                                </tr>
+                                <tr>
+                                    <td class="text">15</td>
+                                    <td class="text">Komputer dan Masyarakat</td>
+                                    <td class="text">33 Kegiatan</td>
+                                    <td class="text">10 Kegiatan</td>
                                 </tr>
                             </tbody>
                         </table>
