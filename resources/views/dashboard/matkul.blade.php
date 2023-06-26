@@ -44,7 +44,7 @@
     </div>{{-- end card total halaman mata kuliah --}}
     </div>
     
-    <div class="row g-3 my-3">
+    <div class="row g-3 mt-2 mb-4">
         <div class="col mx-2 bg-white rounded card content" id="wrapper-content">
             <h5 class="m-3 mt-4 mb-0 fw-bold text">Fakultas dan Prodi Universitas YARSI</h5>
             <hr>
