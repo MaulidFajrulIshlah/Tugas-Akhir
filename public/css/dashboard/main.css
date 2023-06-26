@@ -121,6 +121,7 @@ header {
 
 #data-dosen.table.dataTable,
 #suspend.table.dataTable,
+#table-data.table.dataTable,
 .table {
     width: 50%;
     margin: 0;

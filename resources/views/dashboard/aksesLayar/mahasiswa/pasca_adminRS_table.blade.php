@@ -66,5 +66,12 @@
                 </div> <!--row my-4-->
             </div> <!-- /row g-0 my-0 -->
         </div>
-    </div>    
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+        $(document).ready(function() {
+            let table = new DataTable('#table-data');
+        });
+    </script>
 @endsection
