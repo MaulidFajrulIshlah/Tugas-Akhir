@@ -69,7 +69,7 @@
         <div class="row my-5">
             <h5 class="mb-3 fw-bold title">Daftar Pengguna Dengan Status Suspend</h5>
             <div class="content mx-2 col bg-white p-3 rounded card">
-                <table class="table table-bordered table-hover" id="suspend-users">
+                <table id="suspend" class="table table-bordered table-hover cell-border">
                     <thead class="table-success">
                         <tr class="text">
                             <th scope="col" class="text" width="50">No</th>
@@ -250,4 +250,11 @@
             </div> <!--col-->
         </div> <!--row my-5-->
     </div> <!-- /row g-3 my-3 -->
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+        $(document).ready(function() {
+            let table = new DataTable('#suspend');
+        });
+    </script>
 @endsection
