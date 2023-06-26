@@ -19,7 +19,7 @@
                     <span class="fs-6 mb-3 text">Semester 2021/2022 Ganjil - Teknik Informatika</span>
                     {{-- Table --}}
                     <div class="container mt-3">
-                        <table class="table table-master table-bordered table-hover">
+                        <table id="data-monitoring" class="table table-master table-bordered table-hover">
                             <thead class="table-success">
                                 <tr>
                                     <th scope="col" class="text">No</th>
@@ -130,4 +130,11 @@
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+        $(document).ready(function() {
+            let table = new DataTable('#data-monitoring');
+        });
+    </script>
 @endsection
