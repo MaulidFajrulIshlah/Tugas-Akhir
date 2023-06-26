@@ -15,7 +15,7 @@
                 <div class="row my-4 content">
                     <h5 class="mb-3 fw-bold text">Jumlah Dosen Yang Mengakses LAYAR Per Semester</h5>
                     <div class="col">
-                        <table id="table-data" class="table bg-white table-bordered table-hover">
+                        <table id="data-dosen" class="table bg-white table-bordered table-hover cell-border">
                             <thead class="table-success">
                                 <tr>
                                     <th scope="col" width="80px" class="text">Semester</th>
@@ -65,5 +65,13 @@
                 </div> <!--row my-4-->
             </div> <!-- /row g-0 my-0 -->
         </div>
-    </div>    
+    </div> 
+    
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+        $(document).ready(function() {
+            let table = new DataTable('#data-dosen');
+        });
+    </script>
+@endsection
 @endsection

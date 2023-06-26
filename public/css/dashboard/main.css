@@ -119,8 +119,10 @@ header {
     background-color: var(--main-text-color);
 }
 
+#data-dosen.table.dataTable,
 .table {
     width: 50%;
+    margin: 0;
 }
 
 .table-master {
