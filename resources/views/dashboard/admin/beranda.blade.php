@@ -17,7 +17,7 @@
                             <img src="/images/Akun.png" style="width: 35px; height: 35px; margin-top: 3px;">
                             <h5 class="card-title fw-bold">Jumlah Akun</h5>
                         </div>
-                        <h5 class="fw-bold mt-1">8784</h5>
+                        <h5 class="fw-bold mt-1"></h5>
                         <h6 class="small pt-1">Yang terdapat di LAYAR</h6>
                         <div class="card-footer bg-transparent mt-3 ps-0">
                             <small class="text-danger">Dari 2 jam yang lalu</small>
@@ -36,7 +36,7 @@
                             <img src="/images/Akun.png" style="width: 35px; height: 35px; margin-top: 3px;">
                             <h5 class="card-title fw-bold">Jumlah Mahasiswa</h5>
                         </div>
-                        <h5 class="fw-bold mt-1">50</h5>
+                        <h5 class="fw-bold mt-1"></h5>
                         <h6 class="small pt-1">Yang terdapat di LAYAR</h6>
                         <div class="card-footer bg-transparent mt-3 ps-0">
                             <small class="text-danger">Dari 2 jam yang lalu</small>
@@ -55,7 +55,7 @@
                             <img src="/images/Akun.png" style="width: 35px; height: 35px; margin-top: 3px;">
                             <h5 class="card-title fw-bold">Jumlah Dosen</h5>
                         </div>
-                        <h5 class="fw-bold mt-1">25</h5>
+                        <h5 class="fw-bold mt-1"></h5>
                         <h6 class="small pt-1">Yang terdapat di LAYAR</h6>
                         <div class="card-footer bg-transparent mt-3 ps-0">
                             <small class="text-danger">Dari 2 jam yang lalu</small>
