@@ -24,40 +24,40 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row" width="40%" class="text">2018/2019 Ganjil</th>
-                                    <td class="text">109</td>
+                                    <th scope="row" width="40%" class="text">2019/2020 Ganjil</th>
+                                    <td class="text"></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"class="text">2018/2019 Genap</th>
-                                    <td class="text">117</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="text">2019/2020 Ganjil</th>
-                                    <td class="text">102</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="text">2019/2020 Genap</th>
-                                    <td class="text">132</td>
+                                    <th scope="row"class="text">2019/2020 Genap</th>
+                                    <td class="text"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row" class="text">2020/2021 Ganjil</th>
-                                    <td class="text">145</td>
+                                    <td class="text"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row" class="text">2020/2021 Genap</th>
-                                    <td class="text">167</td>
+                                    <td class="text"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row" class="text">2021/2022 Ganjil</th>
-                                    <td class="text">102</td>
+                                    <td class="text"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row" class="text">2021/2022 Genap</th>
-                                    <td class="text">111</td>
+                                    <td class="text"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text">2022/2023 Ganjil</th>
+                                    <td class="text"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text">2022/2023 Genap</th>
+                                    <td class="text"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row" class="text">Total</th>
-                                    <td class="text">985</td>
+                                    <td class="text"></td>
                                 </tr>
                             </tbody>
                         </table>
