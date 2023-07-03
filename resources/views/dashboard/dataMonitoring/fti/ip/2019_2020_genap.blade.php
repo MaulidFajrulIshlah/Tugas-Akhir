@@ -19,79 +19,67 @@
                     <span class="fs-6 mb-3 text">Semester 2019/2020 Genap - Ilmu Perpustakaan</span>
                     {{-- Table --}}
                     <div class="container mt-3">
-                        <table class="table table-master table-bordered table-hover">
+                        <table id="data-matkul" class="table table-bordered table-hover cell-border">
                             <thead class="table-success">
                                 <tr>
                                     <th scope="col" class="text">No</th>
                                     <th scope="col" class="text">Nama Mata Kuliah</th>
+                                    <th scope="col" class="text">Pengumpulan</th>
                                     <th scope="col" class="text">Kegiatan Belajar</th>
-                                    <th scope="col" class="text">Pengumpulan Kegiatan Belajar</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text">1</td>
-                                    <td class="text">Manajemen Terbitan Berseri</td>
-                                    <td class="text">7 Kegiatan</td>
-                                    <td class="text">5 Kegiatan</td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text">2</td>
-                                    <td class="text">Tata Naskah</td>
-                                    <td class="text">18 Kegiatan</td>
-                                    <td class="text">8 Kegiatan</td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text">3</td>
-                                    <td class="text">Teknologi Internet dan Web</td>
-                                    <td class="text">24 Kegiatan</td>
-                                    <td class="text">7 Kegiatan</td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text">4</td>
-                                    <td class="text">Agama Prodi 2</td>
-                                    <td class="text">14 Kegiatan</td>
-                                    <td class="text">5 Kegiatan</td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text">5</td>
-                                    <td class="text">Manajemen Perpustakaan Digital</td>
-                                    <td class="text">28 Kegiatan</td>
-                                    <td class="text">10 Kegiatan</td>
-                                </tr>
-                                <tr>
-                                    <td class="text">6</td>
-                                    <td class="text">Penerbitan Grafis dan Elektronik</td>
-                                    <td class="text">31 Kegiatan</td>
-                                    <td class="text">11 Kegiatan</td>
-                                </tr>
-                                <tr>
-                                    <td class="text">7</td>
-                                    <td class="text">Jasa Rujukan Informasi</td>
-                                    <td class="text">25 Kegiatan</td>
-                                    <td class="text">6 Kegiatan</td>
-                                </tr>
-                                <tr>
-                                    <td class="text">8</td>
-                                    <td class="text">Metadata Untuk Temu Balik Informasi 1</td>
-                                    <td class="text">28 Kegiatan</td>
-                                    <td class="text">10 Kegiatan</td>
-                                </tr>
-                                <tr>
-                                    <td class="text">9</td>
-                                    <td class="text">Kewirausahaan</td>
-                                    <td class="text">32 Kegiatan</td>
-                                    <td class="text">12 Kegiatan</td>
-                                </tr>
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+          function updateData() {
+            const matkul = [];
+            let nomor = 1;
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=463cfb78c5acc92fbed0656c2aec27b4&wsfunction=core_course_get_courses&moodlewsrestformat=json',
+                cache: true,
+
+                success: function (data, status, xhr) {
+                    for (let i = 0; i < data.length; i++) {
+                        if (data[i]['categoryid'] == 40) {
+                            const namaMatkul = data[i]['fullname'];
+                            matkul.push({
+                                nomor: nomor++,
+                                matakuliah: namaMatkul
+                            });
+                        }
+                    }
+
+                    const table = $('#data-matkul').DataTable({
+                        destroy: true,
+                        processing: true,
+                        data: matkul,
+                        columns: [
+                            { title: 'No', data: 'nomor' },
+                            { title: 'Nama Mata Kuliah', data: 'matakuliah' },
+                            { title: 'Kegiatan Belajar', data: null},
+                            { title: 'Pengumpulan', data: null,
+                                render: function (data, type, row) {
+                                    return '';
+                                }
+                            },
+                        ],
+                    });
+
+                }
+            });
+        }
+        $(document).ready(function() {
+            const table = $('#data-matkul').DataTable();
+            updateData();
+        });
+    </script>
 @endsection
