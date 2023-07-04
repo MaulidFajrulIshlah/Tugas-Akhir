@@ -111,18 +111,26 @@ class AkademikController extends Controller
                     if (is_numeric($categoryID)) {
                         if ($categoryID == 41) {
                             return view('dashboard.dataMonitoring.fk.kedokteran.2019_2020_genap');
+                        } else  if ($categoryID == 83) {
+                            return view('dashboard.dataMonitoring.fk.kedokteran.2019_2020_antara');
                         } else if ($categoryID == 48) {
                             return view('dashboard.dataMonitoring.fk.kedokteran.2020_2021_ganjil');
                         } else if ($categoryID == 203) {
                             return view('dashboard.dataMonitoring.fk.kedokteran.2020_2021_genap');
+                        } else if ($categoryID == 247) {
+                            return view('dashboard.dataMonitoring.fk.kedokteran.2020_2021_antara');
                         } else if ($categoryID == 253) {
                             return view('dashboard.dataMonitoring.fk.kedokteran.2021_2022_ganjil');
                         } else if ($categoryID == 343) {
                             return view('dashboard.dataMonitoring.fk.kedokteran.2021_2022_genap');
+                        } else if ($categoryID == 401) {
+                            return view('dashboard.dataMonitoring.fk.kedokteran.2021_2022_antara');
                         } else if ($categoryID == 425) {
                             return view('dashboard.dataMonitoring.fk.kedokteran.2022_2023_ganjil');
                         } else if ($categoryID == 486) {
                             return view('dashboard.dataMonitoring.fk.kedokteran.2022_2023_genap');
+                        } else if ($categoryID == 70) {
+                            return view('dashboard.dataMonitoring.fk.kedokteran.antara');
                         }
                     }
                 }
@@ -144,6 +152,8 @@ class AkademikController extends Controller
                     if (is_numeric($categoryID)) {
                         if ($categoryID == 61) {
                             return view('dashboard.dataMonitoring.fkg.kedokteranGigi.2019_2020_genap');
+                        } else if ($categoryID == 76 || $categoryID == 81) {
+                            return view('dashboard.dataMonitoring.fkg.kedokteranGigi.2019_2020_antara');
                         } else if ($categoryID == 60) {
                             return view('dashboard.dataMonitoring.fkg.kedokteranGigi.2020_2021_ganjil');
                         } else if ($categoryID == 180) {
@@ -152,10 +162,14 @@ class AkademikController extends Controller
                             return view('dashboard.dataMonitoring.fkg.kedokteranGigi.2021_2022_ganjil');
                         } else if ($categoryID == 347) {
                             return view('dashboard.dataMonitoring.fkg.kedokteranGigi.2021_2022_genap');
+                        } else if ($categoryID == 243) {
+                            return view('dashboard.dataMonitoring.fkg.kedokteranGigi.2021_2022_antara');
                         } else if ($categoryID == 505) {
                             return view('dashboard.dataMonitoring.fkg.kedokteranGigi.2022_2023_ganjil');
                         } else if ($categoryID == 507) {
                             return view('dashboard.dataMonitoring.fkg.kedokteranGigi.2022_2023_genap');
+                        } else if ($categoryID == 416) {
+                            return view('dashboard.dataMonitoring.fkg.kedokteranGigi.2022_2023_antara');
                         }
                     }
                 }

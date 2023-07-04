@@ -8,16 +8,17 @@
         <li class="breadcrumb-item active">Data Monitoring Akademik</li>
         <li class="breadcrumb-item active">Fakultas Kedokteran Gigi</li>
         <li class="breadcrumb-item active">Kedokteran Gigi</li>
-        <li class="breadcrumb-item active">2020_2021 Ganjil</li>
+        <li class="breadcrumb-item active">2021_2022 Antara</li>
     </ol>
 
     <div class="row g-3 my-3">
         <div class="col mx-2 bg-white rounded card content" id="wrapper-content">
+
             <div class="row g-0 my-3">
                 <div class="row mb-4">
                     <h5 class="mb-2 fw-bold text">Data Monitoring Akademik</h5>
-                    <span class="fs-6 mb-3 text">Semester 2019/2020 Ganjil - Kedokteran Gigi</span>
-                    {{-- Table --}}
+                    <span class="fs-6 mb-3 text">Semester 2021/2022 Antara - Kedokteran Gigi</span>
+
                     <div class="container mt-3">
                         <table id="data-matkul" class="table table-bordered table-hover cell-border">
                             <thead class="table-success">
@@ -28,9 +29,7 @@
                                     <th scope="col" class="text">Kegiatan Belajar</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                              
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
@@ -51,7 +50,7 @@
 
                 success: function (data, status, xhr) {
                     for (let i = 0; i < data.length; i++) {
-                        if (data[i]['categoryid'] == 60) {
+                        if (data[i]['categoryid'] == 243) {
                             const namaMatkul = data[i]['fullname'];
                             matkul.push({
                                 nomor: nomor++,
