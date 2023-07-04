@@ -275,7 +275,11 @@ class AkademikController extends Controller
                 if ($request->has('categoryID')) {
                     $categoryID = $request->input('categoryID');
                     if (is_numeric($categoryID)) {
-                        if ($categoryID == 11) {
+                        if ($categoryID == 192) {
+                            return view('dashboard.dataMonitoring.fh.kurikulum 2012');
+                        }else  if ($categoryID == 530) {
+                            return view('dashboard.dataMonitoring.fh.kurikulum 2018');
+                        }else if ($categoryID == 11) {
                             return view('dashboard.dataMonitoring.fh.2019_2020_ganjil');
                         } else if ($categoryID == 34) {
                             return view('dashboard.dataMonitoring.fh.2019_2020_genap');
@@ -324,5 +328,9 @@ class AkademikController extends Controller
         }
         // Jika unitID == null
         return view('dashboard.akademik', compact('fakultas', 'prodi'));
+    }
+
+    public function show() {
+        
     }
 }

@@ -8,7 +8,7 @@
         <li class="breadcrumb-item active">Data Monitoring Akademik</li>
         <li class="breadcrumb-item active">Fakultas Hukum</li>
         <li class="breadcrumb-item active">Hukum</li>
-        <li class="breadcrumb-item active">2019_2020 Genap</li>
+        <li class="breadcrumb-item active">Kurikulum 2012</li>
     </ol>
 
     <div class="row g-3 my-3">
@@ -16,7 +16,7 @@
             <div class="row g-0 my-3">
                 <div class="row mb-4">
                     <h5 class="mb-2 fw-bold text">Data Monitoring Akademik</h5>
-                    <span class="fs-6 mb-3 text">Semester 2019/2020 Genap - Hukum</span>
+                    <span class="fs-6 mb-3 text">Kurikulum 2012 - Hukum</span>
                     {{-- Table --}}
                     <div class="container mt-3">
                         <table id="data-matkul" class="table table-bordered table-hover cell-border">
@@ -28,7 +28,7 @@
                                     <th scope="col" class="text">Kegiatan Belajar</th>
                                 </tr>
                             </thead>
-                            <tbody> </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
@@ -36,6 +36,7 @@
         </div>
     </div>
 
+    
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script>
           function updateData() {
@@ -49,7 +50,7 @@
 
                 success: function (data, status, xhr) {
                     for (let i = 0; i < data.length; i++) {
-                        if (data[i]['categoryid'] == 34) {
+                        if (data[i]['categoryid'] == 192 || data[i]['categoryid'] == 275 || data[i]['categoryid'] == 176) {
                             const namaMatkul = data[i]['fullname'];
                             matkul.push({
                                 nomor: nomor++,
@@ -81,5 +82,5 @@
             const table = $('#data-matkul').DataTable();
             updateData();
         });
-        </script>
+    </script>
 @endsection

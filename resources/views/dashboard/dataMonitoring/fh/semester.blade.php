@@ -20,6 +20,12 @@
                 <ul class="semester">
                     @foreach ($prodi as $prodis)
                         @if($prodis->id == 14)
+                        <li class="link">
+                            <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '192']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>Kurikulum 2012</a>
+                        </li>
+                        <li class="link">
+                            <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '530']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>Kurikulum 2018</a>
+                        </li>
                             <li class="link">
                                 <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '11']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2019/2020 Ganjil</a>
                             </li>
