@@ -8,16 +8,17 @@
         <li class="breadcrumb-item active">Data Monitoring Akademik</li>
         <li class="breadcrumb-item active">Fakultas Ekonomi dan Bisnis</li>
         <li class="breadcrumb-item active">Manajemen</li>
-        <li class="breadcrumb-item active">2020_2021 Genap</li>
+        <li class="breadcrumb-item active">2022_2023 Antara</li>
     </ol>
 
     <div class="row g-3 my-3">
         <div class="col mx-2 bg-white rounded card content" id="wrapper-content">
+
             <div class="row g-0 my-3">
                 <div class="row mb-4">
                     <h5 class="mb-2 fw-bold text">Data Monitoring Akademik</h5>
-                    <span class="fs-6 mb-3 text">Semester 2020/2021 Genap - Manajemen</span>
-                    {{-- Table --}}
+                    <span class="fs-6 mb-3 text">Semester 2022/2023 Antara - Manajemen</span>
+
                     <div class="container mt-3">
                         <table id="data-matkul" class="table table-bordered table-hover cell-border">
                              <thead class="table-success">
@@ -49,7 +50,7 @@
 
                 success: function (data, status, xhr) {
                     for (let i = 0; i < data.length; i++) {
-                        if (data[i]['categoryid'] == 186 || data[i]['categoryid'] == 187 || data[i]['categoryid'] == 188 || data[i]['categoryid'] == 189) {
+                        if (data[i]['categoryid'] == 553 || data[i]['categoryid'] == 554 || data[i]['categoryid'] == 555 || data[i]['categoryid'] == 556 || data[i]['categoryid'] == 557 || data[i]['categoryid'] == 559) {
                             const namaMatkul = data[i]['fullname'];
                             matkul.push({
                                 nomor: nomor++,

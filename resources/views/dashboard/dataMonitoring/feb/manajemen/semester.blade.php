@@ -33,16 +33,25 @@
                                 <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '186']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2020/2021 Genap</a>
                             </li>
                             <li class="link">
+                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '428']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2020/2021 Antara</a>
+                            </li>
+                            <li class="link">
                                 <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '279']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2021/2022 Ganjil</a>
                             </li>
                             <li class="link">
                                 <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '362']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2021/2022 Genap</a>
                             </li>
                             <li class="link">
+                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '405']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2021/2022 Antara</a>
+                            </li>
+                            <li class="link">
                                 <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '444']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2022/2023 Ganjil</a>
                             </li>
                             <li class="link">
                                 <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '494']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2022/2023 Genap</a>
+                            </li>
+                            <li class="link">
+                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '553']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2022/2023 Antara</a>
                             </li>
                         @endif
                     @endforeach

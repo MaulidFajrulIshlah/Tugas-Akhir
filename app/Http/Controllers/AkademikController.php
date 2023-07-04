@@ -233,14 +233,20 @@ class AkademikController extends Controller
                             return view('dashboard.dataMonitoring.feb.manajemen.2020_2021_ganjil');
                         } else if ($categoryID == 186 || $categoryID == 187 || $categoryID == 188 || $categoryID == 189) {
                             return view('dashboard.dataMonitoring.feb.manajemen.2020_2021_genap');
+                        } else if ($categoryID == 428) {
+                            return view('dashboard.dataMonitoring.feb.manajemen.2020_2021_antara');
                         } else if ($categoryID == 279 || $categoryID == 313 || $categoryID == 314 || $categoryID == 328) {
                             return view('dashboard.dataMonitoring.feb.manajemen.2021_2022_ganjil');
                         } else if ($categoryID == 362 || $categoryID == 363 || $categoryID == 364 || $categoryID == 365) {
                             return view('dashboard.dataMonitoring.feb.manajemen.2021_2022_genap');
+                        } else if ($categoryID == 405 || $categoryID == 407 || $categoryID == 408 || $categoryID == 409 || $categoryID == 411 || $categoryID == 412 || $categoryID == 413 || $categoryID == 414) {
+                            return view('dashboard.dataMonitoring.feb.manajemen.2021_2022_antara');
                         } else if ($categoryID == 444 || $categoryID == 445 || $categoryID == 446) {
                             return view('dashboard.dataMonitoring.feb.manajemen.2022_2023_ganjil');
                         } else if ($categoryID == 494 || $categoryID == 495 || $categoryID == 496 || $categoryID == 497) {
-                            return view('dashboard.dataMonitoring.feb.manajemen.2022_2023_ganjil');
+                            return view('dashboard.dataMonitoring.feb.manajemen.2022_2023_genap');
+                        }else if ($categoryID == 553 || $categoryID == 554 || $categoryID == 555 || $categoryID == 556 || $categoryID == 557 || $categoryID == 559) {
+                            return view('dashboard.dataMonitoring.feb.manajemen.2022_2023_antara');
                         }
                     }
                 }
@@ -254,7 +260,9 @@ class AkademikController extends Controller
                             return view('dashboard.dataMonitoring.feb.akuntansi.2019_2020_ganjil');
                         } else if ($categoryID == 33) {
                             return view('dashboard.dataMonitoring.feb.akuntansi.2019_2020_genap');
-                        } else if ($categoryID == 130) {
+                        } else  if ($categoryID == 67) {
+                            return view('dashboard.dataMonitoring.feb.akuntansi.2019_2020_antara');
+                        }else if ($categoryID == 130) {
                             return view('dashboard.dataMonitoring.feb.akuntansi.2020_2021_ganjil');
                         } else if ($categoryID == 194 || $categoryID == 195 || $categoryID == 196) {
                             return view('dashboard.dataMonitoring.feb.akuntansi.2020_2021_genap');
@@ -262,7 +270,9 @@ class AkademikController extends Controller
                             return view('dashboard.dataMonitoring.feb.akuntansi.2021_2022_ganjil');
                         } else if ($categoryID == 372 || $categoryID == 373 || $categoryID == 374 || $categoryID == 376) {
                             return view('dashboard.dataMonitoring.feb.akuntansi.2021_2022_genap');
-                        } else if ($categoryID == 449 || $categoryID == 450 || $categoryID == 451 || $categoryID == 452) {
+                        } else  if ($categoryID == 420) {
+                            return view('dashboard.dataMonitoring.feb.akuntansi.2021_2022_antara');
+                        }else if ($categoryID == 449 || $categoryID == 450 || $categoryID == 451 || $categoryID == 452) {
                             return view('dashboard.dataMonitoring.feb.akuntansi.2022_2023_ganjil');
                         } else if ($categoryID == 509 || $categoryID == 510 || $categoryID == 511 || $categoryID == 512) {
                             return view('dashboard.dataMonitoring.feb.akuntansi.2022_2023_genap');
