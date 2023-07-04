@@ -19,55 +19,67 @@
                     <span class="fs-6 mb-3 text">Semester 2021/2022 Ganjil - Magister Kenotariatan</span>
                     {{-- Table --}}
                     <div class="container mt-3">
-                        <table class="table table-master table-bordered table-hover">
+                        <table id="data-matkul" class="table table-bordered table-hover cell-border">
                             <thead class="table-success">
                                 <tr>
                                     <th scope="col" class="text">No</th>
                                     <th scope="col" class="text">Nama Mata Kuliah</th>
+                                    <th scope="col" class="text">Pengumpulan</th>
                                     <th scope="col" class="text">Kegiatan Belajar</th>
-                                    <th scope="col" class="text">Pengumpulan Kegiatan Belajar</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text">1</td>
-                                    <td class="text">Dasar-dasar Pemrograman</td>
-                                    <td class="text">100 Kegiatan</td>
-                                    <td class="text">95 Kegiatan</td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text">2</td>
-                                    <td class="text">Basis Data</td>
-                                    <td class="text">200 Kegiatan</td>
-                                    <td class="text">100 Kegiatan</td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text">3</td>
-                                    <td class="text">Agama 1</td>
-                                    <td class="text">20 Kegiatan</td>
-                                    <td class="text">5 Kegiatan</td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text">4</td>
-                                    <td class="text">Pemrograman Berbasis Platform</td>
-                                    <td class="text">78 Kegiatan</td>
-                                    <td class="text">90 Kegiatan</td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text">5</td>
-                                    <td class="text">Data Mining</td>
-                                    <td class="text">100 Kegiatan</td>
-                                    <td class="text">95 Kegiatan</td>
-                                </tr>
-                            </tbody>
+                            <tbody> </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+          function updateData() {
+            const matkul = [];
+            let nomor = 1;
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=463cfb78c5acc92fbed0656c2aec27b4&wsfunction=core_course_get_courses&moodlewsrestformat=json',
+                cache: true,
+
+                success: function (data, status, xhr) {
+                    for (let i = 0; i < data.length; i++) {
+                        if (data[i]['categoryid'] == 269) {
+                            const namaMatkul = data[i]['fullname'];
+                            matkul.push({
+                                nomor: nomor++,
+                                matakuliah: namaMatkul
+                            });
+                        }
+                    }
+
+                    const table = $('#data-matkul').DataTable({
+                        destroy: true,
+                        processing: true,
+                        data: matkul,
+                        columns: [
+                            { title: 'No', data: 'nomor' },
+                            { title: 'Nama Mata Kuliah', data: 'matakuliah' },
+                            { title: 'Kegiatan Belajar', data: null},
+                            { title: 'Pengumpulan', data: null,
+                                render: function (data, type, row) {
+                                    return '';
+                                }
+                            },
+                        ],
+                    });
+
+                }
+            });
+        }
+        $(document).ready(function() {
+            const table = $('#data-matkul').DataTable();
+            updateData();
+        });
+        </script>  
 @endsection
