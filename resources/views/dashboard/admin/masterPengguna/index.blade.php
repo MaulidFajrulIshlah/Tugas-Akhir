@@ -73,14 +73,19 @@
             }
 
             $(document).ready(function(){
+                // Simpan instance DataTable dalam variabel untuk referensi nanti
+                let dataTable = $('#data-table').DataTable();
+                
                 $('#data-table').DataTable({
+                    destroy: true,
                     processing: true,
-                    ajax: '{{ route("masterUser") }}', // Ganti dengan URL yang sesuai
+                    ajax: '{{ route("masterUser") }}',
                     columns: [
                         { 
                             data: null,
                             render: function(data, type, row, index) {
-                                return index.row + index.settings._iDisplayStart + 1; // Menggunakan meta.row untuk mendapatkan nomor iterasi
+                                // Menggunakan meta.row untuk mendapatkan nomor iterasi
+                                return index.row + index.settings._iDisplayStart + 1;
                             }
                         },
                         { data: 'nama', name: 'nama' },
