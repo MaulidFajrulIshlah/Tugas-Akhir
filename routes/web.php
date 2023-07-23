@@ -36,12 +36,6 @@ Route::middleware('auth')->group(function () {
     // Beranda
     Route::get('/dashboard/beranda', [BerandaController::class, 'index'])->name('beranda');
 
-    // Mahasiswa
-    Route::get('/dashboard/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa');
-
-    // Dosen
-    Route::get('/dashboard/dosen', [DosenController::class, 'index'])->name('dosen');
-
     // Mata Kuliah
     Route::get('/dashboard/matakuliah', [MataKuliahController::class, 'index'])->name('mataKuliah');
 
