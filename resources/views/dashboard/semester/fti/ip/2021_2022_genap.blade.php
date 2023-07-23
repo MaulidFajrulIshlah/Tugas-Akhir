@@ -35,9 +35,8 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="container mt-4">
-                        <table table class="table table-bordered table-hover">
+                        <table  id="data-matkul" table class="table table-bordered table-hover cell-border">
                             <thead class="table-success">
                                 <tr>
                                     <th scope="col" class="text">No</th>
@@ -45,8 +44,7 @@
                                     <th scope="col" class="text">Halaman Mata Kuliah Lengkap</th>
                                 </tr>
                             </thead>
-
-                            <tbody id="data-matkul"></tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
