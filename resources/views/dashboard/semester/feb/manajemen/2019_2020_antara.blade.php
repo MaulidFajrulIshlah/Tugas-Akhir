@@ -8,7 +8,7 @@
         <li class="breadcrumb-item active">Mata Kuliah</li>
         <li class="breadcrumb-item active">Fakultas Ekonomi dan Bisnis</li>
         <li class="breadcrumb-item active">Manajemen</li>
-        <li class="breadcrumb-item active">2020_2021 Ganjil</li>
+        <li class="breadcrumb-item active">2019_2020 Antara</li>
     </ol>
 
     <div class="row g-3 my-3">
@@ -17,7 +17,7 @@
             <div class="row g-0 my-3">
                 <div class="row mb-4">
                     <h5 class="mb-2 fw-bold text">Mata Kuliah</h5>
-                    <span class="fs-6 mb-3 text">Semester 2020/2021 Ganjil - Manajemen</span>
+                    <span class="fs-6 mb-3 text">Semester 2019/2020 Antara - Manajemen</span>
 
 
                     <div class="col-xl-4 col-md-6 col-11 col-lg-5 my-3">
@@ -53,6 +53,6 @@
         </div>
     </div>
 
-    <script src="{{ asset('js/semester/feb/manajemen/2020_2021_ganjil.js') }}"></script>
+    <script src="{{ asset('js/semester/feb/manajemen/2019_2020_antara.js') }}"></script>
     
 @endsection
