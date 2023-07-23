@@ -4,10 +4,6 @@
         
         <a href="{{ route('beranda') }}" class="link list-group-item second-text navSidebar rounded mb-2 {{ 'dashboard/beranda' == request()->path() ? 'active' : ''  }}"><i
             class="fas fa-home me-2"></i>Beranda</a> 
-        <a href="{{ route('mahasiswa') }}" class="link list-group-item second-text navSidebar rounded mb-2 {{ 'dashboard/mahasiswa' == request()->path() ? 'active' : ''  }}"><i
-            class="fas fa-user-graduate me-2"></i>Mahasiswa</a>
-        <a href="{{ route('dosen') }}" class="link list-group-item  second-text navSidebar rounded mb-2 {{ 'dashboard/dosen' == request()->path() ? 'active' : ''  }}"><i
-            class="fas fa-user-tie me-2"></i>Dosen</a>
         <a href="{{ route('mataKuliah') }}" class="link list-group-item  second-text navSidebar rounded mb-2 {{ 'dashboard/matakuliah' == request()->path() ? 'active' : ''  }}"><i
             class="fas fa-book me-2"></i>Mata Kuliah</a>
         <a href="{{ route('akademik') }}" class="link list-group-item  second-text navSidebar rounded mb-2 {{ 'dashboard/akademik' == request()->path() ? 'active' : ''  }}"><i
