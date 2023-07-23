@@ -13,7 +13,7 @@ class BerandaController extends Controller
     {
         $user = Auth::user();
         if ($user->role == 'Admin') {
-            return view('dashboard.admin.beranda');
+            return view('dashboard.card.Admin');
         } else if ($user->role == 'Dekanat Fakultas' || $user->role == 'Tendik') {
             return view('dashboard.dekanat_tendik.beranda');
         } else if ($user->role == 'Prodi') {
