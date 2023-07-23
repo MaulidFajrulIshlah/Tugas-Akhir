@@ -14,9 +14,9 @@
     <div class="row g-3 my-3">
         <div class="col mx-2 bg-white rounded card content" id="wrapper-content">
 
-            <div class="row g-0">
-                <div class="row mb-3">
-                    <h5 class="mb-2 mt-3 fw-bold text">Mata Kuliah</h5>
+            <div class="row g-0 my-3">
+                <div class="row mb-4">
+                    <h5 class="mb-2 fw-bold text">Mata Kuliah</h5>
                     <span class="fs-6 mb-3 text">Semester 2021/2022 Genap - Magister Manajemen</span>
 
 
@@ -63,7 +63,6 @@
                 type: 'GET',
                 dataType: 'json',
                 url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=463cfb78c5acc92fbed0656c2aec27b4&wsfunction=core_course_get_courses&moodlewsrestformat=json',
-                cache: true,
 
                 success: function (data, status, xhr) {
                     for (let i = 0; i < data.length; i++) {
@@ -76,13 +75,15 @@
                         }
                     }
 
+                    $('#data-matkul').empty();
+
                     const table = $('#data-matkul').DataTable({
                         destroy: true,
                         processing: true,
                         data: matkul,
                         columns: [
                             { title: 'No', data: 'nomor' },
-                            { title: 'Daftar Mata Kuliah', data: 'matakuliah' },
+                            { title: 'Nama Mata Kuliah', data: 'matakuliah' },
                             { title: 'Halaman Mata Kuliah Lengkap', data: null,
                                 render: function (data, type, row) {
                                     return '';
@@ -90,32 +91,10 @@
                             },
                         ],
                     });
-
+                    
                     $('#jumlah-matkul').text(matkul.length);
 
-                    // waktu saat ini
-                    const currentTime = new Date();
-                    // Menambahkan 1 jam
-                    const updateDateTime = new Date(currentTime.getTime() + (1000 * 60 * 60));
-                    // Selisih waktu dalam milidetik
-                    let elapsedTime = updateDateTime - currentTime;
-
-                    // menghitung jam dan menit yang berlalu
-                    const hours = Math.floor(elapsedTime / (1000 * 60 * 60));
-                    const minutes = Math.floor((currentTime % (1000 * 60 * 60)) / (1000 * 60));
-
-                    console.log(currentTime, updateDateTime, elapsedTime, hours, minutes);
-
-                    let elapsedTimeString = '';
-
-                    if (hours === 1 && minutes === 0) {
-                        elapsedTimeString = hours + ' jam yang lalu';
-                    } else {
-                        elapsedTimeString = minutes + ' menit yang lalu';
-                    }
-
-                    // memperbarui teks dengan keterangan pembaruan data
-                    document.getElementById('last-updated').textContent = "Pembaruan data terjadi " + elapsedTimeString;
+                    updateTime();
 
                 },
                 error: function (xhr, status, error) {
@@ -125,13 +104,39 @@
             });
         }
 
-        $(document).ready(function() {
+        function updateTime(){
+            // waktu saat ini
+            const currentTime = new Date();
+
+            // Menambahkan 1 jam
+            const updateDateTime = new Date(currentTime.getTime() + (1000 * 60 * 60));
+
+            // Selisih waktu dalam milidetik
+            let elapsedTime = updateDateTime - currentTime;
+
+            // menghitung jam dan menit yang berlalu
+            const hours = Math.floor(elapsedTime / (1000 * 60 * 60));
+            const minutes = Math.floor((currentTime % (1000 * 60 * 60)) / (1000 * 60));
+
+            let elapsedTimeString = '';
+
+            if (hours === 1 && minutes === 0) {
+                elapsedTimeString = hours + ' jam yang lalu';
+            } else {
+                elapsedTimeString = minutes + ' menit yang lalu';
+            }
+
+            // memperbarui teks dengan keterangan pembaruan data
+            $('#last-updated').text("Pembaruan data terjadi " + elapsedTimeString);
+        }
+
+        $(document).ready(function () {
             const table = $('#data-matkul').DataTable();
-    
+
             updateData();
             
             // Jadwalkan pembaruan data sesuai dengan waktu pembaruan berikutnya setiap 1 jam
-            const intervalID = setInterval(updateData, 60 * 60 * 1000);
+            const intervalID = setInterval(updateData, 60 * 60 * 1000); 
         });
     </script>
 @endsection
