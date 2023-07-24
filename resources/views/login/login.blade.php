@@ -22,7 +22,7 @@
                 @endif
                 {{-- Logo --}}
                 <div class="logo m-3">
-                    <img  src="images/logo.png" class="logo" alt="Logo YARSI">
+                    <img  src="{{ asset('images/logo.png') }}" class="logo" alt="Logo YARSI">
                 </div>
                 <div class="form-login box-shadow bg-light rounded-3 mt-4 p-4">
                     {{-- Title --}}
