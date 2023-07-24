@@ -1,4 +1,4 @@
-@extends('dashboard.admin.beranda')
+@extends('dashboard.beranda')
 @section('card')
     <!-- Daftar Akun Card -->
     <div class="col-xl-4 col-md-6 col-11 col-lg-5">
