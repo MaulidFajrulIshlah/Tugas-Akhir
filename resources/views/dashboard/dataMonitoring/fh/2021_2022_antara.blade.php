@@ -8,7 +8,7 @@
         <li class="breadcrumb-item active">Data Monitoring Akademik</li>
         <li class="breadcrumb-item active">Fakultas Hukum</li>
         <li class="breadcrumb-item active">Hukum</li>
-        <li class="breadcrumb-item active">2019_2020 Genap</li>
+        <li class="breadcrumb-item active">2021_2022 Antara</li>
     </ol>
 
     <div class="row g-3 my-3">
@@ -16,7 +16,7 @@
             <div class="row g-0 my-3">
                 <div class="row mb-4">
                     <h5 class="mb-2 fw-bold text">Data Monitoring Akademik</h5>
-                    <span class="fs-6 mb-3 text">Semester 2019/2020 Genap - Hukum</span>
+                    <span class="fs-6 mb-3 text">Semester 2021/2022 Antara - Hukum</span>
                     {{-- Table --}}
                     <div class="container mt-3">
                         <table id="data-matkul" class="table table-bordered table-hover cell-border">
@@ -56,6 +56,6 @@
         </div>
     </div>
     
-    <script src="{{ asset('js/dataMonitoring/fh/2019_2020_genap.js') }}"></script>
+    <script src="{{ asset('js/dataMonitoring/fh/2021_2022_antara.js') }}"></script>
 
 @endsection
