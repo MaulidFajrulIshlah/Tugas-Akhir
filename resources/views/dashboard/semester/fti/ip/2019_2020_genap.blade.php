@@ -20,7 +20,7 @@
                     <span class="fs-6 mb-3 text">Semester 2019/2020 Genap - Ilmu Perpustakaan</span>
 
                     <div class="col-xl-4 col-md-6 col-11 col-lg-5 my-3">
-                        <div class="card info-card akun-card">
+                        <div class="card">
                             <div class="card-body">
                                 <div class="ps-1">
                                     <div class="header">
@@ -35,7 +35,6 @@
                             </div>
                         </div>
                     </div>
-
 
                     <div class="container mt-4">
                         <table  id="data-matkul" table class="table table-bordered table-hover cell-border">
