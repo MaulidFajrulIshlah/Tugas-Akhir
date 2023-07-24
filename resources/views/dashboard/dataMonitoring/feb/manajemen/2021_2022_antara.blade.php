@@ -18,16 +18,36 @@
                 <div class="row mb-4">
                     <h5 class="mb-2 fw-bold text">Data Monitoring Akademik</h5>
                     <span class="fs-6 mb-3 text">Semester 2021/2022 Antara - Manajemen</span>
-
+                    {{-- Table --}}
                     <div class="container mt-3">
                         <table id="data-matkul" class="table table-bordered table-hover cell-border">
-                             <thead class="table-success">
-                                 <tr>
-                                     <th scope="col" class="text">No</th>
-                                     <th scope="col" class="text">Nama Mata Kuliah</th>
-                                     <th scope="col" class="text">Pengumpulan</th>
-                                     <th scope="col" class="text">Kegiatan Belajar</th>
-                                 </tr>
+                            <thead class="table-success">
+                                <tr>
+                                    <th rowspan="2" scope="col" class="text" style="text-align: center;">No</th>
+                                    <th rowspan="2" scope="col" class="text" style="text-align: center;">Nama Mata Kuliah</th>
+                                    <th colspan="2" scope="col" class="text" style="text-align: center;">Pengumpulan</th>
+                                    <th colspan="16" scope="col" class="text merged-cell" style="text-align: center;">Kegiatan Belajar</th>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;">Tugas</th>
+                                    <th style="text-align: center;">Kuis</th>
+                                    <th style="text-align: center;">P1</th>
+                                    <th style="text-align: center;">P2</th>
+                                    <th style="text-align: center;">P3</th>
+                                    <th style="text-align: center;">P4</th>
+                                    <th style="text-align: center;">P5</th>
+                                    <th style="text-align: center;">P6</th>
+                                    <th style="text-align: center;">P7</th>
+                                    <th style="text-align: center;">P7</th>
+                                    <th style="text-align: center;">P9</th>
+                                    <th style="text-align: center;">P10</th>
+                                    <th style="text-align: center;">P11</th>
+                                    <th style="text-align: center;">P12</th>
+                                    <th style="text-align: center;">P13</th>
+                                    <th style="text-align: center;">P14</th>
+                                    <th style="text-align: center;">P15</th>
+                                    <th style="text-align: center;">P16</th>
+                                </tr>
                             </thead>
                             <tbody></tbody>
                         </table>
@@ -37,50 +57,6 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <script>
-          function updateData() {
-            const matkul = [];
-            let nomor = 1;
-            $.ajax({
-                type: 'GET',
-                dataType: 'json',
-                url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=463cfb78c5acc92fbed0656c2aec27b4&wsfunction=core_course_get_courses&moodlewsrestformat=json',
-                cache: true,
+    <script src="{{ asset('js/dataMonitoring/feb/manajemen/2021_2022_antara.js') }}"></script>
 
-                success: function (data, status, xhr) {
-                    for (let i = 0; i < data.length; i++) {
-                        if (data[i]['categoryid'] == 405  || data[i]['categoryid'] == 407 || data[i]['categoryid'] == 408 || data[i]['categoryid'] == 409 || data[i]['categoryid'] == 411 || data[i]['categoryid'] == 412 || data[i]['categoryid'] == 413 || data[i]['categoryid'] == 414) {
-                            const namaMatkul = data[i]['fullname'];
-                            matkul.push({
-                                nomor: nomor++,
-                                matakuliah: namaMatkul
-                            });
-                        }
-                    }
-
-                    const table = $('#data-matkul').DataTable({
-                        destroy: true,
-                        processing: true,
-                        data: matkul,
-                        columns: [
-                            { title: 'No', data: 'nomor' },
-                            { title: 'Nama Mata Kuliah', data: 'matakuliah' },
-                            { title: 'Kegiatan Belajar', data: null},
-                            { title: 'Pengumpulan', data: null,
-                                render: function (data, type, row) {
-                                    return '';
-                                }
-                            },
-                        ],
-                    });
-
-                }
-            });
-        }
-        $(document).ready(function() {
-            const table = $('#data-matkul').DataTable();
-            updateData();
-        });
-        </script>
 @endsection
