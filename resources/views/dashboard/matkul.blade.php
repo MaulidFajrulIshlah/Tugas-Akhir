@@ -7,42 +7,6 @@
         <li class="breadcrumb-item"><a href="{{ route('beranda') }}">Dashboard</a></li>
         <li class="breadcrumb-item active">Mata Kuliah</li>
     </ol>
-
-    <div class="row g-3 my-3">
-    {{-- card total daftar mata kuliah --}}
-    <div class="col-xl-4 col-md-6 col-11 col-lg-5 my-3">
-        <div class="card info-card akun-card">
-            <div class="card-body">
-                <div class="ps-1">
-                    <div class="header">
-                        <h5 class="card-title fw-bold">Daftar Mata Kuliah</h5>
-                    </div>
-                    <h5 class="fw-bold mt-3" id="jumlah-matkul"></h5>
-                    <div class="card-footer bg-transparent mt-3 ps-0">
-                        <small class="text-danger"><span id="last-updated"></span></small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> {{-- end card jumlah daftar mata kuliah --}}
-    
-    {{-- card jumlah halaman mata kuliah --}}
-    <div class="col-xl-4 col-md-6 col-11 col-lg-5 my-3">
-        <div class="card info-card akun-card">
-            <div class="card-body">
-                <div class="ps-1">
-                    <div class="header">
-                        <h5 class="card-title fw-bold">Halaman Mata Kuliah</h5>
-                    </div>
-                    <h5 class="fw-bold mt-3" id="jumlah-halaman"></h5>
-                    <div class="card-footer bg-transparent mt-3 ps-0">
-                        <small class="text-danger"><span id="last-updated"></span></small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>{{-- end card total halaman mata kuliah --}}
-    </div>
     
     <div class="row g-3 mt-2 mb-4">
         <div class="col mx-2 bg-white rounded card content" id="wrapper-content">
