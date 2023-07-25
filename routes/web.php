@@ -26,6 +26,7 @@ use App\Http\Controllers\MasterPenggunaController;
 Route::controller(LoginController::class)->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/postLogin', [LoginController::class, 'authenticate'])->name('postLogin');
+    Route::get('/forbidden', [LoginController::class, 'forbidden'])->name('unauthorized');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 

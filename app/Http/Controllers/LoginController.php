@@ -37,6 +37,11 @@ class LoginController extends Controller
         }
     }
 
+    public function forbidden()
+    {
+        return view('dashboard.layouts.unauthorized');
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();

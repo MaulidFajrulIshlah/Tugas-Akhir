@@ -9,7 +9,7 @@
             <ul class="navbar-nav ms-auto me-4">
                 <li class="nav-item">
                     <span class="text-white">
-                        <i class="fas fa-user me-3"></i>{{{ auth()->user()->nama }}}
+                        <i class="fas fa-user me-3"></i>{{{ auth()->user()->username }}}
                     </span>
                 </li>
             </ul>

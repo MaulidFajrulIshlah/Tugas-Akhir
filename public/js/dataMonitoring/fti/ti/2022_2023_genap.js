@@ -46,7 +46,8 @@ async function updateData() {
 
       // Menghitung jumlah kegiatan belajar per pertemuan
       resources.resources.forEach((resource) => {
-        const pertemuan = parseInt(resource.name.replace(/\D/g, '')); // Mendapatkan nomor pertemuan dari nama file (mengasumsikan format nama file: "P1.pdf", "P2.doc", dll)
+        // Mendapatkan nomor pertemuan dari nama file (mengasumsikan format nama file: "P1.pdf", "P2.doc", dll)
+        const pertemuan = parseInt(resource.name.replace(/\D/g, ''));
         if (!isNaN(pertemuan) && pertemuan >= 1 && pertemuan <= 16) {
           kegiatanPerPertemuan[pertemuan - 1]++;
         } else if (assignments.warnings && assignments.warnings.length > 0) {
