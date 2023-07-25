@@ -7,7 +7,7 @@ function updateData() {
         url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=463cfb78c5acc92fbed0656c2aec27b4&wsfunction=core_course_get_courses&moodlewsrestformat=json',
 
         success: function (data, status, xhr) {
-            const includedIds = [444, 445, 446];
+            const includedIds = [444, 445, 446, 447];
             for (let i = 0; i < data.length; i++) {
                 if (includedIds.includes(data[i]['categoryid'])) {
                     const namaMatkul = data[i]['fullname'];
