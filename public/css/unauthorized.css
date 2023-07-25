@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap');
+
+:root {
+    --background: #eeeeee;
+    --lock-color: #135f00;
+}
+
+* {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--background);
+}
+
+.wrap {
+    padding: 2rem;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 80px;
+    letter-spacing: 0.8;
+}
+
+.message>.title {
+    margin: 40px 0 20px;
+}
+
+.message>.description {
+    text-align: center;
+}
+
+.lock {
+    border-radius: 5px;
+    width: 55px;
+    height: 45px;
+    margin: 0 auto;
+    background-color: var(--lock-color);
+}
+
+.lock::before,
+.lock::after {
+    content: '';
+    position: absolute;
+    border-left: 5px solid var(--lock-color);
+    height: 10px;
+    width: 15px;
+    left: calc(50% - 12.5px);
+}
+
+.lock::before {
+    top: -30px;
+    border: 5px solid var(--lock-color);
+    border-bottom-color: transparent;
+    border-radius: 15px 15px 0 0;
+    height: 30px;
+}
+
+.lock::after {
+    top: -10px;
+    border-right: 5px solid transparent;
+}
