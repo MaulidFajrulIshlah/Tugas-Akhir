@@ -20,34 +20,13 @@
                     <span class="fs-6 mb-3 text">Semester 2019/2020 Ganjil - Manajemen</span>
 
                     <div class="col-xl-4 col-md-6 col-11 col-lg-5 my-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="ps-1">
-                                    <div class="header">
-                                        <h5 class="card-title fw-bold">Jumlah Daftar Mata Kuliah</h5>
-                                    </div>
-                                    <h5 class="fw-bold mt-3" id="jumlah-matkul"></h5>
-                                    <h6 class="small pt-1">Yang terdapat di LAYAR</h6>
-                                    <div class="card-footer bg-transparent mt-3 ps-0">
-                                        <small class="text-danger"><span id="last-updated"></span></small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @include('dashboard.layouts.jumlahDaftarMatkul')
                     </div>
 
                     <div class="container mt-4">
-                        <table  id="data-matkul" table class="table table-bordered table-hover cell-border">
-                            <thead class="table-success">
-                                <tr>
-                                    <th scope="col" class="text">No</th>
-                                    <th scope="col" class="text">Daftar Mata Kuliah</th>
-                                    <th scope="col" class="text">Halaman Mata Kuliah Lengkap</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
+                        @include('dashboard.layouts.table_matkul')
                     </div>
+                    
                 </div>
             </div>
         </div>
