@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.main')
-@section('title', 'PANDAY | Mata Kuliah')
+@section('title', 'PANDAY | Akademik')
 @section('content')
     <!-- Route -->
     <h5 class="fw-bold" style="margin-top: 40px; font-weight: 400;">Data Monitoring Akademik</h5>
@@ -19,13 +19,72 @@
                     <span class="fs-6 mb-3 text">Semester 2020/2021 Ganjil - Teknik Informatika</span>
                     {{-- Table --}}
                     <div class="container mt-3">
+<<<<<<< Updated upstream
                         @include('dashboard.layouts.table_dataMonitoring')
+=======
+                        <table id="data-matkul" class="table table-bordered table-hover cell-border">
+                            <thead class="table-success">
+                                <tr>
+                                    <th scope="col" class="text">No</th>
+                                    <th scope="col" class="text">Nama Mata Kuliah</th>
+                                    <th scope="col" class="text">Pengumpulan</th>
+                                    <th scope="col" class="text">Kegiatan Belajar</th>
+                                </tr>
+                            </thead>
+
+                            <tbody></tbody>
+                        </table>
+>>>>>>> Stashed changes
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <script src="{{ asset('js/dataMonitoring/fti/ti/2020_2021_ganjil.js') }}"></script>
 
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+      function updateData() {
+            const matkul = [];
+            let nomor = 1;
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=463cfb78c5acc92fbed0656c2aec27b4&wsfunction=core_course_get_courses&moodlewsrestformat=json',
+                cache: true,
+
+                success: function (data, status, xhr) {
+                    for (let i = 0; i < data.length; i++) {
+                        if (data[i]['categoryid'] == 157) {
+                            const namaMatkul = data[i]['fullname'];
+                            matkul.push({
+                                nomor: nomor++,
+                                matakuliah: namaMatkul
+                            });
+                        }
+                    }
+
+                    const table = $('#data-matkul').DataTable({
+                        destroy: true,
+                        processing: true,
+                        data: matkul,
+                        columns: [
+                            { title: 'No', data: 'nomor' },
+                            { title: 'Nama Mata Kuliah', data: 'matakuliah' },
+                            { title: 'Kegiatan Belajar', data: null},
+                            { title: 'Pengumpulan', data: null,
+                                render: function (data, type, row) {
+                                    return '';
+                                }
+                            },
+                        ],
+                    });
+
+                }
+            });
+        }
+        $(document).ready(function() {
+            const table = $('#data-matkul').DataTable();
+            updateData();
+        });
+    </script>
 @endsection
