@@ -20,23 +20,23 @@ class ProdiData extends Seeder
         // data prodi fakultas 1
         $prodi_fakultas_1 = [
             [
-                'nama_prodi' => 'Magister Kenotariatan',
+                'nama' => 'Magister Kenotariatan',
                 'id_fakultas' => $id_fakultas_1,
             ],
             [
-                'nama_prodi' => 'Magister Manajemen',
+                'nama' => 'Magister Manajemen',
                 'id_fakultas' => $id_fakultas_1,
             ],
             [
-                'nama_prodi' => 'Magister Sains Biomedis',
+                'nama' => 'Magister Sains Biomedis',
                 'id_fakultas' => $id_fakultas_1,
             ],
             [
-                'nama_prodi' => 'Magister Administrasi Rumah Sakit',
+                'nama' => 'Magister Administrasi Rumah Sakit',
                 'id_fakultas' => $id_fakultas_1,
             ],
             [
-                'nama_prodi' => 'Doktor Sains Biomedis',
+                'nama' => 'Doktor Sains Biomedis',
                 'id_fakultas' => $id_fakultas_1,
             ],
         ];
@@ -47,11 +47,11 @@ class ProdiData extends Seeder
         // data prodi fakultas 2
         $prodi_fakultas_2 = [
             [
-                'nama_prodi' => 'Kedokteran Program Sarjana',
+                'nama' => 'Kedokteran Program Sarjana',
                 'id_fakultas' => $id_fakultas_2,
             ],
             [
-                'nama_prodi' => 'Pendidikan Profesi Dokter',
+                'nama' => 'Pendidikan Profesi Dokter',
                 'id_fakultas' => $id_fakultas_2,
             ],
         ];
@@ -62,11 +62,11 @@ class ProdiData extends Seeder
         // data prodi fakultas 3
         $prodi_fakultas_3 = [
             [
-                'nama_prodi' => 'Kedokteran Gigi',
+                'nama' => 'Kedokteran Gigi',
                 'id_fakultas' => $id_fakultas_3,
             ],
             [
-                'nama_prodi' => 'Kedokteran Gigi Program Profesi',
+                'nama' => 'Kedokteran Gigi Program Profesi',
                 'id_fakultas' => $id_fakultas_3,
             ],
         ];
@@ -77,11 +77,11 @@ class ProdiData extends Seeder
         // data prodi fakultas 3
         $prodi_fakultas_4 = [
             [
-                'nama_prodi' => 'Teknik Informatika',
+                'nama' => 'Teknik Informatika',
                 'id_fakultas' => $id_fakultas_4,
             ],
             [
-                'nama_prodi' => 'Ilmu Perpustakaan',
+                'nama' => 'Ilmu Perpustakaan',
                 'id_fakultas' => $id_fakultas_4,
             ],
         ];
@@ -92,11 +92,11 @@ class ProdiData extends Seeder
         // data prodi fakultas 3
         $prodi_fakultas_5 = [
             [
-                'nama_prodi' => 'Manajemen',
+                'nama' => 'Manajemen',
                 'id_fakultas' => $id_fakultas_5,
             ],
             [
-                'nama_prodi' => 'Akuntansi',
+                'nama' => 'Akuntansi',
                 'id_fakultas' => $id_fakultas_5,
             ],
         ];
@@ -107,7 +107,7 @@ class ProdiData extends Seeder
         // data prodi fakultas 3
         $prodi_fakultas_6 = [
             [
-                'nama_prodi' => 'Hukum',
+                'nama' => 'Hukum',
                 'id_fakultas' => $id_fakultas_6,
             ],
         ];
@@ -119,7 +119,7 @@ class ProdiData extends Seeder
         // data prodi fakultas 3
         $prodi_fakultas_7 = [
             [
-                'nama_prodi' => 'Psikologi',
+                'nama' => 'Psikologi',
                 'id_fakultas' => $id_fakultas_7,
             ],
         ];

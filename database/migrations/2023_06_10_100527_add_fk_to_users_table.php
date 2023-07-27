@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             // menambah fk
-            $table->unsignedBigInteger('id_jabatan')->nullable();
+            $table->unsignedBigInteger('id_role')->nullable();
             $table->unsignedBigInteger('id_fakultas')->nullable();
-            $table->foreign('id_jabatan')->references('id')->on('jabatans')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('id_prodi')->nullable();
+            $table->foreign('id_role')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('id_fakultas')->references('id')->on('fakultas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_prodi')->references('id')->on('prodis')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -27,10 +29,12 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->dropForeign(['id_jabatan']);
-            $table->dropColumn(['id_jabatan']);
+            $table->dropForeign(['id_role']);
+            $table->dropColumn(['id_role']);
             $table->dropForeign(['id_fakultas']);
             $table->dropColumn(['id_fakultas']);
+            $table->dropForeign(['id_prodi']);
+            $table->dropColumn(['id_prodi']);
         });
     }
 };

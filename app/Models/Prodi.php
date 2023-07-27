@@ -12,12 +12,18 @@ class Prodi extends Model
     protected $table = 'prodis';
 
     protected $fillable = [
-        'nama_prodi',
+        'nama',
     ];
 
     // relasi 1:M dengan tabel fakultas
     public function fakultas()
     {
         return $this->belongsTo(Fakultas::class, 'id_fakultas');
+    }
+
+    // relasi 1:M dengan tabel users
+    public function user()
+    {
+        return $this->hasMany(User::class);
     }
 }

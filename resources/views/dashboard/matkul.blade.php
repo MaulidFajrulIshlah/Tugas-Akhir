@@ -18,124 +18,24 @@
                         @foreach ($prodi as $prodis)
                             @can('dekanat-tendik', $prodis->id_fakultas)
                                 <li class="link">
-                                    <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
+                                    <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama }} / {{ $prodis->nama }}</a>
                                 </li>
                                     
                                 @elsecan('admin')
-                                    @if($prodis->id == 7)
+                                    {{-- @if($prodis->id == 7)
                                         <li class="link">
-                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'categoryID' => '46']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
+                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'unitID' => '46']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama }} / {{ $prodis->nama }}</a>
                                         </li>
                                         @continue
-                                    @endif
+                                    @endif --}}
                                     <li class="link">
-                                        <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
+                                        <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama }} / {{ $prodis->nama }}</a>
                                     </li>
 
-                                @elsecan('prodi-magister-kenotariatan')
-                                    @if ($prodis->id == 1)
-                                        <li class="link">
-                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
-                                        </li>
-                                    @endif
-
-                                @elsecan('prodi-magister-manajemen')
-                                    @if ($prodis->id == 2)
-                                        <li class="link">
-                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
-                                        </li>
-                                    @endif
-
-                                @elsecan('prodi-magister-sainsBiomedis')
-                                    @if ($prodis->id == 3)
-                                        <li class="link">
-                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
-                                        </li>
-                                    @endif
-
-                                @elsecan('prodi-magister-adminRS')
-                                    @if ($prodis->id == 4)
-                                        <li class="link">
-                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
-                                        </li>
-                                    @endif
-
-                                @elsecan('prodi-doktor-sainsBiomedis')
-                                    @if ($prodis->id == 5)
-                                        <li class="link">
-                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
-                                        </li>
-                                    @endif
-
-                                @elsecan('prodi-kedokteran')
-                                    @if ($prodis->id == 6)
-                                        <li class="link">
-                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
-                                        </li>
-                                    @endif
-
-                                @elsecan('prodi-profesi-dokter')
-                                    @if ($prodis->id == 7)
-                                        <li class="link">
-                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
-                                        </li>
-                                    @endif
-
-                                @elsecan('prodi-kedokteranGigi')
-                                    @if ($prodis->id == 8)
-                                        <li class="link">
-                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
-                                        </li>
-                                    @endif
-
-                                @elsecan('prodi-profesi-doktergigi')
-                                    @if ($prodis->id == 9)
-                                        <li class="link">
-                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
-                                        </li>
-                                    @endif
-
-                                @elsecan('prodi-ti')
-                                    @if ($prodis->id == 10)
-                                        <li class="link">
-                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
-                                        </li>
-                                    @endif
-
-                                @elsecan('prodi-ip')
-                                    @if ($prodis->id == 11)
-                                        <li class="link">
-                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
-                                        </li>
-                                    @endif
-
-                                @elsecan('prodi-manajemen')
-                                    @if ($prodis->id == 12)
-                                        <li class="link">
-                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
-                                        </li>
-                                    @endif
-
-                                @elsecan('prodi-akuntansi')
-                                    @if ($prodis->id == 13)
-                                        <li class="link">
-                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
-                                        </li>
-                                    @endif
-
-                                @elsecan('prodi-hukum')
-                                    @if ($prodis->id == 14)
-                                        <li class="link">
-                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
-                                        </li>
-                                    @endif
-
-                                @elsecan('prodi-psikologi')
-                                    @if ($prodis->id == 15)
-                                        <li class="link">
-                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama_fakultas }} / {{ $prodis->nama_prodi }}</a>
-                                        </li>
-                                    @endif 
+                                @elsecan('prodi', $prodis->id)
+                                    <li class="link">
+                                        <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama }} / {{ $prodis->nama }}</a>
+                                    </li>
                             @endcan
                         @endforeach
                     </ul>

@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 :root {
@@ -191,6 +191,7 @@ a {
 .navSidebar,
 .logout-link {
     margin-left: -30px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .content {

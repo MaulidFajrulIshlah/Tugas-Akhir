@@ -5,21 +5,25 @@
 }
 
 
+.fakultas-prodi,
 .semester {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
+.fakultas-prodi i,
 .semester i {
     color: var(--arrows-color);
 }
 
+.fakultas-prodi>.link>a,
 .semester>.link>a {
     text-decoration: none;
     color: var(--links-color);
 }
 
+.fakultas-prodi>.link>a:hover,
 .semester>.link>a:hover {
     text-decoration: underline;
     color: var(--links-color-hover);

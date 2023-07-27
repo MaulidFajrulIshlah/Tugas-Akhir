@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class LoginController extends Controller
 {
@@ -23,18 +24,48 @@ class LoginController extends Controller
             'username' => ['required', 'min:3', 'max:255'],
             'password' => ['required', 'min:5', 'max:255'],
         ]);
-        $credentials = $request->only('username', 'password');
 
-        if (Auth::attempt($credentials)) {
-            //  jika authentikasi sukses
-            $request->session()->regenerate();
-            if (Auth::check()) {
-                return redirect()->intended('dashboard/beranda');
-            }
-            return view('login.login');
-        } else {
+        $credentials = [
+            'uid' => $request->username,
+            'password' => $request->password,
+            'fallback' => [
+                'username' => $request->username,
+                'password' => $request->password,
+            ],
+        ];
+
+        // jika autentikasi tidak sesuai dengan server ldap atau tidak
+        if (!Auth::attempt($credentials)) {
             return redirect('login')->with('failed', 'Gagal masuk! Silahkan coba lagi!');
         }
+
+        // jika autentikasi berhasil
+        $user = Auth::user();
+
+        // simpan data dalam session
+        $request->session()->put([
+            'users' => $user->username,
+            'id_role' => $user->id_role,
+            'id_fakultas' => $user->id_fakultas,
+            'id_prodi' => $user->id_prodi,
+        ]);
+
+        // dd($request);
+
+        // membuat ulang id session
+        $request->session()->regenerate();
+
+        if ($user->id_role === null) {
+            // Jika id_role masih kosong, alihkan ke halaman "unauthorized"
+            Auth::logout();
+
+            $request->session()->regenerateToken();
+
+            return redirect('forbidden');
+        }
+
+        // Redirect  ke halaman "dashboard/beranda"
+        return new RedirectResponse('dashboard/beranda');
     }
 
     public function forbidden()

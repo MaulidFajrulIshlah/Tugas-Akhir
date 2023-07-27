@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Jabatan extends Model
+class Role extends Model
 {
     use HasFactory;
 
-    protected $table = 'jabatans';
+    protected $table = 'roles';
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'nama_jabatan',
+        'nama',
     ];
 
     // relasi 1:M dengan tabel users

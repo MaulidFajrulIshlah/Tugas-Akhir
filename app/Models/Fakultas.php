@@ -11,7 +11,8 @@ class Fakultas extends Model
     protected $table = 'fakultas';
 
     protected $fillable = [
-        'nama_fakultas',
+        'nama',
+        'inisial',
     ];
 
     // relasi 1:M dengan tabel prodi

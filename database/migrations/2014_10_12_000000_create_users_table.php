@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('username');
-            $table->timestamp('username_verified_at')->nullable();
-            $table->string('password');
-            $table->enum('role', ['Admin', 'Dekanat Fakultas', 'Prodi', 'Tendik']);
+            $table->string('username')->nullable();
+            $table->string('email');
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

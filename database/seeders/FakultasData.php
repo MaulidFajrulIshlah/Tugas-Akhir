@@ -16,25 +16,32 @@ class FakultasData extends Seeder
         // data fakultas
         $fakultas = [
             [
-                'nama_fakultas' => 'Pascasarjana',
+                'nama' => 'Pascasarjana',
+                'inisial' => 'Pascasarjana',
             ],
             [
-                'nama_fakultas' => 'Fakultas Kedokteran',
+                'nama' => 'Fakultas Kedokteran',
+                'inisial' => 'FK',
             ],
             [
-                'nama_fakultas' => 'Fakultas Kedokteran Gigi',
+                'nama' => 'Fakultas Kedokteran Gigi',
+                'inisial' => 'FKG',
             ],
             [
-                'nama_fakultas' => 'Fakultas Teknologi Informasi',
+                'nama' => 'Fakultas Teknologi Informasi',
+                'inisial' => 'FTI',
             ],
             [
-                'nama_fakultas' => 'Fakultas Ekonomi dan Bisnis',
+                'nama' => 'Fakultas Ekonomi dan Bisnis',
+                'inisial' => 'FEB',
             ],
             [
-                'nama_fakultas' => 'Fakultas Hukum',
+                'nama' => 'Fakultas Hukum',
+                'inisial' => 'FH',
             ],
             [
-                'nama_fakultas' => 'Fakultas Psikologi',
+                'nama' => 'Fakultas Psikologi',
+                'inisial' => 'FPsi',
             ],
         ];
 

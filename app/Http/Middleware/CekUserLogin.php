@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Models\Fakultas;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,10 +24,18 @@ class CekUserLogin
 
         // cek akses halaman pengguna
         $user = Auth::user();
-        if (in_array($user->id_jabatan, $roles)) {
-            return $next($request);
+        $id_role = $user->id_role;
+        $id_fakultas = $user->id_fakultas;
+
+        // memeriksa apakah id_role ada dalam daftar peran yang diizinkan
+        if (in_array($id_role, $roles)) {
+            // memeriksa apakah id_fakultas sesuai dengan kriteria yang diizinkan
+            $list_id_fakultas = Fakultas::pluck('id')->toArray();
+            if ($id_fakultas === null || in_array($id_fakultas, $list_id_fakultas)) {
+                return $next($request);
+            }
         }
-        // jika tidak termasuk ke dalam daftar pengguna
-        abort(403, 'Anda tidak memiliki akses ke halaman ini!');
+
+        return redirect('forbidden');
     }
 }

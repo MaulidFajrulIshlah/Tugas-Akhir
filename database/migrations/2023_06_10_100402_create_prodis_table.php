@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('prodis', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_fakultas')->unsigned();
-            $table->string('nama_prodi', 100);
+            $table->string('nama', 100);
             $table->timestamps();
         });
         // menghapus data prodi otomatis jika data di fakultas terhapus

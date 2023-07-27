@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Jabatan;
+use App\Models\Role;
+use App\Models\Fakultas;
+use App\Models\Prodi;
+use App\Mail\WelcomeEmail;
+
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+
 use Yajra\DataTables\Facades\DataTables;
 
 class MasterPenggunaController extends Controller
@@ -16,9 +22,27 @@ class MasterPenggunaController extends Controller
      */
     public function index(Request $request)
     {
+        // mengirim informasi halaman aktif ke tampilan
+        $activePage = 'masterUser';
+
         if ($request->ajax()) {
             // mendapatkan data User
-            $userData = User::with('jabatan')->latest()->get();
+            // ambil data pengguna dengan role "Tim DPJJ" dan urutkan hasilnya
+            $adminUsers = User::with('role')->whereHas('role', function ($query) {
+                $query->where('nama', 'Tim DPJJ');
+            })
+                ->orderByDesc('created_at')
+                ->get();
+
+            // ambil data pengguna dengan role lain dan urutkan hasilnya
+            $otherUsers = User::with('role')->whereDoesntHave('role', function ($query) {
+                $query->where('nama', 'Tim DPJJ');
+            })
+                ->orderByDesc('created_at')
+                ->get();
+
+            // gabungkan hasil query
+            $userData = $adminUsers->merge($otherUsers);
 
             return DataTables::of($userData)
                 ->addColumn('action', function ($users) {
@@ -27,7 +51,7 @@ class MasterPenggunaController extends Controller
                             <i class="fas fa-edit"></i>
                         </a>
 
-                        <a class="btn btn-danger btn-delete" href="' . route('deleteUser', $users->id) . '" >
+                        <a class="btn btn-danger btn-delete" href="' . route('deleteUser', $users->id) . '" onclick="return confirmDelete()" >
                             <i class="fa fa-trash"></i>
                         </a>  
                         ';
@@ -36,53 +60,7 @@ class MasterPenggunaController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('dashboard.admin.masterPengguna.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        // mendapatkan data jabatan
-        $jabatan = Jabatan::all();
-        return view('dashboard.admin.masterPengguna.create', compact('jabatan'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        // tes data berhasil ditambahkan atau tidak
-        try {
-            // request dan validasi data
-            $validasiData = $request->validate([
-                'nama' => 'required|max:255',
-                'username' => 'required|unique:users|min:3|max:255',
-                'password' => 'required|min:5|max:255',
-                'id_jabatan' => 'required',
-
-            ]);
-            // enkripsi password
-            $validasiData['password'] = Hash::make($validasiData['password']);
-
-            // membuat data user
-            User::create($validasiData);
-
-            return redirect('/masterdata/pengguna/create')->with('success', 'Data Pengguna Berhasil Disimpan');
-        } catch (\Exception $e) {
-            Log::info($e->getMessage());
-            return redirect('/masterdata/pengguna/create')->with('failed', $e->getMessage());
-        }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
+        return view('dashboard.admin.masterPengguna.index', compact('activePage'));
     }
 
     /**
@@ -91,12 +69,21 @@ class MasterPenggunaController extends Controller
     public function edit($id)
     {
         // mendapatkan data User
-        $userData = User::with('jabatan')->findOrFail($id);
+        $userData = User::with('role')->findOrFail($id);
 
-        // mendapatkan data jabatan
-        $jabatan = Jabatan::all();
+        // mendapatkan data Role
+        $role = Role::all();
 
-        return view('dashboard.admin.masterPengguna.edit', compact('userData', 'jabatan'));
+        // mendapatkan data Fakultas
+        $fakultas = Fakultas::all();
+
+        // mendapatkan data Prodi
+        $prodi = Prodi::all();
+
+        // mengirim informasi halaman aktif ke tampilan
+        $activePage = 'masterUser';
+
+        return view('dashboard.admin.masterPengguna.edit', compact('userData', 'role', 'fakultas', 'prodi', 'activePage'));
     }
 
     /**
@@ -108,14 +95,39 @@ class MasterPenggunaController extends Controller
         try {
             // request dan validasi data
             $validasiData = $request->validate([
-                'id_jabatan' => 'required',
-
+                'id_role' => 'required',
             ]);
 
-            // mendapat data user
+            // mendapatkan data user
             $user = User::findOrFail($request->id);
 
+            // cek apakah id_role diubah menjadi '1'
+            if ($validasiData['id_role'] === '1') {
+                // Set id_fakultas dan id_prodi menjadi null
+                $user->id_fakultas = null;
+                $user->id_prodi = null;
+            } else {
+                // validasi dan set id_fakultas dan id_prodi jika id_role bukan '1'
+                $request->validate([
+                    'id_fakultas' => 'required',
+                    'id_prodi' => [
+                        'required',
+                        // tambahkan aturan validasi untuk memastikan id_prodi yang dipilih sesuai dengan id_fakultas
+                        Rule::exists('prodis', 'id')->where(function ($query) use ($request) {
+                            return $query->where('id_fakultas', $request->id_fakultas);
+                        }),
+                    ],
+                ]);
+                $user->id_fakultas = $request->id_fakultas;
+                $user->id_prodi = $request->id_prodi;
+            }
+
             $user->update($validasiData);
+
+            // session(['username' => $request->username]);
+
+            // // Kirim email ke alamat email pengguna yang login
+            // Mail::to($user->email)->send(new WelcomeEmail($user));
 
             return redirect('/masterdata/pengguna/edit/' . $request->id)->with('success', 'Data Pengguna Berhasil Disimpan');
         } catch (\Exception $e) {

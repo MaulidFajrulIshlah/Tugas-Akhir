@@ -11,11 +11,14 @@ class BerandaController extends Controller
     //
     public function index()
     {
-        $user = Auth::user();
-        if ($user->role == 'Admin') {
+        if (!session('id_role')) {
+            return redirect('forbidden');
+        } else if (session('id_role') === 1) {
             return view('dashboard.card.Admin');
-        } else if ($user->role == 'Dekanat Fakultas' || $user->role == 'Tendik' || $user->role == 'Prodi') {
-            return view('dashboard.beranda');
+        } else if (session('id_role') === 2 || session('id_role') === 3) {
+            return view('dashboard.card.Admin');
+        } else if (session('id_role') === 4 || session('id_role') === 5) {
+            return view('dashboard.card.Admin');
         }
     }
 }
