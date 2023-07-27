@@ -10,13 +10,22 @@ function getSemester() {
             const excludedIds = [3, 31, 65];
             const excludedKeywords = ["Akuntansi", "Akutansi"];
 
-            $.each(data, function (index, item) {
+            for (let i = 0; i < data.length; i++) {
+                const item = data[i];
                 const hasExcludedKeyword = excludedKeywords.some(keyword => item.name.toLowerCase().includes(keyword.toLowerCase()));
 
                 if (includedIds.includes(item.parent) && !excludedIds.includes(item.id) && !hasExcludedKeyword) {
                     semester.push({ id: item.id, name: item.name });
                 }
-            });
+            }
+
+            // $.each(data, function (index, item) {
+            //     const hasExcludedKeyword = excludedKeywords.some(keyword => item.name.toLowerCase().includes(keyword.toLowerCase()));
+
+            //     if (includedIds.includes(item.parent) && !excludedIds.includes(item.id) && !hasExcludedKeyword) {
+            //         semester.push({ id: item.id, name: item.name });
+            //     }
+            // });
             console.log(semester);
 
             // Urutkan array semester berdasarkan id secara ascending
@@ -37,7 +46,8 @@ function getSemester() {
 function processSemesterData(data) {
     const semesterList = $('#semester');
 
-    $.each(data, function (index, item) {
+    for (let i = 0; i < data.length; i++) {
+        const item = data[i];
         const li = $('<li>').addClass('link');
         const a = $("<a>").attr("href", `/dashboard/matakuliah?categoryid=${item.id}`).addClass("text fs-5 text-center").text(item.name);
         const icon = $("<i>").addClass("fas fa-caret-right m-3");
@@ -60,7 +70,7 @@ function processSemesterData(data) {
         a.prepend(icon);
         li.append(a);
         semesterList.append(li);
-    });
+    };
 }
 
 $(document).ready(function () {
