@@ -6,9 +6,9 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('akademik') }}">Dashboard</a></li>
         <li class="breadcrumb-item active">Data Monitoring Akademik</li>
-        <li class="breadcrumb-item active">Fakultas Pascasarjana</li>
-        <li class="breadcrumb-item active">Magister Kenotariatan</li>
-        <li class="breadcrumb-item active">2022_2023 Genap</li>
+        <li class="breadcrumb-item active">Fakultas Hukum</li>
+        <li class="breadcrumb-item active">Hukum</li>
+        <li class="breadcrumb-item active">Kurikulum 2018</li>
     </ol>
 
     <div class="row g-3 my-3">
@@ -16,23 +16,16 @@
             <div class="row g-0 my-3">
                 <div class="row mb-4">
                     <h5 class="mb-2 fw-bold text">Data Monitoring Akademik</h5>
-                    <span class="fs-6 mb-3 text">Semester 2022/2023 Genap - Magister Kenotariatan</span>
+                    <span class="fs-6 mb-3 text">Kurikulum 2018 - Hukum</span>
                     {{-- Table --}}
                     <div class="container mt-3">
-<<<<<<< Updated upstream
-                        @include('dashboard.layouts.table_dataMonitoring')
-=======
                         <table id="data-matkul" class="table table-bordered table-hover cell-border">
                             <thead class="table-success">
                                 <tr>
                                     <th rowspan="2" scope="col" class="text" style="text-align: center;">No</th>
                                     <th rowspan="2" scope="col" class="text" style="text-align: center;">Nama Mata Kuliah</th>
                                     <th colspan="2" scope="col" class="text" style="text-align: center;">Pengumpulan</th>
-<<<<<<< Updated upstream
-                                    <th colspan="16" scope="col" class="text merged-cell" style="text-align: center;">Kegiatan Belajar</th>
-=======
                                     <th colspan="14" scope="col" class="text merged-cell" style="text-align: center;">Kegiatan Belajar</th>
->>>>>>> Stashed changes
                                 </tr>
                                 <tr>
                                     <th style="text-align: center;">Tugas</th>
@@ -51,26 +44,17 @@
                                     <th style="text-align: center;">P12</th>
                                     <th style="text-align: center;">P13</th>
                                     <th style="text-align: center;">P14</th>
-<<<<<<< Updated upstream
-                                    <th style="text-align: center;">P15</th>
-                                    <th style="text-align: center;">P16</th>
-=======
->>>>>>> Stashed changes
                                 </tr>
                             </thead>
                             <tbody></tbody>
                         </table>
->>>>>>> Stashed changes
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <script src="{{ asset('js/dataMonitoring/pascasarjana/magister_kenotariatan/2022_2023_genap.js') }}"></script>
 
-<<<<<<< Updated upstream
-=======
+    
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script>
           function updateData() {
@@ -84,7 +68,7 @@
 
                 success: function (data, status, xhr) {
                     for (let i = 0; i < data.length; i++) {
-                        if (data[i]['categoryid'] == 533) {
+                        if (data[i]['categoryid'] == 530) {
                             const namaMatkul = data[i]['fullname'];
                             matkul.push({
                                 nomor: nomor++,
@@ -130,6 +114,5 @@
             const table = $('#data-matkul').DataTable();
             updateData();
         });
-        </script>    
->>>>>>> Stashed changes
+    </script>
 @endsection

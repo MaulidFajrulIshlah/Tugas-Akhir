@@ -52,9 +52,9 @@ async function updateData() {
         } else if (assignments.warnings && assignments.warnings.length > 0) {
           const warning = assignments.warnings[0];
           if (warning.message === "User is not enrolled or does not have requested capability") {
-            jumlahPengumpulan = "User is not enrolled";
+              jumlahPengumpulan = "User is not enrolled";
           }
-        }
+      }
       });
 
       matkul.push({
@@ -111,7 +111,7 @@ async function updateData() {
   });
 }
 
-$(document).ready(function () {
-  const table = $('#data-matkul').DataTable();
-  updateData();
-});
+    $(document).ready(function () {
+        const table = $('#data-matkul').DataTable();
+        updateData();
+    });
