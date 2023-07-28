@@ -88,6 +88,66 @@ class MataKuliahController extends Controller
         } else if ($data['categoryId'] == 535) {
             return view('dashboard.semester.pascasarjana.doktor_sainsBiomedis.2022_2023_genap', $data);
 
+            // semester menuju halaman daftar mata kuliah pasca-doktor-sainsBiomedis    
+        } else if ($data['unitID'] == 6) {
+            return view('dashboard.semester.fk.semester', compact('fakultas', 'prodi'));
+        } else if ($data['categoryId'] == 83) {
+            return view('dashboard.semester.fk.kedokteran.2019_2020_antara', $data);
+
+            // kurikulum 2018
+        } else if ($data['categoryId'] == 47) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2018.semester', $data);
+        } else if ($data['categoryId'] == 41) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2018.2019_2020_genap', $data);
+        } else if ($data['categoryId'] == 70) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2018.2019_2020_antara', $data);
+        } else if ($data['categoryId'] == 48) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2018.2020_2021_ganjil', $data);
+        } else if ($data['categoryId'] == 203) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2018.2020_2021_genap', $data);
+        } else if ($data['categoryId'] == 247) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2018.2020_2021_antara', $data);
+        } else if ($data['categoryId'] == 253) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2018.2021_2022_ganjil', $data);
+        } else if ($data['categoryId'] == 343) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2018.2021_2022_genap', $data);
+        } else if ($data['categoryId'] == 401) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2018.2021_2022_antara', $data);
+        } else if ($data['categoryId'] == 425) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2018.2022_2023_ganjil', $data);
+        } else if ($data['categoryId'] == 486) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2018.2022_2023_genap', $data);
+        } else if ($data['categoryId'] == 561) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2018.2022_2023_antara', $data);
+
+
+            // kurikulum 2013
+        } else if ($data['categoryId'] == 49) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2013.semester', $data);
+        } else if ($data['categoryId'] == 50) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2013.2019_2020_genap', $data);
+        } else if ($data['categoryId'] == 51) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2013.2020_2021_ganjil', $data);
+        } else if ($data['categoryId'] == 71) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2013.2019_2020_antara', $data);
+        } else if ($data['categoryId'] == 202) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2013.2020_2021_genap', $data);
+        } else if ($data['categoryId'] == 250) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2013.2020_2021_antara', $data);
+        } else if ($data['categoryId'] == 263) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2013.2021_2022_ganjil', $data);
+        } else if ($data['categoryId'] == 348) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2013.2021_2022_genap', $data);
+        } else if ($data['categoryId'] == 402) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2013.2021_2022_antara', $data);
+        } else if ($data['categoryId'] == 481) {
+            return view('dashboard.semester.fk.kedokteran.kurikulum2013.2022_2023_ganjil', $data);
+
+            // program profesi kedokteran umum
+        } else if ($data['categoryId'] == 74) {
+            return view('dashboard.semester.fk.profesi.profesi_dokter', $data);
+
+
             // semester menuju halaman daftar mata kuliah fti-ti
         } else if ($data['unitID'] == 10) {
             return view('dashboard.semester.fti.ti.semester', compact('fakultas', 'prodi'));

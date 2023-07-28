@@ -8,26 +8,21 @@
         <li class="breadcrumb-item active">Mata Kuliah</li>
         <li class="breadcrumb-item active">Fakultas Kedokteran</li>
         <li class="breadcrumb-item active">Kedokteran Program Sarjana</li>
+        <li class="breadcrumb-item active">Kurikulum 2018</li>
     </ol>
 
     <div class="row g-3 my-3">
         <div class="col mx-2 bg-white rounded card content" id="wrapper-content">
-            <h5 class="m-3 mt-4 mb-0 fw-bold text">Daftar Kurikulum</h5>
+            <h5 class="mx-3 mt-4 mb-0 fw-bold text">Daftar Semester</h5>
             <hr>
             
-        <div class="row g-0">
-            <div class="row">
-                <ul class="semester">
-                    @foreach ($prodi as $prodis)
-                        @if($prodis->id == 6)
-                            <li class="link">
-                                <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'categoryID' => '41']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>Kurikulum 2013</a>
-                            </li>
-                        @endif
-                    @endforeach
-                </ul>
+            <div class="row g-0">
+                <div class="row">
+                    <ul id="semester" class="fakultas-prodi"></ul>
+                </div>
             </div>
-        </div>
         </div> <!-- /col bg-white -->
     </div>
+
+    <script src="{{ asset('js/semester/fk/kedokteran/kurikulum2018/semester.js') }}"></script>
 @endsection

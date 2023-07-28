@@ -22,12 +22,12 @@
                                 </li>
                                     
                                 @elsecan('admin')
-                                    {{-- @if($prodis->id == 7)
+                                    @if($prodis->id == 7)
                                         <li class="link">
-                                            <a href="{{ route('mataKuliah', ['unitID' => $prodis->id, 'unitID' => '46']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama }} / {{ $prodis->nama }}</a>
+                                            <a href="{{ route('mataKuliah', ['categoryid' => 74]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama }} / {{ $prodis->nama }}</a>
                                         </li>
                                         @continue
-                                    @endif --}}
+                                    @endif
                                     <li class="link">
                                         <a href="{{ route('mataKuliah', ['unitID' => $prodis->id]) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>{{ $prodis->fakultas->nama }} / {{ $prodis->nama }}</a>
                                     </li>
