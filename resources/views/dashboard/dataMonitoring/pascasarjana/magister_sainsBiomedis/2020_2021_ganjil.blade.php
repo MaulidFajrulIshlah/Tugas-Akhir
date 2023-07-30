@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.main')
-@section('title', 'PANDAY | Mata Kuliah')
+@section('title', 'PANDAY | Akademik')
 @section('content')
     <!-- Route -->
     <h5 class="fw-bold" style="margin-top: 40px; font-weight: 400;">Data Monitoring Akademik</h5>
