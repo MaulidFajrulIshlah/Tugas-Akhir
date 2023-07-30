@@ -56,6 +56,8 @@ function processSemesterData(data) {
             a.text("2022/2023 Ganjil - Psikologi");
         } else if (item.id === 489) {
             a.text("2022/2023 Genap - Psikologi");
+        } else if (item.id === 580) {
+            a.text("2023/2024 Ganjil - Psikologi");
         }
 
         // memasukkan elemen baru ke dalam element yang dipilih di bagian awal
