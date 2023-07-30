@@ -1,4 +1,5 @@
 function updateData() {
+ 
     const matkul = [];
     $.ajax({
         type: 'GET',
@@ -18,11 +19,58 @@ function updateData() {
             updateTime();
 
         },
+        
         error: function (xhr, status, error) {
             // penanganan kesalahan saat permintaan AJAX gagal
             console.log('Error:', error);
         }
     });
+}
+
+function updateAkun() {
+    const users = [];
+    let i = 1;
+    let boo = true;
+    let nomor = 1;
+    
+    while (boo) {
+      $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=463cfb78c5acc92fbed0656c2aec27b4&wsfunction=core_user_get_users_by_field&moodlewsrestformat=json&field=id&values[0]=' + i,
+        async: false,
+        cache: true,
+    
+        success: function (data, status, xhr) {
+          for (let i = 0; i < data.length; i++) {
+            if (data[i]['username'] !== null ) {
+              const user = {
+                nomor: nomor++,
+                username: data[i]['username'],
+               // fullname: data[i]['fullname'],
+              };
+              users.push(user);
+            }
+          }
+        },
+        error: function (xhr, status, error) {
+          console.log(xhr.responseText);
+        }
+      });
+    
+      i++;
+      if (i == 500) {
+        boo = false;
+      }
+    }
+    
+    // Jumlah akun adalah panjang (length) dari array users
+    const jumlahAkun = users.length;
+    console.log("Jumlah akun:", jumlahAkun);
+    
+    // Menampilkan jumlah akun pada elemen dengan id "jumlah-akun" (misalnya pada elemen <span>)
+    $('#jumlah-akun').text(jumlahAkun);
+
 }
 
 function updateTime() {
@@ -50,9 +98,11 @@ function updateTime() {
     // memperbarui teks dengan keterangan pembaruan data
     $('#last-updated').text("Pembaruan data terjadi " + elapsedTimeString);
 }
+    
 
 $(document).ready(function () {
     updateData();
+    updateAkun();
 
     // Jadwalkan pembaruan data sesuai dengan waktu pembaruan berikutnya setiap 1 jam
     const intervalID = setInterval(updateData, 60 * 60 * 1000);
