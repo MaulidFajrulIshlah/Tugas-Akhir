@@ -8,6 +8,7 @@
         <li class="breadcrumb-item active">Akademik</li>
         <li class="breadcrumb-item active">Fakultas Kedokteran Gigi</li>
         <li class="breadcrumb-item active">Kedokteran Gigi Program Sarjana</li>
+        <li class="breadcrumb-item active">Kurikulum 2012</li>
     </ol>
 
     <div class="row g-3 my-3">
@@ -23,5 +24,6 @@
         </div> <!-- /col bg-white -->
     </div>
 
-    <script src="{{ asset('js/dataMonitoring/fkg/semester.js') }}"></script>
+    <script src="{{ asset('js/dataMonitoring/fkg/kedokteranGigi/kurikulum2012/semester.js') }}"></script>
+
 @endsection
