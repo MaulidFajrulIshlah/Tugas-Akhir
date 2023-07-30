@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.main')
-@section ('title', 'PANDAY | Mata Kuliah')
+@section ('title', 'PANDAY | Akademik')
 @section('content')
     <!-- Route -->
     <h5 class="fw-bold" style="margin-top: 40px; font-weight: 400;">Akademik</h5>
@@ -12,52 +12,17 @@
 
     <div class="row g-3 my-3">
         <div class="col mx-2 bg-white rounded card content" id="wrapper-content">
-            <h5 class="m-3 mt-4 mb-0 fw-bold text">Daftar Semester</h5>
+            <h5 class="mx-3 mt-4 mb-0 fw-bold text">Daftar Semester</h5>
             <hr>
             
-        <div class="row g-0">
-            <div class="row">
-                <ul class="semester">
-                    @foreach ($prodi as $prodis)
-                        @if($prodis->id == 12)
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '8']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2019/2020 Ganjil</a>
-                            </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '32']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2019/2020 Genap</a>
-                            </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '160']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2020/2021 Ganjil</a>
-                            </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '186']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2020/2021 Genap</a>
-                            </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '428']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2020/2021 Antara</a>
-                            </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '279']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2021/2022 Ganjil</a>
-                            </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '362']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2021/2022 Genap</a>
-                            </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '405']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2021/2022 Antara</a>
-                            </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '444']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2022/2023 Ganjil</a>
-                            </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '494']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2022/2023 Genap</a>
-                            </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '553']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2022/2023 Antara</a>
-                            </li>
-                        @endif
-                    @endforeach
-                </ul>
+            <div class="row g-0">
+                <div class="row">
+                    <ul id="semester" class="fakultas-prodi"></ul>
+                </div>
             </div>
-        </div>
         </div> <!-- /col bg-white -->
     </div>
+
+    <script src="{{ asset('js/dataMonitoring/feb/manajemen/semester.js') }}"></script>
+
 @endsection
