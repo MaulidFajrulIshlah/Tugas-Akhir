@@ -22,6 +22,6 @@
         </div> <!-- /col bg-white -->
     </div>
 
-    <script src="{{ asset('js/semester/fh/semester.js') }}"></script>
+    <script src="{{ asset('js/dataMonitoring/fh/semester.js') }}"></script>
     
 @endsection
