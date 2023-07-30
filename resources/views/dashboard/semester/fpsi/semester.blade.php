@@ -6,8 +6,8 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('beranda') }}">Dashboard</a></li>
         <li class="breadcrumb-item active">Mata Kuliah</li>
-        <li class="breadcrumb-item active">Fakultas Teknologi Informasi</li>
-        <li class="breadcrumb-item active">Ilmu Perpustakaan</li>
+        <li class="breadcrumb-item active">Fakultas Psikologi</li>
+        <li class="breadcrumb-item active">Psikologi</li>
     </ol>
 
     <div class="row g-3 my-3">
@@ -24,4 +24,5 @@
     </div>
 
     <script src="{{ asset('js/semester/fpsi/semester.js') }}"></script>
+
 @endsection
