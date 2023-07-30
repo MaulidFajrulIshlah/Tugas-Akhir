@@ -8,7 +8,7 @@
         <li class="breadcrumb-item active">Mata Kuliah</li>
         <li class="breadcrumb-item active">Fakultas Teknologi Informasi</li>
         <li class="breadcrumb-item active">Teknik Informatika</li>
-        <li class="breadcrumb-item active">2022_2023 Antara</li>
+        <li class="breadcrumb-item active">2019_2020 Antara</li>
     </ol>
 
     <div class="row g-3 my-3">
@@ -17,7 +17,7 @@
             <div class="row g-0 my-3">
                 <div class="row mb-4">
                     <h5 class="mb-2 fw-bold text">Mata Kuliah</h5>
-                    <span class="fs-6 mb-3 text">Semester 2022/2023 Antara - Teknik Informatika</span>
+                    <span class="fs-6 mb-3 text">Semester 2019/2020 Antara - Teknik Informatika</span>
 
                     <div class="col-xl-4 col-md-6 col-11 col-lg-5 my-3">
                         @include('dashboard.layouts.jumlahDaftarMatkul')
@@ -32,6 +32,5 @@
         </div>
     </div>
 
-    <script src="{{ asset('js/semester/fti/ti/2022_2023_antara.js') }}"></script>
-
+    <script src="{{ asset('js/semester/fti/ti/2019_2020_antara.js') }}"></script>
 @endsection
