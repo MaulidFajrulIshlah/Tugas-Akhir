@@ -24,4 +24,5 @@
     </div>
 
     <script src="{{ asset('js/semester/feb/akuntansi/semester.js') }}"></script>
+    
 @endsection
