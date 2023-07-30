@@ -6,8 +6,9 @@ function getSemester() {
         cache: true,
         success: function (data, status, xhr) {
             const semester = [];
-            const includedIds = [72, 73];
-            const excludedIds = [133, 73, 178, 241, 415];
+            // const includedIds = [442, 258, 201, 200, 178];
+            const includedIds = [415, 241, 178, 73, 200, 201, 258, 442];
+            const excludedIds = [415, 241, 178, 418, 242, 244, 75, 82];
 
             for (let i = 0; i < data.length; i++) {
                 const item = data[i];
@@ -40,12 +41,26 @@ function processSemesterData(data) {
         const a = $("<a>").attr("href", `/dashboard/matakuliah?categoryid=${item.id}`).addClass("text fs-5 text-center").text(item.name);
         const icon = $("<i>").addClass("fas fa-caret-right m-3");
 
-        if (item.id === 178) {
+        if (item.id === 61) {
+            a.text("2019/2020 Genap - Kedokteran Gigi");
+        } else if (item.id === 60) {
+            a.text("2020/2021 Ganjil - Kedokteran Gigi");
+        } else if (item.id === 78) {
             a.text("2019/2020 Antara - Kedokteran Gigi");
-        } else if (item.id === 241) {
+        } else if (item.id === 180) {
+            a.text("2020/2021 Genap - Kedokteran Gigi");
+        } else if (item.id === 243) {
             a.text("2021/2022 Antara - Kedokteran Gigi");
-        } else if (item.id === 415) {
+        } else if (item.id === 260) {
+            a.text("2021/2022 Ganjil - Kedokteran Gigi");
+        } else if (item.id === 347) {
+            a.text("2021/2022 Genap - Kedokteran Gigi");
+        } else if (item.id === 416) {
             a.text("2022/2023 Antara - Kedokteran Gigi");
+        } else if (item.id === 505) {
+            a.text("2022/2023 Ganjil - Kedokteran Gigi");
+        } else if (item.id === 507) {
+            a.text("2022/2023 Genap - Kedokteran Gigi");
         } else if (item.id === 569) {
             a.text("2023/2024 Antara - Kedokteran Gigi");
         }

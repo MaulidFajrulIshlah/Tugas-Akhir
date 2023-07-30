@@ -8,6 +8,7 @@
         <li class="breadcrumb-item active">Mata Kuliah</li>
         <li class="breadcrumb-item active">Fakultas Kedokteran Gigi</li>
         <li class="breadcrumb-item active">Kedokteran Gigi Program Sarjana</li>
+        <li class="breadcrumb-item active">Kurikulum 2018</li>
     </ol>
 
     <div class="row g-3 my-3">
@@ -23,6 +24,6 @@
         </div> <!-- /col bg-white -->
     </div>
 
-    <script src="{{ asset('js/semester/fkg/semester.js') }}"></script>
+    <script src="{{ asset('js/semester/fkg/kedokteranGigi/kurikulum2018/semester.js') }}"></script>
 
 @endsection

@@ -88,7 +88,7 @@ class MataKuliahController extends Controller
         } else if ($data['categoryId'] == 535) {
             return view('dashboard.semester.pascasarjana.doktor_sainsBiomedis.2022_2023_genap', $data);
 
-            // semester menuju halaman daftar mata kuliah pasca-doktor-sainsBiomedis    
+            // semester menuju halaman daftar mata kuliah kedokteran   
         } else if ($data['unitID'] == 6) {
             return view('dashboard.semester.fk.semester', compact('fakultas', 'prodi'));
         } else if ($data['categoryId'] == 83) {
@@ -144,8 +144,64 @@ class MataKuliahController extends Controller
             return view('dashboard.semester.fk.kedokteran.kurikulum2013.2022_2023_ganjil', $data);
 
             // program profesi kedokteran umum
-        } else if ($data['categoryId'] == 74) {
+        } else if ($data['categoryId'] == 46) {
             return view('dashboard.semester.fk.profesi.profesi_dokter', $data);
+
+            // semester menuju halaman daftar mata kuliah kedokteran gigi   
+        } else if ($data['unitID'] == 8) {
+            return view('dashboard.semester.fkg.semester', compact('fakultas', 'prodi'));
+        } else if ($data['categoryId'] == 569) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2018.2023_2024_antara', $data);
+
+            // kurikulum 2018
+        } else if ($data['categoryId'] == 56) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2018.semester', $data);
+        } else if ($data['categoryId'] == 78) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2018.2019_2020_antara', $data);
+        } else if ($data['categoryId'] == 61) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2018.2019_2020_genap', $data);
+        } else if ($data['categoryId'] == 60) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2018.2020_2021_ganjil', $data);
+        } else if ($data['categoryId'] == 180) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2018.2020_2021_genap', $data);
+        } else if ($data['categoryId'] == 243) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2018.2021_2022_antara', $data);
+        } else if ($data['categoryId'] == 260) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2018.2021_2022_ganjil', $data);
+        } else if ($data['categoryId'] == 347) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2018.2021_2022_genap', $data);
+        } else if ($data['categoryId'] == 416) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2018.2022_2023_antara', $data);
+        } else if ($data['categoryId'] == 505) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2018.2022_2023_ganjil', $data);
+        } else if ($data['categoryId'] == 507) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2018.2022_2023_genap', $data);
+
+
+            // kurikulum 2012
+        } else if ($data['categoryId'] == 57) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2012.semester', $data);
+        } else if ($data['categoryId'] == 59) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2012.2019_2020_genap', $data);
+        } else if ($data['categoryId'] == 75) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2012.2019_2020_antara', $data);
+        } else if ($data['categoryId'] == 58) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2012.2020_2021_ganjil', $data);
+        } else if ($data['categoryId'] == 199) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2012.2020_2021_genap', $data);
+        } else if ($data['categoryId'] == 242) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2012.2021_2022_antara', $data);
+        } else if ($data['categoryId'] == 259) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2012.2021_2022_ganjil', $data);
+        } else if ($data['categoryId'] == 353) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2012.2021_2022_genap', $data);
+        } else if ($data['categoryId'] == 418) {
+            return view('dashboard.semester.fkg.kedokteranGigi.kurikulum2012.2022_2023_antara', $data);
+
+            // program profesi kedokteran gigi
+        } else if ($data['categoryId'] == 74) {
+            return view('dashboard.semester.fkg.profesi.profesi_dokterGigi', $data);
+
 
 
             // semester menuju halaman daftar mata kuliah fti-ti

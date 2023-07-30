@@ -62,7 +62,7 @@ class ProdiData extends Seeder
         // data prodi fakultas 3
         $prodi_fakultas_3 = [
             [
-                'nama' => 'Kedokteran Gigi',
+                'nama' => 'Kedokteran Gigi Program Sarjana',
                 'id_fakultas' => $id_fakultas_3,
             ],
             [
