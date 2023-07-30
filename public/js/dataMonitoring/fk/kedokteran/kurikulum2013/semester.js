@@ -36,7 +36,7 @@ function processSemesterData(data) {
     for (let i = 0; i < data.length; i++) {
         const item = data[i];
         const li = $('<li>').addClass('link');
-        const a = $("<a>").attr("href", `/dashboard/matakuliah?categoryid=${item.id}`).addClass("text fs-5 text-center").text(item.name);
+        const a = $("<a>").attr("href", `/dashboard/akademik?categoryid=${item.id}`).addClass("text fs-5 text-center").text(item.name);
         const icon = $("<i>").addClass("fas fa-caret-right m-3");
 
         if (item.id === 51) {

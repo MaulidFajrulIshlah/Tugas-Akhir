@@ -8,7 +8,7 @@ function updateData() {
 
         success: function (data, status, xhr) {
             for (let i = 0; i < data.length; i++) {
-                if (data[i]['categoryid'] == 71) {
+                if (data[i]['categoryid'] == 83) {
                     const namaMatkul = data[i]['fullname'];
                     matkul.push({
                         nomor: nomor++,

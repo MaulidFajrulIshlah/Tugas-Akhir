@@ -6,11 +6,10 @@ function getSemester() {
         cache: true,
         success: function (data, status, xhr) {
             const semester = [];
-            const excludedIds = [71];
 
             for (let i = 0; i < data.length; i++) {
                 const item = data[i];
-                if (item.parent === 49 && !excludedIds.includes(item.id)) {
+                if (item.parent === 47) {
                     semester.push({ id: item.id, name: item.name });
                 }
             };
@@ -36,26 +35,32 @@ function processSemesterData(data) {
     for (let i = 0; i < data.length; i++) {
         const item = data[i];
         const li = $('<li>').addClass('link');
-        const a = $("<a>").attr("href", `/dashboard/matakuliah?categoryid=${item.id}`).addClass("text fs-5 text-center").text(item.name);
+        const a = $("<a>").attr("href", `/dashboard/akademik?categoryid=${item.id}`).addClass("text fs-5 text-center").text(item.name);
         const icon = $("<i>").addClass("fas fa-caret-right m-3");
 
-        if (item.id === 51) {
+        if (item.id === 41) {
             a.text("2019/2020 Genap - Kedokteran");
-        } else if (item.id === 50) {
+        } else if (item.id === 48) {
             a.text("2020/2021 Ganjil - Kedokteran");
-        } else if (item.id === 202) {
+        } else if (item.id === 70) {
+            a.text("2019/2020 Antara - Kedokteran");
+        } else if (item.id === 203) {
             a.text("2020/2021 Genap - Kedokteran");
-        } else if (item.id === 250) {
+        } else if (item.id === 247) {
             a.text("2020/2021 Antara - Kedokteran");
-        } else if (item.id === 263) {
+        } else if (item.id === 253) {
             a.text("2021/2022 Ganjil - Kedokteran");
-        } else if (item.id === 348) {
+        } else if (item.id === 343) {
             a.text("2021/2022 Genap - Kedokteran");
-        } else if (item.id === 402) {
+        } else if (item.id === 401) {
             a.text("2021/2022 Antara - Kedokteran");
-        } else if (item.id === 481) {
+        } else if (item.id === 425) {
             a.text("2022/2023 Ganjil - Kedokteran");
-        };
+        } else if (item.id === 486) {
+            a.text("2022/2023 Genap - Kedokteran");
+        } else if (item.id === 561) {
+            a.text("2022/2023 Antara - Kedokteran");
+        }
 
         // memasukkan elemen baru ke dalam element yang dipilih di bagian awal
         a.prepend(icon);
