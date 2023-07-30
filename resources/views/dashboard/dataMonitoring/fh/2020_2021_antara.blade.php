@@ -1,11 +1,11 @@
 @extends('dashboard.layouts.main')
-@section('title', 'PANDAY | Mata Kuliah')
+@section('title', 'PANDAY | Akademik')
 @section('content')
     <!-- Route -->
     <h5 class="fw-bold" style="margin-top: 40px; font-weight: 400;">Data Monitoring Akademik</h5>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('beranda') }}">Dashboard</a></li>
-        <li class="breadcrumb-item active">Data Monitoring Akademik</li>
+        <li class="breadcrumb-item active">Akademik</li>
         <li class="breadcrumb-item active">Fakultas Hukum</li>
         <li class="breadcrumb-item active">Hukum</li>
         <li class="breadcrumb-item active">2020_2021 Antara</li>

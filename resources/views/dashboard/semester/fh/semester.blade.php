@@ -24,4 +24,5 @@
     </div>
 
     <script src="{{ asset('js/semester/fh/semester.js') }}"></script>
+    
 @endsection

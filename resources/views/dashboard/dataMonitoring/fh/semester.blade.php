@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.main')
-@section ('title', 'PANDAY | Mata Kuliah')
+@section ('title', 'PANDAY | Akademik')
 @section('content')
     <!-- Route -->
     <h5 class="fw-bold" style="margin-top: 40px; font-weight: 400;">Akademik</h5>
@@ -9,52 +9,19 @@
         <li class="breadcrumb-item active">Fakultas Hukum</li>
         <li class="breadcrumb-item active">Hukum</li>
     </ol>
-
     <div class="row g-3 my-3">
         <div class="col mx-2 bg-white rounded card content" id="wrapper-content">
-            <h5 class="m-3 mt-4 mb-0 fw-bold text">Daftar Semester</h5>
+            <h5 class="mx-3 mt-4 mb-0 fw-bold text">Daftar Semester</h5>
             <hr>
             
-        <div class="row g-0">
-            <div class="row">
-                <ul class="semester">
-                    @foreach ($prodi as $prodis)
-                        @if($prodis->id == 14)
-                        <li class="link">
-                            <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '192']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>Kurikulum 2012</a>
-                        </li>
-                        <li class="link">
-                            <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '530']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>Kurikulum 2018</a>
-                        </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '11']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2019/2020 Ganjil</a>
-                            </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '34']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2019/2020 Genap</a>
-                            </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '154']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2020/2021 Ganjil</a>
-                            </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '181']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2020/2021 Genap</a>
-                            </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '271']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2021/2022 Ganjil</a>
-                            </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '350']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2021/2022 Genap</a>
-                            </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '429']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2022/2023 Ganjil</a>
-                            </li>
-                            <li class="link">
-                                <a href="{{ route('akademik', ['unitID' => $prodis->id, 'categoryID' => '500']) }}" class="text fs-5 text-center"><i class="fas fa-caret-right m-3"></i>2022/2023 Genap</a>
-                            </li>
-                        @endif
-                    @endforeach
-                </ul>
+            <div class="row g-0">
+                <div class="row">
+                    <ul id="semester" class="fakultas-prodi"></ul>
+                </div>
             </div>
-        </div>
         </div> <!-- /col bg-white -->
     </div>
+
+    <script src="{{ asset('js/semester/fh/semester.js') }}"></script>
+    
 @endsection
