@@ -72,12 +72,29 @@ function updateData() {
     success: function (data, status, xhr) {
       let courseCount = 0;
       const excludedIds = [237, 251, 256];
-      const includedIds = [2, 3, 6, 31, 65, 131, 193, 185, 277, 278, 360, 371, 404, 443, 448,
-        493, 508, 550, 562, 29, 28, 345, 438, 30, 534, 476, 4, 151, 176, 344, 349, 428, 498,
-        5, 13, 36];
+      // const febIds = [2, 3, 6, 31, 65, 131, 193, 185, 277, 278, 360, 371, 404, 443, 448,
+      //   493, 508, 550, 562, 29, 28, 345, 438, 30, 534, 476, 4, 151, 176, 344, 349, 428, 498,
+      //   5, 13, 36];
+      const febIds = [2, 3, 31, 65, 131, 193, 185, 277, 278, 360, 371, 404, 443, 448,
+        493, 508, 550, 562];
+      const ftiIds = [6];
+      const pascaIds = [29, 28, 345, 438, 30, 534, 476];
+      const fhIds = [4, 151, 176, 344, 349, 428, 498];
+      const fpsiIds = [5, 13, 36];
+      const fkIds = [];
+      const fkg = [];
+
       for (let i = 0; i < data.length; i++) {
         const item = data[i];
-        if (includedIds.includes(item.parent) && !excludedIds.includes(item.id)) {
+        if (pascaIds.includes(item.parent)) {
+          courseCount += data[i]['coursecount'];
+        } else if (ftiIds.includes(item.parent) && !excludedIds.includes(item.id)) {
+          courseCount += data[i]['coursecount'];
+        } else if (febIds.includes(item.parent)) {
+          courseCount += data[i]['coursecount'];
+        } else if (fhIds.includes(item.parent) && !excludedIds.includes(item.id)) {
+          courseCount += data[i]['coursecount'];
+        } else if (fpsiIds.includes(item.parent)) {
           courseCount += data[i]['coursecount'];
         }
       }
