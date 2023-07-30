@@ -73,11 +73,10 @@ class AuthServiceProvider extends ServiceProvider
             $allowedRole = [2, 3, 4, 5];
             $userRole = $user->id_role;
             $userFakultas = $user->id_fakultas;
-            $userFakultas = $user->id_prodi;
 
             return in_array($userRole, $allowedRole) && $userFakultas == 6;
         });
-        Gate::define('dekanat-tendik-fpsi', function ($user) {
+        Gate::define('dekanat-tendik-prodi-fpsi', function ($user) {
             $user = Auth::user();
             $allowedRole = [2, 3, 4, 5];
             $userRole = $user->id_role;

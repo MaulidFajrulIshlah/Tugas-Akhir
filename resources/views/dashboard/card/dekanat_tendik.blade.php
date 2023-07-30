@@ -93,7 +93,7 @@
     <script src="{{ asset('js/daftarMatkul/dekanat_tendik_prodi/dekanat_tendik_prodi_fh.js') }}"></script>
     @endcan
 
-    @can('dekanat-tendik-fpsi')
+    @can('dekanat-tendik-prodi-fpsi')
     <!-- Daftar Matkul Card -->
     <div class="col-xl-4 col-md-6 col-11 col-lg-5">
         <div class="card">

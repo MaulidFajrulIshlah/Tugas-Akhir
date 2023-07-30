@@ -15,7 +15,6 @@ function updateData() {
                     courseCount += data[i]['coursecount'];
                 }
             }
-            console.log(courseCount);
             $('#jumlah-matkul').text(courseCount);
 
             updateTime();
