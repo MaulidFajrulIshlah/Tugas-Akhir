@@ -7,7 +7,7 @@ function getSemester() {
         success: function (data, status, xhr) {
             const semester = [];
             const excludedIds = [237, 251, 477, 478, 479, 480];
-            const excludedKeywords = ["Teknik Informatika"];
+            const excludedKeywords = ["Perpustakaan"];
 
             for (let i = 0; i < data.length; i++) {
                 const item = data[i];
@@ -39,13 +39,11 @@ function processSemesterData(data) {
     for (let i = 0; i < data.length; i++) {
         const item = data[i];
         const li = $('<li>').addClass('link');
-        const a = $("<a>").attr("href", `/dashboard/matakuliah?categoryid=${item.id}`).addClass("text fs-5 text-center").text(item.name);
+        const a = $("<a>").attr("href", `/dashboard/akademik?categoryid=${item.id}`).addClass("text fs-5 text-center").text(item.name);
         const icon = $("<i>").addClass("fas fa-caret-right m-3");
 
-        if (item.id === 17) {
-            a.text("2019/2020 Ganjil - Perpustakaan dan Sains Informasi");
-        } else if (item.id === 40) {
-            a.text("2019/2020 Genap - Perpustakaan dan Sains Informasi");
+        if (item.id === 578) {
+            a.text("2023/2024 Ganjil - Teknik Informatika");
         }
 
         // memasukkan elemen baru ke dalam element yang dipilih di bagian awal

@@ -81,7 +81,7 @@ class ProdiData extends Seeder
                 'id_fakultas' => $id_fakultas_4,
             ],
             [
-                'nama' => 'Ilmu Perpustakaan',
+                'nama' => 'Perpustakaan dan Sains Informasi',
                 'id_fakultas' => $id_fakultas_4,
             ],
         ];

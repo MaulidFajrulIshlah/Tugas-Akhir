@@ -42,6 +42,10 @@ function processSemesterData(data) {
         const a = $("<a>").attr("href", `/dashboard/matakuliah?categoryid=${item.id}`).addClass("text fs-5 text-center").text(item.name);
         const icon = $("<i>").addClass("fas fa-caret-right m-3");
 
+        if (item.id === 578) {
+            a.text("2023/2024 Ganjil - Teknik Informatika");
+        }
+
         // memasukkan elemen baru ke dalam element yang dipilih di bagian awal
         a.prepend(icon);
         li.append(a);

@@ -24,4 +24,5 @@
     </div>
 
     <script src="{{ asset('js/semester/fti/ti/semester.js') }}"></script>
+    
 @endsection
