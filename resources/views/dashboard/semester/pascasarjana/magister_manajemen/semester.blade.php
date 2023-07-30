@@ -24,4 +24,5 @@
     </div>
 
     <script src="{{ asset('js/semester/pascasarjana/magister_manajemen/semester.js') }}"></script>
+    
 @endsection
