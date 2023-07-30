@@ -229,6 +229,10 @@ class MataKuliahController extends Controller
             return view('dashboard.semester.fti.ti.2022_2023_ganjil', $data);
         } else if ($data['categoryId'] == 503) {
             return view('dashboard.semester.fti.ti.2022_2023_genap', $data);
+        } else if ($data['categoryId'] == 577) {
+            return view('dashboard.semester.fti.ti.2022_2023_antara', $data);
+        } else if ($data['categoryId'] == 578) {
+            return view('dashboard.semester.fti.ti.2023_2024_ganjil', $data);
 
             // semester menuju halaman daftar mata kuliah fti-ip
         } else if ($data['unitID'] == 11) {
@@ -249,6 +253,8 @@ class MataKuliahController extends Controller
             return view('dashboard.semester.fti.ip.2022_2023_ganjil', $data);
         } else if ($data['categoryId'] == 488) {
             return view('dashboard.semester.fti.ip.2022_2023_genap', $data);
+        } else if ($data['categoryId'] == 582) {
+            return view('dashboard.semester.fti.ip.2023_2024_ganjil', $data);
 
             // semester menuju halaman daftar mata kuliah feb-manajemen 
         } else if ($data['unitID'] == 12) {

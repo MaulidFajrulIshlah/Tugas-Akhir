@@ -119,7 +119,6 @@ class AkademikController extends Controller
         } else if ($data['categoryId'] == 561) {
             return view('dashboard.dataMonitoring.fk.kedokteran.kurikulum2018.2022_2023_antara', $data);
 
-
             // kurikulum 2013
         } else if ($data['categoryId'] == 49) {
             return view('dashboard.dataMonitoring.fk.kedokteran.kurikulum2013.semester', $data);
@@ -176,7 +175,6 @@ class AkademikController extends Controller
         } else if ($data['categoryId'] == 507) {
             return view('dashboard.dataMonitoring.fkg.kedokteranGigi.kurikulum2018.2022_2023_genap', $data);
 
-
             // kurikulum 2012
         } else if ($data['categoryId'] == 57) {
             return view('dashboard.dataMonitoring.fkg.kedokteranGigi.kurikulum2012.semester', $data);
@@ -200,8 +198,6 @@ class AkademikController extends Controller
             // program profesi kedokteran gigi
         } else if ($data['categoryId'] == 74) {
             return view('dashboard.dataMonitoring.fkg.profesi.profesi_dokterGigi', $data);
-
-
 
             // semester menuju halaman daftar mata kuliah fti-ti
         } else if ($data['unitID'] == 10) {
@@ -228,6 +224,10 @@ class AkademikController extends Controller
             return view('dashboard.dataMonitoring.fti.ti.2022_2023_ganjil', $data);
         } else if ($data['categoryId'] == 503) {
             return view('dashboard.dataMonitoring.fti.ti.2022_2023_genap', $data);
+        } else if ($data['categoryId'] == 577) {
+            return view('dashboard.dataMonitoring.fti.ti.2022_2023_antara', $data);
+        } else if ($data['categoryId'] == 578) {
+            return view('dashboard.dataMonitoring.fti.ti.2023_2024_ganjil', $data);
 
             // semester menuju halaman daftar mata kuliah fti-ip
         } else if ($data['unitID'] == 11) {
