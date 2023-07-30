@@ -355,6 +355,8 @@ class MataKuliahController extends Controller
             return view('dashboard.semester.fpsi.2022_2023_ganjil', $data);
         } else if ($data['categoryId'] == 489) {
             return view('dashboard.semester.fpsi.2022_2023_genap', $data);
+        } else if ($data['categoryId'] == 580) {
+            return view('dashboard.semester.fpsi.2023_2024_ganjil', $data);
         }
 
         return view('dashboard.matkul', compact('fakultas', 'prodi'));
