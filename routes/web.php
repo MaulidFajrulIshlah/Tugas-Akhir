@@ -45,9 +45,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
-// Route::get('/dashboard/matakuliah/fti/ti/2019_2020_ganjil', [MataKuliahController::class, 'index'])->name('mataKuliah')->middleware('auth');
-
 // Master Data
 Route::middleware(['auth', 'cekUserLogin:1'])->group(function () {
     Route::get('/masterdata/pengguna', [MasterPenggunaController::class, 'index'])->name('masterUser');

@@ -24,14 +24,14 @@ class CekUserLogin
 
         // cek akses halaman pengguna
         $user = Auth::user();
-        $id_role = $user->id_role;
-        $id_fakultas = $user->id_fakultas;
+        $userRole = $user->id_role;
+        $userFakultas = $user->id_fakultas;
 
         // memeriksa apakah id_role ada dalam daftar peran yang diizinkan
-        if (in_array($id_role, $roles)) {
+        if (in_array($userRole, $roles)) {
             // memeriksa apakah id_fakultas sesuai dengan kriteria yang diizinkan
             $list_id_fakultas = Fakultas::pluck('id')->toArray();
-            if ($id_fakultas === null || in_array($id_fakultas, $list_id_fakultas)) {
+            if ($userFakultas === null || in_array($userFakultas, $list_id_fakultas)) {
                 return $next($request);
             }
         }
