@@ -1,7 +1,7 @@
 async function updateData() {
   const matkul = [];
   let nomor = 1;
-  const allowedCategoryIds = [279, 313, 314, 328];
+  const allowedCategoryIds = [278, 279, 313, 314, 328];
 
   const courses = await $.ajax({
     type: 'GET',
