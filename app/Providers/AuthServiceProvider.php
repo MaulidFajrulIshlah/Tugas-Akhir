@@ -68,6 +68,22 @@ class AuthServiceProvider extends ServiceProvider
 
             return in_array($userRole, $allowedRole) && $userFakultas == 5;
         });
+        Gate::define('dekanat-tendik-fk', function ($user) {
+            $user = Auth::user();
+            $allowedRole = [2, 3];
+            $userRole = $user->id_role;
+            $userFakultas = $user->id_fakultas;
+
+            return in_array($userRole, $allowedRole) && $userFakultas == 2;
+        });
+        Gate::define('dekanat-tendik-fkg', function ($user) {
+            $user = Auth::user();
+            $allowedRole = [2, 3];
+            $userRole = $user->id_role;
+            $userFakultas = $user->id_fakultas;
+
+            return in_array($userRole, $allowedRole) && $userFakultas == 3;
+        });
         Gate::define('dekanat-tendik-prodi-fh', function ($user) {
             $user = Auth::user();
             $allowedRole = [2, 3, 4, 5];

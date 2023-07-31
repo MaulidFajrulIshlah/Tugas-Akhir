@@ -61,6 +61,51 @@
 //   const intervalID = setInterval(updateData, 60 * 60 * 1000);
 // });
 
+function updateAkun() {
+  const users = [];
+  let i = 1;
+  let boo = true;
+  let nomor = 1;
+  
+  while (boo) {
+    $.ajax({
+      type: 'GET',
+      dataType: 'json',
+      url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=463cfb78c5acc92fbed0656c2aec27b4&wsfunction=core_user_get_users_by_field&moodlewsrestformat=json&field=id&values[0]=' + i,
+      async: false,
+      cache: true,
+  
+      success: function (data, status, xhr) {
+        for (let i = 0; i < data.length; i++) {
+          if (data[i]['username'] !== null ) {
+            const user = {
+              nomor: nomor++,
+              username: data[i]['username'],
+             // fullname: data[i]['fullname'],
+            };
+            users.push(user);
+          }
+        }
+      },
+      error: function (xhr, status, error) {
+        console.log(xhr.responseText);
+      }
+    });
+  
+    i++;
+    if (i == 100) {
+      boo = false;
+    }
+  }
+  
+  // Jumlah akun adalah panjang (length) dari array users
+  const jumlahAkun = users.length;
+  console.log("Jumlah akun:", jumlahAkun);
+  
+  // Menampilkan jumlah akun pada elemen dengan id "jumlah-akun" (misalnya pada elemen <span>)
+  $('#jumlah-akun').text(jumlahAkun);
+
+}
 
 function updateData() {
   $.ajax({
@@ -81,8 +126,8 @@ function updateData() {
       const pascaIds = [29, 28, 345, 438, 30, 534, 476];
       const fhIds = [4, 151, 176, 344, 349, 428, 498];
       const fpsiIds = [5, 13, 36];
-      const fkIds = [];
-      const fkg = [];
+      const fkIds = [9, 45, 47, 49];
+      const fkg = [10, 178, 241, 415, 72, 56, 57, 73, 72, 442, 257, 258, 197, 201, 200, 198];
 
       for (let i = 0; i < data.length; i++) {
         const item = data[i];
@@ -95,6 +140,10 @@ function updateData() {
         } else if (fhIds.includes(item.parent) && !excludedIds.includes(item.id)) {
           courseCount += data[i]['coursecount'];
         } else if (fpsiIds.includes(item.parent)) {
+          courseCount += data[i]['coursecount'];
+        }else if (fkIds.includes(item.parent)) {
+          courseCount += data[i]['coursecount'];
+        }else if (fkg.includes(item.parent)) {
           courseCount += data[i]['coursecount'];
         }
       }
@@ -138,6 +187,7 @@ function updateTime() {
 
 $(document).ready(function () {
   updateData();
+  updateAkun();
 
   // Jadwalkan pembaruan data sesuai dengan waktu pembaruan berikutnya setiap 1 jam
   const intervalID = setInterval(updateData, 60 * 60 * 1000);
