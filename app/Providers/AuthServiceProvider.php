@@ -181,5 +181,41 @@ class AuthServiceProvider extends ServiceProvider
 
             return in_array($userRole, $allowedRole) && $userFakultas == 5 && $userProdi == 12;
         });
+        Gate::define('prodi-fkg-sarjana', function ($user) {
+            $user = Auth::user();
+            $allowedRole = [4, 5];
+            $userRole = $user->id_role;
+            $userFakultas = $user->id_fakultas;
+            $userProdi = $user->id_prodi;
+
+            return in_array($userRole, $allowedRole) && $userFakultas == 3 && $userProdi == 8;
+        });
+        Gate::define('prodi-fkg-profesi', function ($user) {
+            $user = Auth::user();
+            $allowedRole = [4, 5];
+            $userRole = $user->id_role;
+            $userFakultas = $user->id_fakultas;
+            $userProdi = $user->id_prodi;
+
+            return in_array($userRole, $allowedRole) && $userFakultas == 3 && $userProdi == 9;
+        });
+        Gate::define('prodi-fk-sarjana', function ($user) {
+            $user = Auth::user();
+            $allowedRole = [4, 5];
+            $userRole = $user->id_role;
+            $userFakultas = $user->id_fakultas;
+            $userProdi = $user->id_prodi;
+
+            return in_array($userRole, $allowedRole) && $userFakultas == 2 && $userProdi == 6;
+        });
+        Gate::define('prodi-fk-profesi', function ($user) {
+            $user = Auth::user();
+            $allowedRole = [4, 5];
+            $userRole = $user->id_role;
+            $userFakultas = $user->id_fakultas;
+            $userProdi = $user->id_prodi;
+
+            return in_array($userRole, $allowedRole) && $userFakultas == 2 && $userProdi == 7;
+        });
     }
 }
