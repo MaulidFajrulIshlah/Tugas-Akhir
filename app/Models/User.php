@@ -30,24 +30,24 @@ class User extends Authenticatable implements LdapAuthenticatable
         'id_prodi',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    // /**
+    //  * The attributes that should be hidden for serialization.
+    //  *
+    //  * @var array<int, string>
+    //  */
+    // protected $hidden = [
+    //     'password',
+    //     'remember_token',
+    // ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'username_verified_at' => 'datetime',
-    ];
+    // /**
+    //  * The attributes that should be cast.
+    //  *
+    //  * @var array<string, string>
+    //  */
+    // protected $casts = [
+    //     'username_verified_at' => 'datetime',
+    // ];
 
     // relasi tabel users dengan tabel roles
     public function role()
