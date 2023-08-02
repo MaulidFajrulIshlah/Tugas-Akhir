@@ -16,7 +16,7 @@
             <div class="row g-0 my-3">
                 <div class="row mb-4">
                     <h5 class="mb-2 fw-bold text">Data Monitoring Akademik</h5>
-                    <span class="fs-6 mb-3 text">Semester 2022/2023 Genap - Teknik Informatika</span>
+                    <span class="fs-6 mb-3 text">Semester 2022/2023 Ganjil - Teknik Informatika</span>
                     {{-- Table --}}
                     <div class="container mt-3">
                         @include('dashboard.layouts.table_dataMonitoring')
