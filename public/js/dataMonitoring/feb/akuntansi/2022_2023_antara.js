@@ -37,6 +37,11 @@ async function updateData() {
       // Menghitung jumlah tugas
       if (assignments.courses && assignments.courses.length > 0) {
         jumlahPengumpulan = assignments.courses[0].assignments.length;
+      } else if (assignments.warnings && assignments.warnings.length > 0) {
+        const warning = assignments.warnings[0];
+        if (warning.message === "User is not enrolled or does not have requested capability") {
+          jumlahPengumpulan = "Not enrolled";
+        }
       }
 
       // Mengambil kegiatan belajar per pertemuan
@@ -48,15 +53,10 @@ async function updateData() {
 
       // Menghitung jumlah kegiatan belajar per pertemuan
       resources.resources.forEach((resource) => {
-          const section = parseInt(resource.section); // Mengambil nomor section dari atribut 'section'
-          if (!isNaN(section) && section >= 1 && section <= 16) {
-            kegiatanPerPertemuan[section - 1]++;
-          } else if (assignments.warnings && assignments.warnings.length > 0) {
-          const warning = assignments.warnings[0];
-          if (warning.message === "User is not enrolled or does not have requested capability") {
-              jumlahPengumpulan = "User is not enrolled";
-          }
-      }
+        const section = parseInt(resource.section); // Mengambil nomor section dari atribut 'section'
+        if (!isNaN(section) && section >= 1 && section <= 16) {
+          kegiatanPerPertemuan[section - 1]++;
+        }
       });
 
       matkul.push({
@@ -113,7 +113,7 @@ async function updateData() {
   });
 }
 
-    $(document).ready(function () {
-        const table = $('#data-matkul').DataTable();
-        updateData();
-    });
+$(document).ready(function () {
+  const table = $('#data-matkul').DataTable();
+  updateData();
+});
