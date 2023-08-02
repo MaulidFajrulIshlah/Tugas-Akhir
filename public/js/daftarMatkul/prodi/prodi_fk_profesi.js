@@ -6,8 +6,8 @@ function updateData() {
         cache: true,
 
         success: function (data, status, xhr) {
-            let courseCount = 1;
-            const includedIds = [9, 45, 47, 49, 545, 46];
+            let courseCount = 0;
+            const includedIds = [9];
             for (let i = 0; i < data.length; i++) {
                 const item = data[i];
                 if (includedIds.includes(item.parent)) {
