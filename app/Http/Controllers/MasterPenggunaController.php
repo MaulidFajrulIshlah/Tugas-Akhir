@@ -12,6 +12,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 use Yajra\DataTables\Facades\DataTables;
 
@@ -93,13 +94,18 @@ class MasterPenggunaController extends Controller
     {
         // tes data berhasil ditambahkan atau tidak
         try {
+            // mendapatkan data user
+            $user = User::findOrFail($request->id);
+
+            // cek apakah user yang login memiliki id_role = 1 dan mencoba mengubah id_role
+            if (Auth::id() === $user->id && $user->id_role === 1) {
+                throw new \Exception("Anda tidak diizinkan mengubah peran Anda sendiri!");
+            }
+
             // request dan validasi data
             $validasiData = $request->validate([
                 'id_role' => 'required',
             ]);
-
-            // mendapatkan data user
-            $user = User::findOrFail($request->id);
 
             // cek apakah id_role diubah menjadi '1'
             if ($validasiData['id_role'] === '1') {
@@ -135,6 +141,7 @@ class MasterPenggunaController extends Controller
             return redirect('/masterdata/pengguna/edit/' . $request->id)->with('failed', $e->getMessage());
         }
     }
+
 
     /**
      * Remove the specified resource from storage.
