@@ -30,11 +30,8 @@
                 </div> <!--col-->
             </div> <!--row my-5-->
 
-            <script>
-                $(document).ready(function () {
-                const table = $('#data-suspend').DataTable();
-            });
-            </script>
+            <script src="{{ asset('js/suspend.js') }}"></script>
+
         @endcan
 
     </div> <!-- /row g-3 my-3 -->
