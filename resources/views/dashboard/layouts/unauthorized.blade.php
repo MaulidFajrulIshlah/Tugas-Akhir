@@ -16,6 +16,7 @@
         <div class="message">
             <h1 class="title">Akses Halaman Dibatasi</h1>
             <p class="description">Harap tunggu penugasan dari Administrator</p>
+            <p class="description">Silahkan cek email di mail.yarsi.ac.id anda secara berkala</p>
         </div>
     </div>
 </body>
