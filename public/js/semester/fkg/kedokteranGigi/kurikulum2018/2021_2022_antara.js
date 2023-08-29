@@ -4,7 +4,7 @@ function updateData() {
     $.ajax({
         type: 'GET',
         dataType: 'json',
-        url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=463cfb78c5acc92fbed0656c2aec27b4&wsfunction=core_course_get_courses&moodlewsrestformat=json',
+        url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=fc68a1de6a0eb7fcca7d8dafc5ce53a9&wsfunction=core_course_get_courses&moodlewsrestformat=json',
 
         success: function (data, status, xhr) {
             const includedIds = [243, 244];
