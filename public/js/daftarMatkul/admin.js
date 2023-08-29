@@ -8,7 +8,7 @@ function updateAkun() {
     $.ajax({
       type: 'GET',
       dataType: 'json',
-      url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=463cfb78c5acc92fbed0656c2aec27b4&wsfunction=core_user_get_users_by_field&moodlewsrestformat=json&field=id&values[0]=' + i,
+      url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=fc68a1de6a0eb7fcca7d8dafc5ce53a9&wsfunction=core_user_get_users_by_field&moodlewsrestformat=json&field=id&values[0]=' + i,
       async: false,
       cache: true,
 
@@ -32,7 +32,7 @@ function updateAkun() {
     });
 
     i++;
-    if (i == 100) {
+    if (i == 200) {
       boo = false;
     }
   }
@@ -52,7 +52,7 @@ function updateData() {
   $.ajax({
     type: 'GET',
     dataType: 'json',
-    url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=463cfb78c5acc92fbed0656c2aec27b4&wsfunction=core_course_get_categories&moodlewsrestformat=json',
+    url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=fc68a1de6a0eb7fcca7d8dafc5ce53a9&wsfunction=core_course_get_categories&moodlewsrestformat=json',
     cache: true,
 
     success: function (data, status, xhr) {
@@ -130,13 +130,14 @@ function updateTime() {
   $('#last-updated-akun').text("Pembaruan data terjadi " + elapsedTimeString);
 }
 
-function updateDataAndAkun() {
-  updateData();
-  updateAkun();
-}
+// function updateDataAndAkun() {
+//   updateData();
+//   updateAkun();
+// }
 
 $(document).ready(function () {
-  updateDataAndAkun();
+  // updateDataAndAkun();
+  updateData();
 
   // Jadwalkan pembaruan data sesuai dengan waktu pembaruan berikutnya setiap 1 jam
   const intervalID = setInterval(updateDataAndAkun, 60 * 60 * 1000);
