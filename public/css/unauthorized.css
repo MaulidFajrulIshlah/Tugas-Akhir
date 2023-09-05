@@ -38,6 +38,7 @@ body {
 
 .message>.description {
     text-align: center;
+    padding: 3px;
 }
 
 .lock {

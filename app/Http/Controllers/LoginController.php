@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 
+use App\Mail\SendOtpMail;
+use Illuminate\Support\Facades\Mail;
+
 class LoginController extends Controller
 {
     public function index(Request $request)
@@ -39,6 +42,9 @@ class LoginController extends Controller
             return redirect('login')->with('failed', 'Gagal masuk! Silahkan coba lagi!');
         }
 
+        // membuat ulang id session
+        $request->session()->regenerate();
+
         // jika autentikasi berhasil
         $user = Auth::user();
 
@@ -46,6 +52,7 @@ class LoginController extends Controller
         $request->session()->put([
             'users' => $user->username,
             'id_role' => $user->id_role,
+            'email' => $request->email,
             'id_fakultas' => $user->id_fakultas,
             'id_prodi' => $user->id_prodi,
         ]);
@@ -70,6 +77,8 @@ class LoginController extends Controller
 
     public function forbidden()
     {
+        Mail::to("dila.nabilah@students.yarsi.ac.id")->send(new SendOtpMail());
+
         return view('dashboard.layouts.unauthorized');
     }
 

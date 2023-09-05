@@ -166,6 +166,9 @@
             if (selectedPeran === '1') {
                 divFakultasField.style.display = 'none';
                 divProdiField.style.display = 'none';
+            } else if (selectedPeran === '2' || selectedPeran === '3') {
+                divFakultasField.style.display = 'block';
+                divProdiField.style.display = 'none';
             } else {
                 divFakultasField.style.display = 'block';
                 divProdiField.style.display = 'block';
@@ -179,6 +182,9 @@
 
                 if (selectedPeran === '1') {
                     divFakultasField.style.display = 'none';
+                    divProdiField.style.display = 'none';
+                } else if (selectedPeran === '2' || selectedPeran === '3') {
+                    divFakultasField.style.display = 'block';
                     divProdiField.style.display = 'none';
                 } else {
                     divFakultasField.style.display = 'block';

@@ -112,6 +112,12 @@ class MasterPenggunaController extends Controller
                 // Set id_fakultas dan id_prodi menjadi null
                 $user->id_fakultas = null;
                 $user->id_prodi = null;
+            } else if ($validasiData['id_role'] === '2' || $validasiData['id_role'] === '3') {
+                $request->validate([
+                    'id_fakultas' => 'required',
+                ]);
+                $user->id_fakultas = $request->id_fakultas;
+                $user->id_prodi = null;
             } else {
                 // validasi dan set id_fakultas dan id_prodi jika id_role bukan '1'
                 $request->validate([
@@ -130,10 +136,11 @@ class MasterPenggunaController extends Controller
 
             $user->update($validasiData);
 
-            // session(['username' => $request->username]);
 
-            // // Kirim email ke alamat email pengguna yang login
-            // Mail::to($user->email)->send(new WelcomeEmail($user));
+            session(['username' => $request->username]);
+
+            // Kirim email ke alamat email pengguna yang login
+            Mail::to($user->email)->send(new WelcomeEmail($user));
 
             return redirect('/masterdata/pengguna/edit/' . $request->id)->with('success', 'Data Pengguna Berhasil Disimpan');
         } catch (\Exception $e) {
