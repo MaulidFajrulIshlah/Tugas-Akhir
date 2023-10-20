@@ -114,7 +114,7 @@
             // Fungsi untuk memeriksa status server
             function checkServerStatus() {
                 fetch(
-                        'https://layar.arsi.ac.id/webservice/rest/server.php?wstoken=fc68a1de6a0eb7fcca7d8dafc5ce53a9&wsfunction=core_course_get_categories&moodlewsrestformat=json'
+                        'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=fc68a1de6a0eb7fcca7d8dafc5ce53a9&wsfunction=core_course_get_categories&moodlewsrestformat=json'
                     )
                     .then(function(response) {
                         if (response.ok) {
