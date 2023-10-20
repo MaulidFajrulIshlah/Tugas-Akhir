@@ -10,6 +10,7 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\AkademikController;
 use App\Http\Controllers\MasterPenggunaController;
+use App\Http\Controllers\PengecekanServerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,10 @@ Route::middleware('auth')->group(function () {
 
     // Akademik
     Route::get('/dashboard/akademik', [AkademikController::class, 'index'])->name('akademik');
+
+    // Pengecekan Server
+
+    Route::get('/dashboard/pengecekanserver', [PengecekanServerController::class, 'index'])->name('pengecekanServer');
 });
 
 

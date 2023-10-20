@@ -1,0 +1,46 @@
+/* CSS untuk halaman Pengecekan Server */
+:root {
+    --main-text-color: #009d63;
+    --second-color: #135f00;
+    --second-text-color: #F5F5F5F5;
+    --second-tex-color-sidebar: #aaaaaa;
+    --link-active: #303030;
+    --bg-website: #eeeeee;
+    --warning-color: red;
+}
+/* Gaya untuk breadcrumb */
+.breadcrumb {
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.breadcrumb-item.active {
+    color: #007bff;
+}
+
+/* Gaya untuk card server status */
+.card {
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Gaya untuk tombol */
+.button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
