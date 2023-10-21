@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard/masterData.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard/matkul.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/pengcekanServer.css') }}">
 
     
 
