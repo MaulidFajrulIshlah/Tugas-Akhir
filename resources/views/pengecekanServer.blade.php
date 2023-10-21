@@ -92,7 +92,8 @@
 
             var btnCheckNow = document.querySelector('.btn-check-now');
             btnCheckNow.addEventListener('click', function() {
-                checkServerStatus('luar'); // Ganti 'yarsi' dengan 'luar' jika ingin memeriksa server luar kampus
+                checkServerStatus(
+                'yarsi'); // Ganti 'yarsi' dengan 'luar' jika ingin memeriksa server luar kampus
             });
 
             function checkServerStatus(signal) {
@@ -189,7 +190,16 @@
             // Memeriksa apakah ada waktu terakhir diperiksa di localStorage saat halaman dimuat
             var lastCheckedTime = getLastCheckedTime();
             if (lastCheckedTime) {
-                lastCheckedElement.textContent = 'Last Checked: ' + lastCheckedTime.toLocaleString();
+                var options = {
+                    day: 'numeric',
+                    month: 'numeric',
+                    year: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    second: 'numeric'
+                };
+                lastCheckedElement.textContent = 'Last Checked: ' + lastCheckedTime.toLocaleDateString(undefined,
+                    options);
             }
 
             // Menetapkan event listener ke tombol-tombol
