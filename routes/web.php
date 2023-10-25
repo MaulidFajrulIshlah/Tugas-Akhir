@@ -11,6 +11,7 @@ use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\AkademikController;
 use App\Http\Controllers\MasterPenggunaController;
 use App\Http\Controllers\PengecekanServerController;
+use Illuminate\Support\Facades\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,7 @@ Route::middleware('auth')->group(function () {
     // Pengecekan Server
 
     Route::get('/dashboard/pengecekanserver', [PengecekanServerController::class, 'index'])->name('pengecekanServer');
+    
 });
 
 
