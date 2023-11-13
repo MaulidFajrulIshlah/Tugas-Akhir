@@ -21,6 +21,8 @@
                 <button type="button" class="btn-set-interval">Set Interval</button>
                 <button type="button" class="btn-stop-interval">Stop Interval</button>
             </form>
+            <button id="btn-cekssl" onclick="window.location.href='{{ route('beranda.ssl') }}'">Cek masa berakhir
+                SSL</button>
             <button type="button" class="btn-check-now">Check Now</button>
         </div>
     </div>
@@ -33,8 +35,8 @@
         <div class="card-body">
             <h5 class="card-title">Status: Online</h5>
             <p class="card-text">Details: Server is running smoothly.</p>
-            <p><strong>Last checked: {{ Cache::get('last_executed_time') }}</strong></p>
-            <div class="status-check" id="last-checked-luar"></div>
+            <p><strong>Last checked: <span id="last-checked-luar"></span></strong></p>
+            <div class="status-check"></div>
         </div>
     </div>
 
@@ -45,8 +47,8 @@
         <div class="card-body">
             <h5 class="card-title">Status: Offline</h5>
             <p class="card-text">Details: Server is currently down.</p>
-            <p><strong>Last checked: {{ Cache::get('last_executed_time') }}</strong></p>
-            <div class="status-check" id="last-checked-luar"></div>
+            <p><strong>Last checked: <span id="last-checked-luar"></span></strong></p>
+            <div class="status-check"></div>
         </div>
     </div>
 
@@ -58,8 +60,8 @@
         <div class="card-body-offline">
             <h5 class="card-title">Status: Offline</h5>
             <p class="card-text">Details: Server is currently down.</p>
-            <p><strong>Last checked: {{ Cache::get('last_executed_time') }}</strong></p>
-            <div class="status-check" id="last-checked-yarsi"></div>
+            <p><strong>Last checked: <span id="last-checked-yarsi"></span></strong></p>
+            <div class="status-check"></div>
         </div>
     </div>
 
@@ -70,8 +72,8 @@
         <div class="card-body-online">
             <h5 class="card-title">Status: Online</h5>
             <p class="card-text">Details: Server is running smoothly.</p>
-            <p><strong>Last checked: {{ Cache::get('last_executed_time') }}</strong></p>
-            <div class="status-check" id="last-checked-yarsi"></div>
+            <p><strong>Last checked: <span id="last-checked-yarsi"></span></strong></p>
+            <div class="status-check"></div>
         </div>
     </div>
 
@@ -93,31 +95,32 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script>
+        // Tambahin ini di akhir event listener DOMContentLoaded
+        var ipAddress;
         document.addEventListener('DOMContentLoaded', function() {
-
-            
-
-            var intervalId; // Variabel untuk menyimpan ID interval
-
-            var btnCheckNow = document.querySelector('.btn-check-now');
-            btnCheckNow.addEventListener('click', function() {
-                var ipAddress; // Gak perlu diinisialisasi karena nilainya bakal diambil dari API
-
+            function fetchIpAddressAndCheckStatus() {
                 // Dapatkan IP Address client menggunakan ipinfo.io API
                 fetch('https://ipinfo.io/json')
                     .then(response => response.json())
                     .then(data => {
-                        ipAddress = data.ip;
+                        ipAddress = data.ip; // Simpen IP Address ke variabel global
                         // Sekarang ipAddress berisi IP Address client, lanjutkan dengan pengecekan server status
-                        var location = (ipAddress === '192.168.0.118') ? 'dalam' : 'luar';
+                        var location = (ipAddress === '103.78.212.10') ? 'dalam' : 'luar';
                         checkServerStatus(location);
                     })
                     .catch(error => {
                         // Handle error jika gagal mendapatkan IP Address
                         console.error('Error during IP Address fetch:', error);
-                        // Sekarang ipAddress tetap null, kamu bisa handle ini sesuai kebutuhan
+                        showPopup('error', 'There was an error while checking the server status.');
+                        setLastCheckedTime();
                     });
+            }
 
+            fetchIpAddressAndCheckStatus(); // Mengecek status server otomatis saat halaman dimuat
+
+            var btnCheckNow = document.querySelector('.btn-check-now');
+            btnCheckNow.addEventListener('click', function() {
+                fetchIpAddressAndCheckStatus(); // Mengecek status server saat tombol 'Check Now' ditekan
             });
 
             function checkServerStatus(location) {

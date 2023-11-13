@@ -24,6 +24,10 @@ use Illuminate\Support\Facades\Request;
 |
 */
 
+Route::get('/test', function () {
+    return view('test');
+});
+
 // Login
 Route::controller(LoginController::class)->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -46,9 +50,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/akademik', [AkademikController::class, 'index'])->name('akademik');
 
     // Pengecekan Server
-
     Route::get('/dashboard/pengecekanserver', [PengecekanServerController::class, 'index'])->name('pengecekanServer');
     
+    // Pengecekan SSL
+    Route::get('/dashboard/beranda', [BerandaController::class, 'cekMasaBerakhirSSL'])->name('beranda');
+    Route::post('/dashboard/beranda', [BerandaController::class, 'cekMasaBerakhirSSL'])->name('ssl.check');
+
+    // Pengecekan SSL
+    Route::get('/dashboard/beranda/cek-ssl', [BerandaController::class, 'KirimEmailSSl'])->name('beranda.ssl');
+    Route::post('/dashboard/beranda/cek-ssl', [BerandaController::class, 'KirimEmailSSl'])->name('ssl.check');
 });
 
 

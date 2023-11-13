@@ -14,8 +14,31 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard/masterData.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard/matkul.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-s5ZHIjGj9A0d7+akA5Bo2Z5X8UY6geDUNiiU5AG+5q5/5r+38WwF8BScPsz1Un9o/4C2lBXGiIbrI6vRjxc7fQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.7.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.7.0/js/bootstrap.min.js"></script>
     
+
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26L022KCCB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-26L022KCCB');
+    </script>
+
 
 </head>
 
@@ -27,11 +50,11 @@
         <!-- Sidebar -->
         @include('dashboard.layouts.sidebar')
 
-        <!-- /#sidebar-wrapper -->  
+        <!-- /#sidebar-wrapper -->
         <div class="container-fluid px-5" style="margin-top: 35px;">
 
             <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-            
+
             @yield('content')
 
         </div>
@@ -41,5 +64,8 @@
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 
+
+
 </body>
+
 </html>
