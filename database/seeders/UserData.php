@@ -39,6 +39,8 @@ class UserData extends Seeder
                 'id_role' => 1,
             ],
 
+            
+
         ];
 
         foreach ($user as $key => $value) {

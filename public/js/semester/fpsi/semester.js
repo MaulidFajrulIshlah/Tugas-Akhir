@@ -2,7 +2,7 @@ function getSemester() {
     $.ajax({
         type: 'GET',
         dataType: 'json',
-        url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=fc68a1de6a0eb7fcca7d8dafc5ce53a9&wsfunction=core_course_get_categories&moodlewsrestformat=json',
+        url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken='+tokenApi+'&wsfunction=core_course_get_categories&moodlewsrestformat=json',
         cache: true,
         success: function (data, status, xhr) {
             // Memproses data yang sesuai kondisi dan menyimpannya di penyimpanan lokal

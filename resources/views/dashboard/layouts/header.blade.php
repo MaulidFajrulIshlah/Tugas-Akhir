@@ -9,19 +9,19 @@
 
             <ul class="navbar-nav ms-auto me-4">
 
-                <!-- Notifikasi Dropdown -->
+                {{-- <!-- Notifikasi Dropdown -->
                 <li class="nav-item dropdown show">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-bell me-2"></i>Pemberitahuan
+                        <i class="fas fa-bell me-2" id="menu-toggle" style="width:35px; height:35px; color:white; background-image: url('bell.png');"></i>Pemberitahuan
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <!-- List notifikasi masukin sini pake PHP atau sesuai data yang lo punya -->
                         <a class="dropdown-item" href="#">SERVER OFFLINE</a>
                         <a class="dropdown-item" href="#">SERVER KEMBALI ONLINE</a>
-                        <a class="dropdown-item" href="#">..........</a>
+                        <a class="dropdown-item" href="#">Masa Berakhir SSL Sisa 30 Hari</a>
                     </div>
-                </li>
+                </li> --}}
 
                 <li class="nav-item">
                     <span class="text-white">
@@ -32,4 +32,7 @@
             </ul>
         </nav>
     </div>
+    
 </header>
+
+<script src="{{ asset('js/dataMonitoring/fti/ti/newToken.js') }}"></script>

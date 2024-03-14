@@ -4,13 +4,13 @@
             <th rowspan="2" scope="col" class="text" style="text-align: center;">No</th>
             <th rowspan="2" scope="col" class="text" style="text-align: center;">Nama Mata Kuliah</th>
             <th colspan="2" scope="col" class="text" style="text-align: center;">Pengumpulan</th>
-            <th colspan="16" scope="col" class="text merged-cell" style="text-align: center;">Kegiatan Belajar</th>
+            <th colspan="17" scope="col" class="text merged-cell" style="text-align: center;">Kegiatan Belajar</th>
         </tr>
         <tr>
             <th style="text-align: center;">Tugas</th>
             <th style="text-align: center;">Kuis</th>
             <th style="text-align: center;">P1</th>
-            <th style="text-align: center;">P2</th>
+            <th style="text-align: center;">P2<th>
             <th style="text-align: center;">P3</th>
             <th style="text-align: center;">P4</th>
             <th style="text-align: center;">P5</th>

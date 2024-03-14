@@ -21,9 +21,6 @@
                 <button type="button" class="btn-set-interval">Set Interval</button>
                 <button type="button" class="btn-stop-interval">Stop Interval</button>
             </form>
-            <button id="btn-cekssl" onclick="window.location.href='{{ route('beranda.ssl') }}'">Cek masa berakhir
-                SSL</button>
-            <button type="button" class="btn-check-now">Check Now</button>
         </div>
     </div>
 
@@ -95,148 +92,130 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script>
-        // Tambahin ini di akhir event listener DOMContentLoaded
-        var ipAddress;
-        document.addEventListener('DOMContentLoaded', function() {
-            function fetchIpAddressAndCheckStatus() {
-                // Dapatkan IP Address client menggunakan ipinfo.io API
-                fetch('https://ipinfo.io/json')
-                    .then(response => response.json())
-                    .then(data => {
-                        ipAddress = data.ip; // Simpen IP Address ke variabel global
-                        // Sekarang ipAddress berisi IP Address client, lanjutkan dengan pengecekan server status
-                        var location = (ipAddress === '103.78.212.10') ? 'dalam' : 'luar';
-                        checkServerStatus(location);
-                    })
-                    .catch(error => {
-                        // Handle error jika gagal mendapatkan IP Address
-                        console.error('Error during IP Address fetch:', error);
-                        showPopup('error', 'There was an error while checking the server status.');
-                        setLastCheckedTime();
-                    });
-            }
+       document.addEventListener('DOMContentLoaded', function () {
+    var intervalId; // Tambahkan variabel global untuk menyimpan ID interval
 
-            fetchIpAddressAndCheckStatus(); // Mengecek status server otomatis saat halaman dimuat
-
-            var btnCheckNow = document.querySelector('.btn-check-now');
-            btnCheckNow.addEventListener('click', function() {
-                fetchIpAddressAndCheckStatus(); // Mengecek status server saat tombol 'Check Now' ditekan
+    function fetchIpAddressAndCheckStatus() {
+        fetch('https://ipinfo.io/json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch IP address data');
+                }
+                return response.json();
+            })
+            .then(data => {
+                var ipAddress = data.ip;
+                var location = (ipAddress === '103.78.212.10') ? 'dalam' : 'luar';
+                checkServerStatus(location);
+            })
+            .catch(error => {
+                console.error('Error during IP Address fetch:', error);
+                showPopup('error', 'There was an error while checking the server status.');
+                setLastCheckedTime();
             });
+    }
 
-            function checkServerStatus(location) {
-                var apiUrl =
-                    'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=fc68a1de6a0eb7fcca7d8dafc5ce53a9&wsfunction=core_course_get_categories&moodlewsrestformat=json';
+    function checkServerStatus(location) {
+        var apiUrl = 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=76debee2b62a3d38a48963f60b5c76ee&wsfunction=core_course_get_categories&moodlewsrestformat=json';
 
-                fetch(apiUrl)
-                    .then(function(response) {
-                        if (response.status === 200) {
-                            showPopup('online', 'Server is running smoothly.', location);
-                        } else {
-                            showPopup('offline', 'Server is currently down.', location);
-                        }
-                        setLastCheckedTime();
-                    })
-                    .catch(function(error) {
-                        showPopup('error', 'There was an error while checking the server status.');
-                        console.error('Error during fetch request:', error);
-                        setLastCheckedTime();
-                    });
-            }
-
-            function showPopup(status, message, location) {
-                var popup;
-                if (status === 'online') {
-                    if (location === 'luar') {
-                        popup = document.getElementById("card-online-luar");
-                    } else if (location === 'dalam') {
-                        popup = document.getElementById("card-online-yarsi");
-                    }
-                } else if (status === 'offline') {
-                    if (location === 'luar') {
-                        popup = document.getElementById("card-offline-luar");
-                    } else if (location === 'dalam') {
-                        popup = document.getElementById("card-offline-yarsi");
-                    }
+        fetch(apiUrl)
+            .then(response => {
+                if (response.status === 200) {
+                    showPopup('online', 'Server is running smoothly.', location);
                 } else {
-                    // Status error
-                    popup = document.getElementById("card-error");
-                    document.getElementById('server-status').textContent = 'ERROR';
-                    document.getElementById('server-details').textContent =
-                        details; // Ini harusnya didefinisikan atau dihapus
+                    showPopup('offline', 'Server is currently down.', location);
                 }
-
-                popup.style.display = "block";
-
-                // Menetapkan waktu untuk menghilangkan popup setelah 3 detik (3000 milidetik)
-                setTimeout(function() {
-                    popup.style.display = "none";
-                }, 3500);
-
-                // Memperbarui tampilan waktu terakhir diperiksa di halaman
-                lastCheckedElement.textContent = 'Last Checked: ' + new Date().toLocaleString();
-            }
-
-            function setLastCheckedTime() {
-                var currentTime = new Date();
-                localStorage.setItem('last_executed_time', JSON.stringify(currentTime));
-            }
-
-            // Mengakses tombol-tombol di halaman
-            var btnSetInterval = document.querySelector('.btn-set-interval');
-            var btnStopInterval = document.querySelector('.btn-stop-interval');
-            var lastCheckedElement = document.getElementById('last-checked');
-
-            // Memeriksa apakah ada waktu terakhir diperiksa di localStorage saat halaman dimuat
-            var lastCheckedTime = getLastCheckedTime();
-            if (lastCheckedTime) {
-                var options = {
-                    day: 'numeric',
-                    month: 'numeric',
-                    year: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    second: 'numeric'
-                };
-                lastCheckedElement.textContent = 'Last Checked: ' + lastCheckedTime.toLocaleDateString(undefined,
-                    options);
-            }
-
-            // Menetapkan event listener ke tombol-tombol
-            btnSetInterval.addEventListener('click', function() {
-                var intervalValue = document.getElementById('interval').value;
-                intervalId = setInterval(function() {
-                    var ipAddress =
-                        '192.168.0.118'; // Ganti ini dengan cara lo dapetin IP Address client
-                    var location = (ipAddress === '192.168.0.118') ? 'dalam' : 'luar';
-                    checkServerStatus(location);
-                }, intervalValue * 1000); // Mengubah detik ke milidetik
-                Swal.fire({
-                    title: 'Interval Diatur!',
-                    text: 'Interval sekarang diatur ke ' + intervalValue + ' detik.',
-                    icon: 'success',
-                    confirmButtonText: 'Oke'
-                });
+                setLastCheckedTime();
+            })
+            .catch(error => {
+                console.error('Error during fetch request:', error);
+                showPopup('error', 'There was an error while checking the server status.');
+                setLastCheckedTime();
             });
+    }
 
-            btnStopInterval.addEventListener('click', function() {
-                clearInterval(intervalId);
-                Swal.fire({
-                    title: 'Interval Dihentikan',
-                    text: 'Pengecekan server dihentikan.',
-                    icon: 'info',
-                    confirmButtonText: 'Oke'
-                });
-            });
+    function showPopup(status, message, location) {
+        var popup;
+        if (status === 'online') {
+            popup = document.getElementById(location === 'luar' ? "card-online-luar" : "card-online-yarsi");
+        } else if (status === 'offline') {
+            popup = document.getElementById(location === 'luar' ? "card-offline-luar" : "card-offline-yarsi");
+        } else {
+            popup = document.getElementById("card-error");
+            document.getElementById('server-status').textContent = 'ERROR';
+            document.getElementById('server-details').textContent = message;
+        }
 
-            // Fungsi untuk mendapatkan waktu terakhir diperiksa dari localStorage
-            function getLastCheckedTime() {
-                var lastCheckedTime = localStorage.getItem('last_executed_time');
-                if (lastCheckedTime) {
-                    return new Date(JSON.parse(lastCheckedTime));
-                }
-                return null;
-            }
+        popup.style.display = "block";
+
+        setTimeout(function () {
+            popup.style.display = "none";
+        }, 3500);
+
+        lastCheckedElement.textContent = 'Last Checked: ' + new Date().toLocaleString();
+    }
+
+    function setLastCheckedTime() {
+        var currentTime = new Date();
+        localStorage.setItem('last_executed_time', JSON.stringify(currentTime));
+    }
+
+    var btnCheckNow = document.querySelector('.btn-check-now');
+    btnCheckNow.addEventListener('click', function () {
+        fetchIpAddressAndCheckStatus();
+    });
+
+    // Menetapkan event listener ke tombol-tombol
+    var btnSetInterval = document.querySelector('.btn-set-interval');
+    var btnStopInterval = document.querySelector('.btn-stop-interval');
+    var lastCheckedElement = document.getElementById('last-checked');
+
+    var lastCheckedTime = getLastCheckedTime();
+    if (lastCheckedTime) {
+        var options = {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric'
+        };
+        lastCheckedElement.textContent = 'Last Checked: ' + lastCheckedTime.toLocaleDateString(undefined, options);
+    }
+
+    btnSetInterval.addEventListener('click', function () {
+        var intervalValue = document.getElementById('interval').value;
+        intervalId = setInterval(function () {
+            fetchIpAddressAndCheckStatus();
+        }, intervalValue * 1000);
+        Swal.fire({
+            title: 'Interval Diatur!',
+            text: 'Interval sekarang diatur ke ' + intervalValue + ' detik.',
+            icon: 'success',
+            confirmButtonText: 'Oke'
         });
+    });
+
+    btnStopInterval.addEventListener('click', function () {
+        clearInterval(intervalId);
+        Swal.fire({
+            title: 'Interval Dihentikan',
+            text: 'Pengecekan server dihentikan.',
+            icon: 'info',
+            confirmButtonText: 'Oke'
+        });
+    });
+
+    // Fungsi untuk mendapatkan waktu terakhir diperiksa dari localStorage
+    function getLastCheckedTime() {
+        var lastCheckedTime = localStorage.getItem('last_executed_time');
+        if (lastCheckedTime) {
+            return new Date(JSON.parse(lastCheckedTime));
+        }
+        return null;
+    }
+});
+
     </script>
 
 

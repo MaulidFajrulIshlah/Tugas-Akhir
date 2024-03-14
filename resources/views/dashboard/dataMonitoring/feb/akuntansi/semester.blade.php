@@ -24,5 +24,7 @@
     </div>
 
     <script src="{{ asset('js/dataMonitoring/feb/akuntansi/semester.js') }}"></script>
+    <script src="{{ asset('js/token.js') }}"></script>
+
 
 @endsection

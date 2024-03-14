@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard/matkul.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-s5ZHIjGj9A0d7+akA5Bo2Z5X8UY6geDUNiiU5AG+5q5/5r+38WwF8BScPsz1Un9o/4C2lBXGiIbrI6vRjxc7fQ=="
@@ -23,7 +26,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.7.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.7.0/js/bootstrap.min.js"></script>
-    
+
+
+    {{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> --}}
+
 
 
     <!-- Google tag (gtag.js) -->
@@ -39,7 +45,6 @@
         gtag('config', 'G-26L022KCCB');
     </script>
 
-
 </head>
 
 <body>
@@ -53,7 +58,6 @@
         <!-- /#sidebar-wrapper -->
         <div class="container-fluid px-5" style="margin-top: 35px;">
 
-            <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
             @yield('content')
 
@@ -63,6 +67,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/checkServer.js') }}"></script>
+    <script src="{{ asset('js/token.js') }}"></script>
 
 
 

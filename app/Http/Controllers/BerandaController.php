@@ -6,10 +6,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
+use Spatie\SslCertificate\SslCertificate;
+use Illuminate\Support\Facades\File;
 
+use App\Models\LatestStatus; // pastikan sesuai dengan namespace dan lokasi model lo
 
 use App\Mail\SendEmail;
 use Carbon\Carbon;
+use App\Models\ServerStatus;
+
+
 
 class BerandaController extends Controller
 {
@@ -34,56 +41,38 @@ class BerandaController extends Controller
         }
     }
 
-
-    public function cekMasaBerakhirSSL(Request $request)
+    public function CheckStatusServer(Request $request)
     {
-        $context = stream_context_create([
-            "ssl" => [
-                "capture_peer_cert" => true,
-                "verify_peer" => false,
-                "verify_peer_name" => false,
-            ],
-        ]);
+        // Baca isi file.txt
+        $filePath = public_path('hasil_cek_server.txt');
+        $serverStatusData = File::exists($filePath) ? File::get($filePath) : "File.txt tidak ditemukan";
 
-        $hostname = "layar.yarsi.ac.id";
-        $res = stream_socket_client("ssl://" . $hostname . ":443", $errno, $errstr, 30, STREAM_CLIENT_CONNECT, $context);
+        // Ambil baris pertama dari isi file.txt
+        $lastLine = '';
 
-        if ($res) {
-            $params = stream_context_get_params($res);
-            $certificate = $params['options']['ssl']['peer_certificate'];
-            $valid_to = openssl_x509_parse($certificate)['validTo_time_t'];
-            $days_left = ($valid_to - time()) / (60 * 60 * 24);
-            $sslData = round($days_left);
+        if (File::exists($filePath)) {
+            // Pisahkan data berdasarkan baris baru
+            $lines = explode(PHP_EOL, $serverStatusData);
 
-            return view('dashboard.card.admin', ['days_left' =>  $sslData]);
-        } else {
-            return view('dashboard.card.admin', ['days_left' => 'Gagal mendapatkan informasi sertifikat SSL.']);
+            // Ambil baris pertama (data terbaru)
+            $lastLine = reset($lines);
         }
-    }
 
-    public function KirimEmailSSl(Request $request)
-    {
-        $context = stream_context_create([
-            "ssl" => [
-                "capture_peer_cert" => true,
-                "verify_peer" => false,
-                "verify_peer_name" => false,
-            ],
+        // Ambil data status server terakhir dari DB PANDAY
+        $lastServerStatus = ServerStatus::orderBy('checked_at', 'desc')->first();
+
+        // Ambil informasi SSL certificate
+        $url = 'https://layar.yarsi.ac.id/';
+        $certificate = SslCertificate::createForHostName($url);
+        $expirationDate = $certificate->expirationDate();
+        $now = now();
+        $daysUntilExpiration = $now->diffInDays($expirationDate);
+
+        // Render view dashboard.blade.php sambil kirim data status server, informasi SSL, dan isi file.txt
+        return view('dashboard/beranda', [
+            'lastServerStatus' => $lastServerStatus,
+            'daysUntilExpiration' => $daysUntilExpiration,
+            'lastLine' => $lastLine // Tambahkan baris terakhir ke data yang dikirim ke views
         ]);
-
-        $hostname = "layar.yarsi.ac.id";
-        $res = stream_socket_client("ssl://" . $hostname . ":443", $errno, $errstr, 30, STREAM_CLIENT_CONNECT, $context);
-
-        if ($res) {
-            $params = stream_context_get_params($res);
-            $certificate = $params['options']['ssl']['peer_certificate'];
-            $valid_to = openssl_x509_parse($certificate)['validTo_time_t'];
-            $days_left = ($valid_to - time()) / (60 * 60 * 24);
-            $sslData = round($days_left);
-
-            return view('cek-ssl', ['days_left' =>  $sslData]);
-        } else {
-            return view('cek-ssl', ['days_left' => 'Gagal mendapatkan informasi sertifikat SSL.']);
-        }
     }
 }

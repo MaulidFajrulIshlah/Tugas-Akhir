@@ -226,8 +226,8 @@ a {
     }
 }
 
-/* CSS untuk Card Offline YARSI dan Luar YARSI */
-#card-offline-yarsi .card-header,
+/* CSS untuk Card Offline dalam dan Luar dalam */
+#card-offline-dalam .card-header,
 #card-offline-luar .card-header {
     background-color: #ee0000;
     color: #fff;
@@ -238,8 +238,8 @@ a {
     font-weight: 600;
 }
 
-/* CSS untuk Card Online YARSI dan Luar YARSI */
-#card-online-yarsi .card-header,
+/* CSS untuk Card Online dalam dan Luar dalam */
+#card-online-dalam .card-header,
 #card-online-luar .card-header {
     background-color: #009d63;
     color: #fff;
@@ -262,22 +262,29 @@ a {
 
 /* CSS untuk semua Card body */
 
-#card-online-yarsi,
+#card-online-dalam,
 #card-online-luar,
-#card-offline-yarsi,
+#card-offline-dalam,
 #card-offline-luar,
 #card-error {
-    margin-bottom: 20px;
-    width: 50%;
-    position: relative;
-    left: 25%;
-    padding: 20px;
+    /* margin-bottom: 20px; */
+    width: 200%;
+    height: 100%;
+    /* padding: 20px; */
 }
 
 /* CSS untuk Card Title */
 .card-title {
     color: #000000;
     font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+}
+
+.card-text {
+    text-align: center;
+    font-size: 16px;
+    /* margin-bottom: 220px; */
 }
 
 /* CSS untuk Status Check */
@@ -289,7 +296,7 @@ a {
 }
 
 /* CSS untuk card view custom check interval */
-/* .card-new {
+.card-new {
     border: none;
     border-radius: 0px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -363,7 +370,7 @@ a {
 
 .card-new .btncheck:hover {
     background-color: #45a049;
-} */
+}
 
 .btn-custom-color {
     background-color: whitesmoke; /* Ganti kode warna dengan warna yang diinginkan */
@@ -371,8 +378,297 @@ a {
     border-color: #135f00;
 }
 
-.btn-custom-color:hover{
-    
+.btn-custom-color:hover {
     background-color: #135f00;
     color: whitesmoke;
+}
+
+.card-container {
+    display: flex;
+    width: 65%;
+    height: 100%;
+}
+
+.div-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 25px;
+}
+
+/* rekaptulasi rps */
+.rekap-container {
+    width: auto;
+    height: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 30px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    background-color: #f7f7f7;
+}
+
+/* Menambahkan ketinggian pada tabel */
+.scrollable-table {
+    height: 240px;
+    overflow: auto;
+}
+
+/* Menjadikan sel-sel tabel bisa di-scroll ke kanan */
+.scrollable-table table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.zoom-buttons {
+    margin-bottom: 10px;
+}
+
+/* ----mockup dashboard---- */
+
+h3,
+h4,
+h5 {
+    font-size: 16px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+.garis-separator {
+    border-bottom: 2px solid #c0c0c0;
+    margin: 10px;
+    /* Warna dan ketebalan garis bisa disesuaikan */
+}
+
+.parent .div1,
+.div2,
+.div3,
+.div4,
+.div5,
+.div6,
+.div7,
+.div8,
+.div9 {
+    border-radius: 5px;
+    /* border: 2px solid rgb(197, 197, 197); */
+    box-shadow: 1px 1px 7px rgb(187, 187, 187);
+    position: relative;
+    background-color: white;
+}
+
+/* container mockup */
+.mock-container-atas {
+    display: flex;
+    width: auto;
+    height: auto;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+.mock-container-bawah {
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
+}
+
+.mock-atas {
+    display: flex;
+    width: 100%;
+    height: 180px;
+    justify-content: space-between;
+}
+
+.mock-tengah {
+    display: flex;
+    height: 100%;
+    width: 120%;
+    justify-content: space-around;
+    gap: 10px;
+    left: 10px;
+    position: relative;
+}
+
+/* jumlah mata kuliah */
+.div4 {
+    grid-area: 2 / 1 / 4 / 3;
+    width: 60%;
+    height: 120%;
+    position: relative;
+    right: 10px;
+    /* bottom: 100px; */
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.body-matkul {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 25px;
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+
+/* <!-- Informasi Umum --> */
+.div5 {
+    /* grid-area: 2 / 3 / 3 / 4; */
+    width: 47%;
+    height: 100%;
+    /* bottom: 100px; */
+}
+
+/* {{-- integrasi dengan spada --}} */
+.div6 {
+    grid-area: 3 / 3 / 4 / 4;
+    width: 45%;
+    height: auto;
+    /* bottom: 190px; */
+}
+
+/* <!-- Statistik --> */
+.div7 {
+    grid-area: 4 / 3 / 5 / 4;
+    width: 33%;
+    height: auto;
+    /* bottom: 320px; */
+}
+
+/* {{-- aktivitas terbanyak --}} */
+.div8 {
+    grid-area: 4 / 2 / 5 / 3;
+    width: 33%;
+    height: 100%;
+    /* bottom: 320px; */
+}
+
+/* {{-- lengkap administratif --}} */
+.div9 {
+    grid-area: 4 / 1 / 5 / 2;
+    width: 33%;
+    height: 100%;
+    /* bottom: 320px; */
+}
+
+/* dropdown */
+.dropbtn {
+    background-color: #ececec;
+    color: rgb(34, 34, 34);
+    padding: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+    color: #ececec;
+}
+
+/* dropup */
+.dropup {
+    position: relative;
+    display: inline-block;
+}
+
+.dropup-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    bottom: 35px;
+    z-index: 1;
+}
+
+.dropup-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropup-content a:hover {
+    background-color: #ccc;
+}
+
+.dropup:hover .dropup-content {
+    display: block;
+}
+
+.dropup:hover .dropbtn {
+    background-color: #2980b9;
+}
+
+/* dropup */
+
+.card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.online,
+.offline {
+    color: #fff;
+    padding: 8px; /* Biar lebih cetar membahana */
+}
+
+.card-header {
+    font-size: 24px;
+    margin-bottom: 10px;
+    padding: 15px; /* Biar makin kece card-headernya */
+}
+
+.card-body {
+    font-size: 16px;
+}
+
+.online {
+    background-color: #28a745;
+}
+
+.offline {
+    background-color: #dca235;
 }

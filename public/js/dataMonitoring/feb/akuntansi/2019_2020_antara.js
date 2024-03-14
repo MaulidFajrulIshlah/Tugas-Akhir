@@ -1,10 +1,11 @@
 async function updateData() {
+  
   const matkul = [];
   let nomor = 1;
   const courses = await $.ajax({
     type: 'GET',
     dataType: 'json',
-    url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=fc68a1de6a0eb7fcca7d8dafc5ce53a9&wsfunction=core_course_get_courses&moodlewsrestformat=json',
+    url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken='+tokenApi+'&wsfunction=core_course_get_courses&moodlewsrestformat=json',
     cache: true,
   });
 
@@ -21,7 +22,7 @@ async function updateData() {
       const quizzes = await $.ajax({
         type: 'GET',
         dataType: 'json',
-        url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wsfunction=mod_quiz_get_quizzes_by_courses&wstoken=fc68a1de6a0eb7fcca7d8dafc5ce53a9&moodlewsrestformat=json&courseids[0]=' + idMatkul,
+        url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wsfunction=mod_quiz_get_quizzes_by_courses&wstoken='+tokenApi+'&moodlewsrestformat=json&courseids[0]=' + idMatkul,
       });
 
       jumlahKuis = quizzes.quizzes.length;
@@ -29,7 +30,7 @@ async function updateData() {
       const assignments = await $.ajax({
         type: 'GET',
         dataType: 'json',
-        url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=fc68a1de6a0eb7fcca7d8dafc5ce53a9&wsfunction=mod_assign_get_assignments&moodlewsrestformat=json&courseids[0]=' + idMatkul,
+        url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken='+tokenApi+'&wsfunction=mod_assign_get_assignments&moodlewsrestformat=json&courseids[0]=' + idMatkul,
       });
 
       // Menghitung jumlah tugas
@@ -46,7 +47,7 @@ async function updateData() {
       const resources = await $.ajax({
         type: 'GET',
         dataType: 'json',
-        url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=fc68a1de6a0eb7fcca7d8dafc5ce53a9&wsfunction=mod_resource_get_resources_by_courses&moodlewsrestformat=json&courseids[0]=' + idMatkul,
+        url: 'https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken='+tokenApi+'&wsfunction=mod_resource_get_resources_by_courses&moodlewsrestformat=json&courseids[0]=' + idMatkul,
       });
 
       // Menghitung jumlah kegiatan belajar per pertemuan

@@ -11,7 +11,11 @@ use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\AkademikController;
 use App\Http\Controllers\MasterPenggunaController;
 use App\Http\Controllers\PengecekanServerController;
+use App\Http\Controllers\RekaptulasiRpsController;
 use Illuminate\Support\Facades\Request;
+
+use App\Http\Controllers\DashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +45,7 @@ Route::redirect('/', '/login');
 
 Route::middleware('auth')->group(function () {
     // Beranda
-    Route::get('/dashboard/beranda', [BerandaController::class, 'index'])->name('beranda');
+    Route::get('/dashboard/beranda', [BerandaController::class, 'CheckStatusServer'])->name('beranda');
 
     // Mata Kuliah
     Route::get('/dashboard/matakuliah', [MataKuliahController::class, 'index'])->name('mataKuliah');
@@ -51,15 +55,12 @@ Route::middleware('auth')->group(function () {
 
     // Pengecekan Server
     Route::get('/dashboard/pengecekanserver', [PengecekanServerController::class, 'index'])->name('pengecekanServer');
-    
-    // Pengecekan SSL
-    Route::get('/dashboard/beranda', [BerandaController::class, 'cekMasaBerakhirSSL'])->name('beranda');
-    Route::post('/dashboard/beranda', [BerandaController::class, 'cekMasaBerakhirSSL'])->name('ssl.check');
 
-    // Pengecekan SSL
-    Route::get('/dashboard/beranda/cek-ssl', [BerandaController::class, 'KirimEmailSSl'])->name('beranda.ssl');
-    Route::post('/dashboard/beranda/cek-ssl', [BerandaController::class, 'KirimEmailSSl'])->name('ssl.check');
+    // Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index']);
 });
+
+
 
 
 // Master Data
