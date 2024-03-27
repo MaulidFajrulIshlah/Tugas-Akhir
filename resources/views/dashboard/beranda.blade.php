@@ -81,7 +81,7 @@
         {{-- Jumlah mata kuliah --}}
         <div class="div4">
             <div class="head-matkul">
-                <h2><strong>Jumlah Mata Kuliah</strong> </h2>
+                <h2><strong>Jumlah Mata Kuliah kukukukukukuy</strong> </h2>
             </div>
             <div class="body-matkul">
                 <div>
