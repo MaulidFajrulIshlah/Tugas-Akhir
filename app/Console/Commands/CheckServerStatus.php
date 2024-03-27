@@ -50,7 +50,7 @@ class CheckServerStatus extends Command
             // Memasukkan hasil cek server ke database
             $this->saveToDatabase($location, $httpStatus);
             // Memasukkan hasil cek server ke txt
-            $this->simpanHasilCekServerKeFile($httpStatus === 00 ? "Online" : "Offline", $location,);
+            $this->simpanHasilCekServerKeFile($httpStatus === 200 ? "Online" : "Offline", $location,);
 
 
             if ($httpStatus === 200) {

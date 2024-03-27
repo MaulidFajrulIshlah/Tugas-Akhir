@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
+
 }
 
 :root {
@@ -114,7 +115,7 @@ header {
 }
 
 .navSidebar.active,
-.nav-item > .nav-link.active {
+.nav-item>.nav-link.active {
     background-color: var(--main-text-color);
 }
 
@@ -158,7 +159,7 @@ header {
     white-space: nowrap;
 }
 
-ul > li {
+ul>li {
     list-style: none;
 }
 
@@ -197,6 +198,7 @@ a {
 }
 
 @media (max-width: 546px) {
+
     .content,
     table {
         width: 100%;
@@ -249,6 +251,7 @@ a {
     margin-bottom: 20px;
     font-weight: 600;
 }
+
 /* CSS untuk Card Online Error saat mengecek server */
 
 #card-error .card-header {
@@ -373,8 +376,11 @@ a {
 }
 
 .btn-custom-color {
-    background-color: whitesmoke; /* Ganti kode warna dengan warna yang diinginkan */
-    color: black; /* Warna teks pada tombol */ /* Hilangkan border jika diinginkan */
+    background-color: whitesmoke;
+    /* Ganti kode warna dengan warna yang diinginkan */
+    color: black;
+    /* Warna teks pada tombol */
+    /* Hilangkan border jika diinginkan */
     border-color: #135f00;
 }
 
@@ -459,9 +465,10 @@ h2 {
 .div9 {
     border-radius: 5px;
     /* border: 2px solid rgb(197, 197, 197); */
-    box-shadow: 1px 1px 7px rgb(187, 187, 187);
+    box-shadow: 2px 1px 10px rgb(187, 187, 187);
     position: relative;
-    background-color: white;
+    background-color: #f1f1f1;
+    color: rgb(72, 72, 72);
 }
 
 /* container mockup */
@@ -505,17 +512,36 @@ h2 {
     position: relative;
     right: 10px;
     /* bottom: 100px; */
-    background-color: #ffffff;
-    padding: 20px;
+    /* padding-bottom: 20px; */
+}
+
+.head-matkul {
+    background-color: #3c8ccf;
+    padding: 10px;
+    color: rgb(233, 242, 250);
+    text-align: center;
+}
+
+.head-info {
+    background-color: #009d63;
+    /* background-color: #b2d1c6; */
+
+    text-align: center;
+}
+
+.head-info>h2 {
+    padding: 15px;
+    color: rgb(240, 240, 240);
 }
 
 .body-matkul {
-    margin-left: 20px;
+    margin-left: 0px;
     margin-right: 20px;
-    margin-top: 25px;
+    /* margin-top: 25px; */
     display: flex;
     width: 100%;
     height: auto;
+    background-color: rgb(221, 233, 243);
 }
 
 /* <!-- Informasi Umum --> */
@@ -557,6 +583,41 @@ h2 {
     height: 100%;
     /* bottom: 320px; */
 }
+
+/* chart-tengah */
+.chart-tengah-donat {
+    width: 60%;
+    max-height: auto;
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /* padding: 10px; */
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 2px solid #009d63;
+
+}
+
+.chart-tengah-bar {
+    width: 40%;
+    height: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.chart-tengah-donat-isi {
+    text-align: center;
+    row-gap: 20px;
+    height: 100%;
+    width: auto;
+}
+
+#jurusan {
+    border: none;
+    box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+
 
 /* dropdown */
 .dropbtn {
@@ -639,10 +700,44 @@ h2 {
     background-color: #2980b9;
 }
 
+
 /* dropup */
+
+.card-server.online {
+    width: 60%;
+    border-radius: 5px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    align-items: center;
+    box-shadow: 1px 1px 5px 0px grey;
+    background: rgb(24, 99, 26);
+    background: -moz-linear-gradient(129deg, rgba(24, 99, 26, 1) 12%, rgba(27, 101, 29, 1) 34%, rgba(236, 242, 236, 1) 100%);
+    background: -webkit-linear-gradient(129deg, rgba(24, 99, 26, 1) 12%, rgba(27, 101, 29, 1) 34%, rgba(236, 242, 236, 1) 100%);
+    background: linear-gradient(129deg, rgba(24, 99, 26, 1) 12%, rgba(27, 101, 29, 1) 34%, rgba(236, 242, 236, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#18631a", endColorstr="#ecf2ec", GradientType=1);
+}
+
+.card-server.offline {
+    width: 60%;
+    border-radius: 5px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    align-items: center;
+    box-shadow: 1px 1px 5px 0px grey;
+    background: rgb(117, 5, 5);
+    background: -moz-linear-gradient(128deg, rgba(117, 5, 5, 1) 21%, rgba(255, 235, 235, 1) 100%);
+    background: -webkit-linear-gradient(128deg, rgba(117, 5, 5, 1) 21%, rgba(255, 235, 235, 1) 100%);
+    background: linear-gradient(128deg, rgba(117, 5, 5, 1) 21%, rgba(255, 235, 235, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#750505", endColorstr="#ffebeb", GradientType=1);
+}
 
 .card {
     border: 1px solid #ddd;
+    width: 30%;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
@@ -652,23 +747,90 @@ h2 {
 .online,
 .offline {
     color: #fff;
-    padding: 8px; /* Biar lebih cetar membahana */
+    /* padding: 8px; */
 }
 
-.card-header {
-    font-size: 24px;
-    margin-bottom: 10px;
-    padding: 15px; /* Biar makin kece card-headernya */
+
+.card-header-server {
+    font-size: 64px;
+    /* margin-bottom: 20px;
+    padding: 10px; */
+    /* Biar makin kece card-headernya */
+    text-align: left;
+    font-weight: 600;
+    text-transform: capitalize;
+    border-radius: 5px;
+    width: 100%;
+
 }
 
-.card-body {
-    font-size: 16px;
+.card-body-server {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+    width: 100%;
+    height: 100%;
+    color: #f1f1f1;
+    /* background-color: #d9fbd9; */
+    /* display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center; */
 }
 
-.online {
-    background-color: #28a745;
+.chart-tengah {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
-.offline {
-    background-color: #dca235;
+.card-ssl {
+    width: 39%;
+    background: rgb(24, 99, 26);
+    background: -moz-linear-gradient(230deg, rgba(24, 99, 26, 1) 12%, rgba(27, 101, 29, 1) 34%, rgba(236, 242, 236, 1) 100%);
+    background: -webkit-linear-gradient(230deg, rgba(24, 99, 26, 1) 12%, rgba(27, 101, 29, 1) 34%, rgba(236, 242, 236, 1) 100%);
+    background: linear-gradient(230deg, rgba(24, 99, 26, 1) 12%, rgba(27, 101, 29, 1) 34%, rgba(236, 242, 236, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#18631a", endColorstr="#ecf2ec", GradientType=1);
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body-ssl {
+    width: auto;
+    height: 100%;
+    padding: 15px;
+}
+
+.card-content-ssl {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: #f1f1f1;
+}
+
+.right-content-ssl {
+    text-align: right;
+    width: 100%;
+    padding-bottom: 10px;
+    position: relative;
+    bottom: 12px;
+}
+
+.right-content-ssl>h1 {
+    font-size: 72px;
+}
+
+.right-content-ssl>h2 {
+    font-size: 20px;
+}
+
+.right-content-ssl>p {
+    font-size: 20px;
+}
+
+.right-content-ssl>p>span {
+    font-weight: 700;
 }
