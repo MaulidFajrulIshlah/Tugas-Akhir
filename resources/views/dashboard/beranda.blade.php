@@ -51,7 +51,7 @@
     </div>
     @endif
 
-    
+
 
     <div class="card-ssl">
         <div class="card-body-ssl">
@@ -78,7 +78,7 @@
         </div>
         <div class="body-matkul">
             <div>
-                <canvas id="myChart" style="width:400px; height: auto; padding-top: 20px; margin-left:20px"></canvas>
+                <canvas id="myChart" style="width:400px; height: px; padding-top: 20px; margin-left:20px"></canvas>
             </div>
             <div style="margin-left: 50px; margin-top: 25px; width: 20px;">
                 <h3>Total: <strong id="total">3381</strong></h3>
@@ -261,6 +261,54 @@
     </div>
 </div>
 
+<!-- Information container -->
+<div class="info-container">
+    <div class="info-header">
+        <h1>Informasi Mata Kuliah</h1>
+    </div>
+    <div class="info-content">
+        <div class="content-container">
+            <div class="content-header">
+                <h2>Mata Kuliah Saat Ini</h2>
+            </div>
+            <div class="content">
+                <h1>113/129</h1>
+            </div>
+        </div>
+        <div class="content-container">
+            <div class="content-header">
+                <h2>Update Layar</h2>
+            </div>
+            <div class="content">
+                <p>Tidak ada perubahan baru</p>
+                <p>Terakhir diperbarui:</p>
+                <p style="font-weight:700">{{ $lastServerStatus->checked_at }}</p>
+            </div>
+        </div>
+        <div class="content-container">
+            <div class="content-header">
+                <h2>Penyelesaian Course</h2>
+            </div>
+            <div class="content">
+                <h1>21%</h1>
+            </div>
+        </div>
+        <div class="content-container">
+            <div class="content-header">
+                <h2>Akses Terbanyak</h2>
+            </div>
+            <div class="content">
+                <p>Mata kuliah A</p>
+                <p>Mata kuliah A</p>
+                <p>Mata kuliah A</p>
+                <p>Mata kuliah A</p>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
 <!-- Bootstrap JS (untuk fitur tertentu yang menggunakan JavaScript) -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -285,11 +333,28 @@
                 // Jika dipilih "akuntansi", ubah nilai Total dan Semester Berjalan
                 totalElement.textContent = "293";
                 semesterElement.textContent = "86";
+            } else if (selectedValue === "manajemen") {
+                totalElement.textContent = "241";
+                semesterElement.textContent = "54";
+            } else if (selectedValue === "teknologi_informasi") {
+                totalElement.textContent = "132";
+                semesterElement.textContent = "78";
+            } else if (selectedValue === "hukum") {
+                totalElement.textContent = "167";
+                semesterElement.textContent = "73";
+            } else if (selectedValue === "perpustakaan") {
+                totalElement.textContent = "212";
+                semesterElement.textContent = "55";
+            } else if (selectedValue === "psikologi") {
+                totalElement.textContent = "151";
+                semesterElement.textContent = "89";
             } else {
                 // Jika dipilih opsi lain, kembalikan nilai Total dan Semester Berjalan ke nilai awal
                 totalElement.textContent = "3381";
                 semesterElement.textContent = "130";
             }
+
+
         });
     });
 </script>
@@ -324,10 +389,9 @@
 
 
 <script>
-    var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-    var yValues1 = [200, 180, 78, 24, 15];
-    var yValues2 = [30, 42, 33, 22, 18];
-    var yValues3 = [18, 32, 27, 20, 12];
+    var yValues1 = [200, 180, 178]; //punya ganjil
+    var yValues2 = [323, 146, 232]; //punya genap
+    var yValues3 = [126, 251, 231]; //punya antara
     var barColors1 = ["red", "green", "blue", "orange", "brown"];
     var barColors2 = ["lightcoral", "lightgreen", "lightblue", "lightsalmon", "sandybrown"];
     var barColors3 = ["salmon", "limegreen", "deepskyblue", "darkorange", "peru"];
@@ -335,21 +399,21 @@
     new Chart("myChart", {
         type: "bar",
         data: {
-            labels: ["2021/2022", "2021/2022", "2021/2022"],
+            labels: ["2021/2022", "2022/2023", "2023/2024"],
             datasets: [{
                     label: "Ganjil",
                     backgroundColor: barColors1[0],
-                    data: [yValues1[0], yValues1[0], yValues1[0]],
+                    data: [yValues1[0], yValues1[1], yValues1[2]],
                 },
                 {
                     label: "Genap",
                     backgroundColor: barColors1[1],
-                    data: [yValues1[1], yValues1[1], yValues1[1]],
+                    data: [yValues2[0], yValues2[1], yValues2[2]],
                 },
                 {
                     label: "Antara",
                     backgroundColor: barColors1[2],
-                    data: [yValues1[2], yValues1[2], yValues1[2]],
+                    data: [yValues3[0], yValues3[1], yValues3[2]],
                 },
                 // Repeat the same for other countries and categories...
             ],
@@ -387,6 +451,16 @@
             if (selectedValue === "akuntansi") {
                 // Jika dipilih "Akuntansi", perbarui data chart
                 updateChartForAkuntansi();
+            } else if (selectedValue === "manajemen") {
+                updateChartForManajemen();
+            } else if (selectedValue === "teknologi_informasi") {
+                updateChartForTeknologi();
+            } else if (selectedValue === "hukum") {
+                updateChartForHukum();
+            } else if (selectedValue === "perpustakaan") {
+                updateChartForPerpustakaan();
+            } else if (selectedValue === "psikologi") {
+                updateChartForPsikologi();
             } else {
                 // Jika dipilih opsi lain, kembalikan data chart ke nilai awal
                 restoreDefaultChart();
@@ -396,17 +470,81 @@
 
     // Fungsi untuk memperbarui data chart untuk "Akuntansi"
     function updateChartForAkuntansi() {
-        var newValues1 = [254, 89, 94, 78, 99];
+        var newValues1 = [193, 136, 221];
+        var newValues2 = [278, 124, 168];
+        var newValues3 = [232, 158, 295];
         var chart = Chart.getChart("myChart");
         chart.data.datasets[0].data = newValues1;
+        chart.data.datasets[1].data = newValues2;
+        chart.data.datasets[2].data = newValues3;
         chart.update();
     }
 
+    function updateChartForManajemen() {
+        var newValues1 = [157, 271, 203];
+        var newValues2 = [188, 126, 212];
+        var newValues3 = [297, 134, 169];
+        var chart = Chart.getChart("myChart");
+        chart.data.datasets[0].data = newValues1;
+        chart.data.datasets[1].data = newValues2;
+        chart.data.datasets[2].data = newValues3;
+        chart.update();
+    }
+
+    function updateChartForTeknologi() {
+        var newValues1 = [239, 185, 123];
+        var newValues2 = [173, 248, 287];
+        var newValues3 = [265, 153, 212];
+        var chart = Chart.getChart("myChart");
+        chart.data.datasets[0].data = newValues1;
+        chart.data.datasets[1].data = newValues2;
+        chart.data.datasets[2].data = newValues3;
+        chart.update();
+    }
+
+    function updateChartForHukum() {
+        var newValues1 = [178, 249, 212];
+        var newValues2 = [197, 268, 137];
+        var newValues3 = [298, 142, 205];
+        var chart = Chart.getChart("myChart");
+        chart.data.datasets[0].data = newValues1;
+        chart.data.datasets[1].data = newValues2;
+        chart.data.datasets[2].data = newValues3;
+        chart.update();
+    }
+
+    function updateChartForPerpustakaan() {
+        var newValues1 = [123, 276, 141];
+        var newValues2 = [235, 171, 199];
+        var newValues3 = [281, 144, 288];
+        var chart = Chart.getChart("myChart");
+        chart.data.datasets[0].data = newValues1;
+        chart.data.datasets[1].data = newValues2;
+        chart.data.datasets[2].data = newValues3;
+        chart.update();
+    }
+
+    function updateChartForPsikologi() {
+        var newValues1 = [216, 145, 193];
+        var newValues2 = [135, 286, 152];
+        var newValues3 = [271, 124, 231];
+        var chart = Chart.getChart("myChart");
+        chart.data.datasets[0].data = newValues1;
+        chart.data.datasets[1].data = newValues2;
+        chart.data.datasets[2].data = newValues3;
+        chart.update();
+    }
+
+
     // Fungsi untuk mengembalikan data chart ke nilai awal
     function restoreDefaultChart() {
-        var defaultValues1 = [200, 180, 78, 24, 15];
+        var defaultValues1 = [200, 180, 178, 124, 150];
+        var defaultValues2 = [323, 146, 232, 234, 141];
+        var defaultValues3 = [126, 251, 231, 127, 156];
         var chart = Chart.getChart("myChart");
         chart.data.datasets[0].data = defaultValues1;
+        chart.data.datasets[1].data = defaultValues2;
+        chart.data.datasets[2].data = defaultValues3;
         chart.update();
     }
 </script>
