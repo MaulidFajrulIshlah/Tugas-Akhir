@@ -14,6 +14,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('app:check-server')->everyMinute();
         $schedule->command('app:check-server-status')->everyMinute();
+        $schedule->exec('php C:\CODINGAN\TugasAkhir\Tugas-Akhir\public\spada-yarsi.php')->everyMinute()
+                ->appendOutputTo(storage_path('logs/laravel.log'));
         // $schedule->command('check:server-status')->everyMinute();
 
 

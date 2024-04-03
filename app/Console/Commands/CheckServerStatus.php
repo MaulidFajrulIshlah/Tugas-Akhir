@@ -86,7 +86,7 @@ private function simpanHasilCekServerKeFile($status, $location)
     // Menyimpan hasil cek server ke dalam file.txt di dalam direktori public
     $filePath = public_path('hasil_cek_server.txt');
     $waktu = now()->format('Y-m-d H:i:s');
-    $info = "Time: $waktu | Status: $status | Location: $location";
+    $info = "$waktu | $status | $location";
     $info .= PHP_EOL; // Tambahkan newline character
 
     // Buka berkas dengan mode append
