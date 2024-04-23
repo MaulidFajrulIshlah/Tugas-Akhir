@@ -35,7 +35,7 @@
 </div> <!-- /row g-3 my-3 --> --}}
 
 <div class="mock-atas">
-<!-- @if (!empty($lastLine))
+    <!-- @if (!empty($lastLine))
     <div class="card">
         <div class="card-header">Status Terbaru</div>
         <div class="card-body">
@@ -50,7 +50,7 @@
         </div>
     </div>
     @endif -->
-    @if (!empty($lastLine))
+
     <?php
     // Memecah string menjadi array berdasarkan karakter "|"
     $data = explode('|', $lastLine);
@@ -60,16 +60,17 @@
     $statusServer = trim($data[1]);
     $location = trim($data[2]);
     ?>
-    <div class="server-container">
-        <div class="server-header">
-            <h1>Status Server</h1>
+
+@if (!empty($lastLine))
+        <div class="server-container">
+            <div class="server-header">
+                <h1>Status Server</h1>
+            </div>
+            <div class="server-body">
+                <p style="font-weight:600; font-size:24px; text-transform:capitalize">{{ $statusServer }} | <span style="font-weight: 400;">{{ $location }} </span> </p>
+                <p style="font-weight: 500;">{{ $time }}</p>
+            </div>
         </div>
-        <div class="server-body">
-            <p style="font-weight:600; font-size:24px">{{ $statusServer }}</p>
-            <p>Anda sedang memakai jaringan <span style="text-transform: capitalize; font-weight:600">{{ $location }}</span> YARSI</p>
-            <p>{{ $time }}</p>
-        </div>
-    </div>
 @else
     <div class="server-container">
         <div class="server-header">
@@ -80,9 +81,6 @@
         </div>
     </div>
 @endif
-
-
-
 
     <div class="card-ssl">
         <div class="card-body-ssl">
@@ -337,14 +335,6 @@
         </div>
     </div>
 </div>
-
-<div class="apakek`">
-        @if($spadaStatus === 'terdaftar')
-            YARSI sudah terkoneksi dengan SPADA. {{$spadaStatus}}
-        @else
-            YARSI belum terkoneksi dengan SPADA.{{$spadaStatus}}
-        @endif
-    </div>
 
 <!-- Bootstrap JS (untuk fitur tertentu yang menggunakan JavaScript) -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
