@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\CheckSpada; // Pastikan untuk mengimpor command CheckSpada
 
 class Kernel extends ConsoleKernel
 {
@@ -14,11 +15,10 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('app:check-server')->everyMinute();
         $schedule->command('app:check-server-status')->everyMinute();
-        $schedule->exec('php C:\CODINGAN\TugasAkhir\Tugas-Akhir\public\spada-yarsi.php')->everyMinute()
-                ->appendOutputTo(storage_path('logs/laravel.log'));
-        // $schedule->command('check:server-status')->everyMinute();
-
-
+        // $schedule->exec('php C:\CODINGAN\TugasAkhir\Tugas-Akhir\public\spada-yarsi.php')
+        //     ->everyMinute()
+        //     ->appendOutputTo(storage_path('logs/laravel.log'));
+        $schedule->command(CheckSpada::class)->everyMinute();
 
     }
 
@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

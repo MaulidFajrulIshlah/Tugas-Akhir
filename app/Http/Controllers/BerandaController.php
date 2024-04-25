@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Spatie\SslCertificate\SslCertificate;
 use Illuminate\Support\Facades\File;
+use App\Models\DataSpada; // Import model DataSpada
+
 
 use App\Models\LatestStatus; // pastikan sesuai dengan namespace dan lokasi model lo
 
@@ -20,8 +22,6 @@ use App\Models\ServerStatus;
 
 class BerandaController extends Controller
 {
-    //
-
     public function index()
     {
         if (!session('id_role')) {
@@ -68,11 +68,15 @@ class BerandaController extends Controller
         $now = now();
         $daysUntilExpiration = $now->diffInDays($expirationDate);
 
-        // Render view dashboard.blade.php sambil kirim data status server, informasi SSL, dan isi file.txt
+        // Ambil data dari SPADA
+        $spadaResult = DataSpada::where('universitas', 'Institut gak ada')->first();
+
+        // Render view dashboard.blade.php sambil kirim data status server, informasi SSL, hasil SPADA, dan isi file.txt
         return view('dashboard/beranda', [
             'lastServerStatus' => $lastServerStatus,
             'daysUntilExpiration' => $daysUntilExpiration,
-            'lastLine' => $lastLine // Tambahkan baris terakhir ke data yang dikirim ke views
+            'lastLine' => $lastLine, // Tambahkan baris terakhir ke data yang dikirim ke views
+            'spadaResult' => $spadaResult, // Kirim hasil SPADA ke views
         ]);
     }
 }
