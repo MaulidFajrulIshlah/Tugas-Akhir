@@ -34,70 +34,12 @@
 </div>
 </div> <!-- /row g-3 my-3 --> --}}
 
-<<<<<<< HEAD
         <div class="mock-atas">
             <!-- @if (!empty($lastLine))
     <div class="card">
                 <div class="card-header">Status Terbaru</div>
                 <div class="card-body">
                     <p>{{ $lastLine }}</p>
-=======
-<div class="mock-atas">
-    <!-- @if (!empty($lastLine))
-    <div class="card">
-        <div class="card-header">Status Terbaru</div>
-        <div class="card-body">
-            <p>{{ $lastLine }}</p>
-        </div>
-    </div>
-    @else
-    <div class="card">
-        <div class="card-header">Tidak Ada Data</div>
-        <div class="card-body">
-            <p>Data status tidak tersedia saat ini.</p>
-        </div>
-    </div>
-    @endif -->
-
-    <?php
-    // Memecah string menjadi array berdasarkan karakter "|"
-    $data = explode('|', $lastLine);
-
-    // Menghapus spasi di awal dan akhir setiap elemen array
-    $time = trim($data[0]);
-    $statusServer = trim($data[1]);
-    $location = trim($data[2]);
-    ?>
-
-@if (!empty($lastLine))
-        <div class="server-container">
-            <div class="server-header">
-                <h1>Status Server</h1>
-            </div>
-            <div class="server-body">
-                <p style="font-weight:600; font-size:24px; text-transform:capitalize">{{ $statusServer }} | <span style="font-weight: 400;">{{ $location }} </span> </p>
-                <p style="font-weight: 500;">{{ $time }}</p>
-            </div>
-        </div>
-@else
-    <div class="server-container">
-        <div class="server-header">
-            <h1>Status Server</h1>
-        </div>
-        <div class="server-body">
-            <p>Tidak ada data!</p>
-        </div>
-    </div>
-@endif
-
-    <div class="card-ssl">
-        <div class="card-body-ssl">
-            <div class="card-content-ssl">
-                <div class="right-content-ssl">
-                    <h1>SSL</h1>
-                    <p>Masa tenggang <span>{{ $daysUntilExpiration }}</span> hari lagi</p>
-                    <p style="font-weight: 500;">{{ $lastServerStatus->checked_at }}</p>
->>>>>>> 3b4dfd0cffce426c18ecb8591d37577ac50368c7
                 </div>
             </div>
 @else
