@@ -798,16 +798,25 @@ h2 {
 
 .server-container{
     width: 59%;
-    background-color: rebeccapurple;
+    /* background-color: rebeccapurple; */
     height: 100%;
     max-height: 200px;
+    background-image: radial-gradient(#1c6b4e 2px, transparent 2px), radial-gradient(#1c6b4e 2px, transparent 2px);
+    background-size: 56px 56px;
+    background-position: 0 0, 28px 28px;
+    background-color: #009d63;
+    color: #ececec;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 
 .server-header{
     width: 100%;
     height: auto;
-    background-color: blue;
-    padding: 10px 10px 0px 10px m;
+    /* background-color: blue; */
+    padding: 10px 10px 0px 10px;
+
 }
 
 .server-body{
@@ -816,7 +825,7 @@ h2 {
     display: flex;
     /* align-items: center; */
     justify-content: space-evenly;
-    background-color: red;
+    /* background-color: red; */
     font-size: 20px;
     flex-direction: column;
     line-height: 10px;
