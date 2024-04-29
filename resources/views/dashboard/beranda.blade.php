@@ -354,19 +354,12 @@
             </div>
         </div>
 
-<<<<<<< HEAD
         
 
         <!-- Bootstrap JS (untuk fitur tertentu yang menggunakan JavaScript) -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-=======
-<!-- Bootstrap JS (untuk fitur tertentu yang menggunakan JavaScript) -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
->>>>>>> 3b4dfd0cffce426c18ecb8591d37577ac50368c7
 
         <script>
             document.addEventListener("DOMContentLoaded", function() {
