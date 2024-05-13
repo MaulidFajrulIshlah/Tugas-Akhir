@@ -1,1 +1,1 @@
-var tokenApi = '76debee2b62a3d38a48963f60b5c76ee';
+var tokenApi = '7806baea3070ce31a56406264a241c4a';
