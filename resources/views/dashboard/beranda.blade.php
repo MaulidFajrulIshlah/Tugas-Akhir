@@ -71,17 +71,15 @@
             <div class="card-content-ssl">
                 <div class="right-content-ssl">
                     <h1>SSL</h1>
-                    <p>Masa tenggang <span>{{ $daysUntilExpiration }}</span> hari lagi</p>
-                    <p style="font-weight: 500;">{{ $lastServerStatus->checked_at }}</p>
+                    <p>Masa tenggang <span>{{ $daysUntilExpiration }}</span> hari lagi <br> {{ $lastServerStatus->checked_at }}</p>
                 </div>
             </div>
 
         </div>
     </div>
+
     @yield('card')
 </div>
-
-
 
 <div class="info-header">
     <h1>Informasi Mata Kuliah</h1>
@@ -90,19 +88,22 @@
 <div class="main-container-sort">
     <div class="content-container-sort">
         <div class="left-container-sort">
-            <label for="jurusan" style="font-weight: 600; font-size: 16px; color: whitesmoke;">Semester:</label>
+            <label for="jurusan" style="font-weight: 600; font-size: 16px;">Tahun Ajaran</label>
             <select id="jurusan" name="jurusan">
                 <option value="akuntansi">Semua</option>
-                <option value="akuntansi">Akuntansi</option>
-                <option value="manajemen">Manajemen</option>
-                <option value="teknologi_informasi">Teknologi Informasi</option>
-                <option value="hukum">Hukum</option>
+                <option value="akuntansi">Genap 2023/2024</option>
+                <option value="perpustakaan">Ganjil 2023/2024</option>
+                <option value="manajemen">Genap 2022/2023</option>
+                <option value="hukum">Ganjil 2022/2023</option>
+                <option value="teknologi_informasi">Genap 2021/2022</option>
+                <option value="psikologi">Ganjil 2021/2022</option>
+                <!-- <option value="hukum">Hukum</option>
                 <option value="perpustakaan">Perpustakaan</option>
-                <option value="psikologi">Psikologi</option>
+                <option value="psikologi">Psikologi</option> -->
             </select>
         </div>
         <div class="right-container-sort">
-            <label for="jurusan" style="font-weight: 600; font-size: 16px; color: whitesmoke;">Prodi:</label>
+            <label for="jurusan" style="font-weight: 600; font-size: 16px;">Prodi:</label>
             <select id="jurusan" name="jurusan">
                 <option value="akuntansi">Semua</option>
                 <option value="akuntansi">Akuntansi</option>
@@ -134,9 +135,9 @@
             </div>
         </div>
         <div class="content-1">
-            <div class="c1-header">Jumlah dosen terdaftar</div>
+            <div class="c1-header">Jumlah mahasiswa aktif</div>
             <div class="c1-content">
-                <p>64</p>
+                <p>802</p>
             </div>
         </div>
         <div class="content-3">
@@ -163,7 +164,7 @@
                 <p>Total: <strong id="total">3381</strong></p>
                 <p>Semester Berjalan: <strong id="semester">130</strong></p>
                 <!-- <div class="garis-separator"></div> -->
-                <label for="jurusan">Filter:</label>
+                <!-- <label for="jurusan">Filter:</label>
                 <select id="jurusan" name="jurusan" style="width: 20%;">
                     <option value="semua">Semua</option>
                     <option value="akuntansi">Akuntansi</option>
@@ -172,7 +173,7 @@
                     <option value="hukum">Hukum</option>
                     <option value="perpustakaan">Perpustakaan</option>
                     <option value="psikologi">Psikologi</option>
-                </select>
+                </select> -->
             </div>
         </div>
         <div class="section-2-div">
@@ -194,56 +195,87 @@
                 </div>
             </div>
             <div class="content-6">
-                <div class="c5-header">Informasi Umum</div>
+                <div class="c5-header">Role Anda Saat Ini</div>
+                <div class="c6-content">
+                    <i>{{ session('users') }}</i>
+                    <p>TIM DPJJ</p>
+                </div>
             </div>
         </div>
 </div>
 </section>
 <section>
-    <div class="content-7">
+    <div class="content-7" id="container">
         <div class="c1-header">Aktivitas terbanyak</div>
         <div class="c7-content">
+            <div style="width: 100%; height: 285px;">
+                <canvas id="myLineChart"></canvas>
+            </div>
+
+            <label for="matkul-aktivitas">Mata Kuliah:</label>
+            <select name="matkul-aktivitas" id="matkul-aktivitas">
+                <option value="semua">Semua</option>
+                <option value="akuntansi">Akuntansi</option>
+                <option value="manajemen">Manajemen</option>
+                <option value="teknologi_informasi">Teknologi Informasi</option>
+                <option value="hukum">Hukum</option>
+                <option value="perpustakaan">Perpustakaan</option>
+                <option value="psikologi">Psikologi</option>
+            </select>
 
         </div>
     </div>
     <div class="content-8">
-        <div class="chart-tengah-donat">
-            <div class="chart-tengah-donat-isi">
-                <h2>Pengguna</h2>
-                <div>
-                    <label for="jurusan" style="font-weight: 600;">Jurusan:</label>
-                    <select id="jurusan" name="jurusan">
-                        <option value="akuntansi">Semua</option>
-                        <option value="akuntansi">Akuntansi</option>
-                        <option value="manajemen">Manajemen</option>
-                        <option value="teknologi_informasi">Teknologi Informasi</option>
-                        <option value="hukum">Hukum</option>
-                        <option value="perpustakaan">Perpustakaan</option>
-                        <option value="psikologi">Psikologi</option>
-                    </select>
-                </div>
-                <canvas id="myChart2" width="200px" height="200px"></canvas>
-            </div>
-            <div class="chart-tengah-donat-isi">
-                <h2>Status Mata Kuliah</h2>
-                <div>
-                    <label for="jurusan" style="font-weight: 600;">Jurusan:</label>
-                    <select id="jurusan" name="jurusan">
-                        <option value="akuntansi">Semua</option>
-                        <option value="akuntansi">Akuntansi</option>
-                        <option value="manajemen">Manajemen</option>
-                        <option value="teknologi_informasi">Teknologi Informasi</option>
-                        <option value="hukum">Hukum</option>
-                        <option value="perpustakaan">Perpustakaan</option>
-                        <option value="psikologi">Psikologi</option>
-                    </select>
-                </div>
-                <canvas id="myChart3" width="100px" height="100px"></canvas>
-            </div>
+        <div class="c1-header">Statistik Tren Aktivitas</div>
+
+        <div class="c8-content">
+            <table class="charts-css column show-labels show-primary-axis show-4-secondary-axes show-data-axes data-spacing-5 hide-data">
+                <caption> 2024 </caption>
+                <thead>
+                    <tr>
+                        <th scope="col"> Year </th>
+                        <th scope="col"> Value </th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <tr>
+                        <th> Kuis </th>
+                        <td style="--size: calc( 20 / 100 );"> 20 </td>
+                    </tr>
+                    <tr>
+                        <th> Latihan </th>
+                        <td style="--size: calc( 40 / 100 );"> 40 </td>
+                    </tr>
+                    <tr>
+                        <th> Refleksi </th>
+                        <td style="--size: calc( 60 / 100 );"> 60 </td>
+                    </tr>
+                    <tr>
+                        <th> PPT </th>
+                        <td style="--size: calc( 80 / 100 );"> 80 </td>
+                    </tr>
+                </tbody>
+            </table>
+            <label for="tahun-tren">Tahun:</label>
+            <select name="tahun-tren" id="tahun-tren">
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+            </select>
+            <label for="tahun-tren">Basis:</label>
+            <select name="tahun-tren" id="tahun-tren">
+                <option value="2024">Semua</option>
+                <option value="2023">SCL</option>
+                <option value="2022">Halaman LAYAR</option>
+            </select>
         </div>
+
     </div>
-    <!-- <div class="content-9">gsdfsdfsd</div>
-    <div class="content-10">dasdasda</div> -->
+
+
+    <div class="content-9"></div>
+    <!-- <div class="content-10">dasdasda</div> -->
 </section>
 </div>
 
@@ -299,32 +331,7 @@
     });
 </script>
 
-<script>
-    const ctx = document.getElementById('myChart2');
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Online', 'Aktif', 'Suspend'],
-            datasets: [{
-                label: 'Pengguna',
-                data: [30, 200, 47],
-                borderWidth: 1
-            }]
-        },
-    });
-    const ctx3 = document.getElementById('myChart3');
-    new Chart(ctx3, {
-        type: 'doughnut',
-        data: {
-            labels: ['Online', 'Aktif', 'Suspend'],
-            datasets: [{
-                label: 'Pengguna',
-                data: [30, 200, 47],
-                borderWidth: 1
-            }]
-        },
-    });
-</script>
+
 
 
 
@@ -488,4 +495,162 @@
         chart.update();
     }
 </script>
+
+<script>
+    document.getElementById('tahun-tren').addEventListener('change', function() {
+        var year = this.value;
+        var tableBody = document.getElementById('table-body');
+
+        var data = {
+            "2024": [{
+                    "label": "Kuis",
+                    "value": 20
+                },
+                {
+                    "label": "Latihan",
+                    "value": 40
+                },
+                {
+                    "label": "Refleksi",
+                    "value": 60
+                },
+                {
+                    "label": "PPT",
+                    "value": 80
+                }
+            ],
+            "2023": [{
+                    "label": "Kuis",
+                    "value": 30
+                },
+                {
+                    "label": "Latihan",
+                    "value": 10
+                },
+                {
+                    "label": "Refleksi",
+                    "value": 90
+                },
+                {
+                    "label": "PPT",
+                    "value": 60
+                }
+            ],
+            "2022": [{
+                    "label": "Kuis",
+                    "value": 90
+                },
+                {
+                    "label": "Latihan",
+                    "value": 30
+                },
+                {
+                    "label": "Refleksi",
+                    "value": 70
+                },
+                {
+                    "label": "PPT",
+                    "value": 40
+                }
+            ],
+            "2021": [{
+                    "label": "Kuis",
+                    "value": 40
+                },
+                {
+                    "label": "Latihan",
+                    "value": 50
+                },
+                {
+                    "label": "Refleksi",
+                    "value": 20
+                },
+                {
+                    "label": "PPT",
+                    "value": 90
+                }
+            ]
+        };
+
+        var selectedData = data[year];
+
+        // Update table rows smoothly
+        Array.from(tableBody.children).forEach((row, index) => {
+            var td = row.querySelector('td');
+            var value = selectedData[index].value;
+            td.style.setProperty('--size', 'calc(' + value + ' / 100)');
+            td.textContent = value;
+        });
+    });
+</script>
+
+<script>
+    var ctx = document.getElementById('myLineChart').getContext('2d');
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Jumlah',
+                data: [],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: false,
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Data untuk setiap mata kuliah
+    const dataMap = {
+        'semua': {
+            labels: ['Akuntansi', 'Manajemen', 'Ti', 'Hukum', 'Psikologi','perpustakaan'],
+            data: [84, 23, 59, 25, 74,32]
+        },
+        'akuntansi': {
+            labels: ['f', 'g', 'h', 'i', 'j'],
+            data: [23, 45, 67, 89, 12]
+        },
+        'manajemen': {
+            labels: ['a', 'b', 'c', 'd', 'e'],
+            data: [34, 56, 78, 90, 23]
+        },
+        'teknologi_informasi': {
+            labels: ['DDP', 'RDP', 'PDT', 'AdJar', 'SDA'],
+            data: [120, 147, 56, 23, 89]
+        },
+        'hukum': {
+            labels: ['k', 'l', 'm', 'n', 'o'],
+            data: [45, 67, 89, 12, 34]
+        },
+        'psikologi': {
+            labels: ['p', 'q', 'r', 's', 't'],
+            data: [67, 89, 12, 34, 56]
+        },
+        'perpustakaan': {
+            labels: [],
+            data: []
+        }
+    };
+
+    document.getElementById('matkul-aktivitas').addEventListener('change', function() {
+        var selectedValue = this.value;
+        var selectedData = dataMap[selectedValue];
+
+        myLineChart.data.labels = selectedData.labels;
+        myLineChart.data.datasets[0].data = selectedData.data;
+        myLineChart.update();
+    });
+</script>
+
+
 @endsection
