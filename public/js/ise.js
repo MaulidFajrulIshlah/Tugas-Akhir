@@ -1,1 +1,0 @@
-var iseng = 'wstoken='+tokenApi+'';
