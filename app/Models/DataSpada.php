@@ -14,5 +14,8 @@ class DataSpada extends Model
     protected $fillable = [
         'universitas',
         'status', // Menambahkan kolom status
+        'created_at'
     ];
+
+    public $timestamps = false; // Disable timestamps
 }

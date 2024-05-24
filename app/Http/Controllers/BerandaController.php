@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Http;
 use Spatie\SslCertificate\SslCertificate;
 use Illuminate\Support\Facades\File;
 use App\Models\DataSpada; // Import model DataSpada
+use Illuminate\Support\Facades\Artisan; // Import class Artisan untuk menjalankan command
 
+use App\Console\Commands\CheckSpada; // Import command CheckSpada
 
 use App\Models\LatestStatus; // pastikan sesuai dengan namespace dan lokasi model lo
 
@@ -43,6 +45,15 @@ class BerandaController extends Controller
 
     public function CheckStatusServer(Request $request)
     {
+        // Ambil input kategori dari request
+        $kategori = $request->input('kategori');
+
+        // Jalankan command HitungMataKuliah dengan kategori yang dipilih
+        Artisan::call('app:hitung-mata-kuliah', ['--kategori' => $kategori]);
+
+        // Mendapatkan output dari command jika diperlukan
+        $output = Artisan::output();
+
         // Baca isi file.txt
         $filePath = public_path('hasil_cek_server.txt');
         $serverStatusData = File::exists($filePath) ? File::get($filePath) : "File.txt tidak ditemukan";
@@ -68,8 +79,11 @@ class BerandaController extends Controller
         $now = now();
         $daysUntilExpiration = $now->diffInDays($expirationDate);
 
+        // Jalankan command CheckSpada
+        Artisan::call('app:check-spada');
+
         // Ambil data dari SPADA
-        $spadaResult = DataSpada::where('universitas', 'Institut gak ada')->first();
+        $spadaResult = DataSpada::where('universitas', 'Universitas YARSI')->first();
 
         // Render view dashboard.blade.php sambil kirim data status server, informasi SSL, hasil SPADA, dan isi file.txt
         return view('dashboard/beranda', [
@@ -77,6 +91,7 @@ class BerandaController extends Controller
             'daysUntilExpiration' => $daysUntilExpiration,
             'lastLine' => $lastLine, // Tambahkan baris terakhir ke data yang dikirim ke views
             'spadaResult' => $spadaResult, // Kirim hasil SPADA ke views
+            'output' => $output // Kirim output dari perhitungan mata kuliah ke views
         ]);
     }
 }

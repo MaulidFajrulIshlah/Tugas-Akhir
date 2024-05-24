@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('data_spada', function (Blueprint $table) {
+        Schema::create('data_spada_bulanan', function (Blueprint $table) {
             $table->id();
-            $table->string('universitas');
-            $table->string('status')->nullable(); // Kolom status bisa memiliki nilai null
-            $table->timestamps(); // Tambahkan timestamps
+            $table->string('bulan');
+            $table->string('tahun');
+            $table->integer('hari_ditemukan')->default(0);
+            $table->integer('hari_tidak_ditemukan')->default(0);
+            $table->timestamps();
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_spada');
+        Schema::dropIfExists('data_spada_bulanan');
     }
 };
