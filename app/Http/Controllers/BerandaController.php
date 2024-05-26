@@ -11,6 +11,8 @@ use Spatie\SslCertificate\SslCertificate;
 use Illuminate\Support\Facades\File;
 use App\Models\DataSpada; // Import model DataSpada
 use Illuminate\Support\Facades\Artisan; // Import class Artisan untuk menjalankan command
+use Symfony\Component\Console\Output\BufferedOutput;
+
 
 use App\Console\Commands\CheckSpada; // Import command CheckSpada
 
@@ -85,13 +87,31 @@ class BerandaController extends Controller
         // Ambil data dari SPADA
         $spadaResult = DataSpada::where('universitas', 'Universitas YARSI')->first();
 
+        $prodi = $request->input('prodi');
+
+        // Jalankan command dengan output buffering untuk menangkap hasil
+        $outputQuiz = new BufferedOutput;
+        Artisan::call('quiz:getdata', [
+            'prodi' => $prodi
+        ], $outputQuiz);
+
+        // Tangkap hasil dari command
+        $result = $outputQuiz->fetch();
+
+        // Extract total quiz count from result
+        $totalQuiz = intval(preg_replace('/[^0-9]/', '', $result));
+
         // Render view dashboard.blade.php sambil kirim data status server, informasi SSL, hasil SPADA, dan isi file.txt
         return view('dashboard/beranda', [
             'lastServerStatus' => $lastServerStatus,
             'daysUntilExpiration' => $daysUntilExpiration,
             'lastLine' => $lastLine, // Tambahkan baris terakhir ke data yang dikirim ke views
             'spadaResult' => $spadaResult, // Kirim hasil SPADA ke views
-            'output' => $output // Kirim output dari perhitungan mata kuliah ke views
+            'output' => $output, // Kirim output dari perhitungan mata kuliah ke views
+            'totalQuiz' => $totalQuiz
+
         ]);
     }
+
+    
 }

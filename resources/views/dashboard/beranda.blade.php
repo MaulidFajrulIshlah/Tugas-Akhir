@@ -101,8 +101,8 @@
                         <option value="teknologi_informasi">Genap 2021/2022</option>
                         <option value="psikologi">Ganjil 2021/2022</option>
                         <!-- <option value="hukum">Hukum</option>
-                                        <option value="perpustakaan">Perpustakaan</option>
-                                        <option value="psikologi">Psikologi</option> -->
+                                                <option value="perpustakaan">Perpustakaan</option>
+                                                <option value="psikologi">Psikologi</option> -->
                     </select>
                 </div>
                 <div class="right-container-sort">
@@ -113,7 +113,7 @@
                             <option value="16">PRODI TI</option>
                             <option value="40">PRODI Perpus</option>
                             <option value="37">PRODI PSI</option>
-                            <option value="402">PRODI KEDOKTERAN</option>
+                            <option value="588">PRODI KEDOKTERAN</option>
                             <option value="180">PRODI KEDOKTERAN GIGI</option>
                             <option value="34">PRODI HUKUM</option>
                             <option value="187">PRODI MANAJEMEN</option>
@@ -177,15 +177,15 @@
                         <p>Semester Berjalan: <strong id="semester">130</strong></p>
                         <!-- <div class="garis-separator"></div> -->
                         <!-- <label for="jurusan">Filter:</label>
-                                        <select id="jurusan" name="jurusan" style="width: 20%;">
-                                            <option value="semua">Semua</option>
-                                            <option value="akuntansi">Akuntansi</option>
-                                            <option value="manajemen">Manajemen</option>
-                                            <option value="teknologi_informasi">Teknologi Informasi</option>
-                                            <option value="hukum">Hukum</option>
-                                            <option value="perpustakaan">Perpustakaan</option>
-                                            <option value="psikologi">Psikologi</option>
-                                        </select> -->
+                                                <select id="jurusan" name="jurusan" style="width: 20%;">
+                                                    <option value="semua">Semua</option>
+                                                    <option value="akuntansi">Akuntansi</option>
+                                                    <option value="manajemen">Manajemen</option>
+                                                    <option value="teknologi_informasi">Teknologi Informasi</option>
+                                                    <option value="hukum">Hukum</option>
+                                                    <option value="perpustakaan">Perpustakaan</option>
+                                                    <option value="psikologi">Psikologi</option>
+                                                </select> -->
                     </div>
                 </div>
                 <div class="section-2-div">
@@ -253,7 +253,7 @@
                         <tbody id="table-body">
                             <tr>
                                 <th> Kuis </th>
-                                <td style="--size: calc( 20 / 100 );"> 20 </td>
+                                <td style="--size: calc( {{ $totalQuiz }} / 100 );"> {{ $totalQuiz }} </td>
                             </tr>
                             <tr>
                                 <th> Latihan </th>
@@ -269,21 +269,27 @@
                             </tr>
                         </tbody>
                     </table>
-                    <label for="tahun-tren">Tahun:</label>
-                    <select name="tahun-tren" id="tahun-tren">
-                        <option value="2024">2024</option>
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                        <option value="2021">2021</option>
-                    </select>
-                    <label for="tahun-tren">Basis:</label>
-                    <select name="tahun-tren" id="tahun-tren">
-                        <option value="2024">Semua</option>
-                        <option value="2023">SCL</option>
-                        <option value="2022">Halaman LAYAR</option>
-                    </select>
-                </div>
+                    <form action="{{ route('beranda') }}" method="GET">
+                        <label for="prodi-tren">Prodi:</label>
+                        <select name="prodi" id="prodi-tren">
+                            <option value="Teknik Informatika">Teknik Informatika</option>
+                            <option value="Perpustakaan dan Sains Informasi">Perpustakaan dan Sains Informasi</option>
+                            <option value="Manajemen">Manajemen</option>
+                            <option value="Akuntasi">Akuntasi</option>
+                            <option value="Hukum">Hukum</option>
+                            <option value="Psikolog">Psikolog</option>
 
+
+                        </select>
+
+                        <button type="submit">Pilih Prodi</button>
+                    </form>
+
+                    @if (isset($totalQuiz))
+                        <pre>{{ $totalQuiz }}</pre>
+                    @endif
+
+                </div>
             </div>
 
 
@@ -345,6 +351,111 @@
     </script>
 
 
+    @if (isset($logContent))
+        <script>
+            // Pass PHP data to JavaScript
+            var logContent = {!! json_encode($logContent) !!};
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var tableBody = document.getElementById('table-body');
+
+                var data = {
+                    "2024": [{
+                            "label": "Kuis",
+                            "value": logContent // Use logContent for Kuis value in 2024
+                        },
+                        {
+                            "label": "Latihan",
+                            "value": 40
+                        },
+                        {
+                            "label": "Refleksi",
+                            "value": 60
+                        },
+                        {
+                            "label": "PPT",
+                            "value": 80
+                        }
+                    ],
+                    "2023": [{
+                            "label": "Kuis",
+                            "value": 30
+                        },
+                        {
+                            "label": "Latihan",
+                            "value": 10
+                        },
+                        {
+                            "label": "Refleksi",
+                            "value": 90
+                        },
+                        {
+                            "label": "PPT",
+                            "value": 60
+                        }
+                    ],
+                    "2022": [{
+                            "label": "Kuis",
+                            "value": 90
+                        },
+                        {
+                            "label": "Latihan",
+                            "value": 30
+                        },
+                        {
+                            "label": "Refleksi",
+                            "value": 70
+                        },
+                        {
+                            "label": "PPT",
+                            "value": 40
+                        }
+                    ],
+                    "2021": [{
+                            "label": "Kuis",
+                            "value": 40
+                        },
+                        {
+                            "label": "Latihan",
+                            "value": 50
+                        },
+                        {
+                            "label": "Refleksi",
+                            "value": 20
+                        },
+                        {
+                            "label": "PPT",
+                            "value": 90
+                        }
+                    ]
+                };
+
+                var yearSelector = document.getElementById('tahun-tren');
+                yearSelector.addEventListener('change', function() {
+                    var year = this.value;
+                    var selectedData = data[year];
+
+                    // Update table rows smoothly
+                    Array.from(tableBody.children).forEach((row, index) => {
+                        var td = row.querySelector('td');
+                        var value = selectedData[index].value;
+                        td.style.setProperty('--size', 'calc(' + value + ' / 100)');
+                        td.textContent = value;
+                    });
+                });
+
+                // Initial update for the default selected year (2024)
+                var defaultYear = yearSelector.value;
+                var selectedData = data[defaultYear];
+                Array.from(tableBody.children).forEach((row, index) => {
+                    var td = row.querySelector('td');
+                    var value = selectedData[index].value;
+                    td.style.setProperty('--size', 'calc(' + value + ' / 100)');
+                    td.textContent = value;
+                });
+            });
+        </script>
+    @endif
 
 
 

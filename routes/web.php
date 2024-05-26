@@ -46,6 +46,7 @@ Route::redirect('/', '/login');
 Route::middleware('auth')->group(function () {
     // Beranda
     Route::get('/dashboard/beranda', [BerandaController::class, 'CheckStatusServer'])->name('beranda');
+
     
 
     // Mata Kuliah
