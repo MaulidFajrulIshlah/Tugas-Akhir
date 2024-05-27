@@ -66,7 +66,7 @@ class HitungMataKuliah extends Command
 
             // Menampilkan hasil perhitungan
             foreach ($jumlahMataKuliahPerKategori as $categoryid => $jumlah) {
-                $this->info("$jumlah mata kuliah.");
+                $this->info("$jumlah");
             }
         } else {
             $this->error('Gagal mengambil data mata kuliah.');
