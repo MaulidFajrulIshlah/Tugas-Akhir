@@ -20,7 +20,9 @@ class Kernel extends ConsoleKernel
         //     ->appendOutputTo(storage_path('logs/laravel.log'));
         // $schedule->command('app:check-spada')->everyMinute();
         // $schedule->command('app:hitung-mata-kuliah')->everyMinute();
-        $schedule->command('quiz:getdata')->everyMinute();
+        // $schedule->command('quiz:getdata')->everyMinute();
+        // $schedule->command('update:suspended-users')->everyMinute();
+
 
 
 

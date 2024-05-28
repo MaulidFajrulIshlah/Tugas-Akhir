@@ -65,30 +65,58 @@
 
         <div class="w-100 d-flex position-relative" style="left: 10px; ">
             @can('admin')
-                <div class="row my-1 w-100" id="loading">
-                    <div class="content col w-100 p-3 rounded card"
-                        style="background-color: #F5EFE6; border: 2px solid var(--secondary)">
-                        <h5 class="mb-3 text text-center fw-bold title" style="color: var(--primary-green);"> Daftar Pengguna
-                            Dengan Status Suspend</h5>
-                        <table id="data-suspend" class="table table-bordered table-hover cell-border"
-                            style="color: var(--primary-green);">
-                            <thead class="table-success">
-                                <tr class="text">
-                                    <th scope="col" class="text" width="50">No</th>
-                                    <th scope="col" class="text">Nama Pengguna</th>
-                                    <th scope="col" class="text">Nama Lengkap</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div> <!--col-->
-                </div> <!--row my-5-->
-                <script src="{{ asset('js/suspend.js') }}"></script>
+                
+            
+            <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">Daftar Pengguna dengan Status Suspend</div>
+
+                                <div class="card-body">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Nama Pengguna</th>
+                                                <th scope="col">Nama Lengkap</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $page = request()->query('page', 1);
+                                                $perPage = 5;
+                                                $startIndex = ($page - 1) * $perPage;
+                                                $endIndex = min($startIndex + $perPage, count($suspendedUsers));
+                                            @endphp
+                                            @for ($i = $startIndex; $i < $endIndex; $i++)
+                                                <tr>
+                                                    <td>{{ $suspendedUsers[$i]['username'] }}</td>
+                                                    <td>{{ $suspendedUsers[$i]['fullname'] }}</td>
+                                                </tr>
+                                            @endfor
+                                        </tbody>
+                                    </table>
+                                    <div class="d-flex justify-content-center mt-3">
+                                        @if ($page > 1)
+                                            <a href="{{ route('beranda', ['page' => $page - 1]) }}"
+                                                class="btn btn-primary me-2">Previous</a>
+                                        @endif
+                                        @if ($endIndex < count($suspendedUsers))
+                                            <a href="{{ route('beranda', ['page' => $page + 1]) }}"
+                                                class="btn btn-primary">Next</a>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             @endcan
         </div>
         <!-- <div class="info-header">
-                <h1>Informasi Mata Kuliah</h1>
-            </div> -->
+                            <h1>Informasi Mata Kuliah</h1>
+                        </div> -->
 
         <div class="main-container-sort">
             <div class="content-container-sort">
@@ -240,32 +268,32 @@
         </div>
         </section>
         <!-- <section>
-                <div class="content-7" id="container">
-                    <div class="c1-header">Aktivitas terbanyak</div>
-                    <div class="c7-content">
-                        <div style="width: 100%; height: 285px;">
-                            <canvas id="myLineChart"></canvas>
-                        </div>
+                            <div class="content-7" id="container">
+                                <div class="c1-header">Aktivitas terbanyak</div>
+                                <div class="c7-content">
+                                    <div style="width: 100%; height: 285px;">
+                                        <canvas id="myLineChart"></canvas>
+                                    </div>
 
-                        <label for="matkul-aktivitas">Mata Kuliah:</label>
-                        <select name="matkul-aktivitas" id="matkul-aktivitas">
-                            <option value="semua">Semua</option>
-                            <option value="akuntansi">Akuntansi</option>
-                            <option value="manajemen">Manajemen</option>
-                            <option value="teknologi_informasi">Teknologi Informasi</option>
-                            <option value="hukum">Hukum</option>
-                            <option value="perpustakaan">Perpustakaan</option>
-                            <option value="psikologi">Psikologi</option>
-                        </select>
+                                    <label for="matkul-aktivitas">Mata Kuliah:</label>
+                                    <select name="matkul-aktivitas" id="matkul-aktivitas">
+                                        <option value="semua">Semua</option>
+                                        <option value="akuntansi">Akuntansi</option>
+                                        <option value="manajemen">Manajemen</option>
+                                        <option value="teknologi_informasi">Teknologi Informasi</option>
+                                        <option value="hukum">Hukum</option>
+                                        <option value="perpustakaan">Perpustakaan</option>
+                                        <option value="psikologi">Psikologi</option>
+                                    </select>
 
-                    </div>
-                </div>
-                
+                                </div>
+                            </div>
+                            
 
 
-                <div class="content-9"></div>
-                     <div class="content-10">dasdasda</div>
-            </section> -->
+                            <div class="content-9"></div>
+                                 <div class="content-10">dasdasda</div>
+                        </section> -->
     </div>
 
 

@@ -124,6 +124,33 @@ class BerandaController extends Controller
         // Mendapatkan output dari command jika diperlukan
         $output = Artisan::output();
 
+        // Baca file log yang berisi data pengguna yang di-suspend
+        $logPath = storage_path('logs/suspended_users.log');
+        $logData = file_get_contents($logPath);
+
+        // Pisahkan baris-baris data dalam file log
+        $logRows = explode(PHP_EOL, $logData);
+
+        // Proses parsing data dan siapkan untuk ditampilkan dalam tabel
+        // Proses parsing data dan siapkan untuk ditampilkan dalam tabel
+        $suspendedUsers = [];
+        foreach ($logRows as $logRow) {
+            // Pisahkan data berdasarkan koma dan spasi
+            $userData = explode(', ', $logRow);
+
+            // Pastikan data yang dibaca memiliki format yang sesuai
+            if (count($userData) == 2) {
+                // Pisahkan data username dan nama lengkap
+                $username = explode(': ', $userData[0])[1];
+                $fullname = explode(': ', $userData[1])[1];
+
+                $suspendedUsers[] = [
+                    'username' => trim($username),
+                    'fullname' => trim($fullname),
+                ];
+            }
+        }
+
         // Render view dashboard.blade.php sambil kirim data status server, informasi SSL, hasil SPADA, dan isi file.txt
         return view('dashboard/beranda', [
             'lastServerStatus' => $lastServerStatus,
@@ -131,7 +158,9 @@ class BerandaController extends Controller
             'lastLine' => $lastLine, // Tambahkan baris terakhir ke data yang dikirim ke views
             'spadaResult' => $spadaResult, // Kirim hasil SPADA ke views
             'output' => $output, // Kirim output dari perhitungan mata kuliah ke views
-            'totalQuiz' => $totalQuiz
+            'totalQuiz' => $totalQuiz,
+            'suspendedUsers' => $suspendedUsers, // Tambahkan data pengguna yang di-suspend ke array yang dikirimkan ke views
+
         ]);
     }
 }
