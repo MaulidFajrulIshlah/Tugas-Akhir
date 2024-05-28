@@ -28,7 +28,7 @@ class HitungMataKuliah extends Command
     public function handle()
     {
         // Ambil nilai kategori dari opsi command
-        $kategori = $this->option('kategori') ?? '130'; // Defaultnya adalah 130, ganti sesuai kebutuhan jika perlu.
+        $kategori = $this->option('kategori') ?? ''; // Defaultnya adalah 130, ganti sesuai kebutuhan jika perlu.
 
         // Panggil API dengan kategori yang dipilih
         $response = Http::get('https://layar.yarsi.ac.id/webservice/rest/server.php', [

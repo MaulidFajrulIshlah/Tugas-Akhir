@@ -47,15 +47,6 @@ class BerandaController extends Controller
 
     public function CheckStatusServer(Request $request)
     {
-        // Ambil input kategori dari request
-        $kategori = $request->input('kategori');
-
-        // Jalankan command HitungMataKuliah dengan kategori yang dipilih
-        Artisan::call('app:hitung-mata-kuliah', ['--kategori' => $kategori]);
-
-        // Mendapatkan output dari command jika diperlukan
-        $output = Artisan::output();
-
         // Baca isi file.txt
         $filePath = public_path('hasil_cek_server.txt');
         $serverStatusData = File::exists($filePath) ? File::get($filePath) : "File.txt tidak ditemukan";
@@ -101,6 +92,38 @@ class BerandaController extends Controller
         // Extract total quiz count from result
         $totalQuiz = intval(preg_replace('/[^0-9]/', '', $result));
 
+        // Ambil input tahun ajaran dan prodi dari request
+        $tahunajaran = $request->input('tahunajaran');
+        $prodi = $request->input('prodi');
+
+        // Tentukan categoryid berdasarkan kombinasi tahun ajaran dan prodi
+        $categoryid = null;
+
+        if ($tahunajaran == '2023/2024-Ganjil') {
+            if ($prodi == 'TI') {
+                $categoryid = 578; // Contoh categoryid untuk TI 2023/2024 Ganjil
+            } elseif ($prodi == 'Perpus') {
+                $categoryid = 582; // Contoh categoryid untuk Perpus 2023/2024 Ganjil
+            } elseif ($prodi == 'Psikolog') {
+                $categoryid = 580; // Contoh categoryid untuk Manajemen 2023/2024 Ganjil
+            }
+        } elseif ($tahunajaran == '2023/2024-Genap') {
+            if ($prodi == 'TI') {
+                $categoryid = 670; // Contoh categoryid untuk TI 2023/2024 Genap
+            } elseif ($prodi == 'Perpus') {
+                $categoryid = 676; // Contoh categoryid untuk Perpus 2023/2024 Genap
+            } elseif ($prodi == 'Psikolog') {
+                $categoryid = 652; // Contoh categoryid untuk Manajemen 2023/2024 Genap
+            }
+        }
+
+
+        // Jalankan command HitungMataKuliah dengan kategori yang dipilih
+        Artisan::call('app:hitung-mata-kuliah', ['--kategori' => $categoryid]);
+
+        // Mendapatkan output dari command jika diperlukan
+        $output = Artisan::output();
+
         // Render view dashboard.blade.php sambil kirim data status server, informasi SSL, hasil SPADA, dan isi file.txt
         return view('dashboard/beranda', [
             'lastServerStatus' => $lastServerStatus,
@@ -109,9 +132,6 @@ class BerandaController extends Controller
             'spadaResult' => $spadaResult, // Kirim hasil SPADA ke views
             'output' => $output, // Kirim output dari perhitungan mata kuliah ke views
             'totalQuiz' => $totalQuiz
-
         ]);
     }
-
-    
 }
