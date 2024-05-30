@@ -591,18 +591,18 @@ section {
 
 }
 
-.info-header {
+.header-suspend {
     text-align: left;
     width: 100%;
     height: fit-content;
     color: #003723;
     padding-top: 0px;
-    padding-bottom: 0px;
+    padding-bottom: 1rem;
 }
 
-.info-header>h1 {
-    font-size: 52px;
-    font-weight: 100;
+.header-suspend>h1 {
+    font-size: 24px;
+    font-weight: 600;
     text-align: center;
 }
 
@@ -743,7 +743,7 @@ section {
     width: 100%;
     height: 20%;
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 600;
     text-align: center;
 }
 
@@ -872,7 +872,7 @@ canvas {
 }
 
 .content-container-sort {
-    width: 100%;
+    width: 60%;
     height: 100%;
     display: flex;
     justify-content: space-evenly;
@@ -947,4 +947,10 @@ label {
     background-color: var(--primary-green);
     color: var(--primary);
     transition: ease-in-out .1s;
+}
+
+#hitung-form{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
