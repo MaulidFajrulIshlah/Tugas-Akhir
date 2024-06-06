@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 class GetQuizData extends Command
 {
-    protected $signature = 'quiz:getdata {prodi=Teknik Informatika}';
+    protected $signature = 'quiz:getdata {prodi}';
     protected $description = 'Get total quiz data from API';
 
     public function __construct()

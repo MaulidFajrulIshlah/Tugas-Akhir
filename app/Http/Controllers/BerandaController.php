@@ -12,12 +12,9 @@ use Illuminate\Support\Facades\File;
 use App\Models\DataSpada; // Import model DataSpada
 use Illuminate\Support\Facades\Artisan; // Import class Artisan untuk menjalankan command
 use Symfony\Component\Console\Output\BufferedOutput;
-
-
+use App\Console\Commands\CekAdministrasi; // Import command CekAdministrasi
 use App\Console\Commands\CheckSpada; // Import command CheckSpada
-
 use App\Models\LatestStatus; // pastikan sesuai dengan namespace dan lokasi model lo
-
 use App\Mail\SendEmail;
 use Carbon\Carbon;
 use App\Models\ServerStatus;
@@ -93,30 +90,28 @@ class BerandaController extends Controller
         $totalQuiz = intval(preg_replace('/[^0-9]/', '', $result));
 
         // Ambil input tahun ajaran dan prodi dari request
-        $tahunajaran = $request->input('tahunajaran');
-        $prodi = $request->input('prodi');
+        $tahunAjaran = $request->input('tahunajaran');
 
         // Tentukan categoryid berdasarkan kombinasi tahun ajaran dan prodi
         $categoryid = null;
 
-        if ($tahunajaran == '2023/2024-Ganjil') {
-            if ($prodi == 'TI') {
+        if ($tahunAjaran == '2023/2024-Ganjil') {
+            if ($prodi == 'Teknik Informatika') {
                 $categoryid = 578; // Contoh categoryid untuk TI 2023/2024 Ganjil
-            } elseif ($prodi == 'Perpus') {
+            } elseif ($prodi == 'Perpustakaan dan Sains Informasi') {
                 $categoryid = 582; // Contoh categoryid untuk Perpus 2023/2024 Ganjil
             } elseif ($prodi == 'Psikolog') {
                 $categoryid = 580; // Contoh categoryid untuk Manajemen 2023/2024 Ganjil
             }
-        } elseif ($tahunajaran == '2023/2024-Genap') {
-            if ($prodi == 'TI') {
+        } elseif ($tahunAjaran == '2023/2024-Genap') {
+            if ($prodi == 'Teknik Informatika') {
                 $categoryid = 670; // Contoh categoryid untuk TI 2023/2024 Genap
-            } elseif ($prodi == 'Perpus') {
+            } elseif ($prodi == 'Perpustakaan dan Sains Informasi') {
                 $categoryid = 676; // Contoh categoryid untuk Perpus 2023/2024 Genap
             } elseif ($prodi == 'Psikolog') {
                 $categoryid = 652; // Contoh categoryid untuk Manajemen 2023/2024 Genap
             }
         }
-
 
         // Jalankan command HitungMataKuliah dengan kategori yang dipilih
         Artisan::call('app:hitung-mata-kuliah', ['--kategori' => $categoryid]);
@@ -131,7 +126,6 @@ class BerandaController extends Controller
         // Pisahkan baris-baris data dalam file log
         $logRows = explode(PHP_EOL, $logData);
 
-        // Proses parsing data dan siapkan untuk ditampilkan dalam tabel
         // Proses parsing data dan siapkan untuk ditampilkan dalam tabel
         $suspendedUsers = [];
         foreach ($logRows as $logRow) {
@@ -151,6 +145,9 @@ class BerandaController extends Controller
             }
         }
 
+        // Panggil method handle dari kelas CekAdministrasi
+        $totalCourses = (new CekAdministrasi)->handle($tahunAjaran, $prodi);
+
         // Render view dashboard.blade.php sambil kirim data status server, informasi SSL, hasil SPADA, dan isi file.txt
         return view('dashboard/beranda', [
             'lastServerStatus' => $lastServerStatus,
@@ -160,7 +157,8 @@ class BerandaController extends Controller
             'output' => $output, // Kirim output dari perhitungan mata kuliah ke views
             'totalQuiz' => $totalQuiz,
             'suspendedUsers' => $suspendedUsers, // Tambahkan data pengguna yang di-suspend ke array yang dikirimkan ke views
-
+            'totalCourses' => $totalCourses, // Kirim totalCourses ke views
+            
         ]);
     }
 }

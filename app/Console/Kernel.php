@@ -22,6 +22,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('app:hitung-mata-kuliah')->everyMinute();
         // $schedule->command('quiz:getdata')->everyMinute();
         // $schedule->command('update:suspended-users')->everyMinute();
+        $schedule->command('cek:administrasi')->everyMinute();
 
 
 
