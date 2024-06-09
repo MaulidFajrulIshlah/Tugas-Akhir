@@ -3,20 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Http;
 use Spatie\SslCertificate\SslCertificate;
 use Illuminate\Support\Facades\File;
 use App\Models\DataSpada; // Import model DataSpada
 use Illuminate\Support\Facades\Artisan; // Import class Artisan untuk menjalankan command
 use Symfony\Component\Console\Output\BufferedOutput;
-use App\Console\Commands\CekAdministrasi; // Import command CekAdministrasi
-use App\Console\Commands\CheckSpada; // Import command CheckSpada
-use App\Models\LatestStatus; // pastikan sesuai dengan namespace dan lokasi model lo
-use App\Mail\SendEmail;
-use Carbon\Carbon;
 use App\Models\ServerStatus;
 
 
@@ -145,8 +137,19 @@ class BerandaController extends Controller
             }
         }
 
-        // Panggil method handle dari kelas CekAdministrasi
-        $totalCourses = (new CekAdministrasi)->handle($tahunAjaran, $prodi);
+        $tahunAjaran = $request->input('tahunajaran');
+        $prodi = $request->input('prodi');
+
+        // Jalanin command dengan argument dari form
+        Artisan::call('cek:administrasi', [
+            'tahunAjaran' => $tahunAjaran,
+            'prodi' => $prodi,
+        ]);
+
+        // Ambil hasil dari cache atau proses selanjutnya
+        $totalCourses = Cache::get('totalCourses');
+        $courseNames = Cache::get('courseNames'); // Ambil nama mata kuliah dari cache
+
 
         // Render view dashboard.blade.php sambil kirim data status server, informasi SSL, hasil SPADA, dan isi file.txt
         return view('dashboard/beranda', [
@@ -157,8 +160,8 @@ class BerandaController extends Controller
             'output' => $output, // Kirim output dari perhitungan mata kuliah ke views
             'totalQuiz' => $totalQuiz,
             'suspendedUsers' => $suspendedUsers, // Tambahkan data pengguna yang di-suspend ke array yang dikirimkan ke views
-            'totalCourses' => $totalCourses, // Kirim totalCourses ke views
-            
+            'totalCourses' => $totalCourses,
+            'courseNames' => $courseNames // Kirim nama mata kuliah ke views
         ]);
     }
 }

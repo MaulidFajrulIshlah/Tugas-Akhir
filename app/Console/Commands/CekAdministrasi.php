@@ -5,8 +5,6 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Http\Request;
-
 
 class CekAdministrasi extends Command
 {
@@ -31,43 +29,27 @@ class CekAdministrasi extends Command
         // Tambahkan tahun ajaran lain jika perlu
     ];
 
-
     private $requiredElements = [
         'visiMisi' => "Visi dan Misi",
         'kontrakKuliah' => "Kontrak Kuliah",
         'rps' => "Rencana Pembelajaran Semester (RPS)"
     ];
 
-    public function handle($tahunAjaran, $prodi)
+    public function handle()
     {
-        // Cek apakah hasil sudah ada di cache
-        $cacheKey = "{$tahunAjaran}-{$prodi}-totalCourses";
-        if (Cache::has($cacheKey)) {
-            $coursesWithAllComponents = Cache::get($cacheKey);
-        } else {
-            // Hitung total courses
-            $coursesWithAllComponents = $this->calculateTotalCourses($tahunAjaran, $prodi);
+        $tahunAjaran = $this->argument('tahunAjaran');
+        $prodi = $this->argument('prodi');
 
-            // Simpan hasil di cache dengan waktu kedaluwarsa
-            Cache::put($cacheKey, $coursesWithAllComponents, now()->addMinutes(60));
-        }
-
-        // Lakukan log hasil
-        $this->logTotalCourses($coursesWithAllComponents);
-        // Kembalikan nilai totalCourses untuk digunakan di controller
-        return $coursesWithAllComponents;
-    }
-
-    private function calculateTotalCourses($tahunAjaran, $prodi)
-    {
         $results = [];
-
         $coursesWithAllComponents = 0;
 
         // Filter mata kuliah sesuai dengan tahun ajaran dan prodi yang dipilih
         $filteredCourses = $this->courseIds[$tahunAjaran][$prodi] ?? [];
 
-        // Loop through each course ID
+        // Buat variabel untuk menyimpan nama-nama mata kuliah yang memenuhi syarat
+        $courseNames = [];
+
+        // Loop melalui hasil untuk memperoleh nama mata kuliah yang memenuhi syarat
         foreach ($filteredCourses as $courseId) {
             // Lakukan pemeriksaan administrasi untuk setiap mata kuliah yang difilter
             $result = $this->checkCourseContent($courseId);
@@ -76,18 +58,31 @@ class CekAdministrasi extends Command
             // Periksa apakah mata kuliah memiliki semua komponen yang diperlukan
             if ($result['visiMisi'] && $result['kontrakKuliah'] && $result['rps']) {
                 $coursesWithAllComponents++;
+                // Cek nama matkul
+                $courseName = $this->getCourseName($courseId);
+                $results[$courseId]['displayName'] = $courseName;
+                $courseNames[] = $courseName; // Tambahkan nama mata kuliah ke dalam array $courseNames
             }
         }
 
-        return $coursesWithAllComponents;
+        // Lakukan log hasil
+        $this->logResults($results, $coursesWithAllComponents);
+
+        // Simpan total ke dalam cache dengan waktu kedaluwarsa
+        Cache::put('totalCourses', $coursesWithAllComponents, now()->addMinutes(60));
+
+        // Simpan nama mata kuliah yang memenuhi syarat ke dalam cache dengan waktu kedaluwarsa
+        Cache::put('courseNames', $courseNames, now()->addMinutes(60));
     }
+
 
     private function checkCourseContent($courseId)
     {
         $result = [
             'visiMisi' => false,
             'kontrakKuliah' => false,
-            'rps' => false
+            'rps' => false,
+            'displayName' => ''
         ];
 
         // Lakukan panggilan API untuk mendapatkan konten mata kuliah
@@ -147,10 +142,42 @@ class CekAdministrasi extends Command
         return stripos($text, $element) !== false;
     }
 
-    private function logTotalCourses($totalCourses)
+    private function getCourseName($courseId)
     {
-        // Lakukan log jumlah total mata kuliah dengan semua komponen yang diperlukan
+        // Panggil API untuk mendapatkan nama mata kuliah
+        $response = Http::get($this->apiUrl, [
+            'wstoken' => $this->tokenApi,
+            'wsfunction' => 'core_course_get_courses',
+            'moodlewsrestformat' => 'json',
+            'options' => [
+                'ids' => [$courseId]
+            ]
+        ]);
+
+        if ($response->successful()) {
+            $data = $response->json();
+            if (!empty($data) && isset($data[0]['displayname'])) {
+                return $data[0]['displayname'];
+            }
+        }
+
+        return 'Unknown Course Name';
+    }
+
+    private function logResults($results, $coursesWithAllComponents)
+    {
         $logFilePath = storage_path('logs/cekadministrasi.log');
-        file_put_contents($logFilePath, "Total courses with all components: $totalCourses\n", FILE_APPEND);
+
+        // Lakukan log hasil ke file
+        foreach ($results as $courseId => $result) {
+            $logMessage = "Course ID: $courseId - Display Name: " . ($result['displayName'] ?? 'Unknown') .
+                " - Visi Misi: " . ($result['visiMisi'] ? 'Memiliki visi misi' : 'Tidak memiliki visi misi') .
+                " - Kontrak Kuliah: " . ($result['kontrakKuliah'] ? 'Memiliki kontrak kuliah' : 'Tidak memiliki kontrak kuliah') .
+                " - RPS: " . ($result['rps'] ? 'Memiliki RPS' : 'Tidak memiliki RPS') . PHP_EOL;
+            file_put_contents($logFilePath, $logMessage, FILE_APPEND);
+        }
+
+        // Lakukan log jumlah total mata kuliah dengan semua komponen yang diperlukan
+        file_put_contents($logFilePath, "Total courses with all components: $coursesWithAllComponents\n", FILE_APPEND);
     }
 }

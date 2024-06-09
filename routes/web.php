@@ -47,8 +47,6 @@ Route::middleware('auth')->group(function () {
     // Beranda
     Route::get('/dashboard/beranda', [BerandaController::class, 'CheckStatusServer'])->name('beranda');
 
-    
-
     // Mata Kuliah
     Route::get('/dashboard/matakuliah', [MataKuliahController::class, 'index'])->name('mataKuliah');
 
