@@ -142,8 +142,8 @@
 
 
         <!-- <div class="info-header">
-                                            <h1>Informasi Mata Kuliah</h1>
-                                        </div> -->
+                                                                            <h1>Informasi Mata Kuliah</h1>
+                                                                        </div> -->
 
         <div class="main-container-sort">
             <div class="content-container-sort">
@@ -195,9 +195,9 @@
                     </div>
                 </div>
                 <div class="content-1">
-                    <div class="c1-header">Jumlah halaman LAYAR SCL</div>
+                    <div class="c1-header">Jumlah halaman Mata Kuliah Yang Lengkap</div>
                     <div class="c1-content">
-                        <p>802</p>
+                        <p>{{ $totalCoursesWithAllCriteria }}</p>
                     </div>
                 </div>
                 <div class="content-1">
@@ -221,19 +221,19 @@
 
                 </a>
                 <!-- <div class="content-3">
-                                <div class="c1-header">Integrasi dengan spada</div>
-                                <div class="c3-content">
-                                    @if ($spadaResult)
+                                                                <div class="c1-header">Integrasi dengan spada</div>
+                                                                <div class="c3-content">
+                                                                    @if ($spadaResult)
     <h4><strong>Data {{ $spadaResult->universitas }}
-                                            {{ $spadaResult->status === 'Ditemukan' ? 'ditemukan' : 'tidak ditemukan' }} dalam
-                                            SPADA</strong></h4>
+                                                                            {{ $spadaResult->status === 'Ditemukan' ? 'ditemukan' : 'tidak ditemukan' }} dalam
+                                                                            SPADA</strong></h4>
 @else
     <h4><strong>Data universitas tidak ditemukan dalam SPADA</strong></h4>
     @endif
 
-                                    <p>{{ $time }}</p>
-                                </div>
-                            </div> -->
+                                                                    <p>{{ $time }}</p>
+                                                                </div>
+                                                            </div> -->
 
             </section>
             <section style="display: flex;">
@@ -317,32 +317,32 @@
         </div>
         </section>
         <!-- <section>
-                                            <div class="content-7" id="container">
-                                                <div class="c1-header">Aktivitas terbanyak</div>
-                                                <div class="c7-content">
-                                                    <div style="width: 100%; height: 285px;">
-                                                        <canvas id="myLineChart"></canvas>
-                                                    </div>
+                                                                            <div class="content-7" id="container">
+                                                                                <div class="c1-header">Aktivitas terbanyak</div>
+                                                                                <div class="c7-content">
+                                                                                    <div style="width: 100%; height: 285px;">
+                                                                                        <canvas id="myLineChart"></canvas>
+                                                                                    </div>
 
-                                                    <label for="matkul-aktivitas">Mata Kuliah:</label>
-                                                    <select name="matkul-aktivitas" id="matkul-aktivitas">
-                                                        <option value="semua">Semua</option>
-                                                        <option value="akuntansi">Akuntansi</option>
-                                                        <option value="manajemen">Manajemen</option>
-                                                        <option value="teknologi_informasi">Teknologi Informasi</option>
-                                                        <option value="hukum">Hukum</option>
-                                                        <option value="perpustakaan">Perpustakaan</option>
-                                                        <option value="psikologi">Psikologi</option>
-                                                    </select>
+                                                                                    <label for="matkul-aktivitas">Mata Kuliah:</label>
+                                                                                    <select name="matkul-aktivitas" id="matkul-aktivitas">
+                                                                                        <option value="semua">Semua</option>
+                                                                                        <option value="akuntansi">Akuntansi</option>
+                                                                                        <option value="manajemen">Manajemen</option>
+                                                                                        <option value="teknologi_informasi">Teknologi Informasi</option>
+                                                                                        <option value="hukum">Hukum</option>
+                                                                                        <option value="perpustakaan">Perpustakaan</option>
+                                                                                        <option value="psikologi">Psikologi</option>
+                                                                                    </select>
 
-                                                </div>
-                                            </div>
-                                            
+                                                                                </div>
+                                                                            </div>
+                                                                            
 
 
-                                            <div class="content-9"></div>
-                                                 <div class="content-10">dasdasda</div>
-                                        </section> -->
+                                                                            <div class="content-9"></div>
+                                                                                 <div class="content-10">dasdasda</div>
+                                                                        </section> -->
     </div>
 
 

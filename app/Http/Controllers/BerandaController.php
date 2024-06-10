@@ -150,6 +150,17 @@ class BerandaController extends Controller
         $totalCourses = Cache::get('totalCourses');
         $courseNames = Cache::get('courseNames'); // Ambil nama mata kuliah dari cache
 
+        $tahunAjaran = $request->input('tahunajaran');
+        $prodi = $request->input('prodi');
+
+        // Jalankan perintah dengan argumen dari formulir
+        Artisan::call('app:cek-mata-kuliah-lengkap', [
+            'tahunAjaran' => $tahunAjaran,
+            'prodi' => $prodi,
+        ]);
+
+        // Ambil hasil dari cache atau proses selanjutnya
+        $totalCoursesWithAllCriteria = Cache::get('totalCoursesWithAllCriteria');
 
         // Render view dashboard.blade.php sambil kirim data status server, informasi SSL, hasil SPADA, dan isi file.txt
         return view('dashboard/beranda', [
@@ -161,7 +172,8 @@ class BerandaController extends Controller
             'totalQuiz' => $totalQuiz,
             'suspendedUsers' => $suspendedUsers, // Tambahkan data pengguna yang di-suspend ke array yang dikirimkan ke views
             'totalCourses' => $totalCourses,
-            'courseNames' => $courseNames // Kirim nama mata kuliah ke views
+            'courseNames' => $courseNames, // Kirim nama mata kuliah ke views
+            'totalCoursesWithAllCriteria' => $totalCoursesWithAllCriteria, // Kirim nilai totalCoursesWithAllCriteria ke views
         ]);
     }
 }
