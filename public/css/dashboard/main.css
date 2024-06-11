@@ -779,13 +779,14 @@ section {
 /* C5 */
 
 /* C6 */
-.content-6{
+.content-6 {
     background-image: url(https://img.icons8.com/fluency-systems-filled/100/e8dfca/user.png);
     background-repeat: no-repeat;
     background-size: 30%;
     background-position: 420px 20px;
 }
-.c6-content{
+
+.c6-content {
     width: 100%;
     height: 80%;
     justify-content: center;
@@ -795,25 +796,28 @@ section {
     line-height: 30px;
 }
 
-.c6-content>p{
+.c6-content>p {
     font-size: 4rem;
     font-weight: 600;
 }
-.c6-content>i{
+
+.c6-content>i {
     font-size: 2rem;
     font-weight: 400;
 }
+
 /* C6 */
 
 /* C7 */
 .content-7 {
     width: 40%;
 }
-.c7-content{
+
+.c7-content {
     padding: 10px;
 }
 
-#matkul-aktivitas{
+#matkul-aktivitas {
     width: fit-content;
     margin-left: 10px;
 }
@@ -949,8 +953,30 @@ label {
     transition: ease-in-out .1s;
 }
 
-#hitung-form{
+#hitung-form {
     width: 100%;
     display: flex;
     justify-content: space-around;
+}
+
+.hidden-table {
+    display: none;
+}
+
+#content-1-click:hover {
+    cursor: pointer;
+    background-color: var(--secondary);
+    border: 2px solid var(--primary);
+    background-image: url(https://img.icons8.com/ios/100/f5efe6/books.png);
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: 110px 40px;
+}
+
+button{
+    border: none;
+    border-radius: 5px;
+    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
