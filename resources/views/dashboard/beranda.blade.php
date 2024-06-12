@@ -140,36 +140,39 @@
             {{-- TABEL RINCIAN SPADA --}}
             <div>
                 <h1>SPADA Summary</h1>
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th>Bulan</th>
-                            <th>Tahun</th>
-                            <th>Hari Ditemukan</th>
-                            <th>Hari Tidak Ditemukan</th>
-                            <th>Tanggal Dibuat</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($summaries as $summary)
+
+                @if ($latestSummary)
+                    <table border="1">
+                        <thead>
                             <tr>
-                                <td>{{ $summary->bulan }}</td>
-                                <td>{{ $summary->tahun }}</td>
-                                <td>{{ $summary->hari_ditemukan }}</td>
-                                <td>{{ $summary->hari_tidak_ditemukan }}</td>
-                                <td>{{ $summary->created_at }}</td>
+                                <th>Bulan</th>
+                                <th>Tahun</th>
+                                <th>Hari Ditemukan</th>
+                                <th>Hari Tidak Ditemukan</th>
+                                <th>Tanggal Dibuat</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ $latestSummary->bulan }}</td>
+                                <td>{{ $latestSummary->tahun }}</td>
+                                <td>{{ $latestSummary->hari_ditemukan }}</td>
+                                <td>{{ $latestSummary->hari_tidak_ditemukan }}</td>
+                                <td>{{ $latestSummary->created_at }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                @else
+                    <p>Belum ada data rangkuman yang tersedia.</p>
+                @endif
             </div>
         </div>
 
 
 
         <!-- <div class="info-header">
-                                                                                    <h1>Informasi Mata Kuliah</h1>
-                                                                                </div> -->
+                                                                                        <h1>Informasi Mata Kuliah</h1>
+                                                                                    </div> -->
 
         <div class="main-container-sort">
             <div class="content-container-sort">
@@ -263,19 +266,19 @@
 
 
                 <!-- <div class="content-3">
-                                                                        <div class="c1-header">Integrasi dengan spada</div>
-                                                                        <div class="c3-content">
-                                                                            @if ($spadaResult)
+                                                                            <div class="c1-header">Integrasi dengan spada</div>
+                                                                            <div class="c3-content">
+                                                                                @if ($spadaResult)
     <h4><strong>Data {{ $spadaResult->universitas }}
-                                                                                    {{ $spadaResult->status === 'Ditemukan' ? 'ditemukan' : 'tidak ditemukan' }} dalam
-                                                                                    SPADA</strong></h4>
+                                                                                        {{ $spadaResult->status === 'Ditemukan' ? 'ditemukan' : 'tidak ditemukan' }} dalam
+                                                                                        SPADA</strong></h4>
 @else
     <h4><strong>Data universitas tidak ditemukan dalam SPADA</strong></h4>
     @endif
 
-                                                                            <p>{{ $time }}</p>
-                                                                        </div>
-                                                                    </div> -->
+                                                                                <p>{{ $time }}</p>
+                                                                            </div>
+                                                                        </div> -->
 
             </section>
 
