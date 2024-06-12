@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Console\Commands;
+ini_set('max_execution_time', 0);
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;

@@ -11,4 +11,5 @@ class ServerStatus extends Model
 
     protected $fillable = ['ip_address', 'location', 'status', 'http_status', 'checked_at'];
 
+    public $timestamps = false; // Ini untuk menonaktifkan timestamps
 }

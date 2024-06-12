@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use DateTime;
+use Illuminate\Support\Facades\File; // Tambahkan ini
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -33,10 +34,9 @@ class CheckServerStatus extends Command
         $this->checkServerStatus($location);
     }
 
-    // Di dalam method checkServerStatus()
     private function checkServerStatus($location)
     {
-        $apiUrl = "https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=76debee2b62a3d38a48963f60b5c76ee&wsfunction=core_course_get_categories&moodlewsrestformat=json";
+        $apiUrl = "https://layar.yarsi.ac.id/webservice/rest/server.php?wstoken=7806baea3070ce31a56406264a241c4a&wsfunction=core_course_get_categories&moodlewsrestformat=json";
 
         try {
             $ch = curl_init($apiUrl);
@@ -50,8 +50,7 @@ class CheckServerStatus extends Command
             // Memasukkan hasil cek server ke database
             $this->saveToDatabase($location, $httpStatus);
             // Memasukkan hasil cek server ke txt
-            $this->simpanHasilCekServerKeFile($httpStatus === 200 ? "Online" : "Offline", $location,);
-
+            $this->simpanHasilCekServerKeFile($httpStatus === 200 ? "Online" : "Offline", $location);
 
             if ($httpStatus === 200) {
                 $this->showPopup("online", "Server lancar banget!", $location);
@@ -81,29 +80,22 @@ class CheckServerStatus extends Command
     }
 
     // Method untuk menyimpan hasil cek server ke txt
-private function simpanHasilCekServerKeFile($status, $location)
-{
-    // Menyimpan hasil cek server ke dalam file.txt di dalam direktori public
-    $filePath = public_path('hasil_cek_server.txt');
-    $waktu = now()->format('Y-m-d H:i:s');
-    $info = "$waktu | $status | $location";
-    $info .= PHP_EOL; // Tambahkan newline character
+    private function simpanHasilCekServerKeFile($status, $location)
+    {
+        // Menyimpan hasil cek server ke dalam file.txt di dalam direktori public
+        $filePath = public_path('hasil_cek_server.txt');
+        $waktu = now()->format('Y-m-d H:i:s');
+        $info = "$waktu | $status | $location" . PHP_EOL;
 
-    // Buka berkas dengan mode append
-    $fileHandle = fopen($filePath, 'r+');
+        // Baca data lama dari file
+        $oldData = '';
+        if (File::exists($filePath)) {
+            $oldData = File::get($filePath);
+        }
 
-    // Baca data lama
-    $oldData = fread($fileHandle, filesize($filePath));
-
-    // Geser kursor ke awal berkas
-    fseek($fileHandle, 0);
-
-    // Tulis data baru di awal berkas
-    fwrite($fileHandle, $info . $oldData);
-
-    // Tutup berkas
-    fclose($fileHandle);
-}
+        // Tulis data baru di awal dan tambahkan data lama
+        File::put($filePath, $info . $oldData);
+    }
 
     private function setLastCheckedTime()
     {

@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('universitas');
             $table->string('status')->nullable(); // Kolom status bisa memiliki nilai null
-            $table->timestamps(); // Tambahkan timestamps
+            $table->timestamp('created_at')->nullable(); // Buat kolom created_at
+            // Hapus timestamps() untuk menghindari kolom updated_at
         });
     }
 

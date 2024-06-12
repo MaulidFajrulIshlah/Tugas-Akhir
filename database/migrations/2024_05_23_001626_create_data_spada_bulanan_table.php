@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('tahun');
             $table->integer('hari_ditemukan')->default(0);
             $table->integer('hari_tidak_ditemukan')->default(0);
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable(); // Buat kolom created_at
+            // Hapus timestamps() untuk menghindari kolom updated_at
         });
     }
 

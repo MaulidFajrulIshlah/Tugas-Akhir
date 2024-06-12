@@ -13,16 +13,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('app:check-server')->everyMinute();
         // $schedule->command('app:check-server-status')->everyMinute();
-        // $schedule->exec('php C:\CODINGAN\TugasAkhir\Tugas-Akhir\public\spada-yarsi.php')
-        //     ->everyMinute()
-        //     ->appendOutputTo(storage_path('logs/laravel.log'));
         // $schedule->command('app:check-spada')->everyMinute();
         // $schedule->command('app:hitung-mata-kuliah')->everyMinute();
         // $schedule->command('quiz:getdata')->everyMinute();
         // $schedule->command('update:suspended-users')->everyMinute();
-        $schedule->command('cek:administrasi')->everyMinute();
+        // $schedule->command('cek:administrasi')->everyMinute();
 
 
 

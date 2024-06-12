@@ -18,4 +18,6 @@ class DataSpadaBulanan extends Model
         'hari_tidak_ditemukan',
         'created_at'
     ];
+
+    public $timestamps = false; // Disable timestamps
 }

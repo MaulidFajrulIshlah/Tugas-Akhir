@@ -52,7 +52,7 @@ class BerandaController extends Controller
         }
 
         // Ambil data status server terakhir dari DB PANDAY
-        $lastServerStatus = ServerStatus::orderBy('checked_at', 'desc')->first();
+        $lastServerStatus = ServerStatus::orderBy('checked_at', 'desc')->first(['location', 'status']);
 
         // Ambil informasi SSL certificate
         $url = 'https://layar.yarsi.ac.id/';

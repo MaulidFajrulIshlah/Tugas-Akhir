@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('status');
             $table->integer('http_status');
             $table->timestamp('checked_at')->nullable();
-            $table->timestamps();
         });
     }
 
