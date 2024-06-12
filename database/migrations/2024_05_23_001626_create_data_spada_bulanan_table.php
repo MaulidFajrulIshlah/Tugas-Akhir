@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('data_spada_bulanan', function (Blueprint $table) {
-            $table->id();
             $table->string('bulan');
             $table->string('tahun');
             $table->integer('hari_ditemukan')->default(0);

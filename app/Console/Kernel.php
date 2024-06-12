@@ -13,8 +13,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('app:check-server-status')->everyMinute();
-        // $schedule->command('app:check-spada')->everyMinute();
+        $schedule->command('app:check-server-status')->everyMinute();
+        $schedule->command('app:check-spada')->everyMinute();
         // $schedule->command('app:hitung-mata-kuliah')->everyMinute();
         // $schedule->command('quiz:getdata')->everyMinute();
         // $schedule->command('update:suspended-users')->everyMinute();

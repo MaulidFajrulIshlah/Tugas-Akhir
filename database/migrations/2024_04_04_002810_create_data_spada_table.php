@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('data_spada', function (Blueprint $table) {
-            $table->id();
             $table->string('universitas');
             $table->string('status')->nullable(); // Kolom status bisa memiliki nilai null
             $table->timestamp('created_at')->nullable(); // Buat kolom created_at

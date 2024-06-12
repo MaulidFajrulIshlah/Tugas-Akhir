@@ -10,6 +10,8 @@ use App\Models\DataSpada; // Import model DataSpada
 use Illuminate\Support\Facades\Artisan; // Import class Artisan untuk menjalankan command
 use Symfony\Component\Console\Output\BufferedOutput;
 use App\Models\ServerStatus;
+use App\Models\DataSpadaBulanan;
+
 
 
 
@@ -94,6 +96,10 @@ class BerandaController extends Controller
                 $categoryid = 582; // Contoh categoryid untuk Perpus 2023/2024 Ganjil
             } elseif ($prodi == 'Psikolog') {
                 $categoryid = 580; // Contoh categoryid untuk Manajemen 2023/2024 Ganjil
+            } elseif ($prodi == 'Akuntasi') {
+                $categoryid = 605; // Contoh categoryid untuk Manajemen 2023/2024 Ganjil
+            } elseif ($prodi == 'Manajemen') {
+                $categoryid = 602 + 601; // Contoh categoryid untuk Manajemen 2023/2024 Ganjil
             }
         } elseif ($tahunAjaran == '2023/2024-Genap') {
             if ($prodi == 'Teknik Informatika') {
@@ -162,6 +168,9 @@ class BerandaController extends Controller
         // Ambil hasil dari cache atau proses selanjutnya
         $totalCoursesWithAllCriteria = Cache::get('totalCoursesWithAllCriteria');
 
+        // Ambil semua data rangkuman
+        $summaries = DataSpadaBulanan::all();
+
         // Render view dashboard.blade.php sambil kirim data status server, informasi SSL, hasil SPADA, dan isi file.txt
         return view('dashboard/beranda', [
             'lastServerStatus' => $lastServerStatus,
@@ -174,6 +183,7 @@ class BerandaController extends Controller
             'totalCourses' => $totalCourses,
             'courseNames' => $courseNames, // Kirim nama mata kuliah ke views
             'totalCoursesWithAllCriteria' => $totalCoursesWithAllCriteria, // Kirim nilai totalCoursesWithAllCriteria ke views
+            'summaries' => $summaries,
         ]);
     }
 }
