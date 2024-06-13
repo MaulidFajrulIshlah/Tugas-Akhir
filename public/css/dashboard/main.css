@@ -119,7 +119,7 @@ header {
 }
 
 .navSidebar.active,
-.nav-item > .nav-link.active {
+.nav-item>.nav-link.active {
     background-color: var(--main-text-color);
 }
 
@@ -163,7 +163,7 @@ header {
     white-space: nowrap;
 }
 
-ul > li {
+ul>li {
     list-style: none;
 }
 
@@ -202,6 +202,7 @@ a {
 }
 
 @media (max-width: 546px) {
+
     .content,
     table {
         width: 100%;
@@ -508,7 +509,7 @@ a {
     padding-left: 10px;
 }
 
-.server-header > h1 {
+.server-header>h1 {
     font-size: 64px;
 }
 
@@ -550,19 +551,19 @@ a {
     bottom: 8px;
 }
 
-.right-content-ssl > h1 {
+.right-content-ssl>h1 {
     font-size: 72px;
 }
 
-.right-content-ssl > h2 {
+.right-content-ssl>h2 {
     font-size: 20px;
 }
 
-.right-content-ssl > p {
+.right-content-ssl>p {
     font-size: 20px;
 }
 
-.right-content-ssl > p > span {
+.right-content-ssl>p>span {
     font-weight: 700;
 }
 
@@ -593,7 +594,7 @@ section {
     padding-bottom: 1rem;
 }
 
-.header-suspend > h1 {
+.header-suspend>h1 {
     font-size: 24px;
     font-weight: 600;
     text-align: center;
@@ -638,6 +639,7 @@ section {
     background-repeat: no-repeat;
     background-size: 70%;
     background-position: 110px 40px;
+    transition: background-size 0.4s ease, background-position 0.4s ease, background-color 0.4s ease;
 }
 
 .c1-header {
@@ -658,7 +660,7 @@ section {
     padding-left: 20px;
 }
 
-.c1-content > p {
+.c1-content>p {
     color: var(--secondary-green);
 }
 
@@ -666,11 +668,13 @@ section {
 
 /* C3*/
 .content-3 {
+    position: relative;
     flex-grow: 1;
     background-image: url(https://img.icons8.com/ios-filled/100/e8dfca/globe--v1.png);
     background-repeat: no-repeat;
     background-size: 40%;
     background-position: 290px 10px;
+    transition: background-size 0.4s ease, background-position 0.4s ease, background-color 0.4s ease;
 }
 
 .c3-content {
@@ -699,7 +703,7 @@ section {
     padding: 5px;
 }
 
-.c4-chart-ket > #jurusan {
+.c4-chart-ket>#jurusan {
     width: 20%;
     background-color: var(--secondary-green);
     color: var(--primary);
@@ -762,7 +766,7 @@ section {
     row-gap: 5px;
 }
 
-.c5-content-div > h4 {
+.c5-content-div>h4 {
     font-size: 20px;
     font-weight: 400;
     text-align: center;
@@ -788,12 +792,12 @@ section {
     line-height: 30px;
 }
 
-.c6-content > p {
+.c6-content>p {
     font-size: 4rem;
     font-weight: 600;
 }
 
-.c6-content > i {
+.c6-content>i {
     font-size: 2rem;
     font-weight: 400;
 }
@@ -920,7 +924,7 @@ label {
     align-items: center;
 } */
 
-.button-sort > button {
+.button-sort>button {
     width: 100%;
     height: 100%;
     border-radius: 5px;
@@ -935,7 +939,7 @@ label {
     transition: ease-in-out;
 }
 
-.button-sort > button:hover {
+.button-sort>button:hover {
     background-color: var(--primary-green);
     color: var(--primary);
     transition: ease-in-out 0.1s;
@@ -957,8 +961,8 @@ label {
     border: 2px solid var(--primary);
     background-image: url(https://img.icons8.com/ios/100/f5efe6/books.png);
     background-repeat: no-repeat;
-    background-size: 70%;
-    background-position: 110px 40px;
+    background-size: 80%;
+    background-position: 100px 40px;
 }
 
 button {
@@ -967,4 +971,56 @@ button {
     padding: 2px;
     padding-left: 4px;
     padding-right: 4px;
+}
+
+.table-wrapper-spada {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.thead-spada{
+    position: sticky;
+    top: 0px;
+    background-color: var(--secondary-green);
+    padding-top: 2px;
+    color: var(--primary);
+} 
+
+#table-rekap-spada {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+#table-rekap-spada>th,
+td {
+    white-space: nowrap;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#table-rekap-spada>.thead-spada>tr>th
+{
+    font-weight: 400;
+}
+
+
+#table-rekap-spada tbody tr:nth-child(even) {
+    background-color: var(--primary); /* Warna latar belakang untuk baris genap */
+}
+#table-rekap-spada tbody tr:nth-child(odd) {
+    background-color: var(--secondary); /* Warna latar belakang untuk baris genap */
+}
+
+
+#content-3-click:hover{
+    cursor: pointer;
+    background-color: var(--secondary);
+    border: 2px solid var(--primary);
+    background-image: url(https://img.icons8.com/ios-filled/100/f5efe6/globe--v1.png);
+    background-repeat: no-repeat;
+    background-size: 55%; /* Membesarkan sedikit background image */
+    background-position: 200px 5px;   
 }
