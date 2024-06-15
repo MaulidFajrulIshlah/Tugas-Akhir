@@ -6,13 +6,14 @@ ini_set('max_execution_time', 0);
 
 use Illuminate\Console\Command;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class CheckSCLCourse extends Command
 {
     protected $signature = 'check:scl-course {tahunAjaran} {prodi}';
     protected $description = 'Check if multiple courses meet the SCL criteria';
-    protected $courseIds = [
+    private $courseIds = [
         '2023/2024-Ganjil' => [
             'Teknik Informatika' => [8299, 8304, 8574, 8688, 8300, 8631, 8395, 8306, 8307, 8308, 8302, 8303, 8301, 8605, 8601, 8225, 8310, 8309, 8840, 8298, 7485],
             'Perpustakaan dan Sains Informasi' => [8259, 8268, 8269, 8263, 8265, 8266, 8260, 8253, 8264, 8285, 8258, 8273, 8287, 8276, 8267, 8288, 8270, 8251, 6970, 8246, 8254, 8255, 8281, 8284, 8272, 8282, 8279, 8266, 8261, 9023, 8252, 8275, 8271, 8256, 8257, 8278, 8280, 8834, 8277, 8286, 8274],
@@ -57,6 +58,9 @@ class CheckSCLCourse extends Command
         }
 
         $courseIds = $this->courseIds[$tahunAjaran][$prodi];
+        $totalCourses = 0;
+        $sclCourses = 0;
+        $courseNames = []; // To store course names
 
         foreach ($courseIds as $courseId) {
             $queryParams['courseid'] = $courseId;
@@ -65,114 +69,112 @@ class CheckSCLCourse extends Command
                 $response = $client->get($apiUrl, ['query' => $queryParams]);
                 $courseContents = json_decode($response->getBody()->getContents(), true);
 
-                $pptCount = 0;
-                $hasForum = false;
-                $hasDescription = true;
-                $hasRPSAndKontrak = false;
-                $meetingCount = 0;
-                $submissionCount = 0;
-                $hasAutoGradedQuiz = false;
-                $nonReadingActivityCount = 0;
+                $results = $this->checkCourseCriteria($courseContents);
+                $totalCourses++;
+                $courseNames[] = $this->getCourseName($courseContents); // Add course name
 
-                $resourceModules = [];
-
-                foreach ($courseContents as $section) {
-                    if (isset($section['summary']) && !empty($section['summary'])) {
-                        $hasDescription = true;
-                    } else {
-                        $hasDescription = false;
-                        break;
-                    }
-                    if (isset($section['modules'])) {
-                        foreach ($section['modules'] as $module) {
-                            if (isset($module['modname']) && $module['modname'] === 'forum') {
-                                $meetingCount++;
-                                $hasForum = true;
-                            }
-                            if (isset($module['modname']) && $module['modname'] === 'assign') {
-                                $submissionCount++;
-                            }
-                            if (isset($module['modname']) && $module['modname'] === 'resource') {
-                                $resourceModules[$module['id']] = $module;
-                                if (isset($module['contents'])) {
-                                    foreach ($module['contents'] as $content) {
-                                        if (
-                                            isset($content['filename']) &&
-                                            (str_ends_with($content['filename'], '.ppt') || str_ends_with($content['filename'], '.pptx'))
-                                        ) {
-                                            $pptCount++;
-                                        }
-                                    }
-                                }
-                            }
-                            if (
-                                (isset($module['modname']) && $module['modname'] === 'resource' && $module['name'] === 'Rencana Pembelajaran Semester (RPS)') ||
-                                (isset($module['modname']) && $module['modname'] === 'choice' && $module['name'] === 'Kontrak Kuliah')
-                            ) {
-                                $hasRPSAndKontrak = true;
-                            }
-                            if (isset($module['modname']) && $module['modname'] === 'quiz') {
-                                if (isset($module['completiondata']['details'])) {
-                                    foreach ($module['completiondata']['details'] as $detail) {
-                                        if (isset($detail['rulename']) && ($detail['rulename'] === 'completionusegrade' || $detail['rulename'] === 'completionpassgrade')) {
-                                            $hasAutoGradedQuiz = true;
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                            if (isset($section['modules'])) {
-                                foreach ($section['modules'] as $module) {
-                                    if (
-                                        isset($module['modname']) &&
-                                        ($module['modname'] === 'assign' || $module['modname'] === 'quiz' || $module['modname'] === 'label')
-                                    ) {
-                                        $nonReadingActivityCount++;
-                                    }
-                                }
-                            }
-                        }
-                    }
+                if ($this->isCourseSCL($results)) {
+                    $sclCourses++;
                 }
 
-                $results = [
-                    'courseId' => $courseId,
-                    'hasMeetingsAndSubmissions' => $meetingCount >= 8 && $submissionCount >= 2,
-                    'hasForum' => $hasForum,
-                    'pptCount' => $pptCount >= 10,
-                    'hasDescription' => $hasDescription,
-                    'hasRPSAndKontrak' => $hasRPSAndKontrak,
-                    'hasAutoGradedQuiz' => $hasAutoGradedQuiz,
-                    'nonReadingActivityCount' => $nonReadingActivityCount >= 10,
-                ];
-
-                $this->logging($results);
+                $this->logging($courseId, $results);
             } catch (\Exception $e) {
-                $this->logging([
-                    'courseId' => $courseId,
+                $this->logging($courseId, [
                     'error' => "Error fetching data - " . $e->getMessage(),
                 ]);
             }
         }
+
+        // Store results in cache
+        Cache::put('totalCourses', $totalCourses, now()->addMinutes(30));
+        Cache::put('sclCourses', $sclCourses, now()->addMinutes(30));
+        Cache::put('courseNames', $courseNames, now()->addMinutes(30));
+
+        $this->info("Total Courses Checked: $totalCourses");
+        $this->info("Total Courses Meeting All SCL Criteria: $sclCourses");
     }
 
-    public function logging($results)
+    private function checkCourseCriteria($courseContents)
+    {
+        $pptCount = 0;
+        $hasForum = false;
+        $hasDescription = true;
+        $hasRPSAndKontrak = false;
+        $meetingCount = 0;
+        $submissionCount = 0;
+        $nonReadingActivityCount = 0;
+
+        foreach ($courseContents as $section) {
+            if (isset($section['summary']) && !empty($section['summary'])) {
+                $hasDescription = true;
+            } else {
+                $hasDescription = false;
+                break;
+            }
+
+            foreach ($section['modules'] as $module) {
+                $modname = $module['modname'] ?? null;
+                $modname === 'forum' && $meetingCount++;
+                $modname === 'forum' && $hasForum = true;
+                $modname === 'assign' && $submissionCount++;
+                $modname === 'resource' && $pptCount += $this->countPPT($module);
+                ($modname === 'resource' && $module['name'] === 'Rencana Pembelajaran Semester (RPS)') || ($modname === 'choice' && $module['name'] === 'Kontrak Kuliah') && $hasRPSAndKontrak = true;
+                in_array($modname, ['assign', 'quiz', 'label']) && $nonReadingActivityCount++;
+            }
+        }
+
+        return [
+            'hasMeetingsAndSubmissions' => $meetingCount >= 8 && $submissionCount >= 2,
+            'hasForum' => $hasForum,
+            'pptCount' => $pptCount >= 10,
+            'hasDescription' => $hasDescription,
+            'hasRPSAndKontrak' => $hasRPSAndKontrak,
+            'nonReadingActivityCount' => $nonReadingActivityCount >= 10,
+        ];
+    }
+
+    private function countPPT($module)
+    {
+        $pptCount = 0;
+        if (isset($module['contents'])) {
+            foreach ($module['contents'] as $content) {
+                if (isset($content['filename']) && (str_ends_with($content['filename'], '.ppt') || str_ends_with($content['filename'], '.pptx'))) {
+                    $pptCount++;
+                }
+            }
+        }
+        return $pptCount;
+    }
+
+    private function isCourseSCL($results)
+    {
+        return $results['hasMeetingsAndSubmissions'] &&
+            $results['hasForum'] &&
+            $results['pptCount'] &&
+            $results['hasDescription'] &&
+            $results['hasRPSAndKontrak'] &&
+            $results['nonReadingActivityCount'];
+    }
+
+    public function logging($identifier, $results)
     {
         $logFilePath = storage_path('logs/cekmatakuliahSCL.log');
 
-        $logMessage = "";
-
+        $logMessage = "ID " . $identifier . " - SCL Criteria Check Result: \n";
         if (isset($results['error'])) {
-            $logMessage = "Course ID " . $results['courseId'] . ": " . $results['error'] . "\n\n";
+            $logMessage .= "Error: " . $results['error'] . "\n\n";
         } else {
-            $logMessage = "Course ID " . $results['courseId'] . " - SCL Criteria Check Result: \n" .
-                "Forum Diskusi: " . ($results['hasForum'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
-                "Kegiatan Non-Membaca atau Menonton Video: " . ($results['nonReadingActivityCount'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
-                "Minimal 8 Pertemuan dengan 2 Aktivitas Pengumpulan: " . ($results['hasMeetingsAndSubmissions'] ? 'Memenuhi' : 'Tidak Memenuhi') . "\n" .
-                "Minimal 10 Kegiatan Mengunduh PPT: " . ($results['pptCount'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
-                "Deskripsi pada Setiap Kegiatan: " . ($results['hasDescription'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
-                "Latihan Berbasis Kuis Auto-Grading: " . ($results['hasAutoGradedQuiz'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
-                "RPS dan Kontrak yang Ditandatangani secara Digital: " . ($results['hasRPSAndKontrak'] ? 'Memiliki' : 'Tidak Memiliki') . "\n\n";
+            if ($identifier === "Summary") {
+                $logMessage .= "Total Courses Checked: " . $results['total_courses_checked'] . "\n" .
+                    "Total Courses Meeting All SCL Criteria: " . $results['total_courses_scl'] . "\n\n";
+            } else {
+                $logMessage .= "Forum Diskusi: " . ($results['hasForum'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
+                    "Kegiatan Non-Membaca atau Menonton Video: " . ($results['nonReadingActivityCount'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
+                    "Minimal 8 Pertemuan dengan 2 Aktivitas Pengumpulan: " . ($results['hasMeetingsAndSubmissions'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
+                    "Minimal 10 Kegiatan Mengunduh PPT: " . ($results['pptCount'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
+                    "Deskripsi pada Setiap Kegiatan: " . ($results['hasDescription'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
+                    "RPS dan Kontrak yang Ditandatangani secara Digital: " . ($results['hasRPSAndKontrak'] ? 'Memiliki' : 'Tidak Memiliki') . "\n\n";
+            }
         }
 
         try {
@@ -181,5 +183,10 @@ class CheckSCLCourse extends Command
         } catch (\Exception $e) {
             $this->error("Failed to write to log: " . $e->getMessage());
         }
+    }
+
+    private function getCourseName($courseContents)
+    {
+        return $courseContents[0]['name'] ?? 'Unknown Course'; // Example, adjust as needed
     }
 }

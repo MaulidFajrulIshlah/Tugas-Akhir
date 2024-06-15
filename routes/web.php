@@ -46,6 +46,9 @@ Route::redirect('/', '/login');
 Route::middleware('auth')->group(function () {
     // Beranda
     Route::get('/dashboard/beranda', [BerandaController::class, 'CheckStatusServer'])->name('beranda');
+    Route::get('/dashboard/beranda/dekanat-ti', [BerandaController::class, 'DekanatTI'])->name('beranda-dekanat-ti');
+
+
 
     // Mata Kuliah
     Route::get('/dashboard/matakuliah', [MataKuliahController::class, 'index'])->name('mataKuliah');

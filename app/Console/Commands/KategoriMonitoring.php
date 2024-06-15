@@ -6,12 +6,26 @@ ini_set('max_execution_time', 0);
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Cache;
 
-class CekMataKuliahLengkap extends Command
+class KategoriMonitoring extends Command
 {
-    protected $signature = 'app:cek-mata-kuliah-lengkap {tahunAjaran} {prodi}';
-    protected $description = 'Check completeness of courses: Visi dan Misi, Kontrak Kuliah, Rencana Pembelajaran Semester (RPS)';
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'cek:kategori-monitoring {tahunAjaran} {prodi}';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Command description';
+
+    /**
+     * Execute the console command.
+     */
 
     private $tokenApi = '7806baea3070ce31a56406264a241c4a';
     private $apiUrl = 'https://layar.yarsi.ac.id/webservice/rest/server.php';
@@ -38,41 +52,17 @@ class CekMataKuliahLengkap extends Command
         'videoPembelajaran' => "Video Pembelajaran",
         'dokumenTeksPembelajaran' => "Dokumen Teks Pembelajaran", // Tambahkan elemen untuk dokumen teks pembelajaran
     ];
-
     public function handle()
     {
         $tahunAjaran = $this->argument('tahunAjaran');
         $prodi = $this->argument('prodi');
         $courses = $this->courseIds[$tahunAjaran][$prodi] ?? [];
-        $totalCoursesWithAllCriteria = 0;
 
         foreach ($courses as $courseId) {
             $result = $this->checkCourseContent($courseId);
             $this->logResult($tahunAjaran, $prodi, $courseId, $result);
             $this->logDebugResult($courseId, $result);
-
-            if ($this->courseMeetsAllCriteria($result)) {
-                $totalCoursesWithAllCriteria++;
-            }
         }
-        $expirationTime = now()->addHour(); // Cache berlaku selama 1 jam dari saat ini
-        // Simpan nilai total ke cache
-        Cache::put('totalCoursesWithAllCriteria', $totalCoursesWithAllCriteria, $expirationTime);
-
-        // Log total mata kuliah yang memenuhi semua kriteria
-        $this->logTotalCoursesWithAllCriteria($totalCoursesWithAllCriteria);
-    }
-
-
-    private function courseMeetsAllCriteria($result)
-    {
-        // Periksa apakah semua elemen dalam hasil pemeriksaan adalah true
-        foreach ($result as $element) {
-            if (!$element) {
-                return false;
-            }
-        }
-        return true;
     }
 
     private function checkCourseContent($courseId)
@@ -162,21 +152,14 @@ class CekMataKuliahLengkap extends Command
 
     private function logResult($tahunAjaran, $prodi, $courseId, $result)
     {
-        $logFilePath = storage_path('logs/cekmatakuliahlengkap.log');
+        $logFilePath = storage_path('logs/cekKategoriMonitoring.log');
         $logMessage = "Course ID: $courseId - Visi Misi: " . ($result['visiMisi'] ? 'Memiliki' : 'Tidak memiliki') . " - Kontrak Kuliah: " . ($result['kontrakKuliah'] ? 'Memiliki' : 'Tidak memiliki') . " - RPS: " . ($result['rps'] ? 'Memiliki' : 'Tidak memiliki') . " - Daftar Tugas: " . ($result['daftarTugas'] ? 'Memiliki' : 'Tidak memiliki') . " - Kuis: " . ($result['kuis'] ? 'Memiliki' : 'Tidak memiliki') . " - Latihan: " . ($result['latihan'] ? 'Memiliki' : 'Tidak memiliki') . " - Praktikum: " . ($result['praktikum'] ? 'Memiliki' : 'Tidak memiliki') . " - Refleksi: " . ($result['refleksi'] ? 'Memiliki' : 'Tidak memiliki') . " - Ujian: " . ($result['ujian'] ? 'Memiliki' : 'Tidak memiliki') . " - Video Pembelajaran: " . ($result['videoPembelajaran'] ? 'Memiliki' : 'Tidak memiliki') . " - Dokumen Teks Pembelajaran: " . ($result['dokumenTeksPembelajaran'] ? 'Memiliki' : 'Tidak memiliki') . PHP_EOL;
-        file_put_contents($logFilePath, $logMessage, FILE_APPEND);
-    }
-
-    private function logTotalCoursesWithAllCriteria($total)
-    {
-        $logFilePath = storage_path('logs/cekmatakuliahlengkap.log');
-        $logMessage = "Total courses with all criteria: $total\n";
         file_put_contents($logFilePath, $logMessage, FILE_APPEND);
     }
 
     private function logDebugResult($courseId, $result)
     {
-        $logFilePath = storage_path('logs/cekmatakuliahlengkap_debug.log');
+        $logFilePath = storage_path('logs/cekKategoriMonitoring-debug.log');
         $logMessage = "Debug Result - Course ID: $courseId - " . json_encode($result) . PHP_EOL;
         file_put_contents($logFilePath, $logMessage, FILE_APPEND);
     }
