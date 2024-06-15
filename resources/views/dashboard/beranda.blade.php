@@ -151,6 +151,7 @@
                         <th>Tanggal Pengecekan</th>
                     </tr>
                 </thead>
+                
                 <tbody>
                     <tr>
                         <td>{{ $latestSummary->tahun }}</td>
