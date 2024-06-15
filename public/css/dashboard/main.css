@@ -640,6 +640,7 @@ section {
     background-size: 70%;
     background-position: 110px 40px;
     transition: background-size 0.4s ease, background-position 0.4s ease, background-color 0.4s ease;
+    
 }
 
 .c1-header {
@@ -1023,4 +1024,12 @@ td {
     background-repeat: no-repeat;
     background-size: 55%; /* Membesarkan sedikit background image */
     background-position: 200px 5px;   
+}
+
+.charts-header{
+    text-align: center;
+    font-size: x-large;
+    margin-top: 5px;
+    color: var(--primary-green);
+    font-weight: 600;
 }
