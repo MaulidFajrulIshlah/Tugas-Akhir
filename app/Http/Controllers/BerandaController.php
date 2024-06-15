@@ -171,6 +171,12 @@ class BerandaController extends Controller
         // Ambil semua data rangkuman
         $latestSummary = DataSpadaBulanan::latest('created_at')->first();
 
+        // Ambil hasil dari cache atau proses selanjutnya
+        $totalCourseSCL = Cache::get('totalCourses');
+        $courseNamesSCL = Cache::get('courseNames'); // Ambil nama mata kuliah dari cache
+        $totalCoursesWithAllCriteriaSCL = Cache::get('totalCoursesWithAllCriteria');
+        $sclCourses = Cache::get('sclCourses'); // Ambil jumlah course yang memenuhi kriteria SCL
+
         // Render view dashboard.blade.php sambil kirim data status server, informasi SSL, hasil SPADA, dan isi file.txt
         return view('dashboard/beranda', [
             'lastServerStatus' => $lastServerStatus,
@@ -184,6 +190,8 @@ class BerandaController extends Controller
             'courseNames' => $courseNames, // Kirim nama mata kuliah ke views
             'totalCoursesWithAllCriteria' => $totalCoursesWithAllCriteria, // Kirim nilai totalCoursesWithAllCriteria ke views
             'latestSummary' => $latestSummary,
+            'totalCoursesWithAllCriteriaSCL' => $totalCoursesWithAllCriteriaSCL,
+
         ]);
     }
 }

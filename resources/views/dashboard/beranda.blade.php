@@ -177,9 +177,9 @@
 
 
 
-    <!-- <div class="info-header">
-                                                                                    <h1>Informasi Mata Kuliah</h1>
-                                                                                </div> -->
+        <!-- <div class="info-header">
+                                                                                        <h1>Informasi Mata Kuliah</h1>
+                                                                                    </div> -->
 
     <div class="main-container-sort">
         <div class="content-container-sort">
@@ -271,21 +271,28 @@
                 </div>
             </div>
 
+                <div class="content-1">
+                    <div class="c1-header">halaman LAYAR mata kuliah berbasis SCL</div>
+                    <div class="c1-content">
+                        <p>{{ $totalCoursesWithAllCriteriaSCL }}</p>
+                    </div>
+                </div>
 
-            <!-- <div class="content-3">
-                                                                        <div class="c1-header">Integrasi dengan spada</div>
-                                                                        <div class="c3-content">
-                                                                            @if ($spadaResult)
+
+                <!-- <div class="content-3">
+                                                                            <div class="c1-header">Integrasi dengan spada</div>
+                                                                            <div class="c3-content">
+                                                                                @if ($spadaResult)
     <h4><strong>Data {{ $spadaResult->universitas }}
-                                                                                    {{ $spadaResult->status === 'Ditemukan' ? 'ditemukan' : 'tidak ditemukan' }} dalam
-                                                                                    SPADA</strong></h4>
+                                                                                        {{ $spadaResult->status === 'Ditemukan' ? 'ditemukan' : 'tidak ditemukan' }} dalam
+                                                                                        SPADA</strong></h4>
 @else
     <h4><strong>Data universitas tidak ditemukan dalam SPADA</strong></h4>
     @endif
 
-                                                                            <p>{{ $time }}</p>
-                                                                        </div>
-                                                                    </div> -->
+                                                                                <p>{{ $time }}</p>
+                                                                            </div>
+                                                                        </div> -->
 
         </section>
 
