@@ -1,4 +1,4 @@
-@extends('dashboard.beranda')
+{{-- @extends('dashboard.beranda') --}}
 @section('card')
 
     @can('dekanat-tendik-pascasarjana')
