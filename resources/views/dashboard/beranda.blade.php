@@ -146,7 +146,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($summaries as $summary)
+                @foreach ($latestSummary as $summary)
                 <tr>
                     <td>{{ $summary->tahun }}</td>
                     <td>{{ $summary->bulan }}</td>
@@ -366,7 +366,6 @@
     </div>
     </section>
 </div>
-
 
 
 
