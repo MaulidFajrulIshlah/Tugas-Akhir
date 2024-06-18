@@ -34,10 +34,13 @@ class CekMataKuliahLengkap extends Command
         'latihan' => "Latihan",
         'praktikum' => "Praktikum",
         'refleksi' => "Refleksi",
-        'ujian' => ["Ujian", "UAS", "UTS"], // Tambahkan kata kunci ujian
+        'ujian' => ["Ujian", "UAS", "UTS"],
         'videoPembelajaran' => "Video Pembelajaran",
-        'dokumenTeksPembelajaran' => "Dokumen Teks Pembelajaran", // Tambahkan elemen untuk dokumen teks pembelajaran
+        'dokumenTeksPembelajaran' => "Dokumen Teks Pembelajaran",
+        'logKerja' => "Log Kerja",
+        'kegiatanBelajarEksternal' => "Kegiatan Belajar Eksternal" // Elemen baru
     ];
+
 
     public function handle()
     {
@@ -55,6 +58,7 @@ class CekMataKuliahLengkap extends Command
                 $totalCoursesWithAllCriteria++;
             }
         }
+
         $expirationTime = now()->addHour(); // Cache berlaku selama 1 jam dari saat ini
         // Simpan nilai total ke cache
         Cache::put('totalCoursesWithAllCriteria', $totalCoursesWithAllCriteria, $expirationTime);
@@ -62,7 +66,6 @@ class CekMataKuliahLengkap extends Command
         // Log total mata kuliah yang memenuhi semua kriteria
         $this->logTotalCoursesWithAllCriteria($totalCoursesWithAllCriteria);
     }
-
 
     private function courseMeetsAllCriteria($result)
     {
@@ -89,6 +92,8 @@ class CekMataKuliahLengkap extends Command
             'ujian' => false,
             'videoPembelajaran' => false,
             'dokumenTeksPembelajaran' => false,
+            'logKerja' => false,
+            'kegiatanBelajarEksternal' => false, // Elemen baru
         ];
 
         $response = Http::get($this->apiUrl, [
@@ -132,6 +137,12 @@ class CekMataKuliahLengkap extends Command
                         if ($module['modname'] === 'resource' && $module['modplural'] === 'Files' && isset($module['contents'][0]['mimetype']) && ($module['contents'][0]['mimetype'] === 'application/pdf' || $module['contents'][0]['mimetype'] === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || $module['contents'][0]['mimetype'] === 'application/vnd.openxmlformats-officedocument.presentationml.presentation')) {
                             $result['dokumenTeksPembelajaran'] = true;
                         }
+                        if ($module['modname'] === 'questionnaire' && $module['modplural'] === 'Questionnaires' && $this->containsElement($module['name'], $this->requiredElements['logKerja'])) {
+                            $result['logKerja'] = true;
+                        }
+                        if ($module['modname'] === 'url' && isset($module['contents']) && $this->containsElement($module['contents'][0]['type'] ?? '', 'url')) {
+                            $result['kegiatanBelajarEksternal'] = true;
+                        }
                         foreach ($this->requiredElements as $key => $element) {
                             if ($this->containsElement($module['name'], $element) || $this->containsElement($module['description'] ?? '', $element)) {
                                 $result[$key] = true;
@@ -144,6 +155,8 @@ class CekMataKuliahLengkap extends Command
 
         return $result;
     }
+
+
 
     // Fungsi pengecekan elemen
     private function containsElement($text, $element)
@@ -163,9 +176,23 @@ class CekMataKuliahLengkap extends Command
     private function logResult($tahunAjaran, $prodi, $courseId, $result)
     {
         $logFilePath = storage_path('logs/cekmatakuliahlengkap.log');
-        $logMessage = "Course ID: $courseId - Visi Misi: " . ($result['visiMisi'] ? 'Memiliki' : 'Tidak memiliki') . " - Kontrak Kuliah: " . ($result['kontrakKuliah'] ? 'Memiliki' : 'Tidak memiliki') . " - RPS: " . ($result['rps'] ? 'Memiliki' : 'Tidak memiliki') . " - Daftar Tugas: " . ($result['daftarTugas'] ? 'Memiliki' : 'Tidak memiliki') . " - Kuis: " . ($result['kuis'] ? 'Memiliki' : 'Tidak memiliki') . " - Latihan: " . ($result['latihan'] ? 'Memiliki' : 'Tidak memiliki') . " - Praktikum: " . ($result['praktikum'] ? 'Memiliki' : 'Tidak memiliki') . " - Refleksi: " . ($result['refleksi'] ? 'Memiliki' : 'Tidak memiliki') . " - Ujian: " . ($result['ujian'] ? 'Memiliki' : 'Tidak memiliki') . " - Video Pembelajaran: " . ($result['videoPembelajaran'] ? 'Memiliki' : 'Tidak memiliki') . " - Dokumen Teks Pembelajaran: " . ($result['dokumenTeksPembelajaran'] ? 'Memiliki' : 'Tidak memiliki') . PHP_EOL;
+        $logMessage = "Course ID: $courseId - Visi Misi: " . ($result['visiMisi'] ? 'Memiliki' : 'Tidak memiliki')
+            . " - Kontrak Kuliah: " . ($result['kontrakKuliah'] ? 'Memiliki' : 'Tidak memiliki')
+            . " - RPS: " . ($result['rps'] ? 'Memiliki' : 'Tidak memiliki')
+            . " - Daftar Tugas: " . ($result['daftarTugas'] ? 'Memiliki' : 'Tidak memiliki')
+            . " - Kuis: " . ($result['kuis'] ? 'Memiliki' : 'Tidak memiliki')
+            . " - Latihan: " . ($result['latihan'] ? 'Memiliki' : 'Tidak memiliki')
+            . " - Praktikum: " . ($result['praktikum'] ? 'Memiliki' : 'Tidak memiliki')
+            . " - Refleksi: " . ($result['refleksi'] ? 'Memiliki' : 'Tidak memiliki')
+            . " - Ujian: " . ($result['ujian'] ? 'Memiliki' : 'Tidak memiliki')
+            . " - Video Pembelajaran: " . ($result['videoPembelajaran'] ? 'Memiliki' : 'Tidak memiliki')
+            . " - Dokumen Teks Pembelajaran: " . ($result['dokumenTeksPembelajaran'] ? 'Memiliki' : 'Tidak memiliki')
+            . " - Log Kerja: " . ($result['logKerja'] ? 'Memiliki' : 'Tidak memiliki')
+            . " - Kegiatan Belajar Eksternal: " . ($result['kegiatanBelajarEksternal'] ? 'Memiliki' : 'Tidak memiliki') // Elemen baru
+            . PHP_EOL;
         file_put_contents($logFilePath, $logMessage, FILE_APPEND);
     }
+
 
     private function logTotalCoursesWithAllCriteria($total)
     {
