@@ -32,22 +32,30 @@ class KategoriMonitoring extends Command
         $totalManualGrading = 0;
         $totalKuisAutoGrading = 0;
         $totalLatihanManual = 0;
-        $totalLatihanAutoGrading = 0; // Tambahkan ini untuk total latihan dengan autograding
+        $totalLatihanAutoGrading = 0;
         $totalPraktikumAutoGrading = 0;
         $totalPraktikumManualGrading = 0;
         $totalUjianAutoGrading = 0;
         $totalUjianManualGrading = 0;
+        $totalVisiMisi = 0;
+        $totalKontrakKuliah = 0;
+        $totalRPS = 0;
+        $totalRefleksi = 0; // Tambahkan ini
 
         foreach ($courses as $courseId) {
             $result = $this->checkCourseContent($courseId);
             $totalManualGrading += $result['totalTugasManual'];
             $totalKuisAutoGrading += $result['totalKuisAutoGrading'];
             $totalLatihanManual += $result['totalLatihanManual'];
-            $totalLatihanAutoGrading += $result['totalLatihanAutoGrading']; // Tambahkan ini
+            $totalLatihanAutoGrading += $result['totalLatihanAutoGrading'];
             $totalPraktikumAutoGrading += $result['totalPraktikumAutoGrading'];
             $totalPraktikumManualGrading += $result['totalPraktikumManualGrading'];
             $totalUjianAutoGrading += $result['totalUjianAutoGrading'];
             $totalUjianManualGrading += $result['totalUjianManualGrading'];
+            $totalVisiMisi += $result['totalVisiMisi'];
+            $totalKontrakKuliah += $result['totalKontrakKuliah'];
+            $totalRPS += $result['totalRPS'];
+            $totalRefleksi += $result['totalRefleksi']; // Tambahkan ini
             $this->logResult($tahunAjaran, $prodi, $courseId, $result, 'detail');
         }
 
@@ -56,13 +64,20 @@ class KategoriMonitoring extends Command
             'totalTugasManual' => $totalManualGrading,
             'totalKuisAutoGrading' => $totalKuisAutoGrading,
             'totalLatihanManual' => $totalLatihanManual,
-            'totalLatihanAutoGrading' => $totalLatihanAutoGrading, // Tambahkan ini
+            'totalLatihanAutoGrading' => $totalLatihanAutoGrading,
             'totalPraktikumAutoGrading' => $totalPraktikumAutoGrading,
             'totalPraktikumManualGrading' => $totalPraktikumManualGrading,
             'totalUjianAutoGrading' => $totalUjianAutoGrading,
             'totalUjianManualGrading' => $totalUjianManualGrading,
+            'totalVisiMisi' => $totalVisiMisi,
+            'totalKontrakKuliah' => $totalKontrakKuliah,
+            'totalRPS' => $totalRPS,
+            'totalRefleksi' => $totalRefleksi, // Tambahkan ini
         ], 'total');
     }
+
+
+
 
     private function checkCourseContent($courseId)
     {
@@ -76,6 +91,10 @@ class KategoriMonitoring extends Command
             'totalPraktikumManualGrading' => 0,
             'totalUjianAutoGrading' => 0,
             'totalUjianManualGrading' => 0,
+            'totalVisiMisi' => 0,
+            'totalKontrakKuliah' => 0,
+            'totalRPS' => 0,
+            'totalRefleksi' => 0, // Tambahkan ini untuk Refleksi
         ];
 
         $response = Http::get($this->apiUrl, [
@@ -125,6 +144,22 @@ class KategoriMonitoring extends Command
                         if ($this->isAutoGradingPractice($module)) {
                             $result['totalLatihanAutoGrading']++;
                         }
+
+                        if ($this->isVisiMisi($module)) {
+                            $result['totalVisiMisi']++;
+                        }
+
+                        if ($this->isKontrakKuliah($module)) {
+                            $result['totalKontrakKuliah']++;
+                        }
+
+                        if ($this->isRPS($module)) {
+                            $result['totalRPS']++;
+                        }
+
+                        if ($this->isRefleksi($module)) { // Tambahkan ini untuk Refleksi
+                            $result['totalRefleksi']++;
+                        }
                     }
                 }
             }
@@ -132,6 +167,100 @@ class KategoriMonitoring extends Command
 
         return $result;
     }
+
+
+
+
+    private function isVisiMisi($module)
+    {
+        // Pengecekan hanya jika modname adalah "resource" dan modplural adalah "Files"
+        if (
+            $module['modname'] === 'resource' &&
+            $module['modplural'] === 'Files' &&
+            (
+                strpos(strtolower($module['name'] ?? ''), 'visi dan misi') !== false &&
+                strpos(strtolower($module['name'] ?? ''), 'visi dan misi program studi') !== false ||
+                strpos(strtolower($module['description'] ?? ''), 'visi dan misi') !== false &&
+                strpos(strtolower($module['description'] ?? ''), 'visi dan misi program studi') !== false
+            )
+        ) {
+            // Pengecekan ekstensi file dalam contents
+            foreach ($module['contents'] as $content) {
+                $filename = $content['filename'];
+                $ext = pathinfo($filename, PATHINFO_EXTENSION);
+
+                // Pengecekan ekstensi yang diizinkan (ppt, pptx, pdf)
+                if (in_array(strtolower($ext), ['ppt', 'pptx', 'pdf'])) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private function isKontrakKuliah($module)
+    {
+        $name = $module['name'] ?? '';
+        $description = $module['description'] ?? '';
+        $modname = $module['modname'] ?? '';
+        $modplural = $module['modplural'] ?? '';
+
+        // Pengecekan hanya berdasarkan nama, deskripsi, modname, dan modplural
+        if (
+            $modname === 'choice' &&
+            $modplural === 'Choices' &&
+            (strpos(strtolower($name), 'kontrak kuliah') !== false ||
+                strpos(strtolower($description), 'kontrak kuliah') !== false)
+        ) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    private function isRPS($module)
+    {
+        // Lakukan pengecekan pada nama dan deskripsi modul
+        $name = $module['name'] ?? '';
+        $description = $module['description'] ?? '';
+
+        // Pengecekan hanya jika terdapat kata 'RPS' dalam nama atau deskripsi modul
+        if (
+            strpos(strtolower($name), 'rps') !== false ||
+            strpos(strtolower($name), 'Rencana Pembelajaran Semester') !== false ||
+            strpos(strtolower($name), 'Rencana Pembelajaran Semester (RPS)') !== false &&
+            strpos(strtolower($description), 'rps') !== false ||
+            strpos(strtolower($description), 'Rencana Pembelajaran Semester') !== false ||
+            strpos(strtolower($description), 'Rencana Pembelajaran Semester (RPS)') !== false
+        ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function isRefleksi($module)
+    {
+        $name = $module['name'] ?? '';
+        $description = $module['description'] ?? '';
+        $modname = $module['modname'] ?? '';
+        $modplural = $module['modplural'] ?? '';
+
+        // Pengecekan hanya berdasarkan nama, deskripsi, modname, dan modplural
+        if (
+            $modname === 'questionnaire' &&
+            $modplural === 'Questionnaires' &&
+            (strpos(strtolower($name), 'refleksi') !== false || strpos(strtolower($description), 'refleksi') !== false)
+        ) {
+            return true;
+        }
+
+        return false;
+    }
+
+
 
     private function isAutoGradingTask($module)
     {
@@ -423,10 +552,14 @@ class KategoriMonitoring extends Command
                 . " - Total Latihan Auto Grading: " . $result['totalLatihanAutoGrading']
                 . " - Total Praktikum Auto Grading: " . $result['totalPraktikumAutoGrading']
                 . " - Total Praktikum Manual Grading: " . $result['totalPraktikumManualGrading']
-                . " - Total Praktikum: " . ($result['totalPraktikumAutoGrading'] + $result['totalPraktikumManualGrading'] )
+                . " - Total Praktikum: " . ($result['totalPraktikumAutoGrading'] + $result['totalPraktikumManualGrading'])
                 . " - Total Ujian Auto Grading: " . $result['totalUjianAutoGrading']
                 . " - Total Ujian Manual Grading: " . $result['totalUjianManualGrading']
-                . " - Total Ujian: ". ($result['totalUjianAutoGrading'] + $result['totalUjianManualGrading'])
+                . " - Total Ujian: " . ($result['totalUjianAutoGrading'] + $result['totalUjianManualGrading'])
+                . " - Total Visi Misi: " . $result['totalVisiMisi']
+                . " - Total Kontrak Kuliah: " . $result['totalKontrakKuliah']
+                . " - Total RPS: " . $result['totalRPS'] // Tambahkan ini untuk RPS
+                . " - Total Refleksi: " . $result['totalRefleksi'] // Tambahkan ini untuk Refleksi
                 . PHP_EOL;
         } else if ($type === 'total') {
             $logMessage = "Total for $tahunAjaran - $prodi:"
@@ -438,10 +571,14 @@ class KategoriMonitoring extends Command
                 . " - Total Latihan Auto Grading: " . $result['totalLatihanAutoGrading']
                 . " - Total Praktikum Auto Grading: " . $result['totalPraktikumAutoGrading']
                 . " - Total Praktikum Manual Grading: " . $result['totalPraktikumManualGrading']
-                . " - Total Praktikum: " . ($result['totalPraktikumAutoGrading'] + $result['totalPraktikumManualGrading'] )
+                . " - Total Praktikum: " . ($result['totalPraktikumAutoGrading'] + $result['totalPraktikumManualGrading'])
                 . " - Total Ujian Auto Grading: " . $result['totalUjianAutoGrading']
                 . " - Total Ujian Manual Grading: " . $result['totalUjianManualGrading']
-                . " - Total Ujian: ". ($result['totalUjianAutoGrading'] + $result['totalUjianManualGrading'])
+                . " - Total Ujian: " . ($result['totalUjianAutoGrading'] + $result['totalUjianManualGrading'])
+                . " - Total Visi Misi: " . $result['totalVisiMisi']
+                . " - Total Kontrak Kuliah: " . $result['totalKontrakKuliah']
+                . " - Total RPS: " . $result['totalRPS'] // Tambahkan ini untuk RPS
+                . " - Total Refleksi: " . $result['totalRefleksi'] // Tambahkan ini untuk Refleksi
                 . PHP_EOL;
         }
 
