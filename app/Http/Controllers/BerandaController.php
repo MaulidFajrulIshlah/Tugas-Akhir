@@ -156,6 +156,29 @@ class BerandaController extends Controller
         $totalCourses = Cache::get('totalCourses');
         $courseNames = Cache::get('courseNames'); // Ambil nama mata kuliah dari cache
 
+
+        Artisan::call('cek:kategori-monitoring', [
+            'tahunAjaran' => $tahunAjaran,
+            'prodi' => $prodi,
+        ]);
+
+        $totalTugasAutoGrading = Cache::get('totalTugasAutoGrading', 0);
+        $totalTugasManualGrading = Cache::get('totalTugasManualGrading', 0);
+        $totalKuisAutoGrading = Cache::get('totalKuisAutoGrading', 0);
+        $totalLatihanManual = Cache::get('totalLatihanManual', 0);
+        $totalLatihanAutoGrading = Cache::get('totalLatihanAutoGrading', 0);
+        $totalPraktikumAutoGrading = Cache::get('totalPraktikumAutoGrading', 0);
+        $totalPraktikumManualGrading = Cache::get('totalPraktikumManualGrading', 0);
+        $totalUjianAutoGrading = Cache::get('totalUjianAutoGrading', 0);
+        $totalUjianManualGrading = Cache::get('totalUjianManualGrading', 0);
+        $totalVisiMisi = Cache::get('totalVisiMisi', 0);
+        $totalKontrakKuliah = Cache::get('totalKontrakKuliah', 0);
+        $totalRPS = Cache::get('totalRPS', 0);
+        $totalRefleksi = Cache::get('totalRefleksi', 0);
+        $totalLogKerja = Cache::get('totalLogKerja', 0); // Tambahkan ini untuk Log Kerja
+        $totalVideoPembelajaran = Cache::get('totalVideoPembelajaran', 0); // Tambahkan ini untuk Video Pembelajaran
+        $totalKegiatanBelajarEksternal = Cache::get('totalKegiatanBelajarEksternal', 0);
+
         $tahunAjaran = $request->input('tahunajaran');
         $prodi = $request->input('prodi');
 
@@ -191,7 +214,22 @@ class BerandaController extends Controller
             'totalCoursesWithAllCriteria' => $totalCoursesWithAllCriteria, //matakuliah lengkap
             'latestSummary' => $latestSummary, //rekap spada
             'totalCoursesWithAllCriteriaSCL' => $totalCoursesWithAllCriteriaSCL, //matakuliah scl
-
+            'totalTugasAutoGrading' => $totalTugasAutoGrading,
+            'totalTugasManualGrading' => $totalTugasManualGrading,
+            'totalKuisAutoGrading' => $totalKuisAutoGrading,
+            'totalLatihanManual' => $totalLatihanManual,
+            'totalLatihanAutoGrading' => $totalLatihanAutoGrading,
+            'totalPraktikumAutoGrading' => $totalPraktikumAutoGrading,
+            'totalPraktikumManualGrading' => $totalPraktikumManualGrading,
+            'totalUjianAutoGrading' => $totalUjianAutoGrading,
+            'totalUjianManualGrading' => $totalUjianManualGrading,
+            'totalVisiMisi' => $totalVisiMisi,
+            'totalKontrakKuliah' => $totalKontrakKuliah,
+            'totalRPS' => $totalRPS,
+            'totalRefleksi' => $totalRefleksi,
+            'totalLogKerja' => $totalLogKerja,
+            'totalVideoPembelajaran' => $totalVideoPembelajaran,
+            'totalKegiatanBelajarEksternal' => $totalKegiatanBelajarEksternal,
         ]);
     }
 

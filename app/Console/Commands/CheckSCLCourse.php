@@ -60,7 +60,8 @@ class CheckSCLCourse extends Command
         $courseIds = $this->courseIds[$tahunAjaran][$prodi];
         $totalCourses = 0;
         $sclCourses = 0;
-        $courseNames = []; // To store course names
+        $courseNames = []; // Untuk menyimpan nama-nama mata kuliah
+        $courseStatus = []; // Untuk menyimpan status SCL dari setiap mata kuliah
 
         foreach ($courseIds as $courseId) {
             $queryParams['courseid'] = $courseId;
@@ -71,13 +72,16 @@ class CheckSCLCourse extends Command
 
                 $results = $this->checkCourseCriteria($courseContents);
                 $totalCourses++;
-                $courseNames[] = $this->getCourseName($courseContents); // Add course name
+                $courseNames[] = $this->getCourseName($courseContents); // Tambahkan nama mata kuliah
 
-                if ($this->isCourseSCL($results)) {
+                $isSCL = $this->isCourseSCL($results);
+                $courseStatus[$courseId] = $isSCL ? 'SCL' : 'Non-SCL'; // Simpan status SCL
+
+                if ($isSCL) {
                     $sclCourses++;
                 }
 
-                $this->logging($courseId, $results);
+                $this->logging($courseId, $results, $isSCL);
             } catch (\Exception $e) {
                 $this->logging($courseId, [
                     'error' => "Error fetching data - " . $e->getMessage(),
@@ -85,11 +89,12 @@ class CheckSCLCourse extends Command
             }
         }
 
-        // Store results in cache
+        // Simpan hasil di cache
         Cache::put('totalCourses', $totalCourses, now()->addMinutes(30));
         Cache::put('sclCourses', $sclCourses, now()->addMinutes(30));
         Cache::put('courseNames', $courseNames, now()->addMinutes(30));
 
+        // Output informasi tentang total mata kuliah dan jumlah yang memenuhi kriteria SCL
         $this->info("Total Courses Checked: $totalCourses");
         $this->info("Total Courses Meeting All SCL Criteria: $sclCourses");
     }
@@ -156,7 +161,7 @@ class CheckSCLCourse extends Command
             $results['nonReadingActivityCount'];
     }
 
-    public function logging($identifier, $results)
+    public function logging($identifier, $results, $isSCL = false)
     {
         $logFilePath = storage_path('logs/cekmatakuliahSCL.log');
 
@@ -164,17 +169,17 @@ class CheckSCLCourse extends Command
         if (isset($results['error'])) {
             $logMessage .= "Error: " . $results['error'] . "\n\n";
         } else {
-            if ($identifier === "Summary") {
-                $logMessage .= "Total Courses Checked: " . $results['total_courses_checked'] . "\n" .
-                    "Total Courses Meeting All SCL Criteria: " . $results['total_courses_scl'] . "\n\n";
+            if ($isSCL) {
+                $logMessage .= "Status: SCL\n";
             } else {
-                $logMessage .= "Forum Diskusi: " . ($results['hasForum'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
-                    "Kegiatan Non-Membaca atau Menonton Video: " . ($results['nonReadingActivityCount'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
-                    "Minimal 8 Pertemuan dengan 2 Aktivitas Pengumpulan: " . ($results['hasMeetingsAndSubmissions'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
-                    "Minimal 10 Kegiatan Mengunduh PPT: " . ($results['pptCount'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
-                    "Deskripsi pada Setiap Kegiatan: " . ($results['hasDescription'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
-                    "RPS dan Kontrak yang Ditandatangani secara Digital: " . ($results['hasRPSAndKontrak'] ? 'Memiliki' : 'Tidak Memiliki') . "\n\n";
+                $logMessage .= "Status: Non-SCL\n";
             }
+            $logMessage .= "Forum Diskusi: " . ($results['hasForum'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
+                "Kegiatan Non-Membaca atau Menonton Video: " . ($results['nonReadingActivityCount'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
+                "Minimal 8 Pertemuan dengan 2 Aktivitas Pengumpulan: " . ($results['hasMeetingsAndSubmissions'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
+                "Minimal 10 Kegiatan Mengunduh PPT: " . ($results['pptCount'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
+                "Deskripsi pada Setiap Kegiatan: " . ($results['hasDescription'] ? 'Memiliki' : 'Tidak Memiliki') . "\n" .
+                "RPS dan Kontrak yang Ditandatangani secara Digital: " . ($results['hasRPSAndKontrak'] ? 'Memiliki' : 'Tidak Memiliki') . "\n\n";
         }
 
         try {
