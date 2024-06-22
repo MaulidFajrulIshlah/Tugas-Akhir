@@ -618,6 +618,7 @@ section {
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: 3px solid var(--secondary);
+    
 }
 
 /* Colors */
@@ -640,7 +641,7 @@ section {
     background-size: 70%;
     background-position: 110px 40px;
     transition: background-size 0.4s ease, background-position 0.4s ease, background-color 0.4s ease;
-    
+
 }
 
 .c1-header {
@@ -826,6 +827,11 @@ section {
     flex-grow: 1;
     height: fit-content;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.4s ease;
 }
 
 .c8-content {
@@ -833,6 +839,8 @@ section {
     height: 100%;
     padding: 10px;
 }
+
+
 
 #tahun-tren {
     width: 20%;
@@ -871,16 +879,23 @@ canvas {
 }
 
 .content-container-sort {
-    width: 60%;
-    height: 100%;
+    width: 100%;
+    height: 90%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     margin: 10px;
-    background-color: var(--secondary);
-    border: 2px solid var(--primary);
+    /* background-color: var(--secondary);
+    border: 2px solid var(--primary); */
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-image: radial-gradient(var(--primary-green) 2px, transparent 2px),
+        radial-gradient(var(--primary-green) 2px, transparent 2px);
+    background-size: 40px 40px;
+    background-position: 0 0, 22px 22px;
+    /* background-color: var(--primary); */
+    background-color: var(--secondary-green);
+    color: var(--secondary);
 }
 
 .left-container-sort {
@@ -895,17 +910,20 @@ canvas {
 
 select {
     width: fit-content;
-    height: 50%;
+    height: auto;
     border-radius: 5px;
     text-align: center;
     border: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--primary);
+    text-align: center;
 }
 
 label {
-    color: var(--primary-green);
+    color: var(--primary);
     font-weight: 600;
-    font-size: 16px;
+    font-size: 18px;
+    padding-right: 5px;
 }
 
 .right-container-sort {
@@ -925,13 +943,16 @@ label {
     align-items: center;
 } */
 
-.button-sort>button {
-    width: 100%;
-    height: 100%;
+.content-container-sort>form>button {
+    border: none;
     border-radius: 5px;
-    border: 2px solid var(--secondary);
+    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    width: 10%;
+    height: fit-content;
+    border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 5px;
     color: var(--primary-green);
     background-color: var(--primary);
     display: flex;
@@ -940,9 +961,9 @@ label {
     transition: ease-in-out;
 }
 
-.button-sort>button:hover {
-    background-color: var(--primary-green);
-    color: var(--primary);
+.content-container-sort>form>button:hover {
+    background-color: var(--secondary);
+    color: var(--primary-green);
     transition: ease-in-out 0.1s;
 }
 
@@ -966,12 +987,29 @@ label {
     background-position: 100px 40px;
 }
 
+.content-8-click:hover{
+    cursor: pointer;
+    background-color: var(--secondary);
+    border: 2px solid var(--primary);
+
+}
+
+
+
 button {
     border: none;
     border-radius: 5px;
     padding: 2px;
     padding-left: 4px;
     padding-right: 4px;
+}
+
+.table-chart-aktivitas{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: end;
+    align-items: end;
 }
 
 .table-wrapper-spada {
@@ -981,15 +1019,34 @@ button {
     width: 100%;
 }
 
-.thead-spada{
+.table-wrapper-aktivitas {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.thead-spada {
     position: sticky;
     top: 0px;
     background-color: var(--secondary-green);
     padding-top: 2px;
     color: var(--primary);
-} 
+}
+.thead-aktivitas {
+    position: sticky;
+    top: 0px;
+    background-color: var(--secondary-green);
+    padding-top: 2px;
+    color: var(--primary);
+}
 
 #table-rekap-spada {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+#table-rekap-aktivitas {
     width: 100%;
     border-collapse: collapse;
     text-align: center;
@@ -1001,35 +1058,102 @@ td {
     padding-left: 5px;
     padding-right: 5px;
 }
+#table-rekap-aktivitas>th,
+td {
+    white-space: nowrap;
+    padding-left: 5px;
+    padding-right: 5px;
+}
 
-#table-rekap-spada>.thead-spada>tr>th
-{
+#table-rekap-spada>.thead-spada>tr>th {
+    font-weight: 400;
+}
+#table-rekap-aktivitas>.thead-aktivitas>tr>th {
     font-weight: 400;
 }
 
 
 #table-rekap-spada tbody tr:nth-child(even) {
-    background-color: var(--primary); /* Warna latar belakang untuk baris genap */
+    background-color: var(--primary);
+    /* Warna latar belakang untuk baris genap */
 }
+
 #table-rekap-spada tbody tr:nth-child(odd) {
-    background-color: var(--secondary); /* Warna latar belakang untuk baris genap */
+    background-color: var(--secondary);
+    /* Warna latar belakang untuk baris genap */
+}
+#table-rekap-aktivitas tbody tr:nth-child(even) {
+    background-color: var(--primary);
+    /* Warna latar belakang untuk baris genap */
+}
+
+#table-rekap-aktivitas tbody tr:nth-child(odd) {
+    background-color: var(--secondary);
+    /* Warna latar belakang untuk baris genap */
 }
 
 
-#content-3-click:hover{
+#content-3-click:hover {
     cursor: pointer;
     background-color: var(--secondary);
     border: 2px solid var(--primary);
     background-image: url(https://img.icons8.com/ios-filled/100/f5efe6/globe--v1.png);
     background-repeat: no-repeat;
-    background-size: 55%; /* Membesarkan sedikit background image */
-    background-position: 200px 5px;   
+    background-size: 55%;
+    /* Membesarkan sedikit background image */
+    background-position: 200px 5px;
 }
 
-.charts-header{
+.charts-header {
     text-align: center;
     font-size: x-large;
     margin-top: 5px;
     color: var(--primary-green);
     font-weight: 600;
 }
+
+#overlay-loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Warna background dengan transparansi */
+    z-index: 9999;
+    /* Pastikan overlay ada di atas elemen lainnya */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+/* #loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+} */
+
+/* @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+} */
+
+
+/* HTML: <div class="loader"></div> */
+/* HTML: <div class="loader"></div> */
+#loader {
+    width: 70px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 15px solid var(--secondary);
+    border-right-color: var(--secondary-green);
+    animation: l2 1s infinite linear;
+  }
+  @keyframes l2 {to{transform: rotate(1turn)}}
