@@ -13,12 +13,17 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('app:check-server-status')->everyMinute();
-        $schedule->command('app:check-spada')->everyMinute();
+        // $schedule->command('app:check-server-status')->everyMinute();
+        // $schedule->command('app:check-spada')->everyMinute();
         // $schedule->command('app:hitung-mata-kuliah')->everyMinute();
         // $schedule->command('quiz:getdata')->everyMinute();
         // $schedule->command('update:suspended-users')->everyMinute();
         // $schedule->command('cek:administrasi')->everyMinute();
+        
+        $schedule->command('cek:kategori-monitoring "2023/2024-Ganjil" "Teknik Informatika"')->everyMinute();
+        $schedule->command('cek:kategori-monitoring "2023/2024-Genap" "Teknik Informatika"')->everyMinute();
+
+
 
 
 

@@ -71,18 +71,6 @@ class BerandaController extends Controller
 
         $prodi = $request->input('prodi');
 
-        // Jalankan command dengan output buffering untuk menangkap hasil
-        $outputQuiz = new BufferedOutput;
-        Artisan::call('quiz:getdata', [
-            'prodi' => $prodi
-        ], $outputQuiz);
-
-        // Tangkap hasil dari command
-        $result = $outputQuiz->fetch();
-
-        // Extract total quiz count from result
-        $totalQuiz = intval(preg_replace('/[^0-9]/', '', $result));
-
         // Ambil input tahun ajaran dan prodi dari request
         $tahunAjaran = $request->input('tahunajaran');
 
@@ -200,6 +188,45 @@ class BerandaController extends Controller
         $totalCoursesWithAllCriteriaSCL = Cache::get('totalCoursesWithAllCriteria');
         $sclCourses = Cache::get('sclCourses'); // Ambil jumlah course yang memenuhi kriteria SCL
 
+        // Path file log
+        $logFilePath = storage_path('logs/cekKategoriMonitoring.log');
+
+        // Cek kalo file log ada
+        if (file_exists($logFilePath)) {
+            // Baca isi file log
+            $logContents = file_get_contents($logFilePath);
+
+            // Cari posisi baris yang mengandung data yang lo cari
+            $posisiAwal = strpos($logContents, 'Total for 2023/2024-Ganjil - Teknik Informatika');
+
+            if ($posisiAwal !== false) {
+                // Ambil data dari posisiAwal sampai akhir string
+                $logContents = substr($logContents, $posisiAwal);
+
+                // Proses data logContents sesuai keperluan lo
+                // Contoh, split per baris
+                $lines = explode("\n", $logContents);
+
+                // Loop atau proses data lainnya sesuai kebutuhan
+                foreach ($lines as $line) {
+                    // Lakukan sesuatu dengan setiap baris log
+                    echo $line . "<br>";
+
+                    // Hentikan loop jika sudah mencapai baris yang diinginkan
+                    if (strpos($line, '384') !== false) {
+                        break;
+                    }
+                }
+            } else {
+                // Kasus kalo baris yang diinginkan tidak ditemukan
+                echo 'Data tidak ditemukan dalam file log';
+            }
+        } else {
+            // Kasus kalo file log tidak ditemukan
+            echo 'File log tidak ditemukan';
+        }
+
+
         // Render view dashboard.blade.php sambil kirim data status server, informasi SSL, hasil SPADA, dan isi file.txt
         return view('dashboard/beranda', [
             'lastServerStatus' => $lastServerStatus,
@@ -207,7 +234,6 @@ class BerandaController extends Controller
             'lastLine' => $lastLine, //server setatus
             'spadaResult' => $spadaResult, // Kirim hasil SPADA ke views
             'output' => $output, // Kirim output dari perhitungan mata kuliah ke views
-            'totalQuiz' => $totalQuiz, //kuis
             'suspendedUsers' => $suspendedUsers, // Tambahkan data pengguna yang di-suspend ke array yang dikirimkan ke views
             'totalCourses' => $totalCourses, //matkul administrasi
             'courseNames' => $courseNames, // Kirim nama mata kuliah ke views
@@ -230,6 +256,7 @@ class BerandaController extends Controller
             'totalLogKerja' => $totalLogKerja,
             'totalVideoPembelajaran' => $totalVideoPembelajaran,
             'totalKegiatanBelajarEksternal' => $totalKegiatanBelajarEksternal,
+            'logContents' => $logContents, // Kirim konten log ke view
         ]);
     }
 

@@ -385,9 +385,21 @@
             <div class="content-8" id="container">
                 <div class="charts-header">Statistik Tren Mata Kuliah</div>
 
-                <div class="c8-content">
-                    <div style="width: 100%; height: 285px; display:flex; align-items:center; justify-content:center">
-                        <canvas id="myChart"></canvas>
+
+        <!-- <div class="info-header">
+                                                                                                        <h1>Informasi Mata Kuliah</h1>
+                                                                                                    </div> -->
+
+        <div class="main-container-sort">
+            <div class="content-container-sort">
+                <form id="hitung-form" action="{{ route('beranda') }}" method="GET" onsubmit="return validateForm()">
+                    <div style="height: fit-content;">
+                        <label for="tahunajaran">Tahun Ajaran:</label>
+                        <select name="tahunajaran" id="tahunajaran">
+                            <option value="">Pilih Tahun Ajaran</option>
+                            <option value="2023/2024-Ganjil">2023/2024 Ganjil</option>
+                            <option value="2023/2024-Genap">2023/2024 Genap</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -492,8 +504,187 @@
                     </tbody>
                 </table>
             </div>
+
+            {{-- js untuk hidden table administrasi  --}}
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const card = document.getElementById('content-1-click');
+                    const table = document.getElementById('table-admin');
+
+                    card.addEventListener('click', () => {
+                        if (table.classList.contains('hidden-table')) {
+                            table.classList.remove('hidden-table');
+                        } else {
+                            table.classList.add('hidden-table');
+                        }
+                    });
+                });
+            </script>
+
+            <section style="display: flex;">
+                <div class="content-8" id="container">
+                    <div class="charts-header">Statistik Tren Mata Kuliah</div>
+
+                    <div class="c8-content">
+                        <div style="width: 100%; height: 285px; display:flex; align-items:center; justify-content:center">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-8" id="container">
+                    <div class="charts-header">Statistik Tren Aktivitas</div>
+
+                    <div class="c8-content">
+                        <div style="width: 100%; height: 285px; display:flex; align-items:center; justify-content:center">
+                            <canvas id="myChart2"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- <div class="section-2-div">
+                    <div class="content-5">
+                        <div class="c5-header">Informasi Umum</div>
+                        <div class="c5-content">
+                            <div class="c5-content-div">
+                                <h4>Versi: <br>3.10.223</h4>
+                            </div>
+                            <div class="c5-content-div">
+                                <h4>Pemeliharaan: <br>Tidak Aktif</h4>
+                            </div>
+                            <div class="c5-content-div">
+                                <h4>Tahun Ajaran: <br>2023/2024</h4>
+                            </div>
+                            <div class="c5-content-div">
+                                <h4>Semester: <br>Genap</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-6">
+                        <div class="c5-header">Role Anda Saat Ini</div>
+                        <div class="c6-content">
+                            <i>{{ session('users') }}</i>
+                            <p>TIM DPJJ</p>
+                        </div>
+                    </div>
+                </div> -->
+
+
+
+    </div>
+
+    <div class="random" style="display: none;">
+        <p id="matakuliahscl">{{ $totalCoursesWithAllCriteriaSCL }}</p> Jumlah matkul SCL
+        <p id="matakuliahlengkap">{{ $totalCoursesWithAllCriteria }}</p> Jumlah Matkul Lengkap
+        <p id="matakuliahadmin">{{ $totalCourses }}</p> Jumlah matkul Lengkap administrasi
+        <p id="totalmatkul">{{ $output }}</p> Jumlah matkul
+        <p id="jumlahkuis">{{ $totalKuisAutoGrading }}</p> Jumlah total kuis
+    </div>
+
+    <!-- totals.blade.php -->
+
+    <div>
+        <h2>Total Counts</h2>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Total Tugas Auto Grading</td>
+                    <td>{{ $totalTugasAutoGrading }}</td>
+                </tr>
+                <tr>
+                    <td>Total Tugas Manual Grading</td>
+                    <td>{{ $totalTugasManualGrading }}</td>
+                </tr>
+                <tr>
+                    <td>Total Kuis </td>
+                    <td>{{ $totalKuisAutoGrading }}</td>
+                </tr>
+                <tr>
+                    <td>Total Latihan Manual</td>
+                    <td>{{ $totalLatihanManual }}</td>
+                </tr>
+                <tr>
+                    <td>Total Latihan Auto Grading</td>
+                    <td>{{ $totalLatihanAutoGrading }}</td>
+                </tr>
+                <tr>
+                    <td>Total Praktikum Auto Grading</td>
+                    <td>{{ $totalPraktikumAutoGrading }}</td>
+                </tr>
+                <tr>
+                    <td>Total Praktikum Manual Grading</td>
+                    <td>{{ $totalPraktikumManualGrading }}</td>
+                </tr>
+                <tr>
+                    <td>Total Ujian Auto Grading</td>
+                    <td>{{ $totalUjianAutoGrading }}</td>
+                </tr>
+                <tr>
+                    <td>Total Ujian Manual Grading</td>
+                    <td>{{ $totalUjianManualGrading }}</td>
+                </tr>
+                <tr>
+                    <td>Total Visi Misi</td>
+                    <td>{{ $totalVisiMisi }}</td>
+                </tr>
+                <tr>
+                    <td>Total Kontrak Kuliah</td>
+                    <td>{{ $totalKontrakKuliah }}</td>
+                </tr>
+                <tr>
+                    <td>Total RPS</td>
+                    <td>{{ $totalRPS }}</td>
+                </tr>
+                <tr>
+                    <td>Total Refleksi</td>
+                    <td>{{ $totalRefleksi }}</td>
+                </tr>
+                <tr>
+                    <td>Total Log Kerja</td>
+                    <td>{{ $totalLogKerja }}</td>
+                </tr>
+                <tr>
+                    <td>Total Video Pembelajaran</td>
+                    <td>{{ $totalVideoPembelajaran }}</td>
+                </tr>
+                <tr>
+                    <td>Total Kegiatan Belajar Eksternal</td>
+                    <td>{{ $totalKegiatanBelajarEksternal }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <p> {{ $totalTugasManualGrading }}</p>
+            <p> {{ $totalPraktikumManualGrading }}</p>
+            <p> {{ $totalPraktikumManualGrading + $totalTugasManualGrading }} </p>
         </div>
     </div>
+
+    <div>
+        <pre>
+        {{ $logContents }}
+    </pre>
+    </div>
+
+
+
+
+
+    <!-- Bootstrap JS (untuk fitur tertentu yang menggunakan JavaScript) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
