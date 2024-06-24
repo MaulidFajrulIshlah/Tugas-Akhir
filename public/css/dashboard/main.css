@@ -20,6 +20,24 @@
     --secondary-green: #4f6f52;
     --secondary: #e8dfca;
     --primary: #f5efe6;
+    --bg-website-dark: rgb(19, 19, 19);
+    --primary-green-dark: #f5efe6;
+    --secondary-green-dark: #e8dfca;
+    --primary-dark:rgb(48, 48, 48);
+    --secondary-dark:rgb(187, 187, 187);
+}
+
+body.dark-mode {
+    --main-text-color: #009d63; /* Ganti sesuai kebutuhan */
+    --second-color: #135f00; /* Ganti sesuai kebutuhan */
+    --second-text-color: #f5f5f5; /* Ganti sesuai kebutuhan */
+    --second-tex-color-sidebar: #aaaaaa; /* Ganti sesuai kebutuhan */
+    --link-active: #303030; /* Ganti sesuai kebutuhan */
+    --bg-website: var(--bg-website-dark);
+    --primary-green: var(--primary-green-dark);
+    --secondary-green: var(--secondary-green-dark);
+    --primary: var(--primary-dark);
+    --secondary: var(--secondary-dark);
 }
 
 header {
@@ -884,7 +902,7 @@ canvas {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin: 10px;
+    padding: 10px;
     /* background-color: var(--secondary);
     border: 2px solid var(--primary); */
     border-radius: 5px;

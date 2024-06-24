@@ -11,7 +11,6 @@
 <div class="row g-3 my-3">
 
     {{-- Suggest: Cek lagi, apakah penggunaan @yield('card') ini beneran dibutuhin atau enggak --}}
-
     <div class="mock-atas">
         @if (!empty($lastLine))
         <?php
@@ -283,6 +282,14 @@
             $(document).ready(function() {
                 // Event listener untuk semua link atau tombol yang menyebabkan page refresh
                 $('a, button').on('click', function(e) {
+                    // Cek apakah ini tombol submit dari form kita
+                    if ($(this).closest('form').attr('id') === 'hitung-form') {
+                        // Cek validasi form sebelum nampilin loader
+                        if (!validateForm()) {
+                            e.preventDefault();
+                            return false;
+                        }
+                    }
                     // Nampilin overlay loader
                     $('#overlay-loader').show();
                 });
@@ -307,46 +314,18 @@
                     }
                 });
             });
+
+            function validateForm() {
+                var tahunajaran = document.getElementById("tahunajaran").value;
+                var prodi = document.getElementById("prodi").value;
+
+                if (tahunajaran === "" || prodi === "") {
+                    alert("Mohon pilih Tahun Ajaran dan Prodi.");
+                    return false;
+                }
+                return true;
+            }
         </script>
-
-
-
-        <div id="overlay-loader" style="display: none;">
-            <div id="loader"></div>
-        </div>
-
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                // Event listener untuk semua link atau tombol yang menyebabkan page refresh
-                $('a, button').on('click', function(e) {
-                    // Nampilin overlay loader
-                    $('#overlay-loader').show();
-                });
-
-                // Event listener saat page mulai unload
-                $(window).on('beforeunload', function() {
-                    // Nampilin overlay loader
-                    $('#overlay-loader').show();
-                    // Simpan posisi scroll saat ini
-                    localStorage.setItem('scrollPosition', $(window).scrollTop());
-                });
-
-                // Event listener saat page selesai load
-                $(window).on('load', function() {
-                    // Ngilangin overlay loader
-                    $('#overlay-loader').hide();
-                    // Balikin posisi scroll sebelumnya
-                    var scrollPosition = localStorage.getItem('scrollPosition');
-                    if (scrollPosition) {
-                        $(window).scrollTop(scrollPosition);
-                        localStorage.removeItem('scrollPosition'); // Hapus posisi scroll dari localStorage setelah dipake
-                    }
-                });
-            });
-        </script>
-
-
 
 
         <div class="table-wrapper-spada hidden-table" id="table-admin">
@@ -489,6 +468,21 @@
                             <td>-</td>
                             <td id="totallink">{{ $totalKegiatanBelajarEksternal }}</td>
                         </tr>
+                        <tr>
+                            <td><strong>Total</strong></td>
+                            <td><strong>{{$totalTugasAutoGrading + $totalLatihanAutoGrading + 
+                            $totalPraktikumAutoGrading + $totalUjianAutoGrading}}</strong></td>
+                            <td><strong>{{$totalTugasManualGrading + $totalLatihanManual + 
+                            $totalPraktikumManualGrading + $totalUjianManualGrading}}</strong></td>
+                            <td><strong>{{ $totalTugasManualGrading + $totalTugasAutoGrading +
+                            $totalLatihanManual + $totalLatihanAutoGrading +
+                            $totalPraktikumManualGrading + $totalPraktikumAutoGrading +
+                            $totalUjianManualGrading + $totalUjianAutoGrading +
+                            $totalKuisAutoGrading + $totalVisiMisi + 
+                            $totalKontrakKuliah + $totalRPS + 
+                            $totalRefleksi + $totalLogKerja + 
+                            $totalVideoPembelajaran + $totalKegiatanBelajarEksternal }}</strong></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -595,7 +589,7 @@
     var totallog = parseInt(document.getElementById('totallog').textContent.trim());
     var totalvideo = parseInt(document.getElementById('totalvideo').textContent.trim());
     var totallink = parseInt(document.getElementById('totallink').textContent.trim());
-    const xValues2 = ["Kuis", "Tugas", "Latihan", "Praktikum", "Ujian", "Refleksi", "Log Kerja", "Eksternal","Video" ];
+    const xValues2 = ["Kuis", "Tugas", "Latihan", "Praktikum", "Ujian", "Refleksi", "Log Kerja", "Eksternal", "Video"];
 
     new Chart("myChart2", {
         type: "line",

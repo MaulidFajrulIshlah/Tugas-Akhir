@@ -1,17 +1,17 @@
 @extends('dashboard.layouts.main')
-@section('title', 'PANDAY | Beranda | Teknik Informatika')
+@section('title', 'PANDAY | Beranda | Perpustakaan')
 @section('content')
 <h5 class="fw-bold" style="margin-top: 40px; font-weight: 400;">Beranda</h5>
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{ route('beranda-dekanat-ti') }}">Dashboard</a></li>
     <li class="breadcrumb-item active">Beranda</li>
-    <li class="breadcrumb-item ">Dekanat Teknik Informatika</li>
+    <li class="breadcrumb-item active">Dekanat Perpustakaan</li>
 
 
 </ol>
 
 <div class="row g-3 my-3">
-    <h4 style=" font-weight:400; font-size:4rem; color: var(--primary-green);">Teknik Informatika</h4>
+    <h4 style=" font-weight:400; font-size:4rem; color: var(--primary-green);">Perpustakaan</h4>
 
     <div class="main-container-sort">
         <div class="content-container-sort" style="width:100%">
@@ -27,7 +27,7 @@
                 <div style="height: fit-content; display:none">
                     <label for="prodi">Prodi:</label>
                     <select name="prodi" id="prodi">
-                        <option value="Teknik Informatika" selected>TI</option>
+                        <option value="Perpustakaan dan Sains Informasi">Perpus</option>
                     </select>
                 </div>
                 <button type="submit">Submit</button>
@@ -110,6 +110,7 @@
 
 
 
+
         <div id="overlay-loader" style="display: none;">
             <div id="loader"></div>
         </div>
@@ -118,7 +119,7 @@
         <script>
             $(document).ready(function() {
                 // Event listener untuk semua link atau tombol yang menyebabkan page refresh
-                $('a, button').on('click', function(e) {
+                $('a, button').not('#darkModeToggle').on('click', function(e) {
                     // Cek apakah ini tombol submit dari form kita
                     if ($(this).closest('form').attr('id') === 'hitung-form') {
                         // Cek validasi form sebelum nampilin loader
@@ -154,15 +155,15 @@
 
             function validateForm() {
                 var tahunajaran = document.getElementById("tahunajaran").value;
+                var prodi = document.getElementById("prodi").value;
 
-                if (tahunajaran === "") {
-                    alert("Mohon pilih Tahun Ajaran.");
+                if (tahunajaran === "" || prodi === "") {
+                    alert("Mohon pilih Tahun Ajaran dan Prodi.");
                     return false;
                 }
                 return true;
             }
         </script>
-
 
 
 
