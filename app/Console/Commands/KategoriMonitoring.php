@@ -60,6 +60,25 @@ class KategoriMonitoring extends Command
         $totalVideoPembelajaran = 0;
         $totalKegiatanBelajarEksternal = 0;
 
+        $coursesWithActivities = [
+            'totalTugasAutoGrading' => 0,
+            'totalTugasManualGrading' => 0,
+            'totalKuisAutoGrading' => 0,
+            'totalLatihanManual' => 0,
+            'totalLatihanAutoGrading' => 0,
+            'totalPraktikumAutoGrading' => 0,
+            'totalPraktikumManualGrading' => 0,
+            'totalUjianAutoGrading' => 0,
+            'totalUjianManualGrading' => 0,
+            'totalVisiMisi' => 0,
+            'totalKontrakKuliah' => 0,
+            'totalRPS' => 0,
+            'totalRefleksi' => 0,
+            'totalLogKerja' => 0,
+            'totalVideoPembelajaran' => 0,
+            'totalKegiatanBelajarEksternal' => 0,
+        ];
+
         foreach ($courses as $courseId) {
             $result = $this->checkCourseContent($courseId);
             $totalTugasAutoGrading += $result['totalTugasAutoGrading'];
@@ -78,6 +97,24 @@ class KategoriMonitoring extends Command
             $totalLogKerja += $result['totalLogKerja'];
             $totalVideoPembelajaran += $result['totalVideoPembelajaran'];
             $totalKegiatanBelajarEksternal += $result['totalKegiatanBelajarEksternal'];
+
+            if ($result['totalTugasAutoGrading'] > 0) $coursesWithActivities['totalTugasAutoGrading']++;
+            if ($result['totalTugasManual'] > 0) $coursesWithActivities['totalTugasManualGrading']++;
+            if ($result['totalKuisAutoGrading'] > 0) $coursesWithActivities['totalKuisAutoGrading']++;
+            if ($result['totalLatihanManual'] > 0) $coursesWithActivities['totalLatihanManual']++;
+            if ($result['totalLatihanAutoGrading'] > 0) $coursesWithActivities['totalLatihanAutoGrading']++;
+            if ($result['totalPraktikumAutoGrading'] > 0) $coursesWithActivities['totalPraktikumAutoGrading']++;
+            if ($result['totalPraktikumManualGrading'] > 0) $coursesWithActivities['totalPraktikumManualGrading']++;
+            if ($result['totalUjianAutoGrading'] > 0) $coursesWithActivities['totalUjianAutoGrading']++;
+            if ($result['totalUjianManualGrading'] > 0) $coursesWithActivities['totalUjianManualGrading']++;
+            if ($result['totalVisiMisi'] > 0) $coursesWithActivities['totalVisiMisi']++;
+            if ($result['totalKontrakKuliah'] > 0) $coursesWithActivities['totalKontrakKuliah']++;
+            if ($result['totalRPS'] > 0) $coursesWithActivities['totalRPS']++;
+            if ($result['totalRefleksi'] > 0) $coursesWithActivities['totalRefleksi']++;
+            if ($result['totalLogKerja'] > 0) $coursesWithActivities['totalLogKerja']++;
+            if ($result['totalVideoPembelajaran'] > 0) $coursesWithActivities['totalVideoPembelajaran']++;
+            if ($result['totalKegiatanBelajarEksternal'] > 0) $coursesWithActivities['totalKegiatanBelajarEksternal']++;
+
             $this->logResult($tahunAjaran, $prodi, $courseId, $result, 'detail');
         }
 
@@ -98,6 +135,11 @@ class KategoriMonitoring extends Command
         Cache::put('totalVideoPembelajaran', $totalVideoPembelajaran, now()->addMinutes(30));
         Cache::put('totalKegiatanBelajarEksternal', $totalKegiatanBelajarEksternal, now()->addMinutes(30));
 
+        // Cache the count of courses with activities
+        foreach ($coursesWithActivities as $key => $count) {
+            Cache::put($key . '_count', $count, now()->addMinutes(30));
+        }
+
         $this->logResult($tahunAjaran, $prodi, null, [
             'totalTugasAutoGrading' => $totalTugasAutoGrading,
             'totalTugasManual' => $totalTugasManualGrading,
@@ -117,6 +159,7 @@ class KategoriMonitoring extends Command
             'totalKegiatanBelajarEksternal' => $totalKegiatanBelajarEksternal,
         ], 'total');
     }
+
 
 
     private function getCourseNames($courseIds)
@@ -692,60 +735,59 @@ class KategoriMonitoring extends Command
     }
 
     private function logResult($tahunAjaran, $prodi, $courseId, $result, $type)
-{
-    $courseNames = $this->getCourseNames([$courseId]);
-    $courseName = $courseNames[$courseId] ?? "Unknown Course";
+    {
+        $courseNames = $this->getCourseNames([$courseId]);
+        $courseName = $courseNames[$courseId] ?? "Unknown Course";
 
-    $logFilePath = storage_path('logs/cekKategoriMonitoring.log');
-    $logMessage = '';
+        $logFilePath = storage_path('logs/cekKategoriMonitoring.log');
+        $logMessage = '';
 
-    if ($type === 'detail') {
-        $logMessage = "Course: $courseName"
-            . " - Total Tugas Auto Grading: " . ($result['totalTugasAutoGrading'] ?? 0)
-            . " - Total Tugas Manual: " . ($result['totalTugasManual'] ?? 0)
-            . " - Total Tugas: " . (($result['totalTugasAutoGrading'] ?? 0) + ($result['totalTugasManual'] ?? 0))
-            . " - Total Kuis Auto Grading: " . ($result['totalKuisAutoGrading'] ?? 0)
-            . " - Total Latihan Manual: " . ($result['totalLatihanManual'] ?? 0)
-            . " - Total Latihan Auto Grading: " . ($result['totalLatihanAutoGrading'] ?? 0)
-            . " - Total Praktikum Auto Grading: " . ($result['totalPraktikumAutoGrading'] ?? 0)
-            . " - Total Praktikum Manual Grading: " . ($result['totalPraktikumManualGrading'] ?? 0)
-            . " - Total Praktikum: " . (($result['totalPraktikumAutoGrading'] ?? 0) + ($result['totalPraktikumManualGrading'] ?? 0))
-            . " - Total Ujian Auto Grading: " . ($result['totalUjianAutoGrading'] ?? 0)
-            . " - Total Ujian Manual Grading: " . ($result['totalUjianManualGrading'] ?? 0)
-            . " - Total Ujian: " . (($result['totalUjianAutoGrading'] ?? 0) + ($result['totalUjianManualGrading'] ?? 0))
-            . " - Total Visi Misi: " . ($result['totalVisiMisi'] ?? 0)
-            . " - Total Kontrak Kuliah: " . ($result['totalKontrakKuliah'] ?? 0)
-            . " - Total RPS: " . ($result['totalRPS'] ?? 0)
-            . " - Total Refleksi: " . ($result['totalRefleksi'] ?? 0)
-            . " - Total Log Kerja: " . ($result['totalLogKerja'] ?? 0)
-            . " - Total Video Pembelajaran: " . ($result['totalVideoPembelajaran'] ?? 0)
-            . " - Total Kegiatan Belajar Eksternal: " . ($result['totalKegiatanBelajarEksternal'] ?? 0)
-            . PHP_EOL;
-    } else if ($type === 'total') {
-        $logMessage = "Total for $tahunAjaran - $prodi:"
-            . " Total Tugas Auto Grading: " . ($result['totalTugasAutoGrading'] ?? 0)
-            . " - Total Tugas Manual: " . ($result['totalTugasManual'] ?? 0)
-            . " - Total Tugas: " . (($result['totalTugasAutoGrading'] ?? 0) + ($result['totalTugasManual'] ?? 0))
-            . " - Total Kuis Auto Grading: " . ($result['totalKuisAutoGrading'] ?? 0)
-            . " - Total Latihan Manual: " . ($result['totalLatihanManual'] ?? 0)
-            . " - Total Latihan Auto Grading: " . ($result['totalLatihanAutoGrading'] ?? 0)
-            . " - Total Praktikum Auto Grading: " . ($result['totalPraktikumAutoGrading'] ?? 0)
-            . " - Total Praktikum Manual Grading: " . ($result['totalPraktikumManualGrading'] ?? 0)
-            . " - Total Praktikum: " . (($result['totalPraktikumAutoGrading'] ?? 0) + ($result['totalPraktikumManualGrading'] ?? 0))
-            . " - Total Ujian Auto Grading: " . ($result['totalUjianAutoGrading'] ?? 0)
-            . " - Total Ujian Manual Grading: " . ($result['totalUjianManualGrading'] ?? 0)
-            . " - Total Ujian: " . (($result['totalUjianAutoGrading'] ?? 0) + ($result['totalUjianManualGrading'] ?? 0))
-            . " - Total Visi Misi: " . ($result['totalVisiMisi'] ?? 0)
-            . " - Total Kontrak Kuliah: " . ($result['totalKontrakKuliah'] ?? 0)
-            . " - Total RPS: " . ($result['totalRPS'] ?? 0)
-            . " - Total Refleksi: " . ($result['totalRefleksi'] ?? 0)
-            . " - Total Log Kerja: " . ($result['totalLogKerja'] ?? 0)
-            . " - Total Video Pembelajaran: " . ($result['totalVideoPembelajaran'] ?? 0)
-            . " - Total Kegiatan Belajar Eksternal: " . ($result['totalKegiatanBelajarEksternal'] ?? 0)
-            . PHP_EOL;
+        if ($type === 'detail') {
+            $logMessage = "Course: $courseName"
+                . " - Total Tugas Auto Grading: " . ($result['totalTugasAutoGrading'] ?? 0)
+                . " - Total Tugas Manual: " . ($result['totalTugasManual'] ?? 0)
+                . " - Total Tugas: " . (($result['totalTugasAutoGrading'] ?? 0) + ($result['totalTugasManual'] ?? 0))
+                . " - Total Kuis Auto Grading: " . ($result['totalKuisAutoGrading'] ?? 0)
+                . " - Total Latihan Manual: " . ($result['totalLatihanManual'] ?? 0)
+                . " - Total Latihan Auto Grading: " . ($result['totalLatihanAutoGrading'] ?? 0)
+                . " - Total Praktikum Auto Grading: " . ($result['totalPraktikumAutoGrading'] ?? 0)
+                . " - Total Praktikum Manual Grading: " . ($result['totalPraktikumManualGrading'] ?? 0)
+                . " - Total Praktikum: " . (($result['totalPraktikumAutoGrading'] ?? 0) + ($result['totalPraktikumManualGrading'] ?? 0))
+                . " - Total Ujian Auto Grading: " . ($result['totalUjianAutoGrading'] ?? 0)
+                . " - Total Ujian Manual Grading: " . ($result['totalUjianManualGrading'] ?? 0)
+                . " - Total Ujian: " . (($result['totalUjianAutoGrading'] ?? 0) + ($result['totalUjianManualGrading'] ?? 0))
+                . " - Total Visi Misi: " . ($result['totalVisiMisi'] ?? 0)
+                . " - Total Kontrak Kuliah: " . ($result['totalKontrakKuliah'] ?? 0)
+                . " - Total RPS: " . ($result['totalRPS'] ?? 0)
+                . " - Total Refleksi: " . ($result['totalRefleksi'] ?? 0)
+                . " - Total Log Kerja: " . ($result['totalLogKerja'] ?? 0)
+                . " - Total Video Pembelajaran: " . ($result['totalVideoPembelajaran'] ?? 0)
+                . " - Total Kegiatan Belajar Eksternal: " . ($result['totalKegiatanBelajarEksternal'] ?? 0)
+                . PHP_EOL;
+        } else if ($type === 'total') {
+            $logMessage = "Total for $tahunAjaran - $prodi:"
+                . " Total Tugas Auto Grading: " . ($result['totalTugasAutoGrading'] ?? 0)
+                . " - Total Tugas Manual: " . ($result['totalTugasManual'] ?? 0)
+                . " - Total Tugas: " . (($result['totalTugasAutoGrading'] ?? 0) + ($result['totalTugasManual'] ?? 0))
+                . " - Total Kuis Auto Grading: " . ($result['totalKuisAutoGrading'] ?? 0)
+                . " - Total Latihan Manual: " . ($result['totalLatihanManual'] ?? 0)
+                . " - Total Latihan Auto Grading: " . ($result['totalLatihanAutoGrading'] ?? 0)
+                . " - Total Praktikum Auto Grading: " . ($result['totalPraktikumAutoGrading'] ?? 0)
+                . " - Total Praktikum Manual Grading: " . ($result['totalPraktikumManualGrading'] ?? 0)
+                . " - Total Praktikum: " . (($result['totalPraktikumAutoGrading'] ?? 0) + ($result['totalPraktikumManualGrading'] ?? 0))
+                . " - Total Ujian Auto Grading: " . ($result['totalUjianAutoGrading'] ?? 0)
+                . " - Total Ujian Manual Grading: " . ($result['totalUjianManualGrading'] ?? 0)
+                . " - Total Ujian: " . (($result['totalUjianAutoGrading'] ?? 0) + ($result['totalUjianManualGrading'] ?? 0))
+                . " - Total Visi Misi: " . ($result['totalVisiMisi'] ?? 0)
+                . " - Total Kontrak Kuliah: " . ($result['totalKontrakKuliah'] ?? 0)
+                . " - Total RPS: " . ($result['totalRPS'] ?? 0)
+                . " - Total Refleksi: " . ($result['totalRefleksi'] ?? 0)
+                . " - Total Log Kerja: " . ($result['totalLogKerja'] ?? 0)
+                . " - Total Video Pembelajaran: " . ($result['totalVideoPembelajaran'] ?? 0)
+                . " - Total Kegiatan Belajar Eksternal: " . ($result['totalKegiatanBelajarEksternal'] ?? 0)
+                . PHP_EOL;
+        }
+
+        file_put_contents($logFilePath, $logMessage, FILE_APPEND);
     }
-
-    file_put_contents($logFilePath, $logMessage, FILE_APPEND);
-}
-
 }

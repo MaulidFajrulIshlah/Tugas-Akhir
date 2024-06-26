@@ -189,10 +189,30 @@ class BerandaController extends Controller
         $sclCourses = Cache::get('sclCourses'); // Ambil jumlah course yang memenuhi kriteria SCL
 
 
+        $logFilePath = storage_path('logs/cekKategoriMonitoring.log');
+        $logContent = file_exists($logFilePath) ? file_get_contents($logFilePath) : 'Log file is empty or not found.';
 
+        $result = [
+            'totalTugasAutoGrading' => Cache::get('totalTugasAutoGrading_count', 0),
+            'totalTugasManualGrading' => Cache::get('totalTugasManualGrading_count', 0),
+            'totalKuisAutoGrading' => Cache::get('totalKuisAutoGrading_count', 0),
+            'totalLatihanManual' => Cache::get('totalLatihanManual_count', 0),
+            'totalLatihanAutoGrading' => Cache::get('totalLatihanAutoGrading_count', 0),
+            'totalPraktikumAutoGrading' => Cache::get('totalPraktikumAutoGrading_count', 0),
+            'totalPraktikumManualGrading' => Cache::get('totalPraktikumManualGrading_count', 0),
+            'totalUjianAutoGrading' => Cache::get('totalUjianAutoGrading_count', 0),
+            'totalUjianManualGrading' => Cache::get('totalUjianManualGrading_count', 0),
+            'totalVisiMisi' => Cache::get('totalVisiMisi_count', 0),
+            'totalKontrakKuliah' => Cache::get('totalKontrakKuliah_count', 0),
+            'totalRPS' => Cache::get('totalRPS_count', 0),
+            'totalRefleksi' => Cache::get('totalRefleksi_count', 0),
+            'totalLogKerja' => Cache::get('totalLogKerja_count', 0),
+            'totalVideoPembelajaran' => Cache::get('totalVideoPembelajaran_count', 0),
+            'totalKegiatanBelajarEksternal' => Cache::get('totalKegiatanBelajarEksternal_count', 0),
+        ];
 
         // Render view dashboard.blade.php sambil kirim data status server, informasi SSL, hasil SPADA, dan isi file.txt
-        return view('dashboard/beranda', [
+        return view('dashboard/beranda', compact('result'), [
             'lastServerStatus' => $lastServerStatus,
             'daysUntilExpiration' => $daysUntilExpiration,
             'lastLine' => $lastLine, //server setatus
@@ -220,12 +240,25 @@ class BerandaController extends Controller
             'totalLogKerja' => $totalLogKerja,
             'totalVideoPembelajaran' => $totalVideoPembelajaran,
             'totalKegiatanBelajarEksternal' => $totalKegiatanBelajarEksternal,
+            'logContent' => $logContent
         ]);
+    }
+
+    public function hapusLog()
+    {
+        $logFile = storage_path('logs/cekKategoriMonitoring.log');
+
+        if (File::exists($logFile)) {
+            File::put($logFile, '');
+            return response()->json(['message' => 'Log file cleared']);
+        } else {
+            return response()->json(['message' => 'Log file not found'], 404);
+        }
     }
 
     public function DekanatTi(Request $request)
     {
-        
+
 
         $prodi = $request->input('prodi');
 
