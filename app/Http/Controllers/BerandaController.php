@@ -233,7 +233,24 @@ class BerandaController extends Controller
                 'totalLogKerja' => $totalLogKerja,
                 'totalVideoPembelajaran' => $totalVideoPembelajaran,
                 'totalKegiatanBelajarEksternal' => $totalKegiatanBelajarEksternal,
-                'logContent' => $logContent
+                'logContent' => $logContent,
+
+                'countTugasAuto' => $result['totalTugasAutoGrading'],
+                'countTugasManual' => $result['totalTugasManualGrading'],
+                'countKuisAuto' => $result['totalKuisAutoGrading'],
+                'countLatihanManual' => $result['totalLatihanManual'],
+                'countLatihanAuto' => $result['totalLatihanAutoGrading'],
+                'countPraktikumAuto' => $result['totalPraktikumAutoGrading'],
+                'countPraktikumManual' => $result['totalPraktikumManualGrading'],
+                'countUjianAuto' => $result['totalUjianAutoGrading'],
+                'countUjianManual' => $result['totalUjianManualGrading'],
+                'countVisiMisi' => $result['totalVisiMisi'],
+                'countKontrakKuliah' => $result['totalKontrakKuliah'],
+                'countRPS' => $result['totalRPS'],
+                'countRefleksi' => $result['totalRefleksi'],
+                'countLogKerja' => $result['totalLogKerja'],
+                'countVideoPembelajaran' => $result['totalVideoPembelajaran'],
+                'countKegiatanBelajarEksternal' => $result['totalKegiatanBelajarEksternal'],
             ]);
         } elseif ($user->id_role == 2 && $user->id_fakultas == 4) {
             $prodi = $request->input('prodi');
@@ -363,9 +380,26 @@ class BerandaController extends Controller
                 'totalLogKerja' => $totalLogKerja,
                 'totalVideoPembelajaran' => $totalVideoPembelajaran,
                 'totalKegiatanBelajarEksternal' => $totalKegiatanBelajarEksternal,
-                'logContent' => $logContent
-            ]);
+                'logContent' => $logContent,
+                'output' => $output,
 
+                'countTugasAuto' => $result['totalTugasAutoGrading'],
+                'countTugasManual' => $result['totalTugasManualGrading'],
+                'countKuisAuto' => $result['totalKuisAutoGrading'],
+                'countLatihanManual' => $result['totalLatihanManual'],
+                'countLatihanAuto' => $result['totalLatihanAutoGrading'],
+                'countPraktikumAuto' => $result['totalPraktikumAutoGrading'],
+                'countPraktikumManual' => $result['totalPraktikumManualGrading'],
+                'countUjianAuto' => $result['totalUjianAutoGrading'],
+                'countUjianManual' => $result['totalUjianManualGrading'],
+                'countVisiMisi' => $result['totalVisiMisi'],
+                'countKontrakKuliah' => $result['totalKontrakKuliah'],
+                'countRPS' => $result['totalRPS'],
+                'countRefleksi' => $result['totalRefleksi'],
+                'countLogKerja' => $result['totalLogKerja'],
+                'countVideoPembelajaran' => $result['totalVideoPembelajaran'],
+                'countKegiatanBelajarEksternal' => $result['totalKegiatanBelajarEksternal'],
+            ]);
         } elseif ($user->id_role == 2 && $user->id_fakultas == 7) {
             $prodi = $request->input('prodi');
             // Ambil input tahun ajaran dan prodi dari request
@@ -495,6 +529,23 @@ class BerandaController extends Controller
                 'totalVideoPembelajaran' => $totalVideoPembelajaran,
                 'totalKegiatanBelajarEksternal' => $totalKegiatanBelajarEksternal,
                 'logContent' => $logContent,
+
+                'countTugasAuto' => $result['totalTugasAutoGrading'],
+                'countTugasManual' => $result['totalTugasManualGrading'],
+                'countKuisAuto' => $result['totalKuisAutoGrading'],
+                'countLatihanManual' => $result['totalLatihanManual'],
+                'countLatihanAuto' => $result['totalLatihanAutoGrading'],
+                'countPraktikumAuto' => $result['totalPraktikumAutoGrading'],
+                'countPraktikumManual' => $result['totalPraktikumManualGrading'],
+                'countUjianAuto' => $result['totalUjianAutoGrading'],
+                'countUjianManual' => $result['totalUjianManualGrading'],
+                'countVisiMisi' => $result['totalVisiMisi'],
+                'countKontrakKuliah' => $result['totalKontrakKuliah'],
+                'countRPS' => $result['totalRPS'],
+                'countRefleksi' => $result['totalRefleksi'],
+                'countLogKerja' => $result['totalLogKerja'],
+                'countVideoPembelajaran' => $result['totalVideoPembelajaran'],
+                'countKegiatanBelajarEksternal' => $result['totalKegiatanBelajarEksternal'],
             ]);
         } else {
             return view('dashboard/layouts/unauthorized');
@@ -720,6 +771,4 @@ class BerandaController extends Controller
             return response()->json(['message' => 'Log file not found'], 404);
         }
     }
-
-
 }
