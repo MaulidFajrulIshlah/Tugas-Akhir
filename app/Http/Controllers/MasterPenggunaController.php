@@ -7,6 +7,9 @@ use App\Models\Role;
 use App\Models\Fakultas;
 use App\Models\Prodi;
 use App\Mail\WelcomeEmail;
+use GuzzleHttp\Client;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\UsersImport;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
@@ -62,6 +65,139 @@ class MasterPenggunaController extends Controller
                 ->make(true);
         }
         return view('dashboard.admin.masterPengguna.index', compact('activePage'));
+    }
+
+    public function showCreateUserForm()
+    {
+        // Logika untuk halaman pembuatan pengguna
+        return view('dashboard.admin.masterPengguna.create-user'); // Gantilah 'nama_view_yang_diinginkan' dengan nama view yang sesuai
+    }
+
+    public function create()
+    {
+        // Logika untuk halaman pembuatan pengguna
+        return view('dashboard.admin.masterPengguna.create-user'); // Gantilah 'nama_view_yang_diinginkan' dengan nama view yang sesuai
+    }
+
+    public function createUser(Request $request)
+    {
+        // Validasi input file Excel
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        // Ambil data dari file Excel
+        $file = $request->file('file');
+        $usersArray = Excel::toArray(new UsersImport, $file);
+
+        // Ambil sheet pertama
+        $users = $usersArray[0];
+
+        // Proses untuk setiap baris di Excel
+        foreach ($users as $index => $user) {
+            // Skip baris header
+            if ($index === 0) {
+                continue;
+            }
+
+            $firstName = $user[0];
+            $lastName = $user[1];
+
+            // Menggabungkan firstName dan lastName untuk username
+            $username = strtolower($firstName . '.' . $lastName);
+
+            // Mengolah data nama untuk email
+            $email = strtolower($username . '@yarsi.ac.id');
+
+            // Generate random password
+            $password = $this->generateRandomPassword();
+
+            // Kirim data ke API Moodle dan ambil password yang dibuat
+            $result = $this->sendToMoodle($firstName, $lastName, $email, $password, $username);
+
+            // Jika berhasil dikirim ke Moodle, simpan ke log
+            if ($result['success']) {
+                Log::info('User berhasil dibuat di Moodle. Nama: ' . $firstName . ' ' . $lastName . ', Username: ' . $username . ', Email: ' . $email . ', Password: ' . $password);
+            } else {
+                Log::error('Gagal membuat user di Moodle. Nama: ' . $firstName . ' ' . $lastName . ', Email: ' . $email . '. Error: ' . $result['message']);
+            }
+        }
+
+        // Redirect kembali ke halaman form dengan pesan sukses
+        return redirect()->route('create.user.form')->with('success', 'Users berhasil dibuat!');
+    }
+
+    private function generateRandomPassword($length = 10)
+    {
+        // Karakter yang dibutuhkan untuk password
+        $lowercase = 'abcdefghijklmnopqrstuvwxyz';
+        $uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $digits = '0123456789';
+        $specialChars = '*-#';
+
+        // Menambah satu karakter dari masing-masing jenis yang dibutuhkan
+        $password = $lowercase[rand(0, strlen($lowercase) - 1)] .
+            $uppercase[rand(0, strlen($uppercase) - 1)] .
+            $digits[rand(0, strlen($digits) - 1)] .
+            $specialChars[rand(0, strlen($specialChars) - 1)];
+
+        // Menggabungkan semua karakter untuk bagian sisa dari password
+        $allChars = $lowercase . $uppercase . $digits . $specialChars;
+
+        // Menambah karakter acak hingga mencapai panjang yang diinginkan
+        for ($i = 4; $i < $length; $i++) {
+            $password .= $allChars[rand(0, strlen($allChars) - 1)];
+        }
+
+        // Acak urutan password untuk memastikan tidak selalu dimulai dengan pola tertentu
+        return str_shuffle($password);
+    }
+
+    private function sendToMoodle($firstName, $lastName, $email, $password, $username)
+    {
+        // Kirim data ke API Moodle
+        $client = new Client();
+        $url = 'https://layarstaging.yarsi.ac.id/webservice/rest/server.php';
+        $params = [
+            'headers' => [
+                'Content-Type' => 'application/x-www-form-urlencoded',
+            ],
+            'form_params' => [
+                'wstoken' => '9aea4a048e6570c9710249506bc76305',
+                'wsfunction' => 'core_user_create_users',
+                'moodlewsrestformat' => 'json',
+                'users[0][username]' => $username,
+                'users[0][auth]' => 'manual',
+                'users[0][password]' => $password,
+                'users[0][firstname]' => $firstName,
+                'users[0][lastname]' => $lastName,
+                'users[0][email]' => $email,
+                'users[0][maildisplay]' => 1,
+                'users[0][lang]' => 'en',
+                'users[0][calendartype]' => 'gregorian',
+                'users[0][mailformat]' => 1,
+            ],
+        ];
+
+        try {
+            Log::info('Mengirim permintaan ke Moodle API: ' . json_encode($params));
+            $response = $client->post($url, $params);
+            $data = json_decode($response->getBody(), true);
+            Log::info('Respon dari Moodle API: ' . json_encode($data));
+
+            // Handle response from Moodle
+            if (!empty($data['errorcode'])) {
+                // Jika ada kesalahan dari Moodle
+                return ['success' => false, 'message' => $data['message']];
+            }
+
+            // Jika berhasil, kembalikan array dengan status sukses
+            return ['success' => true];
+        } catch (\Exception $e) {
+            Log::error('Kesalahan saat mengirim permintaan ke Moodle API: ' . $e->getMessage());
+            // Handle exception if API request fails
+            return ['success' => false, 'message' => $e->getMessage()];
+        }
     }
 
     /**

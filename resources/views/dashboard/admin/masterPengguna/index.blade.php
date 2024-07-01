@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.main')
-@section ('title', 'PANDAY | Master Data')
+@section('title', 'PANDAY | Master Data')
 @section('content')
         <h5 class="fw-bold" style="margin-top: 40px; font-weight: 400;">Master Data</h5>
         <ol class="breadcrumb">
@@ -20,6 +20,10 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
+                    {{-- Buttons --}}
+                    <div class="d-flex mb-3">
+                        <button type="button" class="btn btn-primary me-2" onclick="createurl()">Create User</button>
+                    </div>
                     {{-- Table --}}
                     <div class="container mt-3">
                         <table id="data-table" class="table table-bordered table-hover cell-border">
@@ -37,12 +41,22 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            function createurl() {
+                window.location.href = "{{ route('createUser') }}";
+            }
+        </script>
+        
         
         <script>
             function createurl() {
                 window.location.href = '/masterdata/pengguna/create';
             }
 
+            function createManyUsers() {
+                window.location.href = '/masterdata/pengguna/createMany';
+            }
 
             function confirmDelete() {
                 return confirm("Apakah Anda yakin ingin menghapusnya?");
@@ -62,8 +76,8 @@
                     columns: [
                         { 
                             data: null,
-                            render: function(data, type, row, index) {
-                                return index.row + index.settings._iDisplayStart + 1; // Menggunakan meta.row untuk mendapatkan nomor iterasi
+                            render: function(data, type, row, meta) {
+                                return meta.row + meta.settings._iDisplayStart + 1; // Menggunakan meta.row untuk mendapatkan nomor iterasi
                             }
                         },
                         { 

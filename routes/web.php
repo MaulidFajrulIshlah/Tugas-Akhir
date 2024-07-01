@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/beranda', [BerandaController::class, 'CheckStatusServer'])->name('beranda');
     Route::get('/dashboard/beranda/dekanat-ti', [BerandaController::class, 'DekanatTi'])->name('beranda-dekanat-ti');
     Route::post('/hapus-log', [BerandaController::class, 'hapusLog']);
-    Route::get('/dashboard/beranda', [BerandaController::class, 'index']) ->name('beranda') ;
+    Route::get('/dashboard/beranda', [BerandaController::class, 'index'])->name('beranda');
 
 
     // Mata Kuliah
@@ -75,4 +75,8 @@ Route::middleware(['auth', 'cekUserLogin:1'])->group(function () {
     Route::get('/masterdata/pengguna/delete/{id}', [MasterPenggunaController::class, 'destroy'])->name('deleteUser');
     Route::post('/masterdata/pengguna/prosesCreate', [MasterPenggunaController::class, 'store'])->name('prosesCreate');
     Route::post('/masterdata/pengguna/prosesUpdate', [MasterPenggunaController::class, 'update'])->name('prosesUpdate');
+
+    // Tambahkan route berikut untuk halaman pembuatan pengguna
+    Route::get('/masterdata/pengguna/create-user', [MasterPenggunaController::class, 'showCreateUserForm'])->name('create.user.form');
+    Route::post('/masterdata/pengguna/create-user', [MasterPenggunaController::class, 'createUser'])->name('create.user');
 });
